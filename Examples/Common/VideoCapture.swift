@@ -43,7 +43,7 @@ public class VideoCapture: NSObject {
   var textureCache: CVMetalTextureCache?
   let captureSession = AVCaptureSession()
   let videoOutput = AVCaptureVideoDataOutput()
-	let photoOutput = AVCapturePhotoOutput()
+    let photoOutput = AVCapturePhotoOutput()
   let queue = DispatchQueue(label: "net.machinethink.camera-queue")
 
   var lastTimestamp = CMTime()
@@ -53,7 +53,7 @@ public class VideoCapture: NSObject {
     super.init()
   }
 
-  public func setUp(sessionPreset: String = AVCaptureSessionPresetMedium,
+  public func setUp(sessionPreset: AVCaptureSession.Preset = AVCaptureSession.Preset.medium,
                     completion: @escaping (Bool) -> Void) {
     queue.async {
       let success = self.setUpCamera(sessionPreset: sessionPreset)
@@ -63,7 +63,7 @@ public class VideoCapture: NSObject {
     }
   }
 
-  func setUpCamera(sessionPreset: String) -> Bool {
+  func setUpCamera(sessionPreset: AVCaptureSession.Preset) -> Bool {
     guard CVMetalTextureCacheCreate(kCFAllocatorDefault, nil, device, nil, &textureCache) == kCVReturnSuccess else {
       print("Error: could not create a texture cache")
       return false
@@ -72,7 +72,8 @@ public class VideoCapture: NSObject {
     captureSession.beginConfiguration()
     captureSession.sessionPreset = sessionPreset
 
-    guard let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) else {
+    guard let captureDevice = AVCaptureDevice.default(AVCaptureDevice.DeviceType
+        .builtInWideAngleCamera, for: AVMediaType.video, position: AVCaptureDevice.Position.unspecified) else {
       print("Error: no video devices available")
       return false
     }
@@ -86,11 +87,15 @@ public class VideoCapture: NSObject {
       captureSession.addInput(videoInput)
     }
 
-    if let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession) {
-      previewLayer.videoGravity = AVLayerVideoGravityResizeAspect
-      previewLayer.connection?.videoOrientation = .portrait
-      self.previewLayer = previewLayer
-    }
+    let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+    previewLayer.videoGravity = AVLayerVideoGravity.resizeAspect
+    #if TINY_YOLO
+        previewLayer.connection?.videoOrientation = .portrait
+    #else
+        previewLayer.connection?.videoOrientation = .landscapeRight
+    //previewLayer.connection?.videoOrientation = .portrait
+    #endif
+    self.previewLayer = previewLayer
 
     let settings: [String : Any] = [
       kCVPixelBufferPixelFormatTypeKey as String: NSNumber(value: kCVPixelFormatType_32BGRA)
@@ -105,8 +110,12 @@ public class VideoCapture: NSObject {
 
     // We want the buffers to be in portrait orientation otherwise they are
     // rotated by 90 degrees. Need to set this _after_ addOutput()!
-    videoOutput.connection(withMediaType: AVMediaTypeVideo).videoOrientation = .portrait
-
+    #if TINY_YOLO
+        videoOutput.connection(with: AVMediaType.video)?.videoOrientation = .portrait
+    #else
+        videoOutput.connection(with: AVMediaType.video)?.videoOrientation = .landscapeLeft
+   #endif
+    
     if captureSession.canAddOutput(photoOutput) {
       captureSession.addOutput(photoOutput)
     }
@@ -129,6 +138,7 @@ public class VideoCapture: NSObject {
 
   /* Captures a single frame of the camera input. */
   public func capturePhoto() {
+    /*
     let settings = AVCapturePhotoSettings(format: [
       kCVPixelBufferPixelFormatTypeKey as String: NSNumber(value: kCVPixelFormatType_32BGRA)
     ])
@@ -140,6 +150,7 @@ public class VideoCapture: NSObject {
     ]
 
     photoOutput.capturePhoto(with: settings, delegate: self)
+ */
   }
 
   func convertToMTLTexture(sampleBuffer: CMSampleBuffer?) -> MTLTexture? {
@@ -149,6 +160,7 @@ public class VideoCapture: NSObject {
 
       let width = CVPixelBufferGetWidth(imageBuffer)
       let height = CVPixelBufferGetHeight(imageBuffer)
+      //print(width, "x", height)
 
       var texture: CVMetalTexture?
       CVMetalTextureCacheCreateTextureFromImage(kCFAllocatorDefault, textureCache,
@@ -180,7 +192,7 @@ public class VideoCapture: NSObject {
 }
 
 extension VideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
-  public func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+  public func captureOutput(_ captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
 
     // Because lowering the capture device's FPS looks ugly in the preview,
     // we capture at full speed but only call the delegate at its desired
@@ -198,9 +210,9 @@ extension VideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
 }
 
 extension VideoCapture: AVCapturePhotoCaptureDelegate {
-  public func capture(_ captureOutput: AVCapturePhotoOutput,
-                      didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?,
-                      previewPhotoSampleBuffer: CMSampleBuffer?,
+  public func photoOutput(_ captureOutput: AVCapturePhotoOutput,
+                      didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?,
+                      previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?,
                       resolvedSettings: AVCaptureResolvedPhotoSettings,
                       bracketSettings: AVCaptureBracketedStillImageSettings?,
                       error: Error?) {

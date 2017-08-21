@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Menlo.ttc">
+            <string>Menlo-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Camera View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -26,6 +30,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OPM-8z-h6P" userLabel="Video Postview">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="orI-nu-P9h" userLabel="Results">
                                 <rect key="frame" x="0.0" y="534" width="320" height="34"/>
                                 <subviews>
@@ -59,6 +66,7 @@
                             <constraint firstItem="JLZ-UN-cej" firstAttribute="top" secondItem="bCL-P6-Xzi" secondAttribute="bottom" id="aFe-O2-aUZ"/>
                             <constraint firstItem="bCL-P6-Xzi" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="e7s-hY-zDH"/>
                             <constraint firstItem="orI-nu-P9h" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="eWH-Zu-YEX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OPM-8z-h6P" secondAttribute="trailing" id="i85-Kv-kyH"/>
                             <constraint firstAttribute="trailing" secondItem="orI-nu-P9h" secondAttribute="trailing" id="iQW-sJ-6HM"/>
                             <constraint firstItem="bCL-P6-Xzi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="sC5-sg-Czw"/>
                             <constraint firstItem="JLZ-UN-cej" firstAttribute="top" secondItem="orI-nu-P9h" secondAttribute="bottom" id="umg-vt-Zr9"/>
@@ -69,6 +77,7 @@
                     <connections>
                         <outlet property="debugImageView" destination="RUc-kC-0Vd" id="vpu-er-0aD"/>
                         <outlet property="timeLabel" destination="Z1n-zk-6Ap" id="Uip-Qq-CIm"/>
+                        <outlet property="videoPostview" destination="OPM-8z-h6P" id="891-C0-nFh"/>
                         <outlet property="videoPreview" destination="bCL-P6-Xzi" id="16P-At-I63"/>
                     </connections>
                 </viewController>
@@ -77,9 +86,4 @@
             <point key="canvasLocation" x="83" y="262"/>
         </scene>
     </scenes>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4_0.fullscreen"/>
-    </simulatedMetricsContainer>
 </document>

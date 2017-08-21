@@ -70,7 +70,93 @@ extension MPSImage {
       default: fatalError("Pixel format \(pixelFormat) not supported")
     }
   }
+  
+  @nonobjc public func toFloatArrayChannelsTogether() -> [Float] {
+    let withPadding = self.toFloatArray()
+    // Find how many elements we need to copy over from each pixel in a slice.
+    // For 1 channel it's just 1 element (R); for 2 channels it is 2 elements
+    // (R+G), and for any other number of channels it is 4 elements (RGBA).
+    let numComponents = (featureChannels < 3) ? featureChannels : 4
+    
+    // Allocate the memory for the array. If batching is used, we need to copy
+    // numSlices slices for each image in the batch.
+    let count = width * height * featureChannels * numberOfImages
+    var output = [Float](repeating: 0, count: count)
+    
+    let src_slice_size = width * height * numComponents
+    let src_row_size = width * numComponents
 
+    for channel in 0..<featureChannels {
+      let slice = channel / 4
+      let indexInSlice = channel - slice*4
+      let slice_offset = slice * src_slice_size
+      
+      for y in 0..<height {
+        let y_src_offset = y * src_row_size
+        for x in 0..<width {
+          let x_src_offset = x * numComponents
+          let dest_offest = channel * (width*height) + y * width + x
+          let src_offset = slice_offset + y_src_offset + x_src_offset + indexInSlice
+          output[dest_offest] = withPadding[src_offset]
+        }
+      }
+    }
+    return output
+  }
+  @nonobjc public func toFloatArrayChannelsInterleaved() -> [Float] {
+    let withPadding = self.toFloatArray()
+    
+    let numSlices = (featureChannels + 3)/4
+    
+    // If the number of channels is not a multiple of 4, we may need to add
+    // padding. For 1 and 2 channels we don't need padding.
+    let channelsPlusPadding = (featureChannels < 3) ? featureChannels : numSlices * 4
+    
+    // Find how many elements we need to copy over from each pixel in a slice.
+    // For 1 channel it's just 1 element (R); for 2 channels it is 2 elements
+    // (R+G), and for any other number of channels it is 4 elements (RGBA).
+    let numComponents = (featureChannels < 3) ? featureChannels : 4
+    
+    // Allocate the memory for the array. If batching is used, we need to copy
+    // numSlices slices for each image in the batch.
+    let count = width * height * featureChannels * numberOfImages
+    var output = [Float](repeating: 0, count: count)
+    
+    print("input.count", withPadding.count)
+    print("output.count", output.count)
+    print("width", width)
+    print("height", height)
+    print("channelsPlusPadding", channelsPlusPadding)
+    let src_slice_size = width * height * numComponents
+    let src_row_size = width * numComponents
+    print("src_slice_size", src_slice_size)
+    print("src_row_size", src_row_size)
+    for channel in 0..<featureChannels {
+      let slice = channel / 4
+      let indexInSlice = channel - slice*4
+      let slice_offset = slice * src_slice_size
+      
+      //      print("channel", channel)
+      //      print("slice", slice)
+      //      print("indexInSlice", indexInSlice)
+      //      print("slice_offset", slice_offset)
+      
+      for y in 0..<height {
+        let y_src_offset = y * src_row_size
+        for x in 0..<width {
+//                  print("x", x, "y",y)
+          let x_src_offset = x * numComponents
+//                    print("x_src_offset", x_src_offset, "y_src_offset",y_src_offset)
+          
+          let dest_offest = channel + (x + y * width) * featureChannels
+          let src_offset = slice_offset + y_src_offset + x_src_offset + indexInSlice
+//                    print("src_offset", src_offset, "dest_offest",dest_offest)
+          output[dest_offest] = withPadding[src_offset]
+        }
+      }
+    }
+    return output
+  }
   private func fromFloat16() -> [Float] {
     var outputFloat16 = convert(initial: Float16(0))
     return float16to32(&outputFloat16, count: outputFloat16.count)

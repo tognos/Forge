@@ -39,13 +39,13 @@ open class SimpleKernel {
 
   public func encode(commandBuffer: MTLCommandBuffer, sourceImage: MPSImage, destinationImage: MPSImage) {
     let encoder = commandBuffer.makeComputeCommandEncoder()
-    encoder.pushDebugGroup(name)
-    encoder.setComputePipelineState(pipeline)
-    encoder.setTexture(sourceImage.texture, at: 0)
-    encoder.setTexture(destinationImage.texture, at: 1)
-    encoder.dispatch(pipeline: pipeline, image: destinationImage)
-    encoder.popDebugGroup()
-    encoder.endEncoding()
+    encoder?.pushDebugGroup(name)
+    encoder?.setComputePipelineState(pipeline)
+    encoder?.setTexture(sourceImage.texture, index: 0)
+    encoder?.setTexture(destinationImage.texture, index: 1)
+    encoder?.dispatch(pipeline: pipeline, image: destinationImage)
+    encoder?.popDebugGroup()
+    encoder?.endEncoding()
 
     // Let Metal know the temporary image can be recycled.
     if let image = sourceImage as? MPSTemporaryImage {

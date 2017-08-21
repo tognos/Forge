@@ -303,8 +303,8 @@ public class Model {
       return
     }
 
-    MPSTemporaryImage.prefetchStorage(with: commandBuffer,
-                                      imageDescriptorList: imageDescriptorList)
+    //MPSTemporaryImage.prefetchStorage(with: commandBuffer,
+    //                                  imageDescriptorList: imageDescriptorList)
 
     var sourceImage: MPSImage?
     if firstLayerEatsTexture {
@@ -316,6 +316,7 @@ public class Model {
     tensors[0].image = sourceImage
 
     for tensor in tensors {
+        //print("encoding"+tensor.debugDescription)
       encode(tensor: tensor, commandBuffer: commandBuffer, inflightIndex: inflightIndex)
     }
 
@@ -330,6 +331,7 @@ public class Model {
 
     // If the tensor has a real MPSImage, use that. Otherwise make a temp one.
     func createImage(for tensor: Tensor) -> MPSImage {
+       // print("createImage for tensor "+tensor.debugDescription)
       if let images = outputImages[tensor] {
         return images[inflightIndex]
       } else {

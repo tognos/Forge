@@ -98,8 +98,8 @@ extension MTLDevice {
     let texture = makeTexture(descriptor: textureDescriptor)
 
     let region = MTLRegionMake2D(0, 0, width, height)
-    texture.replace(region: region, mipmapLevel: 0, withBytes: array,
+    texture?.replace(region: region, mipmapLevel: 0, withBytes: array,
                     bytesPerRow: width * MemoryLayout<T>.stride * featureChannels)
-    return texture
+    return texture!
   }
 }

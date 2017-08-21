@@ -49,8 +49,11 @@ public struct DataShape {
 
   func createImageDescriptor() -> MPSImageDescriptor {
     assert(isFullySpecified)
-    return MPSImageDescriptor(channelFormat: .float16, width: width,
-                              height: height, featureChannels: channels)
+    let descriptor = MPSImageDescriptor(channelFormat: .float16, width: width,
+                                        height: height, featureChannels: channels)
+    //descriptor.storageMode = MTLStorageMode.`private`
+    //descriptor.storageMode = MTLStorageMode.managed
+    return descriptor
   }
 }
 

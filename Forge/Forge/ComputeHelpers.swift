@@ -29,7 +29,7 @@ var forgeMetalLibrary: MTLLibrary!
 
 func loadDefaultMetalLibrary(device: MTLDevice) -> MTLLibrary {
   if defaultMetalLibrary == nil {
-    defaultMetalLibrary = device.newDefaultLibrary()
+    defaultMetalLibrary = device.makeDefaultLibrary()
     if defaultMetalLibrary == nil {
       fatalError("Could not load default Metal library")
     }
@@ -104,11 +104,11 @@ extension MTLComputeCommandEncoder {
     for i in 0..<parameters.count {
       var obj = parameters[i]
       if let buffer = obj as? MTLBuffer {
-        setBuffer(buffer, offset: 0, at: i)
+        setBuffer(buffer, offset: 0, index: i)
       } else if let texture = obj as? MTLTexture {
-        setTexture(texture, at: i)
+        setTexture(texture, index: i)
       } else {
-        setBytes(&obj, length: MemoryLayout.size(ofValue: obj), at: i)
+        setBytes(&obj, length: MemoryLayout.size(ofValue: obj), index: i)
       }
     }
   }
@@ -322,7 +322,7 @@ public func makeBuffer(device: MTLDevice,
 
   let buffer = device.makeBuffer(length: MemoryLayout<Float16>.stride * count)
 
-  copy(weights: weights, to: buffer, channelFormat: channelFormat,
+  copy(weights: weights, to: buffer!, channelFormat: channelFormat,
        kernelWidth: kernelWidth, kernelHeight: kernelHeight,
        inputFeatureChannels: inputFeatureChannels,
        outputFeatureChannels: outputFeatureChannels)
@@ -331,7 +331,7 @@ public func makeBuffer(device: MTLDevice,
   //let ptr = buffer.contents().bindMemory(to: Float16.self, capacity: count)
   //print(float16to32(ptr, count: count))
 
-  return buffer
+  return buffer!
 }
 
 /**
@@ -372,9 +372,9 @@ public func makeBuffer(device: MTLDevice,
   // The bias terms are often optional. If biasTerms is nil, just allocate a 
   // buffer containing zeros, otherwise copy the biases into the buffer.
   if let biasTerms = biasTerms {
-    copy(biasTerms: biasTerms, to: buffer, channelFormat: channelFormat,
+    copy(biasTerms: biasTerms, to: buffer!, channelFormat: channelFormat,
          outputFeatureChannels: outputFeatureChannels)
   }
 
-  return buffer
+  return buffer!
 }

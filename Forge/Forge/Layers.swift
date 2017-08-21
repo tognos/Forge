@@ -182,6 +182,70 @@ public class MPSCNNLayer: Layer {
   }
 }
 
+public class SpaceToDepthX2: Layer {
+    
+    /**
+     Creates a new layer reshaping input to half size of four times the number of filters
+     */
+    
+    public init(name: String = "") {
+        super.init(name: name)
+    }
+    
+    override public var typeName: String {
+        return "SpaceToDepthX2"
+    }
+    
+    override public func outputShape(for inputShape: DataShape) -> DataShape {
+        return DataShape(width: inputShape.width/2,
+                         height: inputShape.height/2,
+                         channels: inputShape.channels*4)
+    }
+    
+    override public func encode(commandBuffer: MTLCommandBuffer,
+                                sourceTensor: Tensor,
+                                destinationTensor: Tensor) {
+        let sourceImage = sourceTensor.image!
+        let destImage = destinationTensor.image!
+        
+        let width = destinationTensor.shape.width
+        let height = destinationTensor.shape.height
+        let sourceRegion = [MTLRegionMake3D(0,     0,      0, width, height, 1),
+                            MTLRegionMake3D(width, 0,      0, width, height, 1),
+                            MTLRegionMake3D(0,     height, 0, width, height, 1),
+                            MTLRegionMake3D(width, height, 0, width, height, 1)]
+        let destOrigin = MTLOrigin(x: 0, y: 0, z: 0)
+        
+        let srcChannels = sourceTensor.shape.channels
+        let srcSlices = (srcChannels + 3)/4
+        
+        if let blitEncoder = commandBuffer.makeBlitCommandEncoder() {
+            
+            for slice in 0..<srcSlices {
+                for region in 0...3 {
+                blitEncoder.copy(from: sourceImage.texture,
+                                 sourceSlice: slice,
+                                 sourceLevel: 0,
+                                 sourceOrigin: sourceRegion[region].origin,
+                                 sourceSize: sourceRegion[region].size,
+                                 to: destImage.texture,
+                                 destinationSlice: slice * 4 + region,
+                                 destinationLevel: 0,
+                                 destinationOrigin: destOrigin)
+                }
+            }
+            
+            blitEncoder.endEncoding()
+            //commandBuffer.commit()
+        } else {
+            print("Error: SpaceToDepthX2.SpaceToDepthX2: cant create blitEncoder")
+        }
+        if let image = sourceImage as? MPSTemporaryImage {
+            image.readCount -= 1
+        }
+    }
+}
+
 /**
   Convolutional layer.
 */
