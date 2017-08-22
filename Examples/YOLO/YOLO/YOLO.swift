@@ -107,15 +107,15 @@ class YOLO: NeuralNetwork {
       let conv2d_20 = Convolution(kernel: (3, 3), channels: 1024, stride: (1, 1), padding: .same, activation: leaky, name: "conv2d_20")
       let space_to_depth_x2 = SpaceToDepthX2(name: "space_to_depth_x2")
       let conv2d_22 = Convolution(kernel: (3, 3), channels: 1024, stride: (1, 1), padding: .same, activation: leaky, name: "conv2d_22")
-      let conv2d_23 = Convolution(kernel: (1, 1), channels: 425, stride: (1, 1), padding: .same, activation: leaky, name: "conv2d_23")
+      let conv2d_23 = Convolution(kernel: (1, 1), channels: 425, stride: (1, 1), padding: .same, activation: nil, name: "conv2d_23")
       
       do {
-        let conv2d_1 = input_1 --> conv2d_1
-        conv2d_1.imageIsTemporary = false
-        debugOut = conv2d_1
-
-        let conv2d_13 = conv2d_1 --> max_pooling2d_1 --> conv2d_2 --> max_pooling2d_2 --> conv2d_3 --> conv2d_4 --> conv2d_5 --> max_pooling2d_3 --> conv2d_6 --> conv2d_7 --> conv2d_8 --> max_pooling2d_4 --> conv2d_9 --> conv2d_10 --> conv2d_11 --> conv2d_12 --> conv2d_13
-//        let conv2d_13 = input_1 --> conv2d_1 --> max_pooling2d_1 --> conv2d_2 --> max_pooling2d_2 --> conv2d_3 --> conv2d_4 --> conv2d_5 --> max_pooling2d_3 --> conv2d_6 --> conv2d_7 --> conv2d_8 --> max_pooling2d_4 --> conv2d_9 --> conv2d_10 --> conv2d_11 --> conv2d_12 --> conv2d_13
+//        let conv2d_1 = input_1 --> conv2d_1
+//        conv2d_1.imageIsTemporary = false
+//        debugOut = conv2d_1
+//
+//        let conv2d_13 = conv2d_1 --> max_pooling2d_1 --> conv2d_2 --> max_pooling2d_2 --> conv2d_3 --> conv2d_4 --> conv2d_5 --> max_pooling2d_3 --> conv2d_6 --> conv2d_7 --> conv2d_8 --> max_pooling2d_4 --> conv2d_9 --> conv2d_10 --> conv2d_11 --> conv2d_12 --> conv2d_13
+        let conv2d_13 = input_1 --> conv2d_1 --> max_pooling2d_1 --> conv2d_2 --> max_pooling2d_2 --> conv2d_3 --> conv2d_4 --> conv2d_5 --> max_pooling2d_3 --> conv2d_6 --> conv2d_7 --> conv2d_8 --> max_pooling2d_4 --> conv2d_9 --> conv2d_10 --> conv2d_11 --> conv2d_12 --> conv2d_13
         let space_to_depth_x2 = conv2d_13 --> conv2d_21 --> space_to_depth_x2
         let conv2d_20 = conv2d_13 --> max_pooling2d_5 --> conv2d_14 --> conv2d_15 --> conv2d_16 --> conv2d_17 --> conv2d_18 --> conv2d_19 --> conv2d_20
         let concatenate_1 = Concatenate([space_to_depth_x2, conv2d_20])
@@ -143,22 +143,22 @@ class YOLO: NeuralNetwork {
     model.encode(commandBuffer: commandBuffer, texture: sourceTexture, inflightIndex: inflightIndex)
   }
   
-  public func fetchResult_orig(inflightIndex: Int) -> NeuralNetworkResult<Prediction> {
+  public func fetchResult(inflightIndex: Int) -> NeuralNetworkResult<Prediction> {
     //print("fetchResult:",inflightIndex)
     //var fakeresult = NeuralNetworkResult<Prediction>()
     //return fakeresult
     
     let featuresImage = model.outputImage(inflightIndex: inflightIndex)
-    print("featuresImage width", featuresImage.width, "height", featuresImage.height, "channels", featuresImage.featureChannels, "images", featuresImage.numberOfImages)
+//    print("featuresImage width", featuresImage.width, "height", featuresImage.height, "channels", featuresImage.featureChannels, "images", featuresImage.numberOfImages)
     let features = featuresImage.toFloatArray()
     
     #if TINY_YOLO
       assert(features.count == 13*13*128)
     #else
       assert(features.count == 19*19*425)
-      print(features.count, "==", 19*19*425)
+//      print(features.count, "==", 19*19*425)
     #endif
-    print("features =", features.count, "bytes =", features.count*4)
+//    print("features =", features.count, "bytes =", features.count*4)
     // We only run the convolutional part of YOLO on the GPU. The last part of
     // the process is done on the CPU. It should be possible to do this on the
     // GPU too, but it might not be worth the effort.
@@ -288,9 +288,9 @@ class YOLO: NeuralNetwork {
 //    result.debugLayer = featuresImage.toFloatArrayChannels()
 //    print(result.debugLayer!.count, "==", 19*19*425)
     
-    let debugImage = model.image(for: debugOut!, inflightIndex: inflightIndex)
-    print("debugImage shape:", debugImage.width, "x", debugImage.height, "x", debugImage.featureChannels)
-    result.debugLayer = debugImage.toFloatArrayChannelsTogether()
+//    let debugImage = model.image(for: debugOut!, inflightIndex: inflightIndex)
+//    print("debugImage shape:", debugImage.width, "x", debugImage.height, "x", debugImage.featureChannels)
+//    result.debugLayer = debugImage.toFloatArrayChannelsTogether()
 
     #if TINY_YOLO
       result.predictions = nonMaxSuppression(boxes: predictions, limit: 10, threshold: 0.5)
@@ -300,20 +300,19 @@ class YOLO: NeuralNetwork {
     return result
   }
 
-
-public func fetchResult(inflightIndex: Int) -> NeuralNetworkResult<Prediction> {
+public func fetchResult_new(inflightIndex: Int) -> NeuralNetworkResult<Prediction> {
 
   let featuresImage = model.outputImage(inflightIndex: inflightIndex)
-  print("featuresImage width", featuresImage.width, "height", featuresImage.height, "channels", featuresImage.featureChannels, "images", featuresImage.numberOfImages)
+//  print("featuresImage width", featuresImage.width, "height", featuresImage.height, "channels", featuresImage.featureChannels, "images", featuresImage.numberOfImages)
   let features = featuresImage.toFloatArrayChannelsInterleaved()
   
   #if TINY_YOLO
     assert(features.count == 13*13*128)
   #else
     assert(features.count == 19*19*425)
-    print(features.count, "==", 19*19*425)
+//    print(features.count, "==", 19*19*425)
   #endif
-  print("features =", features.count, "bytes =", features.count*4)
+//  print("features =", features.count, "bytes =", features.count*4)
   // We only run the convolutional part of YOLO on the GPU. The last part of
   // the process is done on the CPU. It should be possible to do this on the
   // GPU too, but it might not be worth the effort.
@@ -362,8 +361,8 @@ public func fetchResult(inflightIndex: Int) -> NeuralNetworkResult<Prediction> {
         box_class_probs = Math.softmax(box_class_probs)
         box_x = (box_x + Float(cx)) / Float(gridWidth)
         box_y = (box_y + Float(cy)) / Float(gridHeight)
-        box_w = box_w * anchors[b] / Float(gridWidth)
-        box_h = box_h * anchors[b+1] / Float(gridHeight)
+        box_w = box_w * anchors[2*b] / Float(gridWidth)
+        box_h = box_h * anchors[2*b+1] / Float(gridHeight)
         
         let (best_class, best_prob) = box_class_probs.argmax()
         let best_score = best_prob * box_confidence
@@ -378,74 +377,10 @@ public func fetchResult(inflightIndex: Int) -> NeuralNetworkResult<Prediction> {
                                       score: best_score,
                                       rect: rect)
           
-          //print(prediction)
           predictions.append(prediction)
         }
-/*
-        
-        // The predicted tx and ty coordinates are relative to the location
-        // of the grid cell; we use the logistic sigmoid to constrain these
-        // coordinates to the range 0 - 1. Then we add the cell coordinates
-        // (0-12) and multiply by the number of pixels per grid cell (32).
-        // Now x and y represent center of the bounding box in the original
-        // 416x416 image space.
-        let x = (Float(cx) + Math.sigmoid(tx)) * blockSize
-        let y = (Float(cy) + Math.sigmoid(ty)) * blockSize
-        
-        // The size of the bounding box, tw and th, is predicted relative to
-        // the size of an "anchor" box. Here we also transform the width and
-        // height into the original 416x416 image space.
-        let w = exp(tw) * anchors[2*b    ] * blockSize
-        let h = exp(th) * anchors[2*b + 1] * blockSize
-        
-        // The confidence value for the bounding box is given by tc. We use
-        // the logistic sigmoid to turn this into a percentage.
-        let confidence = Math.sigmoid(tc)
-        
-        // Gather the predicted classes for this anchor box and softmax them,
-        // so we can interpret these numbers as percentages.
-        var classes = [Float](repeating: 0, count: numClasses)
-        for c in 0..<numClasses {
-          classes[c] = features[offset(channel + 5 + c, cx, cy)]
-        }
-        classes = Math.softmax(classes)
-        
-        // Find the index of the class with the largest score.
-        let (detectedClass, bestClassScore) = classes.argmax()
-        
-        // Combine the confidence score for the bounding box, which tells us
-        // how likely it is that there is an object in this box (but not what
-        // kind of object it is), with the largest class prediction, which
-        // tells us what kind of object it detected (but not where).
-        let confidenceInClass = bestClassScore * confidence
-        
-        // Since we compute 13x13x5 = 845 bounding boxes, we only want to
-        // keep the ones whose combined score is over a certain threshold.
-        if confidenceInClass > 0.3 {
-          let rect = CGRect(x: CGFloat(x - w/2), y: CGFloat(y - h/2),
-                            width: CGFloat(w), height: CGFloat(h))
-          
-          let prediction = Prediction(classIndex: detectedClass,
-                                      score: confidenceInClass,
-                                      rect: rect)
-          predictions.append(prediction)
-        }
- */
       }
     }
-    /*
-    let rect = CGRect(x: CGFloat(0.25),
-                      y: CGFloat(0.25),
-                      width: CGFloat(0.5),
-                      height: CGFloat(0.5))
-    
-    let prediction = Prediction(classIndex: 0,
-                                score: 1.0,
-                                rect: rect)
-    
-    //print(prediction)
-    predictions.append(prediction)
-   */
   }
   
   // We already filtered out any bounding boxes that have very low scores,
@@ -453,12 +388,12 @@ public func fetchResult(inflightIndex: Int) -> NeuralNetworkResult<Prediction> {
   // use "non-maximum suppression" to prune those duplicate bounding boxes.
   var result = NeuralNetworkResult<Prediction>()
   
-  //    result.debugLayer = featuresImage.toFloatArrayChannels()
-  //    print(result.debugLayer!.count, "==", 19*19*425)
+//  result.debugLayer = featuresImage.toFloatArrayChannelsTogether()
+//  print(result.debugLayer!.count, "==", 19*19*425)
   
-  let debugImage = model.image(for: debugOut!, inflightIndex: inflightIndex)
-  print("debugImage shape:", debugImage.width, "x", debugImage.height, "x", debugImage.featureChannels)
-  result.debugLayer = debugImage.toFloatArrayChannelsTogether()
+//  let debugImage = model.image(for: debugOut!, inflightIndex: inflightIndex)
+//  print("debugImage shape:", debugImage.width, "x", debugImage.height, "x", debugImage.featureChannels)
+//  result.debugLayer = debugImage.toFloatArrayChannelsTogether()
   
   #if TINY_YOLO
     result.predictions = nonMaxSuppression(boxes: predictions, limit: 10, threshold: 0.5)

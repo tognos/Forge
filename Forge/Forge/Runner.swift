@@ -74,7 +74,6 @@ public struct NeuralNetworkResult<PredictionType> {
   // This is filled in by Runner to measure the effective framerate.
   public var elapsed: CFTimeInterval = 0
   
-
   public init() { }
 }
 

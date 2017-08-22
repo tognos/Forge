@@ -246,11 +246,11 @@ class CameraViewController: UIViewController {
     
     startupGroup.notify(queue: .main) {
       // Add the bounding box layers to the UI, on top of the video preview.
-      #if false
+      #if true
         // Once the NN is set up, we can start capturing live video.
         for box in self.boundingBoxes {
-          //box.addToLayer(self.videoPreview.layer)
-          box.addToLayer(self.videoPostview.layer)
+          box.addToLayer(self.videoPreview.layer)
+          //box.addToLayer(self.videoPostview.layer)
         }
         self.videoCapture.start()
       #else
@@ -371,17 +371,14 @@ class CameraViewController: UIViewController {
     // It is up to VideoCapture to throttle how often the neural network runs.
     
     runner.predict(network: network, texture: texture, queue: .main) { result in
-      let timg = UIImage.image(texture: texture)
-      //self.videoPreview.layer.contents = timg.cgImage
-      self.videoPostview.image = timg
-      self.debugImageView.layer.contents = timg.cgImage
+//      let timg = UIImage.image(texture: texture)
+//      self.videoPostview.image = timg
+//      self.debugImageView.layer.contents = timg.cgImage
       
       self.show(predictions: result.predictions,
                 srcImageWidth: CGFloat(texture.width),
                 srcImageHeight: CGFloat(texture.height),
                 targetBounds: targetBounds)
-      
-      //self.debugImageView.image = UIImage.image(texture: texture)
       
       if let texture = result.debugTexture {
         self.debugImageView.image = UIImage.image(texture: texture)
@@ -390,7 +387,7 @@ class CameraViewController: UIViewController {
     }
   }
   
-  private func show_orig(predictions: [YOLO.Prediction], srcImageWidth: CGFloat, srcImageHeight: CGFloat, targetBounds: CGRect ) {
+  private func show(predictions: [YOLO.Prediction], srcImageWidth: CGFloat, srcImageHeight: CGFloat, targetBounds: CGRect ) {
     for i in 0..<boundingBoxes.count {
       if i < predictions.count {
         let prediction = predictions[i]
@@ -435,7 +432,7 @@ class CameraViewController: UIViewController {
   }
   
   
-  private func show(predictions: [YOLO.Prediction], srcImageWidth: CGFloat, srcImageHeight: CGFloat, targetBounds: CGRect ) {
+  private func show_new(predictions: [YOLO.Prediction], srcImageWidth: CGFloat, srcImageHeight: CGFloat, targetBounds: CGRect ) {
     for i in 0..<boundingBoxes.count {
       if i < predictions.count {
         let prediction = predictions[i]

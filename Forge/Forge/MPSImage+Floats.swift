@@ -110,7 +110,7 @@ extension MPSImage {
     
     // If the number of channels is not a multiple of 4, we may need to add
     // padding. For 1 and 2 channels we don't need padding.
-    let channelsPlusPadding = (featureChannels < 3) ? featureChannels : numSlices * 4
+//    let channelsPlusPadding = (featureChannels < 3) ? featureChannels : numSlices * 4
     
     // Find how many elements we need to copy over from each pixel in a slice.
     // For 1 channel it's just 1 element (R); for 2 channels it is 2 elements
@@ -122,15 +122,15 @@ extension MPSImage {
     let count = width * height * featureChannels * numberOfImages
     var output = [Float](repeating: 0, count: count)
     
-    print("input.count", withPadding.count)
-    print("output.count", output.count)
-    print("width", width)
-    print("height", height)
-    print("channelsPlusPadding", channelsPlusPadding)
+//    print("input.count", withPadding.count)
+//    print("output.count", output.count)
+//    print("width", width)
+//    print("height", height)
+//    print("channelsPlusPadding", channelsPlusPadding)
     let src_slice_size = width * height * numComponents
     let src_row_size = width * numComponents
-    print("src_slice_size", src_slice_size)
-    print("src_row_size", src_row_size)
+//    print("src_slice_size", src_slice_size)
+//    print("src_row_size", src_row_size)
     for channel in 0..<featureChannels {
       let slice = channel / 4
       let indexInSlice = channel - slice*4
