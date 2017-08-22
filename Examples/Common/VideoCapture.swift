@@ -44,7 +44,7 @@ public class VideoCapture: NSObject {
   let captureSession = AVCaptureSession()
   let videoOutput = AVCaptureVideoDataOutput()
     let photoOutput = AVCapturePhotoOutput()
-  let queue = DispatchQueue(label: "net.machinethink.camera-queue")
+  let queue = DispatchQueue(label: "com.tognos.camera-queue")
 
   var lastTimestamp = CMTime()
 
@@ -113,7 +113,7 @@ public class VideoCapture: NSObject {
     #if TINY_YOLO
         videoOutput.connection(with: AVMediaType.video)?.videoOrientation = .portrait
     #else
-        videoOutput.connection(with: AVMediaType.video)?.videoOrientation = .landscapeLeft
+        videoOutput.connection(with: AVMediaType.video)?.videoOrientation = .landscapeRight
    #endif
     
     if captureSession.canAddOutput(photoOutput) {
@@ -192,7 +192,7 @@ public class VideoCapture: NSObject {
 }
 
 extension VideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
-  public func captureOutput(_ captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+  public func captureOutput(_ captureOutput: AVCaptureOutput, didOutputSampleBuffer sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
 
     // Because lowering the capture device's FPS looks ugly in the preview,
     // we capture at full speed but only call the delegate at its desired
@@ -211,8 +211,8 @@ extension VideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
 
 extension VideoCapture: AVCapturePhotoCaptureDelegate {
   public func photoOutput(_ captureOutput: AVCapturePhotoOutput,
-                      didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?,
-                      previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?,
+                          didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?,
+                          previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?,
                       resolvedSettings: AVCaptureResolvedPhotoSettings,
                       bracketSettings: AVCaptureBracketedStillImageSettings?,
                       error: Error?) {
