@@ -54,16 +54,17 @@ public class VideoCapture: NSObject {
   }
 
   public func setUp(sessionPreset: AVCaptureSession.Preset = AVCaptureSession.Preset.medium,
+                    orientation: AVCaptureVideoOrientation = .portrait,
                     completion: @escaping (Bool) -> Void) {
     queue.async {
-      let success = self.setUpCamera(sessionPreset: sessionPreset)
+      let success = self.setUpCamera(sessionPreset: sessionPreset, orientation: orientation)
       DispatchQueue.main.async {
         completion(success)
       }
     }
   }
 
-  func setUpCamera(sessionPreset: AVCaptureSession.Preset) -> Bool {
+  func setUpCamera(sessionPreset: AVCaptureSession.Preset, orientation: AVCaptureVideoOrientation) -> Bool {
     guard CVMetalTextureCacheCreate(kCFAllocatorDefault, nil, device, nil, &textureCache) == kCVReturnSuccess else {
       print("Error: could not create a texture cache")
       return false
@@ -89,12 +90,8 @@ public class VideoCapture: NSObject {
 
     let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
     previewLayer.videoGravity = AVLayerVideoGravity.resizeAspect
-    #if TINY_YOLO
-        previewLayer.connection?.videoOrientation = .portrait
-    #else
-        previewLayer.connection?.videoOrientation = .landscapeRight
-    //previewLayer.connection?.videoOrientation = .portrait
-    #endif
+    previewLayer.connection?.videoOrientation = orientation
+
     self.previewLayer = previewLayer
 
     let settings: [String : Any] = [
@@ -192,7 +189,9 @@ public class VideoCapture: NSObject {
 }
 
 extension VideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
-  public func captureOutput(_ captureOutput: AVCaptureOutput, didOutputSampleBuffer sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+  public func captureOutput(_ output: AVCaptureOutput,
+                     didOutput sampleBuffer: CMSampleBuffer,
+                     from connection: AVCaptureConnection) {
 
     // Because lowering the capture device's FPS looks ugly in the preview,
     // we capture at full speed but only call the delegate at its desired

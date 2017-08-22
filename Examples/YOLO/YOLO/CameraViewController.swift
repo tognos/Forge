@@ -224,12 +224,15 @@ class CameraViewController: UIViewController {
     
     // Initialize the camera.
     startupGroup.enter()
+    
     #if TINY_YOLO
       let preset = AVCaptureSession.Preset.vga640x480
+      let orientation = AVCaptureVideoOrientation.portrait
     #else
       let preset = AVCaptureSession.Preset.hd1280x720
+      let orientation = AVCaptureVideoOrientation.landscapeRight
     #endif
-    videoCapture.setUp(sessionPreset: preset) { success in
+    videoCapture.setUp(sessionPreset: preset, orientation: orientation) { success in
       // Add the video preview into the UI.
       if let previewLayer = self.videoCapture.previewLayer {
         self.videoPreview.layer.addSublayer(previewLayer)
@@ -465,6 +468,7 @@ class CameraViewController: UIViewController {
 }
 extension CameraViewController: VideoCaptureDelegate {
   func videoCapture(_ capture: VideoCapture, didCaptureVideoTexture texture: MTLTexture?, timestamp: CMTime) {
+    print("videoCapture(_ capture: VideoCapture, didCaptureVideoTexture texture: MTLTexture?, timestamp: CMTime)")
     // Call the predict() method, which encodes the neural net's GPU commands,
     // on our own thread. Since NeuralNetwork.predict() can block, so can our
     // thread. That is OK, since any new frames will be automatically dropped
