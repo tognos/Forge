@@ -107,11 +107,8 @@ public class VideoCapture: NSObject {
 
     // We want the buffers to be in portrait orientation otherwise they are
     // rotated by 90 degrees. Need to set this _after_ addOutput()!
-    #if TINY_YOLO
-        videoOutput.connection(with: AVMediaType.video)?.videoOrientation = .portrait
-    #else
-        videoOutput.connection(with: AVMediaType.video)?.videoOrientation = .landscapeRight
-   #endif
+    //videoOutput.connection(with: AVMediaType.video)?.videoOrientation = .portrait
+    videoOutput.connection(with: AVMediaType.video)?.videoOrientation = .landscapeRight
     
     if captureSession.canAddOutput(photoOutput) {
       captureSession.addOutput(photoOutput)

@@ -5,12 +5,10 @@ import AVFoundation
 import CoreMedia
 import Forge
 
-#if TINY_YOLO
-let MaxBuffersInFlight = 3   // use triple buffering
-#else
-let MaxBuffersInFlight = 1   // use single buffering for full yolo
-#endif
+let TinyMaxBuffersInFlight = 3   // use triple buffering
+let YoloMaxBuffersInFlight = 1   // use single buffering for full yolo
 
+var TinyYolo = true
 
 // The labels for the 20 classes.
 let voc_labels = [
@@ -50,6 +48,7 @@ extension UIImage {
     return image
   }
 }
+
 public func makeImage(size: CGSize, from: CALayer) -> UIImage? {
   let bounds = CGRect(origin: .zero, size: size)
   let colorSpace = CGColorSpaceCreateDeviceRGB()
@@ -131,12 +130,6 @@ func saveAsRawFile(fileName: String, data : Data) {
   }
 }
 
-#if TINY_YOLO
-let labels = voc_labels
-#else
-let labels = coco_labels
-#endif
-
 class CameraViewController: UIViewController {
   
   @IBOutlet weak var videoPreview: UIView!
@@ -146,17 +139,27 @@ class CameraViewController: UIViewController {
 
   var videoCapture: VideoCapture!
   var device: MTLDevice!
-  var commandQueue: MTLCommandQueue!
-  var runner: Runner!
-  var network: YOLO!
+  
+  var tinyCommandQueue: MTLCommandQueue!
+  var yoloCommandQueue: MTLCommandQueue!
+  var activeCommandQueue: MTLCommandQueue!
+  
+  var tinyRunner: Runner!
+  var yoloRunner: Runner!
+  var activeRunner: Runner!
+  
+  var tinyNetwork: YOLO!
+  var yoloNetwork: YOLO!
+  var activeNetwork: YOLO!
   
   var startupGroup = DispatchGroup()
   
   var boundingBoxes = [BoundingBox]()
   var offScreen: CALayer!
   
-  var colors: [UIColor] = []
-  
+  var tinyColors: [UIColor] = []
+  var yoloColors: [UIColor] = []
+
   var sBounds : CGRect?
   
   var viewBounds : CGRect {
@@ -185,8 +188,9 @@ class CameraViewController: UIViewController {
       return
     }
     
-    commandQueue = device.makeCommandQueue()
-    
+    tinyCommandQueue = device.makeCommandQueue()
+    yoloCommandQueue = device.makeCommandQueue()
+
     // The app can show up to 10 detections at a time. You can increase this
     // limit by allocating more BoundingBox objects, but there's only so much
     // room on the screen. (You also need to change the limit in YOLO.swift.)
@@ -194,29 +198,28 @@ class CameraViewController: UIViewController {
       boundingBoxes.append(BoundingBox())
     }
     
-    #if TINY_YOLO
-      // Make colors for the bounding boxes. There is one color for each class,
-      // 20 classes in total.
-      for r: CGFloat in [0.2, 0.4, 0.6, 0.8, 1.0] {
-        for g: CGFloat in [0.2, 0.7] {
-          for b: CGFloat in [0.4, 0.8] {
-            let color = UIColor(red: r, green: g, blue: b, alpha: 1)
-            colors.append(color)
-          }
+    // Make colors for the bounding boxes. There is one color for each class,
+    // 20 classes in total.
+    for r: CGFloat in [0.2, 0.4, 0.6, 0.8, 1.0] {
+      for g: CGFloat in [0.2, 0.7] {
+        for b: CGFloat in [0.4, 0.8] {
+          let color = UIColor(red: r, green: g, blue: b, alpha: 1)
+          tinyColors.append(color)
         }
       }
-    #else
-      // Make colors for the bounding boxes. There is one color for each class,
-      // 80 classes in total.
-      for r: CGFloat in [0.2, 0.4, 0.6, 0.8, 1.0] {
-        for g: CGFloat in [0.4, 0.6, 0.8, 1.0] {
-          for b: CGFloat in [0.4, 0.6, 0.8, 1.0] {
-            let color = UIColor(red: r, green: g, blue: b, alpha: 1)
-            colors.append(color)
-          }
+    }
+    
+    // Make colors for the bounding boxes. There is one color for each class,
+    // 80 classes in total.
+    for r: CGFloat in [0.2, 0.4, 0.6, 0.8, 1.0] {
+      for g: CGFloat in [0.4, 0.6, 0.8, 1.0] {
+        for b: CGFloat in [0.4, 0.6, 0.8, 1.0] {
+          let color = UIColor(red: r, green: g, blue: b, alpha: 1)
+          yoloColors.append(color)
         }
       }
-    #endif
+    }
+    
     videoCapture = VideoCapture(device: device)
     videoCapture.delegate = self
     //videoCapture.fps = 5
@@ -225,13 +228,12 @@ class CameraViewController: UIViewController {
     // Initialize the camera.
     startupGroup.enter()
     
-    #if TINY_YOLO
-      let preset = AVCaptureSession.Preset.vga640x480
-      let orientation = AVCaptureVideoOrientation.portrait
-    #else
-      let preset = AVCaptureSession.Preset.hd1280x720
-      let orientation = AVCaptureVideoOrientation.landscapeRight
-    #endif
+    //  let preset = AVCaptureSession.Preset.vga640x480
+    //  let orientation = AVCaptureVideoOrientation.portrait
+
+    let preset = AVCaptureSession.Preset.hd1280x720
+    let orientation = AVCaptureVideoOrientation.landscapeRight
+
     videoCapture.setUp(sessionPreset: preset, orientation: orientation) { success in
       // Add the video preview into the UI.
       if let previewLayer = self.videoCapture.previewLayer {
@@ -296,7 +298,7 @@ class CameraViewController: UIViewController {
         self.offScreen.layoutSublayers()
         print("Offscreen set to:"+names[index])
       }
-      runner.predict(network: network, texture: texture, queue: .main) { result in
+      activeRunner.predict(network: activeNetwork, texture: texture, queue: DispatchQueue.main) { result in
         let timg = UIImage.image(texture: texture)
         //self.videoPreview.layer.contents = timg.cgImage
         self.videoPostview.image = timg
@@ -343,6 +345,18 @@ class CameraViewController: UIViewController {
     videoCapture.previewLayer?.frame = videoPreview.bounds
   }
   
+  func setNetwork(tiny: Bool) {
+    if (tiny) {
+      activeNetwork = tinyNetwork
+      activeRunner = tinyRunner
+      activeCommandQueue = tinyCommandQueue
+    } else {
+      activeNetwork = yoloNetwork
+      activeRunner = yoloRunner
+      activeCommandQueue = yoloCommandQueue
+    }
+  }
+  
   // MARK: - Neural network
   
   func createNeuralNetwork(completion: @escaping () -> Void) {
@@ -352,14 +366,17 @@ class CameraViewController: UIViewController {
       return
     }
     
-    runner = Runner(commandQueue: commandQueue, inflightBuffers: MaxBuffersInFlight)
-    
+    yoloRunner = Runner(commandQueue: yoloCommandQueue, inflightBuffers: 1)
+    tinyRunner = Runner(commandQueue: tinyCommandQueue, inflightBuffers: 3)
+
     // Because it may take a few seconds to load the network's parameters,
     // perform the construction of the neural network in the background.
     DispatchQueue.global().async {
       
       timeIt("Setting up neural network") {
-        self.network = YOLO(device: self.device, inflightBuffers: MaxBuffersInFlight)
+        self.tinyNetwork = TinyYOLO(device: self.device, inflightBuffers: 3)
+        self.yoloNetwork = YOLO2(device: self.device, inflightBuffers: 1)
+        self.setNetwork(tiny: true)
       }
       
       DispatchQueue.main.async(execute: completion)
@@ -373,7 +390,7 @@ class CameraViewController: UIViewController {
     // network should not be called more often than the UI thread can handle.
     // It is up to VideoCapture to throttle how often the neural network runs.
     
-    runner.predict(network: network, texture: texture, queue: .main) { result in
+    activeRunner.predict(network: activeNetwork, texture: texture, queue: .main) { result in
 //      let timg = UIImage.image(texture: texture)
 //      self.videoPostview.image = timg
 //      self.debugImageView.layer.contents = timg.cgImage
@@ -408,8 +425,8 @@ class CameraViewController: UIViewController {
         //      "network.inputWidth=",network.inputWidth,"network.inputHeight=", network.inputHeight)
         let width = targetBounds.width
         let height = width * srcImageHeight / srcImageWidth
-        let scaleX = width / CGFloat(network.inputWidth)
-        let scaleY = height / CGFloat(network.inputHeight)
+        let scaleX = width / CGFloat(activeNetwork.inputWidth)
+        let scaleY = height / CGFloat(activeNetwork.inputHeight)
         
         let left = (targetBounds.width - width) / 2
         let top = (targetBounds.height - height) / 2
@@ -423,6 +440,9 @@ class CameraViewController: UIViewController {
         rect.size.width *= scaleX
         rect.size.height *= scaleY
         
+        let labels = activeNetwork === tinyNetwork ? voc_labels : coco_labels
+        let colors = activeNetwork === tinyNetwork ? tinyColors : yoloColors
+
         // Show the bounding box.
         let label = String(format: "%@ %.1f", labels[prediction.classIndex], prediction.score * 100)
         let color = colors[prediction.classIndex]
@@ -433,7 +453,6 @@ class CameraViewController: UIViewController {
       }
     }
   }
-  
   
   private func show_new(predictions: [YOLO.Prediction], srcImageWidth: CGFloat, srcImageHeight: CGFloat, targetBounds: CGRect ) {
     for i in 0..<boundingBoxes.count {
@@ -455,6 +474,9 @@ class CameraViewController: UIViewController {
         rect.size.width *= width
         rect.size.height *= height
         
+        let labels = activeNetwork === tinyNetwork ? voc_labels : coco_labels
+        let colors = activeNetwork === tinyNetwork ? tinyColors : yoloColors
+
         // Show the bounding box.
         let label = String(format: "%@ %.1f", labels[prediction.classIndex], prediction.score * 100)
         let color = colors[prediction.classIndex]
@@ -468,7 +490,6 @@ class CameraViewController: UIViewController {
 }
 extension CameraViewController: VideoCaptureDelegate {
   func videoCapture(_ capture: VideoCapture, didCaptureVideoTexture texture: MTLTexture?, timestamp: CMTime) {
-    print("videoCapture(_ capture: VideoCapture, didCaptureVideoTexture texture: MTLTexture?, timestamp: CMTime)")
     // Call the predict() method, which encodes the neural net's GPU commands,
     // on our own thread. Since NeuralNetwork.predict() can block, so can our
     // thread. That is OK, since any new frames will be automatically dropped

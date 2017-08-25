@@ -89,6 +89,8 @@
 		E96D6AE41F377789002CC7C6 /* horses.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E96D6AE01F376F2C002CC7C6 /* horses.jpg */; };
 		E96D6AE51F377789002CC7C6 /* person.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E96D6ADC1F376F2C002CC7C6 /* person.jpg */; };
 		E96D6AE61F377789002CC7C6 /* scream.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E96D6ADF1F376F2C002CC7C6 /* scream.jpg */; };
+		E9B244661F504F31009AE8CC /* TinyYOLO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B244651F504F31009AE8CC /* TinyYOLO.swift */; };
+		E9B244681F504F64009AE8CC /* YOLO2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B244671F504F64009AE8CC /* YOLO2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -189,6 +191,8 @@
 		E96D6ADE1F376F2C002CC7C6 /* eagle.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = eagle.jpg; sourceTree = "<group>"; };
 		E96D6ADF1F376F2C002CC7C6 /* scream.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = scream.jpg; sourceTree = "<group>"; };
 		E96D6AE01F376F2C002CC7C6 /* horses.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = horses.jpg; sourceTree = "<group>"; };
+		E9B244651F504F31009AE8CC /* TinyYOLO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyYOLO.swift; sourceTree = "<group>"; };
+		E9B244671F504F64009AE8CC /* YOLO2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOLO2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +254,8 @@
 				7B711C9B1ECC8BBD001CB7C2 /* CameraViewController.swift */,
 				7B711CF21ECDA2D4001CB7C2 /* BoundingBox.swift */,
 				7B711C9C1ECC8BBD001CB7C2 /* YOLO.swift */,
+				E9B244651F504F31009AE8CC /* TinyYOLO.swift */,
+				E9B244671F504F64009AE8CC /* YOLO2.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -488,9 +494,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9B244661F504F31009AE8CC /* TinyYOLO.swift in Sources */,
 				7B711CF31ECDA2D4001CB7C2 /* BoundingBox.swift in Sources */,
 				7B711C971ECC8B33001CB7C2 /* VideoCapture.swift in Sources */,
 				7B711C9D1ECC8BBD001CB7C2 /* CameraViewController.swift in Sources */,
+				E9B244681F504F64009AE8CC /* YOLO2.swift in Sources */,
 				7B711C961ECC8B33001CB7C2 /* AppDelegate.swift in Sources */,
 				7B711C9E1ECC8BBD001CB7C2 /* YOLO.swift in Sources */,
 			);
@@ -551,7 +559,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-        IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -596,7 +604,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-        IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
@@ -613,7 +621,7 @@
 				DEVELOPMENT_TEAM = 5U4CGEQN38;
 				GCC_OPTIMIZATION_LEVEL = s;
 				INFOPLIST_FILE = YOLO/Info.plist;
-        IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tognos.YOLO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -630,7 +638,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5U4CGEQN38;
 				INFOPLIST_FILE = YOLO/Info.plist;
-        IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tognos.YOLO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
