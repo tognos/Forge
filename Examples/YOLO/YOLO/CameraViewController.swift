@@ -376,7 +376,7 @@ class CameraViewController: UIViewController {
       timeIt("Setting up neural network") {
         self.tinyNetwork = TinyYOLO(device: self.device, inflightBuffers: 3)
         self.yoloNetwork = YOLO2(device: self.device, inflightBuffers: 1)
-        self.setNetwork(tiny: true)
+        self.setNetwork(tiny: false)
       }
       
       DispatchQueue.main.async(execute: completion)

@@ -185,7 +185,7 @@ public class MPSCNNLayer: Layer {
 public class SpaceToDepthX2: Layer {
     
     /**
-     Creates a new layer reshaping input to half size of four times the number of filters
+     Creates a new layer that reshapes input to half spatial size of four times the number of filters
      */
     
     public init(name: String = "") {
@@ -236,7 +236,6 @@ public class SpaceToDepthX2: Layer {
             }
             
             blitEncoder.endEncoding()
-            //commandBuffer.commit()
         } else {
             print("Error: SpaceToDepthX2.SpaceToDepthX2: cant create blitEncoder")
         }

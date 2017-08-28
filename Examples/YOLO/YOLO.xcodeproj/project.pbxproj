@@ -15,74 +15,10 @@
 		7B711C9E1ECC8BBD001CB7C2 /* YOLO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B711C9C1ECC8BBD001CB7C2 /* YOLO.swift */; };
 		7B711CA01ECC8BF9001CB7C2 /* Forge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B711C9F1ECC8BF9001CB7C2 /* Forge.framework */; };
 		7B711CA11ECC8BF9001CB7C2 /* Forge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B711C9F1ECC8BF9001CB7C2 /* Forge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		7B711CD91ECCA8A3001CB7C2 /* conv1_b.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7B711CC71ECCA8A3001CB7C2 /* conv1_b.bin */; };
-		7B711CDA1ECCA8A3001CB7C2 /* conv1_W.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7B711CC81ECCA8A3001CB7C2 /* conv1_W.bin */; };
-		7B711CDB1ECCA8A3001CB7C2 /* conv2_b.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7B711CC91ECCA8A3001CB7C2 /* conv2_b.bin */; };
-		7B711CDC1ECCA8A3001CB7C2 /* conv2_W.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7B711CCA1ECCA8A3001CB7C2 /* conv2_W.bin */; };
-		7B711CDD1ECCA8A3001CB7C2 /* conv3_b.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7B711CCB1ECCA8A3001CB7C2 /* conv3_b.bin */; };
-		7B711CDE1ECCA8A3001CB7C2 /* conv3_W.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7B711CCC1ECCA8A3001CB7C2 /* conv3_W.bin */; };
-		7B711CDF1ECCA8A3001CB7C2 /* conv4_b.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7B711CCD1ECCA8A3001CB7C2 /* conv4_b.bin */; };
-		7B711CE01ECCA8A3001CB7C2 /* conv4_W.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7B711CCE1ECCA8A3001CB7C2 /* conv4_W.bin */; };
-		7B711CE11ECCA8A3001CB7C2 /* conv5_b.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7B711CCF1ECCA8A3001CB7C2 /* conv5_b.bin */; };
-		7B711CE21ECCA8A3001CB7C2 /* conv5_W.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7B711CD01ECCA8A3001CB7C2 /* conv5_W.bin */; };
-		7B711CE31ECCA8A3001CB7C2 /* conv6_b.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7B711CD11ECCA8A3001CB7C2 /* conv6_b.bin */; };
-		7B711CE41ECCA8A3001CB7C2 /* conv6_W.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7B711CD21ECCA8A3001CB7C2 /* conv6_W.bin */; };
-		7B711CE51ECCA8A3001CB7C2 /* conv7_b.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7B711CD31ECCA8A3001CB7C2 /* conv7_b.bin */; };
-		7B711CE61ECCA8A3001CB7C2 /* conv7_W.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7B711CD41ECCA8A3001CB7C2 /* conv7_W.bin */; };
-		7B711CE71ECCA8A3001CB7C2 /* conv8_b.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7B711CD51ECCA8A3001CB7C2 /* conv8_b.bin */; };
-		7B711CE81ECCA8A3001CB7C2 /* conv8_W.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7B711CD61ECCA8A3001CB7C2 /* conv8_W.bin */; };
-		7B711CE91ECCA8A3001CB7C2 /* conv9_b.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7B711CD71ECCA8A3001CB7C2 /* conv9_b.bin */; };
-		7B711CEA1ECCA8A3001CB7C2 /* conv9_W.bin in Resources */ = {isa = PBXBuildFile; fileRef = 7B711CD81ECCA8A3001CB7C2 /* conv9_W.bin */; };
 		7B711CF31ECDA2D4001CB7C2 /* BoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B711CF21ECDA2D4001CB7C2 /* BoundingBox.swift */; };
 		E90AFD441F45FA3D00D8110E /* bricks.png in Resources */ = {isa = PBXBuildFile; fileRef = E90AFD411F45FA3D00D8110E /* bricks.png */; };
 		E90AFD451F45FA3D00D8110E /* danger.png in Resources */ = {isa = PBXBuildFile; fileRef = E90AFD421F45FA3D00D8110E /* danger.png */; };
 		E90AFD461F45FA3D00D8110E /* gray.png in Resources */ = {isa = PBXBuildFile; fileRef = E90AFD431F45FA3D00D8110E /* gray.png */; };
-		E95C49561F36959B004BC110 /* conv2d_3.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49371F3694D5004BC110 /* conv2d_3.biases.bin */; };
-		E95C49571F36959B004BC110 /* conv2d_3.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49351F3694D5004BC110 /* conv2d_3.weights.bin */; };
-		E95C49581F36959B004BC110 /* conv2d_4.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49531F3694D6004BC110 /* conv2d_4.biases.bin */; };
-		E95C49591F36959B004BC110 /* conv2d_4.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C494B1F3694D6004BC110 /* conv2d_4.weights.bin */; };
-		E95C495A1F36959B004BC110 /* conv2d_5.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49471F3694D6004BC110 /* conv2d_5.biases.bin */; };
-		E95C495B1F36959B004BC110 /* conv2d_5.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49491F3694D6004BC110 /* conv2d_5.weights.bin */; };
-		E95C495C1F36959B004BC110 /* conv2d_6.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C492C1F3694D5004BC110 /* conv2d_6.biases.bin */; };
-		E95C495D1F36959B004BC110 /* conv2d_6.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49421F3694D6004BC110 /* conv2d_6.weights.bin */; };
-		E95C495E1F36959B004BC110 /* conv2d_7.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49311F3694D5004BC110 /* conv2d_7.biases.bin */; };
-		E95C495F1F36959B004BC110 /* conv2d_7.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C492E1F3694D5004BC110 /* conv2d_7.weights.bin */; };
-		E95C49601F36959B004BC110 /* conv2d_8.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49291F3694D5004BC110 /* conv2d_8.biases.bin */; };
-		E95C49611F36959B004BC110 /* conv2d_8.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49541F3694D6004BC110 /* conv2d_8.weights.bin */; };
-		E95C49621F36959B004BC110 /* conv2d_9.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C493B1F3694D5004BC110 /* conv2d_9.biases.bin */; };
-		E95C49631F36959B004BC110 /* conv2d_9.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C492B1F3694D5004BC110 /* conv2d_9.weights.bin */; };
-		E95C49641F36959B004BC110 /* conv2d_22.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C494A1F3694D6004BC110 /* conv2d_22.weights.bin */; };
-		E95C49651F36959B004BC110 /* conv2d_23.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49551F3694D6004BC110 /* conv2d_23.biases.bin */; };
-		E95C49661F36959B004BC110 /* conv2d_23.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C493C1F3694D5004BC110 /* conv2d_23.weights.bin */; };
-		E95C49671F36959B004BC110 /* conv2d_1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C492A1F3694D5004BC110 /* conv2d_1.biases.bin */; };
-		E95C49681F36959B004BC110 /* conv2d_1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49431F3694D6004BC110 /* conv2d_1.weights.bin */; };
-		E95C49691F36959B004BC110 /* conv2d_2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49451F3694D6004BC110 /* conv2d_2.biases.bin */; };
-		E95C496A1F36959B004BC110 /* conv2d_2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C492D1F3694D5004BC110 /* conv2d_2.weights.bin */; };
-		E95C496B1F36959B004BC110 /* conv2d_10.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49511F3694D6004BC110 /* conv2d_10.biases.bin */; };
-		E95C496C1F36959B004BC110 /* conv2d_10.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C493F1F3694D6004BC110 /* conv2d_10.weights.bin */; };
-		E95C496D1F36959B004BC110 /* conv2d_11.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C494C1F3694D6004BC110 /* conv2d_11.biases.bin */; };
-		E95C496E1F36959B004BC110 /* conv2d_11.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49281F3694D5004BC110 /* conv2d_11.weights.bin */; };
-		E95C496F1F36959B004BC110 /* conv2d_12.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49481F3694D6004BC110 /* conv2d_12.biases.bin */; };
-		E95C49701F36959B004BC110 /* conv2d_12.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49331F3694D5004BC110 /* conv2d_12.weights.bin */; };
-		E95C49711F36959B004BC110 /* conv2d_13.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C493A1F3694D5004BC110 /* conv2d_13.biases.bin */; };
-		E95C49721F36959B004BC110 /* conv2d_13.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49321F3694D5004BC110 /* conv2d_13.weights.bin */; };
-		E95C49731F36959B004BC110 /* conv2d_14.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49341F3694D5004BC110 /* conv2d_14.biases.bin */; };
-		E95C49741F36959B004BC110 /* conv2d_14.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49301F3694D5004BC110 /* conv2d_14.weights.bin */; };
-		E95C49751F36959B004BC110 /* conv2d_15.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C494D1F3694D6004BC110 /* conv2d_15.biases.bin */; };
-		E95C49761F36959B004BC110 /* conv2d_15.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49521F3694D6004BC110 /* conv2d_15.weights.bin */; };
-		E95C49771F36959B004BC110 /* conv2d_16.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49501F3694D6004BC110 /* conv2d_16.biases.bin */; };
-		E95C49781F36959B004BC110 /* conv2d_16.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49381F3694D5004BC110 /* conv2d_16.weights.bin */; };
-		E95C49791F36959B004BC110 /* conv2d_17.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C494E1F3694D6004BC110 /* conv2d_17.biases.bin */; };
-		E95C497A1F36959B004BC110 /* conv2d_17.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49411F3694D6004BC110 /* conv2d_17.weights.bin */; };
-		E95C497B1F36959B004BC110 /* conv2d_18.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49401F3694D6004BC110 /* conv2d_18.biases.bin */; };
-		E95C497C1F36959B004BC110 /* conv2d_18.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49361F3694D5004BC110 /* conv2d_18.weights.bin */; };
-		E95C497D1F36959B004BC110 /* conv2d_19.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C494F1F3694D6004BC110 /* conv2d_19.biases.bin */; };
-		E95C497E1F36959B004BC110 /* conv2d_19.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49441F3694D6004BC110 /* conv2d_19.weights.bin */; };
-		E95C497F1F36959B004BC110 /* conv2d_20.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C493E1F3694D6004BC110 /* conv2d_20.biases.bin */; };
-		E95C49801F36959B004BC110 /* conv2d_20.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C492F1F3694D5004BC110 /* conv2d_20.weights.bin */; };
-		E95C49811F36959B004BC110 /* conv2d_21.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49391F3694D5004BC110 /* conv2d_21.biases.bin */; };
-		E95C49821F36959B004BC110 /* conv2d_21.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C493D1F3694D5004BC110 /* conv2d_21.weights.bin */; };
-		E95C49831F36959B004BC110 /* conv2d_22.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E95C49461F3694D6004BC110 /* conv2d_22.biases.bin */; };
 		E96D6AE11F377789002CC7C6 /* dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E96D6ADB1F376F2C002CC7C6 /* dog.jpg */; };
 		E96D6AE21F377789002CC7C6 /* eagle.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E96D6ADE1F376F2C002CC7C6 /* eagle.jpg */; };
 		E96D6AE31F377789002CC7C6 /* giraffe.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E96D6ADD1F376F2C002CC7C6 /* giraffe.jpg */; };
@@ -91,6 +27,70 @@
 		E96D6AE61F377789002CC7C6 /* scream.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E96D6ADF1F376F2C002CC7C6 /* scream.jpg */; };
 		E9B244661F504F31009AE8CC /* TinyYOLO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B244651F504F31009AE8CC /* TinyYOLO.swift */; };
 		E9B244681F504F64009AE8CC /* YOLO2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B244671F504F64009AE8CC /* YOLO2.swift */; };
+		E9BA7B441F54B8B100CB1972 /* tiny_yolo-conv2d_4.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B041F54B8AC00CB1972 /* tiny_yolo-conv2d_4.biases.bin */; };
+		E9BA7B451F54B8B100CB1972 /* yolo-conv2d_6.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B051F54B8AD00CB1972 /* yolo-conv2d_6.weights.bin */; };
+		E9BA7B461F54B8B200CB1972 /* yolo-conv2d_21.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B061F54B8AD00CB1972 /* yolo-conv2d_21.weights.bin */; };
+		E9BA7B471F54B8B200CB1972 /* yolo-conv2d_17.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B071F54B8AD00CB1972 /* yolo-conv2d_17.biases.bin */; };
+		E9BA7B481F54B8B200CB1972 /* yolo-conv2d_18.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B081F54B8AD00CB1972 /* yolo-conv2d_18.biases.bin */; };
+		E9BA7B491F54B8B200CB1972 /* yolo-conv2d_15.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B091F54B8AD00CB1972 /* yolo-conv2d_15.weights.bin */; };
+		E9BA7B4A1F54B8B200CB1972 /* tiny_yolo-conv2d_6.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B0A1F54B8AD00CB1972 /* tiny_yolo-conv2d_6.weights.bin */; };
+		E9BA7B4B1F54B8B200CB1972 /* yolo-conv2d_20.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B0B1F54B8AD00CB1972 /* yolo-conv2d_20.weights.bin */; };
+		E9BA7B4C1F54B8B200CB1972 /* yolo-conv2d_21.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B0C1F54B8AD00CB1972 /* yolo-conv2d_21.biases.bin */; };
+		E9BA7B4D1F54B8B200CB1972 /* yolo-conv2d_5.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B0D1F54B8AD00CB1972 /* yolo-conv2d_5.weights.bin */; };
+		E9BA7B4E1F54B8B200CB1972 /* tiny_yolo-conv2d_1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B0E1F54B8AD00CB1972 /* tiny_yolo-conv2d_1.biases.bin */; };
+		E9BA7B4F1F54B8B200CB1972 /* yolo-conv2d_8.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B0F1F54B8AE00CB1972 /* yolo-conv2d_8.biases.bin */; };
+		E9BA7B501F54B8B200CB1972 /* tiny_yolo-conv2d_6.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B101F54B8AE00CB1972 /* tiny_yolo-conv2d_6.biases.bin */; };
+		E9BA7B511F54B8B200CB1972 /* tiny_yolo-conv2d_8.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B111F54B8AE00CB1972 /* tiny_yolo-conv2d_8.biases.bin */; };
+		E9BA7B521F54B8B200CB1972 /* yolo-conv2d_11.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B121F54B8AE00CB1972 /* yolo-conv2d_11.weights.bin */; };
+		E9BA7B531F54B8B200CB1972 /* yolo-conv2d_12.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B131F54B8AE00CB1972 /* yolo-conv2d_12.weights.bin */; };
+		E9BA7B541F54B8B200CB1972 /* yolo-conv2d_16.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B141F54B8AE00CB1972 /* yolo-conv2d_16.weights.bin */; };
+		E9BA7B551F54B8B200CB1972 /* yolo-conv2d_10.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B151F54B8AE00CB1972 /* yolo-conv2d_10.weights.bin */; };
+		E9BA7B561F54B8B200CB1972 /* tiny_yolo-conv2d_1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B161F54B8AE00CB1972 /* tiny_yolo-conv2d_1.weights.bin */; };
+		E9BA7B571F54B8B200CB1972 /* yolo-conv2d_19.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B171F54B8AE00CB1972 /* yolo-conv2d_19.biases.bin */; };
+		E9BA7B581F54B8B200CB1972 /* yolo-conv2d_22.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B181F54B8AE00CB1972 /* yolo-conv2d_22.weights.bin */; };
+		E9BA7B591F54B8B200CB1972 /* yolo-conv2d_2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B191F54B8AE00CB1972 /* yolo-conv2d_2.biases.bin */; };
+		E9BA7B5A1F54B8B200CB1972 /* tiny_yolo-conv2d_4.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B1A1F54B8AE00CB1972 /* tiny_yolo-conv2d_4.weights.bin */; };
+		E9BA7B5B1F54B8B200CB1972 /* yolo-conv2d_7.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B1B1F54B8AE00CB1972 /* yolo-conv2d_7.weights.bin */; };
+		E9BA7B5C1F54B8B200CB1972 /* yolo-conv2d_8.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B1C1F54B8AF00CB1972 /* yolo-conv2d_8.weights.bin */; };
+		E9BA7B5D1F54B8B200CB1972 /* yolo-conv2d_3.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B1D1F54B8AF00CB1972 /* yolo-conv2d_3.biases.bin */; };
+		E9BA7B5E1F54B8B200CB1972 /* tiny_yolo-conv2d_3.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B1E1F54B8AF00CB1972 /* tiny_yolo-conv2d_3.biases.bin */; };
+		E9BA7B5F1F54B8B200CB1972 /* yolo-conv2d_5.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B1F1F54B8AF00CB1972 /* yolo-conv2d_5.biases.bin */; };
+		E9BA7B601F54B8B200CB1972 /* tiny_yolo-conv2d_5.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B201F54B8AF00CB1972 /* tiny_yolo-conv2d_5.weights.bin */; };
+		E9BA7B611F54B8B200CB1972 /* tiny_yolo-conv2d_2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B211F54B8AF00CB1972 /* tiny_yolo-conv2d_2.biases.bin */; };
+		E9BA7B621F54B8B200CB1972 /* tiny_yolo-conv2d_5.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B221F54B8AF00CB1972 /* tiny_yolo-conv2d_5.biases.bin */; };
+		E9BA7B631F54B8B200CB1972 /* yolo-conv2d_13.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B231F54B8AF00CB1972 /* yolo-conv2d_13.biases.bin */; };
+		E9BA7B641F54B8B200CB1972 /* tiny_yolo-conv2d_7.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B241F54B8AF00CB1972 /* tiny_yolo-conv2d_7.biases.bin */; };
+		E9BA7B651F54B8B200CB1972 /* yolo-conv2d_14.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B251F54B8AF00CB1972 /* yolo-conv2d_14.weights.bin */; };
+		E9BA7B661F54B8B200CB1972 /* yolo-conv2d_1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B261F54B8AF00CB1972 /* yolo-conv2d_1.weights.bin */; };
+		E9BA7B671F54B8B200CB1972 /* yolo-conv2d_9.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B271F54B8AF00CB1972 /* yolo-conv2d_9.weights.bin */; };
+		E9BA7B681F54B8B200CB1972 /* tiny_yolo-conv2d_7.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B281F54B8AF00CB1972 /* tiny_yolo-conv2d_7.weights.bin */; };
+		E9BA7B691F54B8B200CB1972 /* yolo-conv2d_18.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B291F54B8AF00CB1972 /* yolo-conv2d_18.weights.bin */; };
+		E9BA7B6A1F54B8B200CB1972 /* yolo-conv2d_13.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B2A1F54B8B000CB1972 /* yolo-conv2d_13.weights.bin */; };
+		E9BA7B6B1F54B8B200CB1972 /* yolo-conv2d_14.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B2B1F54B8B000CB1972 /* yolo-conv2d_14.biases.bin */; };
+		E9BA7B6C1F54B8B200CB1972 /* yolo-conv2d_23.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B2C1F54B8B000CB1972 /* yolo-conv2d_23.weights.bin */; };
+		E9BA7B6D1F54B8B200CB1972 /* yolo-conv2d_15.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B2D1F54B8B000CB1972 /* yolo-conv2d_15.biases.bin */; };
+		E9BA7B6E1F54B8B200CB1972 /* yolo-conv2d_22.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B2E1F54B8B000CB1972 /* yolo-conv2d_22.biases.bin */; };
+		E9BA7B6F1F54B8B200CB1972 /* tiny_yolo-conv2d_8.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B2F1F54B8B000CB1972 /* tiny_yolo-conv2d_8.weights.bin */; };
+		E9BA7B701F54B8B200CB1972 /* yolo-conv2d_4.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B301F54B8B000CB1972 /* yolo-conv2d_4.weights.bin */; };
+		E9BA7B711F54B8B200CB1972 /* yolo-conv2d_4.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B311F54B8B000CB1972 /* yolo-conv2d_4.biases.bin */; };
+		E9BA7B721F54B8B200CB1972 /* yolo-conv2d_9.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B321F54B8B000CB1972 /* yolo-conv2d_9.biases.bin */; };
+		E9BA7B731F54B8B200CB1972 /* yolo-conv2d_17.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B331F54B8B000CB1972 /* yolo-conv2d_17.weights.bin */; };
+		E9BA7B741F54B8B200CB1972 /* yolo-conv2d_19.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B341F54B8B000CB1972 /* yolo-conv2d_19.weights.bin */; };
+		E9BA7B751F54B8B200CB1972 /* tiny_yolo-conv2d_9.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B351F54B8B000CB1972 /* tiny_yolo-conv2d_9.weights.bin */; };
+		E9BA7B761F54B8B200CB1972 /* yolo-conv2d_12.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B361F54B8B000CB1972 /* yolo-conv2d_12.biases.bin */; };
+		E9BA7B771F54B8B200CB1972 /* tiny_yolo-conv2d_3.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B371F54B8B000CB1972 /* tiny_yolo-conv2d_3.weights.bin */; };
+		E9BA7B781F54B8B200CB1972 /* yolo-conv2d_3.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B381F54B8B100CB1972 /* yolo-conv2d_3.weights.bin */; };
+		E9BA7B791F54B8B200CB1972 /* yolo-conv2d_7.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B391F54B8B100CB1972 /* yolo-conv2d_7.biases.bin */; };
+		E9BA7B7A1F54B8B200CB1972 /* yolo-conv2d_11.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B3A1F54B8B100CB1972 /* yolo-conv2d_11.biases.bin */; };
+		E9BA7B7B1F54B8B200CB1972 /* yolo-conv2d_16.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B3B1F54B8B100CB1972 /* yolo-conv2d_16.biases.bin */; };
+		E9BA7B7C1F54B8B200CB1972 /* tiny_yolo-conv2d_2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B3C1F54B8B100CB1972 /* tiny_yolo-conv2d_2.weights.bin */; };
+		E9BA7B7D1F54B8B200CB1972 /* yolo-conv2d_2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B3D1F54B8B100CB1972 /* yolo-conv2d_2.weights.bin */; };
+		E9BA7B7E1F54B8B200CB1972 /* tiny_yolo-conv2d_9.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B3E1F54B8B100CB1972 /* tiny_yolo-conv2d_9.biases.bin */; };
+		E9BA7B7F1F54B8B200CB1972 /* yolo-conv2d_6.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B3F1F54B8B100CB1972 /* yolo-conv2d_6.biases.bin */; };
+		E9BA7B801F54B8B200CB1972 /* yolo-conv2d_23.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B401F54B8B100CB1972 /* yolo-conv2d_23.biases.bin */; };
+		E9BA7B811F54B8B200CB1972 /* yolo-conv2d_20.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B411F54B8B100CB1972 /* yolo-conv2d_20.biases.bin */; };
+		E9BA7B821F54B8B200CB1972 /* yolo-conv2d_10.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B421F54B8B100CB1972 /* yolo-conv2d_10.biases.bin */; };
+		E9BA7B831F54B8B200CB1972 /* yolo-conv2d_1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9BA7B431F54B8B100CB1972 /* yolo-conv2d_1.biases.bin */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -117,74 +117,10 @@
 		7B711C9B1ECC8BBD001CB7C2 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		7B711C9C1ECC8BBD001CB7C2 /* YOLO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YOLO.swift; sourceTree = "<group>"; };
 		7B711C9F1ECC8BF9001CB7C2 /* Forge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Forge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B711CC71ECCA8A3001CB7C2 /* conv1_b.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv1_b.bin; path = Parameters/conv1_b.bin; sourceTree = SOURCE_ROOT; };
-		7B711CC81ECCA8A3001CB7C2 /* conv1_W.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv1_W.bin; path = Parameters/conv1_W.bin; sourceTree = SOURCE_ROOT; };
-		7B711CC91ECCA8A3001CB7C2 /* conv2_b.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2_b.bin; path = Parameters/conv2_b.bin; sourceTree = SOURCE_ROOT; };
-		7B711CCA1ECCA8A3001CB7C2 /* conv2_W.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2_W.bin; path = Parameters/conv2_W.bin; sourceTree = SOURCE_ROOT; };
-		7B711CCB1ECCA8A3001CB7C2 /* conv3_b.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv3_b.bin; path = Parameters/conv3_b.bin; sourceTree = SOURCE_ROOT; };
-		7B711CCC1ECCA8A3001CB7C2 /* conv3_W.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv3_W.bin; path = Parameters/conv3_W.bin; sourceTree = SOURCE_ROOT; };
-		7B711CCD1ECCA8A3001CB7C2 /* conv4_b.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv4_b.bin; path = Parameters/conv4_b.bin; sourceTree = SOURCE_ROOT; };
-		7B711CCE1ECCA8A3001CB7C2 /* conv4_W.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv4_W.bin; path = Parameters/conv4_W.bin; sourceTree = SOURCE_ROOT; };
-		7B711CCF1ECCA8A3001CB7C2 /* conv5_b.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv5_b.bin; path = Parameters/conv5_b.bin; sourceTree = SOURCE_ROOT; };
-		7B711CD01ECCA8A3001CB7C2 /* conv5_W.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv5_W.bin; path = Parameters/conv5_W.bin; sourceTree = SOURCE_ROOT; };
-		7B711CD11ECCA8A3001CB7C2 /* conv6_b.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv6_b.bin; path = Parameters/conv6_b.bin; sourceTree = SOURCE_ROOT; };
-		7B711CD21ECCA8A3001CB7C2 /* conv6_W.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv6_W.bin; path = Parameters/conv6_W.bin; sourceTree = SOURCE_ROOT; };
-		7B711CD31ECCA8A3001CB7C2 /* conv7_b.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv7_b.bin; path = Parameters/conv7_b.bin; sourceTree = SOURCE_ROOT; };
-		7B711CD41ECCA8A3001CB7C2 /* conv7_W.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv7_W.bin; path = Parameters/conv7_W.bin; sourceTree = SOURCE_ROOT; };
-		7B711CD51ECCA8A3001CB7C2 /* conv8_b.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv8_b.bin; path = Parameters/conv8_b.bin; sourceTree = SOURCE_ROOT; };
-		7B711CD61ECCA8A3001CB7C2 /* conv8_W.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv8_W.bin; path = Parameters/conv8_W.bin; sourceTree = SOURCE_ROOT; };
-		7B711CD71ECCA8A3001CB7C2 /* conv9_b.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv9_b.bin; path = Parameters/conv9_b.bin; sourceTree = SOURCE_ROOT; };
-		7B711CD81ECCA8A3001CB7C2 /* conv9_W.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv9_W.bin; path = Parameters/conv9_W.bin; sourceTree = SOURCE_ROOT; };
 		7B711CF21ECDA2D4001CB7C2 /* BoundingBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundingBox.swift; sourceTree = "<group>"; };
 		E90AFD411F45FA3D00D8110E /* bricks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bricks.png; sourceTree = "<group>"; };
 		E90AFD421F45FA3D00D8110E /* danger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = danger.png; sourceTree = "<group>"; };
 		E90AFD431F45FA3D00D8110E /* gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray.png; sourceTree = "<group>"; };
-		E95C49281F3694D5004BC110 /* conv2d_11.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_11.weights.bin; path = Parameters/conv2d_11.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C49291F3694D5004BC110 /* conv2d_8.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_8.biases.bin; path = Parameters/conv2d_8.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C492A1F3694D5004BC110 /* conv2d_1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_1.biases.bin; path = Parameters/conv2d_1.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C492B1F3694D5004BC110 /* conv2d_9.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_9.weights.bin; path = Parameters/conv2d_9.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C492C1F3694D5004BC110 /* conv2d_6.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_6.biases.bin; path = Parameters/conv2d_6.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C492D1F3694D5004BC110 /* conv2d_2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_2.weights.bin; path = Parameters/conv2d_2.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C492E1F3694D5004BC110 /* conv2d_7.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_7.weights.bin; path = Parameters/conv2d_7.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C492F1F3694D5004BC110 /* conv2d_20.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_20.weights.bin; path = Parameters/conv2d_20.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C49301F3694D5004BC110 /* conv2d_14.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_14.weights.bin; path = Parameters/conv2d_14.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C49311F3694D5004BC110 /* conv2d_7.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_7.biases.bin; path = Parameters/conv2d_7.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C49321F3694D5004BC110 /* conv2d_13.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_13.weights.bin; path = Parameters/conv2d_13.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C49331F3694D5004BC110 /* conv2d_12.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_12.weights.bin; path = Parameters/conv2d_12.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C49341F3694D5004BC110 /* conv2d_14.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_14.biases.bin; path = Parameters/conv2d_14.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C49351F3694D5004BC110 /* conv2d_3.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_3.weights.bin; path = Parameters/conv2d_3.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C49361F3694D5004BC110 /* conv2d_18.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_18.weights.bin; path = Parameters/conv2d_18.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C49371F3694D5004BC110 /* conv2d_3.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_3.biases.bin; path = Parameters/conv2d_3.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C49381F3694D5004BC110 /* conv2d_16.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_16.weights.bin; path = Parameters/conv2d_16.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C49391F3694D5004BC110 /* conv2d_21.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_21.biases.bin; path = Parameters/conv2d_21.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C493A1F3694D5004BC110 /* conv2d_13.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_13.biases.bin; path = Parameters/conv2d_13.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C493B1F3694D5004BC110 /* conv2d_9.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_9.biases.bin; path = Parameters/conv2d_9.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C493C1F3694D5004BC110 /* conv2d_23.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_23.weights.bin; path = Parameters/conv2d_23.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C493D1F3694D5004BC110 /* conv2d_21.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_21.weights.bin; path = Parameters/conv2d_21.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C493E1F3694D6004BC110 /* conv2d_20.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_20.biases.bin; path = Parameters/conv2d_20.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C493F1F3694D6004BC110 /* conv2d_10.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_10.weights.bin; path = Parameters/conv2d_10.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C49401F3694D6004BC110 /* conv2d_18.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_18.biases.bin; path = Parameters/conv2d_18.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C49411F3694D6004BC110 /* conv2d_17.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_17.weights.bin; path = Parameters/conv2d_17.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C49421F3694D6004BC110 /* conv2d_6.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_6.weights.bin; path = Parameters/conv2d_6.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C49431F3694D6004BC110 /* conv2d_1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_1.weights.bin; path = Parameters/conv2d_1.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C49441F3694D6004BC110 /* conv2d_19.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_19.weights.bin; path = Parameters/conv2d_19.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C49451F3694D6004BC110 /* conv2d_2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_2.biases.bin; path = Parameters/conv2d_2.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C49461F3694D6004BC110 /* conv2d_22.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_22.biases.bin; path = Parameters/conv2d_22.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C49471F3694D6004BC110 /* conv2d_5.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_5.biases.bin; path = Parameters/conv2d_5.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C49481F3694D6004BC110 /* conv2d_12.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_12.biases.bin; path = Parameters/conv2d_12.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C49491F3694D6004BC110 /* conv2d_5.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_5.weights.bin; path = Parameters/conv2d_5.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C494A1F3694D6004BC110 /* conv2d_22.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_22.weights.bin; path = Parameters/conv2d_22.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C494B1F3694D6004BC110 /* conv2d_4.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_4.weights.bin; path = Parameters/conv2d_4.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C494C1F3694D6004BC110 /* conv2d_11.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_11.biases.bin; path = Parameters/conv2d_11.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C494D1F3694D6004BC110 /* conv2d_15.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_15.biases.bin; path = Parameters/conv2d_15.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C494E1F3694D6004BC110 /* conv2d_17.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_17.biases.bin; path = Parameters/conv2d_17.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C494F1F3694D6004BC110 /* conv2d_19.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_19.biases.bin; path = Parameters/conv2d_19.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C49501F3694D6004BC110 /* conv2d_16.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_16.biases.bin; path = Parameters/conv2d_16.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C49511F3694D6004BC110 /* conv2d_10.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_10.biases.bin; path = Parameters/conv2d_10.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C49521F3694D6004BC110 /* conv2d_15.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_15.weights.bin; path = Parameters/conv2d_15.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C49531F3694D6004BC110 /* conv2d_4.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_4.biases.bin; path = Parameters/conv2d_4.biases.bin; sourceTree = SOURCE_ROOT; };
-		E95C49541F3694D6004BC110 /* conv2d_8.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_8.weights.bin; path = Parameters/conv2d_8.weights.bin; sourceTree = SOURCE_ROOT; };
-		E95C49551F3694D6004BC110 /* conv2d_23.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = conv2d_23.biases.bin; path = Parameters/conv2d_23.biases.bin; sourceTree = SOURCE_ROOT; };
 		E96D6ADB1F376F2C002CC7C6 /* dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog.jpg; sourceTree = "<group>"; };
 		E96D6ADC1F376F2C002CC7C6 /* person.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = person.jpg; sourceTree = "<group>"; };
 		E96D6ADD1F376F2C002CC7C6 /* giraffe.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = giraffe.jpg; sourceTree = "<group>"; };
@@ -193,6 +129,70 @@
 		E96D6AE01F376F2C002CC7C6 /* horses.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = horses.jpg; sourceTree = "<group>"; };
 		E9B244651F504F31009AE8CC /* TinyYOLO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinyYOLO.swift; sourceTree = "<group>"; };
 		E9B244671F504F64009AE8CC /* YOLO2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YOLO2.swift; sourceTree = "<group>"; };
+		E9BA7B041F54B8AC00CB1972 /* tiny_yolo-conv2d_4.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "tiny_yolo-conv2d_4.biases.bin"; path = "Parameters/tiny_yolo-conv2d_4.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B051F54B8AD00CB1972 /* yolo-conv2d_6.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_6.weights.bin"; path = "Parameters/yolo-conv2d_6.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B061F54B8AD00CB1972 /* yolo-conv2d_21.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_21.weights.bin"; path = "Parameters/yolo-conv2d_21.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B071F54B8AD00CB1972 /* yolo-conv2d_17.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_17.biases.bin"; path = "Parameters/yolo-conv2d_17.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B081F54B8AD00CB1972 /* yolo-conv2d_18.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_18.biases.bin"; path = "Parameters/yolo-conv2d_18.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B091F54B8AD00CB1972 /* yolo-conv2d_15.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_15.weights.bin"; path = "Parameters/yolo-conv2d_15.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B0A1F54B8AD00CB1972 /* tiny_yolo-conv2d_6.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "tiny_yolo-conv2d_6.weights.bin"; path = "Parameters/tiny_yolo-conv2d_6.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B0B1F54B8AD00CB1972 /* yolo-conv2d_20.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_20.weights.bin"; path = "Parameters/yolo-conv2d_20.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B0C1F54B8AD00CB1972 /* yolo-conv2d_21.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_21.biases.bin"; path = "Parameters/yolo-conv2d_21.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B0D1F54B8AD00CB1972 /* yolo-conv2d_5.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_5.weights.bin"; path = "Parameters/yolo-conv2d_5.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B0E1F54B8AD00CB1972 /* tiny_yolo-conv2d_1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "tiny_yolo-conv2d_1.biases.bin"; path = "Parameters/tiny_yolo-conv2d_1.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B0F1F54B8AE00CB1972 /* yolo-conv2d_8.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_8.biases.bin"; path = "Parameters/yolo-conv2d_8.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B101F54B8AE00CB1972 /* tiny_yolo-conv2d_6.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "tiny_yolo-conv2d_6.biases.bin"; path = "Parameters/tiny_yolo-conv2d_6.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B111F54B8AE00CB1972 /* tiny_yolo-conv2d_8.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "tiny_yolo-conv2d_8.biases.bin"; path = "Parameters/tiny_yolo-conv2d_8.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B121F54B8AE00CB1972 /* yolo-conv2d_11.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_11.weights.bin"; path = "Parameters/yolo-conv2d_11.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B131F54B8AE00CB1972 /* yolo-conv2d_12.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_12.weights.bin"; path = "Parameters/yolo-conv2d_12.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B141F54B8AE00CB1972 /* yolo-conv2d_16.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_16.weights.bin"; path = "Parameters/yolo-conv2d_16.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B151F54B8AE00CB1972 /* yolo-conv2d_10.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_10.weights.bin"; path = "Parameters/yolo-conv2d_10.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B161F54B8AE00CB1972 /* tiny_yolo-conv2d_1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "tiny_yolo-conv2d_1.weights.bin"; path = "Parameters/tiny_yolo-conv2d_1.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B171F54B8AE00CB1972 /* yolo-conv2d_19.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_19.biases.bin"; path = "Parameters/yolo-conv2d_19.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B181F54B8AE00CB1972 /* yolo-conv2d_22.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_22.weights.bin"; path = "Parameters/yolo-conv2d_22.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B191F54B8AE00CB1972 /* yolo-conv2d_2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_2.biases.bin"; path = "Parameters/yolo-conv2d_2.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B1A1F54B8AE00CB1972 /* tiny_yolo-conv2d_4.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "tiny_yolo-conv2d_4.weights.bin"; path = "Parameters/tiny_yolo-conv2d_4.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B1B1F54B8AE00CB1972 /* yolo-conv2d_7.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_7.weights.bin"; path = "Parameters/yolo-conv2d_7.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B1C1F54B8AF00CB1972 /* yolo-conv2d_8.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_8.weights.bin"; path = "Parameters/yolo-conv2d_8.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B1D1F54B8AF00CB1972 /* yolo-conv2d_3.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_3.biases.bin"; path = "Parameters/yolo-conv2d_3.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B1E1F54B8AF00CB1972 /* tiny_yolo-conv2d_3.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "tiny_yolo-conv2d_3.biases.bin"; path = "Parameters/tiny_yolo-conv2d_3.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B1F1F54B8AF00CB1972 /* yolo-conv2d_5.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_5.biases.bin"; path = "Parameters/yolo-conv2d_5.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B201F54B8AF00CB1972 /* tiny_yolo-conv2d_5.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "tiny_yolo-conv2d_5.weights.bin"; path = "Parameters/tiny_yolo-conv2d_5.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B211F54B8AF00CB1972 /* tiny_yolo-conv2d_2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "tiny_yolo-conv2d_2.biases.bin"; path = "Parameters/tiny_yolo-conv2d_2.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B221F54B8AF00CB1972 /* tiny_yolo-conv2d_5.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "tiny_yolo-conv2d_5.biases.bin"; path = "Parameters/tiny_yolo-conv2d_5.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B231F54B8AF00CB1972 /* yolo-conv2d_13.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_13.biases.bin"; path = "Parameters/yolo-conv2d_13.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B241F54B8AF00CB1972 /* tiny_yolo-conv2d_7.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "tiny_yolo-conv2d_7.biases.bin"; path = "Parameters/tiny_yolo-conv2d_7.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B251F54B8AF00CB1972 /* yolo-conv2d_14.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_14.weights.bin"; path = "Parameters/yolo-conv2d_14.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B261F54B8AF00CB1972 /* yolo-conv2d_1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_1.weights.bin"; path = "Parameters/yolo-conv2d_1.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B271F54B8AF00CB1972 /* yolo-conv2d_9.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_9.weights.bin"; path = "Parameters/yolo-conv2d_9.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B281F54B8AF00CB1972 /* tiny_yolo-conv2d_7.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "tiny_yolo-conv2d_7.weights.bin"; path = "Parameters/tiny_yolo-conv2d_7.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B291F54B8AF00CB1972 /* yolo-conv2d_18.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_18.weights.bin"; path = "Parameters/yolo-conv2d_18.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B2A1F54B8B000CB1972 /* yolo-conv2d_13.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_13.weights.bin"; path = "Parameters/yolo-conv2d_13.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B2B1F54B8B000CB1972 /* yolo-conv2d_14.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_14.biases.bin"; path = "Parameters/yolo-conv2d_14.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B2C1F54B8B000CB1972 /* yolo-conv2d_23.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_23.weights.bin"; path = "Parameters/yolo-conv2d_23.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B2D1F54B8B000CB1972 /* yolo-conv2d_15.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_15.biases.bin"; path = "Parameters/yolo-conv2d_15.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B2E1F54B8B000CB1972 /* yolo-conv2d_22.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_22.biases.bin"; path = "Parameters/yolo-conv2d_22.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B2F1F54B8B000CB1972 /* tiny_yolo-conv2d_8.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "tiny_yolo-conv2d_8.weights.bin"; path = "Parameters/tiny_yolo-conv2d_8.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B301F54B8B000CB1972 /* yolo-conv2d_4.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_4.weights.bin"; path = "Parameters/yolo-conv2d_4.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B311F54B8B000CB1972 /* yolo-conv2d_4.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_4.biases.bin"; path = "Parameters/yolo-conv2d_4.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B321F54B8B000CB1972 /* yolo-conv2d_9.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_9.biases.bin"; path = "Parameters/yolo-conv2d_9.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B331F54B8B000CB1972 /* yolo-conv2d_17.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_17.weights.bin"; path = "Parameters/yolo-conv2d_17.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B341F54B8B000CB1972 /* yolo-conv2d_19.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_19.weights.bin"; path = "Parameters/yolo-conv2d_19.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B351F54B8B000CB1972 /* tiny_yolo-conv2d_9.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "tiny_yolo-conv2d_9.weights.bin"; path = "Parameters/tiny_yolo-conv2d_9.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B361F54B8B000CB1972 /* yolo-conv2d_12.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_12.biases.bin"; path = "Parameters/yolo-conv2d_12.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B371F54B8B000CB1972 /* tiny_yolo-conv2d_3.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "tiny_yolo-conv2d_3.weights.bin"; path = "Parameters/tiny_yolo-conv2d_3.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B381F54B8B100CB1972 /* yolo-conv2d_3.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_3.weights.bin"; path = "Parameters/yolo-conv2d_3.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B391F54B8B100CB1972 /* yolo-conv2d_7.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_7.biases.bin"; path = "Parameters/yolo-conv2d_7.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B3A1F54B8B100CB1972 /* yolo-conv2d_11.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_11.biases.bin"; path = "Parameters/yolo-conv2d_11.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B3B1F54B8B100CB1972 /* yolo-conv2d_16.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_16.biases.bin"; path = "Parameters/yolo-conv2d_16.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B3C1F54B8B100CB1972 /* tiny_yolo-conv2d_2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "tiny_yolo-conv2d_2.weights.bin"; path = "Parameters/tiny_yolo-conv2d_2.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B3D1F54B8B100CB1972 /* yolo-conv2d_2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_2.weights.bin"; path = "Parameters/yolo-conv2d_2.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B3E1F54B8B100CB1972 /* tiny_yolo-conv2d_9.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "tiny_yolo-conv2d_9.biases.bin"; path = "Parameters/tiny_yolo-conv2d_9.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B3F1F54B8B100CB1972 /* yolo-conv2d_6.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_6.biases.bin"; path = "Parameters/yolo-conv2d_6.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B401F54B8B100CB1972 /* yolo-conv2d_23.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_23.biases.bin"; path = "Parameters/yolo-conv2d_23.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B411F54B8B100CB1972 /* yolo-conv2d_20.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_20.biases.bin"; path = "Parameters/yolo-conv2d_20.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B421F54B8B100CB1972 /* yolo-conv2d_10.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_10.biases.bin"; path = "Parameters/yolo-conv2d_10.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E9BA7B431F54B8B100CB1972 /* yolo-conv2d_1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "yolo-conv2d_1.biases.bin"; path = "Parameters/yolo-conv2d_1.biases.bin"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,70 +263,70 @@
 		7B711C991ECC8B44001CB7C2 /* Parameters */ = {
 			isa = PBXGroup;
 			children = (
-				E95C49371F3694D5004BC110 /* conv2d_3.biases.bin */,
-				E95C49351F3694D5004BC110 /* conv2d_3.weights.bin */,
-				E95C49531F3694D6004BC110 /* conv2d_4.biases.bin */,
-				E95C494B1F3694D6004BC110 /* conv2d_4.weights.bin */,
-				E95C49471F3694D6004BC110 /* conv2d_5.biases.bin */,
-				E95C49491F3694D6004BC110 /* conv2d_5.weights.bin */,
-				E95C492C1F3694D5004BC110 /* conv2d_6.biases.bin */,
-				E95C49421F3694D6004BC110 /* conv2d_6.weights.bin */,
-				E95C49311F3694D5004BC110 /* conv2d_7.biases.bin */,
-				E95C492E1F3694D5004BC110 /* conv2d_7.weights.bin */,
-				E95C49291F3694D5004BC110 /* conv2d_8.biases.bin */,
-				E95C49541F3694D6004BC110 /* conv2d_8.weights.bin */,
-				E95C493B1F3694D5004BC110 /* conv2d_9.biases.bin */,
-				E95C492B1F3694D5004BC110 /* conv2d_9.weights.bin */,
-				E95C494A1F3694D6004BC110 /* conv2d_22.weights.bin */,
-				E95C49551F3694D6004BC110 /* conv2d_23.biases.bin */,
-				E95C493C1F3694D5004BC110 /* conv2d_23.weights.bin */,
-				E95C492A1F3694D5004BC110 /* conv2d_1.biases.bin */,
-				E95C49431F3694D6004BC110 /* conv2d_1.weights.bin */,
-				E95C49451F3694D6004BC110 /* conv2d_2.biases.bin */,
-				E95C492D1F3694D5004BC110 /* conv2d_2.weights.bin */,
-				E95C49511F3694D6004BC110 /* conv2d_10.biases.bin */,
-				E95C493F1F3694D6004BC110 /* conv2d_10.weights.bin */,
-				E95C494C1F3694D6004BC110 /* conv2d_11.biases.bin */,
-				E95C49281F3694D5004BC110 /* conv2d_11.weights.bin */,
-				E95C49481F3694D6004BC110 /* conv2d_12.biases.bin */,
-				E95C49331F3694D5004BC110 /* conv2d_12.weights.bin */,
-				E95C493A1F3694D5004BC110 /* conv2d_13.biases.bin */,
-				E95C49321F3694D5004BC110 /* conv2d_13.weights.bin */,
-				E95C49341F3694D5004BC110 /* conv2d_14.biases.bin */,
-				E95C49301F3694D5004BC110 /* conv2d_14.weights.bin */,
-				E95C494D1F3694D6004BC110 /* conv2d_15.biases.bin */,
-				E95C49521F3694D6004BC110 /* conv2d_15.weights.bin */,
-				E95C49501F3694D6004BC110 /* conv2d_16.biases.bin */,
-				E95C49381F3694D5004BC110 /* conv2d_16.weights.bin */,
-				E95C494E1F3694D6004BC110 /* conv2d_17.biases.bin */,
-				E95C49411F3694D6004BC110 /* conv2d_17.weights.bin */,
-				E95C49401F3694D6004BC110 /* conv2d_18.biases.bin */,
-				E95C49361F3694D5004BC110 /* conv2d_18.weights.bin */,
-				E95C494F1F3694D6004BC110 /* conv2d_19.biases.bin */,
-				E95C49441F3694D6004BC110 /* conv2d_19.weights.bin */,
-				E95C493E1F3694D6004BC110 /* conv2d_20.biases.bin */,
-				E95C492F1F3694D5004BC110 /* conv2d_20.weights.bin */,
-				E95C49391F3694D5004BC110 /* conv2d_21.biases.bin */,
-				E95C493D1F3694D5004BC110 /* conv2d_21.weights.bin */,
-				E95C49461F3694D6004BC110 /* conv2d_22.biases.bin */,
-				7B711CC71ECCA8A3001CB7C2 /* conv1_b.bin */,
-				7B711CC81ECCA8A3001CB7C2 /* conv1_W.bin */,
-				7B711CC91ECCA8A3001CB7C2 /* conv2_b.bin */,
-				7B711CCA1ECCA8A3001CB7C2 /* conv2_W.bin */,
-				7B711CCB1ECCA8A3001CB7C2 /* conv3_b.bin */,
-				7B711CCC1ECCA8A3001CB7C2 /* conv3_W.bin */,
-				7B711CCD1ECCA8A3001CB7C2 /* conv4_b.bin */,
-				7B711CCE1ECCA8A3001CB7C2 /* conv4_W.bin */,
-				7B711CCF1ECCA8A3001CB7C2 /* conv5_b.bin */,
-				7B711CD01ECCA8A3001CB7C2 /* conv5_W.bin */,
-				7B711CD11ECCA8A3001CB7C2 /* conv6_b.bin */,
-				7B711CD21ECCA8A3001CB7C2 /* conv6_W.bin */,
-				7B711CD31ECCA8A3001CB7C2 /* conv7_b.bin */,
-				7B711CD41ECCA8A3001CB7C2 /* conv7_W.bin */,
-				7B711CD51ECCA8A3001CB7C2 /* conv8_b.bin */,
-				7B711CD61ECCA8A3001CB7C2 /* conv8_W.bin */,
-				7B711CD71ECCA8A3001CB7C2 /* conv9_b.bin */,
-				7B711CD81ECCA8A3001CB7C2 /* conv9_W.bin */,
+				E9BA7B0E1F54B8AD00CB1972 /* tiny_yolo-conv2d_1.biases.bin */,
+				E9BA7B161F54B8AE00CB1972 /* tiny_yolo-conv2d_1.weights.bin */,
+				E9BA7B211F54B8AF00CB1972 /* tiny_yolo-conv2d_2.biases.bin */,
+				E9BA7B3C1F54B8B100CB1972 /* tiny_yolo-conv2d_2.weights.bin */,
+				E9BA7B1E1F54B8AF00CB1972 /* tiny_yolo-conv2d_3.biases.bin */,
+				E9BA7B371F54B8B000CB1972 /* tiny_yolo-conv2d_3.weights.bin */,
+				E9BA7B041F54B8AC00CB1972 /* tiny_yolo-conv2d_4.biases.bin */,
+				E9BA7B1A1F54B8AE00CB1972 /* tiny_yolo-conv2d_4.weights.bin */,
+				E9BA7B221F54B8AF00CB1972 /* tiny_yolo-conv2d_5.biases.bin */,
+				E9BA7B201F54B8AF00CB1972 /* tiny_yolo-conv2d_5.weights.bin */,
+				E9BA7B101F54B8AE00CB1972 /* tiny_yolo-conv2d_6.biases.bin */,
+				E9BA7B0A1F54B8AD00CB1972 /* tiny_yolo-conv2d_6.weights.bin */,
+				E9BA7B241F54B8AF00CB1972 /* tiny_yolo-conv2d_7.biases.bin */,
+				E9BA7B281F54B8AF00CB1972 /* tiny_yolo-conv2d_7.weights.bin */,
+				E9BA7B111F54B8AE00CB1972 /* tiny_yolo-conv2d_8.biases.bin */,
+				E9BA7B2F1F54B8B000CB1972 /* tiny_yolo-conv2d_8.weights.bin */,
+				E9BA7B3E1F54B8B100CB1972 /* tiny_yolo-conv2d_9.biases.bin */,
+				E9BA7B351F54B8B000CB1972 /* tiny_yolo-conv2d_9.weights.bin */,
+				E9BA7B431F54B8B100CB1972 /* yolo-conv2d_1.biases.bin */,
+				E9BA7B261F54B8AF00CB1972 /* yolo-conv2d_1.weights.bin */,
+				E9BA7B191F54B8AE00CB1972 /* yolo-conv2d_2.biases.bin */,
+				E9BA7B3D1F54B8B100CB1972 /* yolo-conv2d_2.weights.bin */,
+				E9BA7B1D1F54B8AF00CB1972 /* yolo-conv2d_3.biases.bin */,
+				E9BA7B381F54B8B100CB1972 /* yolo-conv2d_3.weights.bin */,
+				E9BA7B311F54B8B000CB1972 /* yolo-conv2d_4.biases.bin */,
+				E9BA7B301F54B8B000CB1972 /* yolo-conv2d_4.weights.bin */,
+				E9BA7B1F1F54B8AF00CB1972 /* yolo-conv2d_5.biases.bin */,
+				E9BA7B0D1F54B8AD00CB1972 /* yolo-conv2d_5.weights.bin */,
+				E9BA7B3F1F54B8B100CB1972 /* yolo-conv2d_6.biases.bin */,
+				E9BA7B051F54B8AD00CB1972 /* yolo-conv2d_6.weights.bin */,
+				E9BA7B391F54B8B100CB1972 /* yolo-conv2d_7.biases.bin */,
+				E9BA7B1B1F54B8AE00CB1972 /* yolo-conv2d_7.weights.bin */,
+				E9BA7B0F1F54B8AE00CB1972 /* yolo-conv2d_8.biases.bin */,
+				E9BA7B1C1F54B8AF00CB1972 /* yolo-conv2d_8.weights.bin */,
+				E9BA7B321F54B8B000CB1972 /* yolo-conv2d_9.biases.bin */,
+				E9BA7B271F54B8AF00CB1972 /* yolo-conv2d_9.weights.bin */,
+				E9BA7B421F54B8B100CB1972 /* yolo-conv2d_10.biases.bin */,
+				E9BA7B151F54B8AE00CB1972 /* yolo-conv2d_10.weights.bin */,
+				E9BA7B3A1F54B8B100CB1972 /* yolo-conv2d_11.biases.bin */,
+				E9BA7B121F54B8AE00CB1972 /* yolo-conv2d_11.weights.bin */,
+				E9BA7B361F54B8B000CB1972 /* yolo-conv2d_12.biases.bin */,
+				E9BA7B131F54B8AE00CB1972 /* yolo-conv2d_12.weights.bin */,
+				E9BA7B231F54B8AF00CB1972 /* yolo-conv2d_13.biases.bin */,
+				E9BA7B2A1F54B8B000CB1972 /* yolo-conv2d_13.weights.bin */,
+				E9BA7B2B1F54B8B000CB1972 /* yolo-conv2d_14.biases.bin */,
+				E9BA7B251F54B8AF00CB1972 /* yolo-conv2d_14.weights.bin */,
+				E9BA7B2D1F54B8B000CB1972 /* yolo-conv2d_15.biases.bin */,
+				E9BA7B091F54B8AD00CB1972 /* yolo-conv2d_15.weights.bin */,
+				E9BA7B3B1F54B8B100CB1972 /* yolo-conv2d_16.biases.bin */,
+				E9BA7B141F54B8AE00CB1972 /* yolo-conv2d_16.weights.bin */,
+				E9BA7B071F54B8AD00CB1972 /* yolo-conv2d_17.biases.bin */,
+				E9BA7B331F54B8B000CB1972 /* yolo-conv2d_17.weights.bin */,
+				E9BA7B081F54B8AD00CB1972 /* yolo-conv2d_18.biases.bin */,
+				E9BA7B291F54B8AF00CB1972 /* yolo-conv2d_18.weights.bin */,
+				E9BA7B171F54B8AE00CB1972 /* yolo-conv2d_19.biases.bin */,
+				E9BA7B341F54B8B000CB1972 /* yolo-conv2d_19.weights.bin */,
+				E9BA7B411F54B8B100CB1972 /* yolo-conv2d_20.biases.bin */,
+				E9BA7B0B1F54B8AD00CB1972 /* yolo-conv2d_20.weights.bin */,
+				E9BA7B0C1F54B8AD00CB1972 /* yolo-conv2d_21.biases.bin */,
+				E9BA7B061F54B8AD00CB1972 /* yolo-conv2d_21.weights.bin */,
+				E9BA7B2E1F54B8B000CB1972 /* yolo-conv2d_22.biases.bin */,
+				E9BA7B181F54B8AE00CB1972 /* yolo-conv2d_22.weights.bin */,
+				E9BA7B401F54B8B100CB1972 /* yolo-conv2d_23.biases.bin */,
+				E9BA7B2C1F54B8B000CB1972 /* yolo-conv2d_23.weights.bin */,
 			);
 			name = Parameters;
 			sourceTree = "<group>";
@@ -409,81 +409,81 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E95C495B1F36959B004BC110 /* conv2d_5.weights.bin in Resources */,
-				E95C49571F36959B004BC110 /* conv2d_3.weights.bin in Resources */,
+				E9BA7B471F54B8B200CB1972 /* yolo-conv2d_17.biases.bin in Resources */,
 				7B711C891ECC8B13001CB7C2 /* Assets.xcassets in Resources */,
-				E95C495E1F36959B004BC110 /* conv2d_7.biases.bin in Resources */,
-				E95C49691F36959B004BC110 /* conv2d_2.biases.bin in Resources */,
-				7B711CE91ECCA8A3001CB7C2 /* conv9_b.bin in Resources */,
-				E95C497B1F36959B004BC110 /* conv2d_18.biases.bin in Resources */,
-				E95C49591F36959B004BC110 /* conv2d_4.weights.bin in Resources */,
-				E95C49741F36959B004BC110 /* conv2d_14.weights.bin in Resources */,
-				E95C495D1F36959B004BC110 /* conv2d_6.weights.bin in Resources */,
-				E95C49671F36959B004BC110 /* conv2d_1.biases.bin in Resources */,
-				E95C49611F36959B004BC110 /* conv2d_8.weights.bin in Resources */,
-				E95C49651F36959B004BC110 /* conv2d_23.biases.bin in Resources */,
-				E95C49781F36959B004BC110 /* conv2d_16.weights.bin in Resources */,
-				E95C49681F36959B004BC110 /* conv2d_1.weights.bin in Resources */,
-				7B711CDE1ECCA8A3001CB7C2 /* conv3_W.bin in Resources */,
-				7B711CEA1ECCA8A3001CB7C2 /* conv9_W.bin in Resources */,
-				7B711CDB1ECCA8A3001CB7C2 /* conv2_b.bin in Resources */,
+				E9BA7B6C1F54B8B200CB1972 /* yolo-conv2d_23.weights.bin in Resources */,
+				E9BA7B621F54B8B200CB1972 /* tiny_yolo-conv2d_5.biases.bin in Resources */,
+				E9BA7B481F54B8B200CB1972 /* yolo-conv2d_18.biases.bin in Resources */,
+				E9BA7B4A1F54B8B200CB1972 /* tiny_yolo-conv2d_6.weights.bin in Resources */,
+				E9BA7B561F54B8B200CB1972 /* tiny_yolo-conv2d_1.weights.bin in Resources */,
+				E9BA7B7E1F54B8B200CB1972 /* tiny_yolo-conv2d_9.biases.bin in Resources */,
+				E9BA7B811F54B8B200CB1972 /* yolo-conv2d_20.biases.bin in Resources */,
+				E9BA7B5B1F54B8B200CB1972 /* yolo-conv2d_7.weights.bin in Resources */,
+				E9BA7B5D1F54B8B200CB1972 /* yolo-conv2d_3.biases.bin in Resources */,
 				E90AFD441F45FA3D00D8110E /* bricks.png in Resources */,
-				E95C495F1F36959B004BC110 /* conv2d_7.weights.bin in Resources */,
-				E95C49731F36959B004BC110 /* conv2d_14.biases.bin in Resources */,
-				E95C49771F36959B004BC110 /* conv2d_16.biases.bin in Resources */,
-				E95C49631F36959B004BC110 /* conv2d_9.weights.bin in Resources */,
-				E95C49721F36959B004BC110 /* conv2d_13.weights.bin in Resources */,
-				E95C496A1F36959B004BC110 /* conv2d_2.weights.bin in Resources */,
-				7B711CDD1ECCA8A3001CB7C2 /* conv3_b.bin in Resources */,
-				E95C49821F36959B004BC110 /* conv2d_21.weights.bin in Resources */,
-				7B711CE31ECCA8A3001CB7C2 /* conv6_b.bin in Resources */,
-				E95C49621F36959B004BC110 /* conv2d_9.biases.bin in Resources */,
-				E95C497F1F36959B004BC110 /* conv2d_20.biases.bin in Resources */,
-				E95C49801F36959B004BC110 /* conv2d_20.weights.bin in Resources */,
-				E95C496D1F36959B004BC110 /* conv2d_11.biases.bin in Resources */,
+				E9BA7B591F54B8B200CB1972 /* yolo-conv2d_2.biases.bin in Resources */,
+				E9BA7B5A1F54B8B200CB1972 /* tiny_yolo-conv2d_4.weights.bin in Resources */,
+				E9BA7B761F54B8B200CB1972 /* yolo-conv2d_12.biases.bin in Resources */,
+				E9BA7B671F54B8B200CB1972 /* yolo-conv2d_9.weights.bin in Resources */,
+				E9BA7B521F54B8B200CB1972 /* yolo-conv2d_11.weights.bin in Resources */,
+				E9BA7B7C1F54B8B200CB1972 /* tiny_yolo-conv2d_2.weights.bin in Resources */,
+				E9BA7B711F54B8B200CB1972 /* yolo-conv2d_4.biases.bin in Resources */,
+				E9BA7B4D1F54B8B200CB1972 /* yolo-conv2d_5.weights.bin in Resources */,
+				E9BA7B651F54B8B200CB1972 /* yolo-conv2d_14.weights.bin in Resources */,
+				E9BA7B541F54B8B200CB1972 /* yolo-conv2d_16.weights.bin in Resources */,
+				E9BA7B611F54B8B200CB1972 /* tiny_yolo-conv2d_2.biases.bin in Resources */,
 				E96D6AE11F377789002CC7C6 /* dog.jpg in Resources */,
-				E95C49791F36959B004BC110 /* conv2d_17.biases.bin in Resources */,
-				7B711CE61ECCA8A3001CB7C2 /* conv7_W.bin in Resources */,
-				E95C496B1F36959B004BC110 /* conv2d_10.biases.bin in Resources */,
+				E9BA7B451F54B8B100CB1972 /* yolo-conv2d_6.weights.bin in Resources */,
+				E9BA7B581F54B8B200CB1972 /* yolo-conv2d_22.weights.bin in Resources */,
+				E9BA7B7F1F54B8B200CB1972 /* yolo-conv2d_6.biases.bin in Resources */,
 				E96D6AE51F377789002CC7C6 /* person.jpg in Resources */,
+				E9BA7B661F54B8B200CB1972 /* yolo-conv2d_1.weights.bin in Resources */,
+				E9BA7B831F54B8B200CB1972 /* yolo-conv2d_1.biases.bin in Resources */,
 				E96D6AE61F377789002CC7C6 /* scream.jpg in Resources */,
-				E95C495C1F36959B004BC110 /* conv2d_6.biases.bin in Resources */,
-				7B711CE01ECCA8A3001CB7C2 /* conv4_W.bin in Resources */,
-				E95C496F1F36959B004BC110 /* conv2d_12.biases.bin in Resources */,
+				E9BA7B531F54B8B200CB1972 /* yolo-conv2d_12.weights.bin in Resources */,
+				E9BA7B5C1F54B8B200CB1972 /* yolo-conv2d_8.weights.bin in Resources */,
 				E90AFD461F45FA3D00D8110E /* gray.png in Resources */,
-				E95C49561F36959B004BC110 /* conv2d_3.biases.bin in Resources */,
-				E95C49581F36959B004BC110 /* conv2d_4.biases.bin in Resources */,
-				E95C497C1F36959B004BC110 /* conv2d_18.weights.bin in Resources */,
-				E95C497A1F36959B004BC110 /* conv2d_17.weights.bin in Resources */,
-				E95C496C1F36959B004BC110 /* conv2d_10.weights.bin in Resources */,
+				E9BA7B6D1F54B8B200CB1972 /* yolo-conv2d_15.biases.bin in Resources */,
+				E9BA7B511F54B8B200CB1972 /* tiny_yolo-conv2d_8.biases.bin in Resources */,
+				E9BA7B771F54B8B200CB1972 /* tiny_yolo-conv2d_3.weights.bin in Resources */,
 				E96D6AE41F377789002CC7C6 /* horses.jpg in Resources */,
-				7B711CDC1ECCA8A3001CB7C2 /* conv2_W.bin in Resources */,
-				E95C49711F36959B004BC110 /* conv2d_13.biases.bin in Resources */,
-				7B711CE11ECCA8A3001CB7C2 /* conv5_b.bin in Resources */,
-				E95C496E1F36959B004BC110 /* conv2d_11.weights.bin in Resources */,
-				7B711CDF1ECCA8A3001CB7C2 /* conv4_b.bin in Resources */,
-				E95C49811F36959B004BC110 /* conv2d_21.biases.bin in Resources */,
-				E95C49761F36959B004BC110 /* conv2d_15.weights.bin in Resources */,
-				E95C497D1F36959B004BC110 /* conv2d_19.biases.bin in Resources */,
-				7B711CE81ECCA8A3001CB7C2 /* conv8_W.bin in Resources */,
-				7B711CE71ECCA8A3001CB7C2 /* conv8_b.bin in Resources */,
+				E9BA7B731F54B8B200CB1972 /* yolo-conv2d_17.weights.bin in Resources */,
+				E9BA7B721F54B8B200CB1972 /* yolo-conv2d_9.biases.bin in Resources */,
+				E9BA7B821F54B8B200CB1972 /* yolo-conv2d_10.biases.bin in Resources */,
+				E9BA7B751F54B8B200CB1972 /* tiny_yolo-conv2d_9.weights.bin in Resources */,
+				E9BA7B501F54B8B200CB1972 /* tiny_yolo-conv2d_6.biases.bin in Resources */,
+				E9BA7B6A1F54B8B200CB1972 /* yolo-conv2d_13.weights.bin in Resources */,
+				E9BA7B4B1F54B8B200CB1972 /* yolo-conv2d_20.weights.bin in Resources */,
+				E9BA7B6B1F54B8B200CB1972 /* yolo-conv2d_14.biases.bin in Resources */,
+				E9BA7B801F54B8B200CB1972 /* yolo-conv2d_23.biases.bin in Resources */,
+				E9BA7B741F54B8B200CB1972 /* yolo-conv2d_19.weights.bin in Resources */,
+				E9BA7B631F54B8B200CB1972 /* yolo-conv2d_13.biases.bin in Resources */,
 				7B711C871ECC8B13001CB7C2 /* Main.storyboard in Resources */,
-				E95C49831F36959B004BC110 /* conv2d_22.biases.bin in Resources */,
-				E95C49751F36959B004BC110 /* conv2d_15.biases.bin in Resources */,
-				E95C49661F36959B004BC110 /* conv2d_23.weights.bin in Resources */,
-				E95C49641F36959B004BC110 /* conv2d_22.weights.bin in Resources */,
+				E9BA7B691F54B8B200CB1972 /* yolo-conv2d_18.weights.bin in Resources */,
+				E9BA7B7B1F54B8B200CB1972 /* yolo-conv2d_16.biases.bin in Resources */,
+				E9BA7B681F54B8B200CB1972 /* tiny_yolo-conv2d_7.weights.bin in Resources */,
+				E9BA7B7A1F54B8B200CB1972 /* yolo-conv2d_11.biases.bin in Resources */,
+				E9BA7B5E1F54B8B200CB1972 /* tiny_yolo-conv2d_3.biases.bin in Resources */,
 				E96D6AE21F377789002CC7C6 /* eagle.jpg in Resources */,
 				E96D6AE31F377789002CC7C6 /* giraffe.jpg in Resources */,
-				E95C495A1F36959B004BC110 /* conv2d_5.biases.bin in Resources */,
-				7B711CE51ECCA8A3001CB7C2 /* conv7_b.bin in Resources */,
-				7B711CE41ECCA8A3001CB7C2 /* conv6_W.bin in Resources */,
-				E95C49701F36959B004BC110 /* conv2d_12.weights.bin in Resources */,
-				E95C497E1F36959B004BC110 /* conv2d_19.weights.bin in Resources */,
-				7B711CD91ECCA8A3001CB7C2 /* conv1_b.bin in Resources */,
+				E9BA7B6F1F54B8B200CB1972 /* tiny_yolo-conv2d_8.weights.bin in Resources */,
+				E9BA7B791F54B8B200CB1972 /* yolo-conv2d_7.biases.bin in Resources */,
+				E9BA7B4E1F54B8B200CB1972 /* tiny_yolo-conv2d_1.biases.bin in Resources */,
+				E9BA7B6E1F54B8B200CB1972 /* yolo-conv2d_22.biases.bin in Resources */,
+				E9BA7B4C1F54B8B200CB1972 /* yolo-conv2d_21.biases.bin in Resources */,
+				E9BA7B441F54B8B100CB1972 /* tiny_yolo-conv2d_4.biases.bin in Resources */,
+				E9BA7B601F54B8B200CB1972 /* tiny_yolo-conv2d_5.weights.bin in Resources */,
+				E9BA7B701F54B8B200CB1972 /* yolo-conv2d_4.weights.bin in Resources */,
+				E9BA7B491F54B8B200CB1972 /* yolo-conv2d_15.weights.bin in Resources */,
+				E9BA7B5F1F54B8B200CB1972 /* yolo-conv2d_5.biases.bin in Resources */,
+				E9BA7B461F54B8B200CB1972 /* yolo-conv2d_21.weights.bin in Resources */,
+				E9BA7B641F54B8B200CB1972 /* tiny_yolo-conv2d_7.biases.bin in Resources */,
+				E9BA7B781F54B8B200CB1972 /* yolo-conv2d_3.weights.bin in Resources */,
 				E90AFD451F45FA3D00D8110E /* danger.png in Resources */,
-				7B711CDA1ECCA8A3001CB7C2 /* conv1_W.bin in Resources */,
-				E95C49601F36959B004BC110 /* conv2d_8.biases.bin in Resources */,
-				7B711CE21ECCA8A3001CB7C2 /* conv5_W.bin in Resources */,
+				E9BA7B4F1F54B8B200CB1972 /* yolo-conv2d_8.biases.bin in Resources */,
+				E9BA7B551F54B8B200CB1972 /* yolo-conv2d_10.weights.bin in Resources */,
+				E9BA7B7D1F54B8B200CB1972 /* yolo-conv2d_2.weights.bin in Resources */,
+				E9BA7B571F54B8B200CB1972 /* yolo-conv2d_19.biases.bin in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
