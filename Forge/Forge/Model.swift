@@ -257,6 +257,7 @@ public class Model {
   }
 
   func addOutputImage(for tensor: Tensor) {
+    print("adding output image for tensor", tensor)
     guard let imgDesc = imageDescriptors[tensor.shape] else {
       fatalError("Error: could not find image descriptor for shape \(tensor.shape)")
     }

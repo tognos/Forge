@@ -38,6 +38,7 @@ public class Tensor {
     want to keep track of the tensor's MPSImage for processing afterwards.
   */
   public var imageIsTemporary = true
+  //public var imageIsTemporary = false
 
   // The layer that takes the data from `input`, transforms it, and stores it
   // inside this tensor. Is nil for Input and Concatenate tensors.

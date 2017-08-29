@@ -4,7 +4,7 @@ import MetalPerformanceShaders
 import CoreMedia
 import Forge
 
-let MaxBuffersInFlight = 3   // use triple buffering
+let MaxBuffersInFlight = 1   // use triple buffering
 
 /*
   Using Apple's implementation of Inception v3.
@@ -128,6 +128,7 @@ class CameraViewController: UIViewController {
 
     runner.predict(network: network, texture: texture, queue: .main) { result in
       self.show(predictions: result.predictions)
+      print("runner.predict:", result.predictions)
 
       if let texture = result.debugTexture {
         self.debugImageView.image = UIImage.image(texture: texture)

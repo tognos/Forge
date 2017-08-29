@@ -174,6 +174,14 @@ public class MPSCNNLayer: Layer {
     // destination image (and write to that same destination image), we would
     // set mpscnn.offset and clipRect here using sourceTensor's channel offset.
 
+    print("Encoding for layer:", self)
+    print("sourceTensor:",sourceTensor,", destinationTensor:",destinationTensor)
+    if let image = sourceTensor.image as? MPSTemporaryImage {
+      print("sourceTensor readcount:",image.readCount)
+    }
+    if let image = destinationTensor.image as? MPSTemporaryImage {
+      print("destinationTensor readcount:",image.readCount)
+    }
     mpscnn.destinationFeatureChannelOffset = destinationTensor.destinationChannelOffset
 
     mpscnn.encode(commandBuffer: commandBuffer,
