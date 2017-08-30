@@ -177,6 +177,8 @@ class CameraViewController: UIViewController {
    return UIInterfaceOrientationMask.landscapeLeft
    }
    */
+  let fpsCounter = FPSCounter()
+
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -191,10 +193,8 @@ class CameraViewController: UIViewController {
     tinyCommandQueue = device.makeCommandQueue()
     yoloCommandQueue = device.makeCommandQueue()
 
-    // The app can show up to 10 detections at a time. You can increase this
-    // limit by allocating more BoundingBox objects, but there's only so much
-    // room on the screen. (You also need to change the limit in YOLO.swift.)
-    for _ in 0..<10 {
+    // Set up the bounding boxes.
+    for _ in 0..<YOLO.maxBoundingBoxes {
       boundingBoxes.append(BoundingBox())
     }
     
@@ -322,6 +322,9 @@ class CameraViewController: UIViewController {
           saveAsRawFile(fileName: "result-"+names[index]+".floats", data: data)
         })
       }
+      // Once the NN is set up, we can start capturing live video.
+      self.fpsCounter.start()
+      self.videoCapture.start()
     }
   }
   
@@ -403,7 +406,9 @@ class CameraViewController: UIViewController {
       if let texture = result.debugTexture {
         self.debugImageView.image = UIImage.image(texture: texture)
       }
-      self.timeLabel.text = String(format: "Elapsed %.5f seconds (%.2f FPS)", result.elapsed, 1/result.elapsed)
+
+      self.fpsCounter.frameCompleted()
+      self.timeLabel.text = String(format: "%.1f FPS (latency: %.5f sec)", self.fpsCounter.fps, result.latency)
     }
   }
   

@@ -375,3 +375,106 @@ kernel void transposeChannels_array(
 
   outTexture.write(out, gid.xy, gid.z);
 }
+
+// MARk - Merge Images
+  enum OpType: ushort {
+    OpTypeAdd = 1,
+    OpTypeMultiplay = 2,
+    OpTypeMaximum = 3,
+    OpTypeAverage = 4
+  };
+  
+  struct MergeParams {
+    //ushort inputWidth;
+    //ushort inputHeight;
+    //ushort inputFeatureChannels;
+    ushort inputImages;
+    ushort inputSlicesPerImage;
+    //ushort inputOffsetX;
+    //ushort inputOffsetY;
+    //ushort inputOffsetZ;
+    //ushort outputWidth;
+    //ushort outputHeight;
+    //ushort outputFeatureChannels;
+    //ushort outputSlices;
+    //ushort destinationSliceOffset;
+    //ushort outputOffsetX;
+    //ushort outputOffsetY;
+    //ushort outputOffsetZ;
+  };
+    constant ushort opType [[ function_constant(4) ]];
+
+    inline half4 applyOp(half4 out, half4 x) {
+      if (opType == OpTypeAdd)
+        return out + x;
+      if (opType == OpTypeMultiplay)
+        return out * x;
+      if (opType == OpTypeMaximum)
+        return fmax(out, x);
+      if (opType == OpTypeAverage)
+        return out + x;
+      return x;
+    }
+
+// Merges images with only 1 slice per image and 1 output slice
+// We dont need any parameters because we know the number of
+// input images is the size of the input array and each image
+// has one slice
+kernel void mergeImages(
+   texture2d_array<half, access::read> inTexture [[texture(0)]],
+   texture2d<half, access::write> outTexture [[texture(1)]],
+   ushort2 gid [[thread_position_in_grid]])
+{
+  if (gid.x >= outTexture.get_width() ||
+      gid.y >= outTexture.get_height()) return;
+  
+  const ushort inSlices = inTexture.get_array_size();
+  
+  half4 out = opType != OpTypeMultiplay ? half4(0.0h) : half4(1.0h);
+  
+  for (ushort image = 0; image < inSlices; ++image) {
+    const half4 in = inTexture.read(gid.xy, image);
+    if (opType != OpTypeAverage) {
+      out = applyOp(out, in);
+    } else {
+      out = applyOp(out, in / inTexture.get_array_size());
+    }
+    outTexture.write(out, gid.xy);
+  }
+}
+
+// Merges images with only multiple slice per image and multiple output slices
+// gid.z must only iterate over the number of input slices per image (aka output slices)
+// and not all the slices in the input array; we iterate over the slices in
+// all input images explicitly in a loop
+kernel void mergeImages_array(
+   texture2d_array<half, access::read> inTexture [[texture(0)]],
+   texture2d_array<half, access::write> outTexture [[texture(1)]],
+   constant MergeParams & params [[buffer(0)]],
+   ushort3 gid [[thread_position_in_grid]])
+{
+  if (gid.x >= outTexture.get_width() ||
+      gid.y >= outTexture.get_height() ||
+      gid.z >= outTexture.get_array_size()) return;
+  
+  const ushort inputImages = inTexture.get_array_size()/outTexture.get_array_size();
+  const ushort inputSlicesPerImage = outTexture.get_array_size();
+  
+  half4 out = opType != OpTypeMultiplay ? half4(0.0h) : half4(1.0h);
+  
+    for (ushort image = 0; image < inputImages; ++image) {
+      const half4 in = inTexture.read(gid.xy, image * inputSlicesPerImage + gid.z/*slice*/);
+      if (opType != OpTypeAverage) {
+        out = applyOp(out, in);
+      } else {
+        out = applyOp(out, in / params.inputImages);
+      }
+      outTexture.write(out, gid.xy, gid.z /*slice*/);
+    }
+}
+
+
+  
+  
+  
+  

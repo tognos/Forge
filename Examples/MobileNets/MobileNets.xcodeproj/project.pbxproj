@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B0B93801F1E635F0002A11A /* FPSCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0B937F1F1E635A0002A11A /* FPSCounter.swift */; };
 		7B8237131EABDCE000127F0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B8237111EABDCE000127F0C /* Main.storyboard */; };
 		7B8237151EABDCE000127F0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B8237141EABDCE000127F0C /* Assets.xcassets */; };
 		7B8237371EABDD9200127F0C /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8237261EABDD9200127F0C /* CameraViewController.swift */; };
@@ -92,6 +93,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7B0B937F1F1E635A0002A11A /* FPSCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPSCounter.swift; sourceTree = "<group>"; };
 		7B82370A1EABDCE000127F0C /* MobileNets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileNets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B8237121EABDCE000127F0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7B8237141EABDCE000127F0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = MobileNets/Assets.xcassets; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			children = (
 				7B8237481EABDDFD00127F0C /* AppDelegate.swift */,
 				7B8237491EABDDFD00127F0C /* VideoCapture.swift */,
+				7B0B937F1F1E635A0002A11A /* FPSCounter.swift */,
 			);
 			name = Common;
 			path = ../Common;
@@ -320,7 +323,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = MachineThink;
 				TargetAttributes = {
 					7B8237091EABDCE000127F0C = {
@@ -426,6 +429,7 @@
 				7B82374A1EABDDFD00127F0C /* AppDelegate.swift in Sources */,
 				7BD4246C1EB0DF0600451777 /* MobileNet.swift in Sources */,
 				7BCF76571EE5CBCD00EC1D70 /* ImageNetLabels.swift in Sources */,
+				7B0B93801F1E635F0002A11A /* FPSCounter.swift in Sources */,
 				7B82374B1EABDDFD00127F0C /* VideoCapture.swift in Sources */,
 				7B8237371EABDD9200127F0C /* CameraViewController.swift in Sources */,
 				7BCF765D1EE5DD9900EC1D70 /* Preprocessing.swift in Sources */,
@@ -457,7 +461,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -465,7 +471,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -508,7 +518,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -516,7 +528,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -554,6 +570,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tognos.MobileNets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				VALID_ARCHS = arm64;
 			};
@@ -570,7 +587,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tognos.MobileNets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;
 				VALID_ARCHS = arm64;
 			};

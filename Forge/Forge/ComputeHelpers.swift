@@ -81,7 +81,7 @@ public func makeFunction(library: MTLLibrary, name: String,
       return try library.device.makeComputePipelineState(function: kernelFunction)
     }
   } catch {
-    fatalError("Could not create compute pipeline for function '\(name)'")
+    fatalError("Could not create compute pipeline for function '\(name)'. Error: \(error)")
   }
 }
 
@@ -320,9 +320,9 @@ public func makeBuffer(device: MTLDevice,
   let paddedOutputChannels = outputSlices * 4
   let count = paddedOutputChannels * kernelHeight * kernelWidth * paddedInputChannels
 
-  let buffer = device.makeBuffer(length: MemoryLayout<Float16>.stride * count)
+  let buffer = device.makeBuffer(length: MemoryLayout<Float16>.stride * count)!
 
-  copy(weights: weights, to: buffer!, channelFormat: channelFormat,
+  copy(weights: weights, to: buffer, channelFormat: channelFormat,
        kernelWidth: kernelWidth, kernelHeight: kernelHeight,
        inputFeatureChannels: inputFeatureChannels,
        outputFeatureChannels: outputFeatureChannels)
@@ -331,7 +331,7 @@ public func makeBuffer(device: MTLDevice,
   //let ptr = buffer.contents().bindMemory(to: Float16.self, capacity: count)
   //print(float16to32(ptr, count: count))
 
-  return buffer!
+  return buffer
 }
 
 /**
@@ -367,14 +367,14 @@ public func makeBuffer(device: MTLDevice,
 
   let outputSlices = (outputFeatureChannels + 3) / 4
   let count = outputSlices * 4
-  let buffer = device.makeBuffer(length: MemoryLayout<Float16>.stride * count)
+  let buffer = device.makeBuffer(length: MemoryLayout<Float16>.stride * count)!
 
   // The bias terms are often optional. If biasTerms is nil, just allocate a 
   // buffer containing zeros, otherwise copy the biases into the buffer.
   if let biasTerms = biasTerms {
-    copy(biasTerms: biasTerms, to: buffer!, channelFormat: channelFormat,
+    copy(biasTerms: biasTerms, to: buffer, channelFormat: channelFormat,
          outputFeatureChannels: outputFeatureChannels)
   }
 
-  return buffer!
+  return buffer
 }

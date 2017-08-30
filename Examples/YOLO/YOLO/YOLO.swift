@@ -15,6 +15,12 @@ class YOLO  : NeuralNetwork {
   
   typealias PredictionType = YOLO.Prediction
   
+  public static let maxBoundingBoxes = 10
+
+  // Tweak these values to get more or fewer predictions.
+  let confidenceThreshold: Float = 0.3
+  let iouThreshold: Float = 0.5
+  
   struct Prediction {
     let classIndex: Int
     let score: Float
@@ -161,7 +167,7 @@ class YOLO  : NeuralNetwork {
           
           // Since we compute 13x13x5 = 845 bounding boxes, we only want to
           // keep the ones whose combined score is over a certain threshold.
-          if confidenceInClass > 0.3 {
+          if confidenceInClass > confidenceThreshold {
             let rect = CGRect(x: CGFloat(x - w/2), y: CGFloat(y - h/2),
                               width: CGFloat(w), height: CGFloat(h))
             
@@ -186,8 +192,9 @@ class YOLO  : NeuralNetwork {
 //    print("debugImage shape:", debugImage.width, "x", debugImage.height, "x", debugImage.featureChannels)
 //    result.debugLayer = debugImage.toFloatArrayChannelsTogether()
 
-    result.predictions = nonMaxSuppression(boxes: predictions, limit: 10, threshold: self.threshold)
 
+    result.predictions = nonMaxSuppression(boxes: predictions, limit: YOLO.maxBoundingBoxes, threshold: iouThreshold)
+    //result.debugTexture = model.image(for: resized, inflightIndex: inflightIndex).texture
     return result
   }
 

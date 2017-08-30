@@ -114,6 +114,9 @@ public class Model {
       try createComputeForAllLayers()
 
       imageDescriptorList = Array(imageDescriptors.values)
+      for imageDesc in imageDescriptorList {
+        imageDesc.storageMode = .private
+      }
 
       let elapsed = CACurrentMediaTime() - startTime
       print("Compiling took \(elapsed) seconds")
@@ -298,6 +301,8 @@ public class Model {
   */
   public func encode(commandBuffer: MTLCommandBuffer, texture: MTLTexture, inflightIndex: Int) {
     //let startTime = CACurrentMediaTime()
+    //print("====== Starting model encode ======, inflightIndex =",inflightIndex)
+
 
     if !compiled {
       print("Error: graph has not been compiled yet")

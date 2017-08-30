@@ -54,7 +54,9 @@ class ViewController: UIViewController {
     basicConvTests.testCorrectness()
 
     let depthwiseConvTests = DepthwiseConvolutionTests()
-    depthwiseConvTests.testCorrectness()
+    depthwiseConvTests.testCorrectness(useMPSDepthWise: false)
+    depthwiseConvTests.testCorrectness(useMPSDepthWise: true)
+    //depthwiseConvTests.testGroups()
 
     print("All tests successful!")
     button.isEnabled = true

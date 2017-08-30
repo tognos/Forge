@@ -36,11 +36,13 @@ public struct DataShape {
   public let width: Int
   public let height: Int
   public let channels: Int
+  public let numImages: Int
 
-  public init(width: Int = -1, height: Int = -1, channels: Int = -1) {
+  public init(width: Int = -1, height: Int = -1, channels: Int = -1, numImages: Int = 1) {
     self.width = width
     self.height = height
     self.channels = channels
+    self.numImages = numImages
   }
 
   var isFullySpecified: Bool {
@@ -49,8 +51,10 @@ public struct DataShape {
 
   func createImageDescriptor() -> MPSImageDescriptor {
     assert(isFullySpecified)
+    let defaultUsage = MTLTextureUsage(rawValue: MTLTextureUsage.RawValue(UInt8(MTLTextureUsage.shaderRead.rawValue)|UInt8(MTLTextureUsage.shaderWrite.rawValue)))
     let descriptor = MPSImageDescriptor(channelFormat: .float16, width: width,
-                                        height: height, featureChannels: channels)
+                                        height: height, featureChannels: channels,
+                                        numberOfImages: numImages, usage: defaultUsage)
     //descriptor.storageMode = MTLStorageMode.`private`
     //descriptor.storageMode = MTLStorageMode.managed
     return descriptor
@@ -63,6 +67,7 @@ extension DataShape: CustomDebugStringConvertible {
     if width    != -1 { dims.append("\(width)")    } else { dims.append("?") }
     if height   != -1 { dims.append("\(height)")   } else { dims.append("?") }
     if channels != -1 { dims.append("\(channels)") } else { dims.append("?") }
+    if numImages != 1 { dims.append("\(numImages)") } else { dims.append("?") }
     return "(" + dims.joined(separator: ", ") + ")"
   }
 }
@@ -71,7 +76,7 @@ extension DataShape: Hashable {
   // Needs to be hashable because we'll create a cache of MPSImageDescriptor
   // objects. The DataShape is the key they're stored under.
   public var hashValue: Int {
-    return width + height*1000 + channels*1000*1000
+    return width + height*1000 + channels*1000*1000 + numImages * -1000 * 1000
   }
 }
 
@@ -79,4 +84,5 @@ public func == (lhs: DataShape, rhs: DataShape) -> Bool {
   return lhs.width    == rhs.width
       && lhs.height   == rhs.height
       && lhs.channels == rhs.channels
+      && lhs.numImages == rhs.numImages
 }

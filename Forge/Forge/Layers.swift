@@ -173,16 +173,20 @@ public class MPSCNNLayer: Layer {
     // FUTURE: For a residual connection, where we may want to read from the
     // destination image (and write to that same destination image), we would
     // set mpscnn.offset and clipRect here using sourceTensor's channel offset.
-
-    print("Encoding for layer:", self)
-    print("sourceTensor:",sourceTensor,", destinationTensor:",destinationTensor)
-    if let image = sourceTensor.image as? MPSTemporaryImage {
-      print("sourceTensor readcount:",image.readCount)
+/*
+    if false {
+      print("Encoding for layer:", self)
+      print("sourceTensor:",sourceTensor,", destinationTensor:",destinationTensor)
+      if let image = sourceTensor.image as? MPSTemporaryImage {
+        print("sourceTensor readcount:",image.readCount)
+      }
+      if let image = destinationTensor.image as? MPSTemporaryImage {
+        print("destinationTensor readcount:",image.readCount)
+      }
     }
-    if let image = destinationTensor.image as? MPSTemporaryImage {
-      print("destinationTensor readcount:",image.readCount)
-    }
+*/
     mpscnn.destinationFeatureChannelOffset = destinationTensor.destinationChannelOffset
+    mpscnn.offset = MPSOffset(x: 0, y: 0, z: destinationTensor.destinationImage)
 
     mpscnn.encode(commandBuffer: commandBuffer,
                   sourceImage: sourceTensor.image!,
@@ -222,7 +226,7 @@ public class SpaceToDepthX2: Layer {
                             MTLRegionMake3D(width, 0,      0, width, height, 1),
                             MTLRegionMake3D(0,     height, 0, width, height, 1),
                             MTLRegionMake3D(width, height, 0, width, height, 1)]
-        let destOrigin = MTLOrigin(x: 0, y: 0, z: 0)
+        let destOrigin = MTLOrigin(x: 0, y: 0, z: destinationTensor.destinationImage)
         
         let srcChannels = sourceTensor.shape.channels
         let srcSlices = (srcChannels + 3)/4
@@ -251,6 +255,128 @@ public class SpaceToDepthX2: Layer {
             image.readCount -= 1
         }
     }
+}
+
+public class ZeroPadding: Layer {
+  
+  /**
+   Creates a new layer that creates an output enlarged by outer zero padding
+   */
+  
+  let top_padding: Int
+  let bottom_padding: Int
+  let left_padding: Int
+  let right_padding: Int
+
+  public init(tblr_padding: (Int, Int, Int, Int),
+              name: String = "") {
+    self.top_padding = tblr_padding.0
+    self.bottom_padding = tblr_padding.1
+    self.left_padding = tblr_padding.2
+    self.right_padding = tblr_padding.3
+    super.init(name: name)
+  }
+  
+  override public var typeName: String {
+    return "ZeroPadding"
+  }
+  
+  override public func outputShape(for inputShape: DataShape) -> DataShape {
+    return DataShape(width: inputShape.width + left_padding + right_padding,
+                     height: inputShape.height + top_padding + bottom_padding,
+                     channels: inputShape.channels)
+  }
+  
+  override public func encode(commandBuffer: MTLCommandBuffer,
+                              sourceTensor: Tensor,
+                              destinationTensor: Tensor) {
+    let sourceImage = sourceTensor.image!
+    let destImage = destinationTensor.image!
+    
+    let width = sourceTensor.shape.width
+    let height = sourceTensor.shape.height
+    let sourceRegion = MTLRegionMake3D(0,     0,      0,
+                                       width, height, 1)
+    
+    let destOrigin = MTLOrigin(x: left_padding, y: top_padding, z: destinationTensor.destinationImage)
+    
+    let srcChannels = sourceTensor.shape.channels
+    let srcSlices = (srcChannels + 3)/4
+    
+    if let blitEncoder = commandBuffer.makeBlitCommandEncoder() {
+      
+      let buffer = destImage.texture.buffer!
+      // __fill(_ buffer: MTLBuffer, range: NSRange, value: UInt8)
+      blitEncoder.__fill(buffer, range: NSMakeRange(0, buffer.length), value: 0)
+      for slice in 0..<srcSlices {
+          blitEncoder.copy(from: sourceImage.texture,
+                           sourceSlice: slice,
+                           sourceLevel: 0,
+                           sourceOrigin: sourceRegion.origin,
+                           sourceSize: sourceRegion.size,
+                           to: destImage.texture,
+                           destinationSlice: slice,
+                           destinationLevel: 0,
+                           destinationOrigin: destOrigin)
+        
+      }
+      
+      blitEncoder.endEncoding()
+    } else {
+      print("Error: ZeroPadding2D.encode: cant create blitEncoder")
+    }
+    if let image = sourceImage as? MPSTemporaryImage {
+      image.readCount -= 1
+    }
+  }
+}
+
+public class MergeOperation: Layer {
+  
+  var mopKernel: MergeOpKernel?
+  var operation: MergeOpType
+    
+  /**
+   Creates a new layer that sums up all the images in the tensor
+   */
+  
+  public init(operation: MergeOpType, name: String = "") {
+    self.operation = operation
+    super.init(name: name)
+  }
+  
+  override public var typeName: String {
+    return "MergeOperation"
+  }
+  
+  override public func outputShape(for inputShape: DataShape) -> DataShape {
+    return DataShape(width: inputShape.width,
+                     height: inputShape.height,
+                     channels: inputShape.channels,
+                     numImages: 1)
+  }
+  
+  override public func encode(commandBuffer: MTLCommandBuffer,
+                              sourceTensor: Tensor,
+                              destinationTensor: Tensor) {
+    
+    mopKernel!.encode(commandBuffer: commandBuffer,
+               sourceImage: sourceTensor.image!,
+               destinationImage: destinationTensor.image!)
+  }
+    override public func createCompute(device: MTLDevice,
+                                       inputShape: DataShape,
+                                       outputShape: DataShape,
+                                       weights: ParameterData?,
+                                       biases: ParameterData?) throws {
+        mopKernel = MergeOpKernel(device: device, featureImages: outputShape.numImages, featureChannels: outputShape.channels, featureOp: self.operation)
+    }
+}
+
+public class Add: MergeOperation {
+  public init(name: String = "") {
+    super.init(operation: .Add, name: name)
+  }
 }
 
 /**
@@ -774,7 +900,8 @@ public class DepthwiseConvolution: Layer {
   let kernel: (Int, Int)
   let stride: (Int, Int)
   let activation: MPSCNNNeuron?
-  var compute: DepthwiseConvolutionKernel!
+//  var compute: DepthwiseConvolutionKernel!
+  var compute: MPSCNNConvolution!
 
   /**
     Creates a depth-wise convolution layer.
@@ -835,6 +962,7 @@ public class DepthwiseConvolution: Layer {
       biasTerms = biases.pointer
     }
 
+    /*
     compute = DepthwiseConvolutionKernel(device: device,
                                          kernelWidth: kernel.0,
                                          kernelHeight: kernel.1,
@@ -845,6 +973,44 @@ public class DepthwiseConvolution: Layer {
                                          neuronFilter: activation,
                                          kernelWeights: weights.pointer,
                                          biasTerms: biasTerms)
+     */
+
+    // TODO: MPS's depthwise convolution has the weights in a different
+    // order, so transpose them. I will change the API for this class so
+    // that it uses the same weights order as MPS, so that on iOS 10 it
+    // will use Forge's kernel but on 11 it uses the MPS kernel (which is
+    // faster).
+    let convCount = inputShape.channels * kernel.0 * kernel.1
+    var convWeights = [Float](repeating: 0, count: convCount)
+    let mpsChanStride = kernel.0 * kernel.1
+    let mpsHeightStride = kernel.1
+    let mpsWidthStride = 1
+    let forgeChanStride = 1
+    let forgeHeightStride = inputShape.channels * kernel.0
+    let forgeWidthStride = inputShape.channels
+    for c in 0..<inputShape.channels {
+      for h in 0..<kernel.1 {
+        for w in 0..<kernel.0 {
+          convWeights[c*mpsChanStride + h*mpsHeightStride + w*mpsWidthStride] = weights.pointer[c*forgeChanStride + h*forgeHeightStride + w*forgeWidthStride]
+        }
+      }
+    }
+    if #available(iOS 11,*) {
+    let desc = MPSCNNDepthWiseConvolutionDescriptor(kernelWidth: kernel.0,
+                                                    kernelHeight: kernel.1,
+                                                    inputFeatureChannels: inputShape.channels,
+                                                    outputFeatureChannels: inputShape.channels,
+                                                    neuronFilter: activation)
+    desc.strideInPixelsX = stride.0
+    desc.strideInPixelsY = stride.1
+
+    compute = MPSCNNConvolution(device: device,
+                                convolutionDescriptor: desc,
+                                kernelWeights: convWeights,
+                                biasTerms: biasTerms,
+                                flags: .none)
+    }
+    compute.edgeMode = .zero
   }
 
   override public func encode(commandBuffer: MTLCommandBuffer,

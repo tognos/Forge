@@ -66,6 +66,10 @@ public class Tensor {
   // multiple layers into one image.
   var destinationChannelOffset = 0
 
+  // Used to set destinationImage for merging the output from
+  // multiple layers into one image.
+  var destinationImage = 0
+
   // If this is set, the layer will write into the MPSImage for the destination
   // tensor. If nil, a new (temporary) image is allocated for the tensor and we
   // write into that. Usually this will be nil.
@@ -198,5 +202,44 @@ public func Concatenate(_ tensors: [Tensor]) -> Tensor {
   // multiple inputs, not just one. This is no problem because Concatenate is
   // skipped during encoding (as it has no layer).
 
+  return merged
+}
+
+/**
+ Depth-concatenates several tensors into one large tensor.
+ */
+public func Merge(_ tensors: [Tensor]) -> Tensor  {
+  let merged = Tensor()
+  
+  var maxWidth = 0
+  var maxHeight = 0
+  var image = 0
+  let channels = tensors[0].shape.channels
+  for input in tensors {
+    //precondition(input.shape.channels != channels, "Number of channels must be equal in merge channel")
+    print("channels:",channels, "input.shape.channels:",input.shape.channels)
+    
+    // Tell the other tensor that it should write into our image and not
+    // an image of its own.
+    input.destinationImage = image
+    input.destinationTensor = merged
+    
+    // Figure out how large to make the merged tensor's destination image.
+    maxWidth = max(maxWidth, input.shape.width)
+    maxHeight = max(maxHeight, input.shape.height)
+    image += input.shape.numImages
+    
+    // Connect each tensor to the merged tensor, or the topological sort
+    // will fail and the graph will be incomplete.
+    input.next.append(merged)
+  }
+  
+  merged.shape = DataShape(width: maxWidth, height: maxHeight, channels: channels)
+  merged.typeName = "Merge"
+  
+  // Note: We don't fill in the `input` property because we potentially have
+  // multiple inputs, not just one. This is no problem because Concatenate is
+  // skipped during encoding (as it has no layer).
+  
   return merged
 }

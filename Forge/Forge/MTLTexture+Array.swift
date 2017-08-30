@@ -88,18 +88,20 @@ extension MTLDevice {
                              width: Int,
                              height: Int,
                              featureChannels: Int,
-                             pixelFormat: MTLPixelFormat) -> MTLTexture {
+                             pixelFormat: MTLPixelFormat) -> MTLTexture? {
 
     assert(featureChannels != 3 && featureChannels <= 4, "channels must be 1, 2, or 4")
 
     let textureDescriptor = MTLTextureDescriptor.texture2DDescriptor(
       pixelFormat: pixelFormat, width: width, height: height, mipmapped: false)
 
-    let texture = makeTexture(descriptor: textureDescriptor)
+    guard let texture = makeTexture(descriptor: textureDescriptor) else {
+      return nil
+    }
 
     let region = MTLRegionMake2D(0, 0, width, height)
-    texture?.replace(region: region, mipmapLevel: 0, withBytes: array,
+    texture.replace(region: region, mipmapLevel: 0, withBytes: array,
                     bytesPerRow: width * MemoryLayout<T>.stride * featureChannels)
-    return texture!
+    return texture
   }
 }

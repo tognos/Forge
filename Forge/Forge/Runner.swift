@@ -71,9 +71,14 @@ public struct NeuralNetworkResult<PredictionType> {
   public var debugOffset: Float = 0      // for images with negative values
   public var debugLayer : Array<Float>?
 
-  // This is filled in by Runner to measure the effective framerate.
-  public var elapsed: CFTimeInterval = 0
   
+  // This is filled in by Runner to measure the latency between starting a
+  // prediction and receiving the answer. (NOTE: Because we can start a new
+  // prediction while the previous one is still being processed, the latency
+  // actually becomes larger the more inflight buffers you're using. It is
+  // therefore *not* a good indicator of throughput, i.e. frames per second.)
+  public var latency: CFTimeInterval = 0
+
   public init() { }
 }
 
@@ -128,17 +133,17 @@ public class Runner {
     //commandQueue.insertDebugCaptureBoundary()
 
     autoreleasepool {
-      let commandBuffer = commandQueue.makeCommandBuffer()
+      guard let commandBuffer = commandQueue.makeCommandBuffer() else { return }
 
-      network.encode(commandBuffer: commandBuffer!, texture: inputTexture, inflightIndex: inflightIndex)
+      network.encode(commandBuffer: commandBuffer, texture: inputTexture, inflightIndex: inflightIndex)
 
       // The completion handler for the command buffer is called on some
       // background thread. This may be the same thread that encoded the
       // GPU commands (if not waiting on the semaphore), or another one.
-      commandBuffer?.addCompletedHandler { [inflightIndex] commandBuffer in
+      commandBuffer.addCompletedHandler { [inflightIndex] commandBuffer in
 
         var result = network.fetchResult(inflightIndex: inflightIndex)
-        result.elapsed = CACurrentMediaTime() - startTime
+        result.latency = CACurrentMediaTime() - startTime
 
         //print("GPU execution duration:", commandBuffer.gpuEndTime - commandBuffer.gpuStartTime)
         //print("Elapsed time: \(endTime - startTime) sec")
@@ -150,7 +155,7 @@ public class Runner {
       }
 
       inflightIndex = (inflightIndex + 1) % inflightBuffers
-      commandBuffer?.commit()
+      commandBuffer.commit()
     }
   }
 }

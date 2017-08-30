@@ -138,7 +138,7 @@ public class VideoCapture: NSObject {
     ])
 
     settings.previewPhotoFormat = [
-      kCVPixelBufferPixelFormatTypeKey as String: settings.availablePreviewPhotoPixelFormatTypes[0],
+      kCVPixelBufferPixelFormatTypeKey as String: settings.__availablePreviewPhotoPixelFormatTypes[0],
       kCVPixelBufferWidthKey as String: 480,
       kCVPixelBufferHeightKey as String: 360,
     ]
@@ -202,6 +202,10 @@ extension VideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
       let texture = convertToMTLTexture(sampleBuffer: sampleBuffer)
       delegate?.videoCapture(self, didCaptureVideoTexture: texture, timestamp: timestamp)
     }
+  }
+
+  public func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+    print("dropped frame")
   }
 }
 
