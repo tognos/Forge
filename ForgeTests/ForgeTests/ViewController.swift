@@ -49,7 +49,16 @@ class ViewController: UIViewController {
     arrayTests.testArgmax()
     arrayTests.testArgsort()
     arrayTests.testGather()
+    arrayTests.testReshape()
 
+    let layerTests = LayerTests()
+    layerTests.testMPSImages()
+    layerTests.testActivationLayer()
+    layerTests.testZeroPaddingLayer()
+    layerTests.testSpaceToDepthX2Layer()
+    layerTests.testSimpleMerge()
+    
+/*
     let basicConvTests = BasicConvolutionTests()
     basicConvTests.testCorrectness()
 
@@ -57,7 +66,7 @@ class ViewController: UIViewController {
     depthwiseConvTests.testCorrectness(useMPSDepthWise: false)
     depthwiseConvTests.testCorrectness(useMPSDepthWise: true)
     //depthwiseConvTests.testGroups()
-
+*/
     print("All tests successful!")
     button.isEnabled = true
   }

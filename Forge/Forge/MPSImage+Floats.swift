@@ -70,9 +70,10 @@ extension MPSImage {
       default: fatalError("Pixel format \(pixelFormat) not supported")
     }
   }
-  
-  @nonobjc public func toFloatArrayChannelsTogether() -> [Float] {
+  // converts to a float array of layout shape [width, height, channels, images]
+  @nonobjc public func toFloatArrayChannelsLast() -> [Float] {
     let withPadding = self.toFloatArray()
+    //print("toFloatArrayChannelsLast: withPadding:",withPadding)
     // Find how many elements we need to copy over from each pixel in a slice.
     // For 1 channel it's just 1 element (R); for 2 channels it is 2 elements
     // (R+G), and for any other number of channels it is 4 elements (RGBA).
@@ -85,72 +86,57 @@ extension MPSImage {
     
     let src_slice_size = width * height * numComponents
     let src_row_size = width * numComponents
+    let num_slices = (featureChannels+3)/4
 
-    for channel in 0..<featureChannels {
-      let slice = channel / 4
-      let indexInSlice = channel - slice*4
-      let slice_offset = slice * src_slice_size
-      
-      for y in 0..<height {
-        let y_src_offset = y * src_row_size
-        for x in 0..<width {
-          let x_src_offset = x * numComponents
-          let dest_offest = channel * (width*height) + y * width + x
-          let src_offset = slice_offset + y_src_offset + x_src_offset + indexInSlice
-          output[dest_offest] = withPadding[src_offset]
+    for image in 0..<numberOfImages {
+      let img_src_offset = image * num_slices * src_slice_size
+      let img_dest_offset = image * width * height * featureChannels
+      for channel in 0..<featureChannels {
+        let slice = channel / 4
+        let indexInSlice = channel - slice*4
+        let slice_offset = slice * src_slice_size
+        for y in 0..<height {
+          let y_src_offset = y * src_row_size
+          for x in 0..<width {
+            let x_src_offset = x * numComponents
+            let dest_offest = img_dest_offset + channel * (width*height) + y * width + x
+            let src_offset = img_src_offset + slice_offset + y_src_offset + x_src_offset + indexInSlice
+            output[dest_offest] = withPadding[src_offset]
+          }
         }
       }
     }
+    //print("toFloatArrayChannelsLast: output:",output)
     return output
   }
-  @nonobjc public func toFloatArrayChannelsInterleaved() -> [Float] {
+  @nonobjc public func toFloatArray4D() -> [[[[Float]]]] {
+    let array = self.toFloatArrayChannelsLast()
+    return array.reshaped(width, height, featureChannels, numberOfImages)
+  }
+ 
+  // converts to a float array of layout shape [channels, width, height]
+
+  @nonobjc public func toFloatArrayChannelsFirst() -> [Float] {
     let withPadding = self.toFloatArray()
     
-    let numSlices = (featureChannels + 3)/4
-    
-    // If the number of channels is not a multiple of 4, we may need to add
-    // padding. For 1 and 2 channels we don't need padding.
-//    let channelsPlusPadding = (featureChannels < 3) ? featureChannels : numSlices * 4
-    
-    // Find how many elements we need to copy over from each pixel in a slice.
-    // For 1 channel it's just 1 element (R); for 2 channels it is 2 elements
-    // (R+G), and for any other number of channels it is 4 elements (RGBA).
     let numComponents = (featureChannels < 3) ? featureChannels : 4
     
-    // Allocate the memory for the array. If batching is used, we need to copy
-    // numSlices slices for each image in the batch.
     let count = width * height * featureChannels * numberOfImages
     var output = [Float](repeating: 0, count: count)
     
-//    print("input.count", withPadding.count)
-//    print("output.count", output.count)
-//    print("width", width)
-//    print("height", height)
-//    print("channelsPlusPadding", channelsPlusPadding)
     let src_slice_size = width * height * numComponents
     let src_row_size = width * numComponents
-//    print("src_slice_size", src_slice_size)
-//    print("src_row_size", src_row_size)
     for channel in 0..<featureChannels {
       let slice = channel / 4
       let indexInSlice = channel - slice*4
       let slice_offset = slice * src_slice_size
       
-      //      print("channel", channel)
-      //      print("slice", slice)
-      //      print("indexInSlice", indexInSlice)
-      //      print("slice_offset", slice_offset)
-      
       for y in 0..<height {
         let y_src_offset = y * src_row_size
         for x in 0..<width {
-//                  print("x", x, "y",y)
           let x_src_offset = x * numComponents
-//                    print("x_src_offset", x_src_offset, "y_src_offset",y_src_offset)
-          
           let dest_offest = channel + (x + y * width) * featureChannels
           let src_offset = slice_offset + y_src_offset + x_src_offset + indexInSlice
-//                    print("src_offset", src_offset, "dest_offest",dest_offest)
           output[dest_offest] = withPadding[src_offset]
         }
       }
@@ -172,21 +158,35 @@ extension MPSImage {
     // If the number of channels is not a multiple of 4, we may need to add 
     // padding. For 1 and 2 channels we don't need padding.
     let channelsPlusPadding = (featureChannels < 3) ? featureChannels : numSlices * 4
+    //let channelsPlusPadding = (featureChannels < 3) ? 4 : numSlices * 4
 
     // Find how many elements we need to copy over from each pixel in a slice.
     // For 1 channel it's just 1 element (R); for 2 channels it is 2 elements 
     // (R+G), and for any other number of channels it is 4 elements (RGBA).
     let numComponents = (featureChannels < 3) ? featureChannels : 4
+    //let numComponents = 4
 
     // Allocate the memory for the array. If batching is used, we need to copy
     // numSlices slices for each image in the batch.
     let count = width * height * channelsPlusPadding * numberOfImages
+    /*
+    print("channelsPlusPadding", channelsPlusPadding)
+    print("convert count", count)
+    print("numSlices", numSlices)
+    print("numComponents", numComponents)
+    print("bytesPerRow", width * numComponents * MemoryLayout<T>.stride)
+    print("width", width)
+    print("height", height)
+    print("MemoryLayout<T>.stride", MemoryLayout<T>.stride)
+    */
     var output = [T](repeating: initial, count: count)
 
     let region = MTLRegion(origin: MTLOrigin(x: 0, y: 0, z: 0),
                            size: MTLSize(width: width, height: height, depth: 1))
 
-    for i in 0..<numSlices*numberOfImages {
+    for i in 0..<numSlices * numberOfImages {
+      //print("getBytes to offset", width * height * numComponents * i)
+
       texture.getBytes(&(output[width * height * numComponents * i]),
                        bytesPerRow: width * numComponents * MemoryLayout<T>.stride,
                        bytesPerImage: 0,
@@ -226,11 +226,15 @@ extension MPSImage {
                                        usage: [.shaderRead, .shaderWrite])
 
     self.init(device: device, imageDescriptor: imageDesc)
+    //print("texture",self.texture.debugDescription)
+    let channelsPerPixel = featureChannels < 3 ? featureChannels : 4
+    let destRowOffset = width * channelsPerPixel
 
     let float16Input = float32to16(array, count: count)
     float16Input.withUnsafeBytes { buf in
       // We copy 4 channels worth of data at a time
-      let bytesPerRow = width * 4 * MemoryLayout<Float16>.stride
+      let bytesPerRow = destRowOffset * MemoryLayout<Float16>.stride
+      //let bytesPerRow = width * 4 * MemoryLayout<Float16>.stride
       let slices = ((featureChannels + 3) / 4) * numberOfImages
       var ptr = buf.baseAddress!
       for s in 0..<slices {
@@ -243,6 +247,111 @@ extension MPSImage {
         ptr += height * bytesPerRow
       }
     }
+  }
+  
+  // This is a conveneniance function to load a tensor from a 4-dimensional swift array
+  // of floats. It is mainly for testing and not the best choice to for production code
+  // because it might unneccessarily increase startup time
+  // It expects an array of the shape (width,heigth,channels,images]
+  public convenience init(device: MTLDevice, images: [[[[Float]]]]) {
+    let numberOfImages = images.count
+    let channels = images[0].count
+    let height = images[0][0].count
+    let width = images[0][0][0].count
+    
+    /*
+    print("numberOfImages",numberOfImages)
+    print("channels",channels)
+    print("height",height)
+    print("width",width)
+    let imageDesc = MPSImageDescriptor(channelFormat: .float16,
+                                       width: width,
+                                       height: height,
+                                       featureChannels: channels,
+                                       numberOfImages: numberOfImages,
+                                       usage: [.shaderRead, .shaderWrite])
+    //self.init(device: device, imageDescriptor: imageDesc)
+    //print("texture",self.texture.debugDescription)
+    */
+    let numSlicesPerImage = ((channels + 3)/4)
+    let channelsPerPixel = channels < 3 ? channels : 4
+    let destRowOffset = width * channelsPerPixel
+    let sliceOffset = destRowOffset * height
+    let imageOffset = numSlicesPerImage * sliceOffset
+    let inputSize = imageOffset * numberOfImages
+    /*
+    print("numSlicesPerImage",numSlicesPerImage)
+    print("destRowOffset",destRowOffset)
+    print("sliceOffset",sliceOffset)
+    print("imageOffset",imageOffset)
+    print("inputSize",inputSize)
+    print("channelsPerPixel",channelsPerPixel)
+    */
+    var array = [Float](repeating: 0, count: inputSize)
+    
+    for (imageIndex, imageValues) /*[[[Float]]]*/ in images.enumerated() {
+      if (channels != imageValues.count) {
+        preconditionFailure("all images must have the number of channels")
+      }
+      for (channelIndex, channelValues) /*[[Float]]*/ in imageValues.enumerated() {
+        if (height != channelValues.count) {
+          preconditionFailure("all channels must have same height")
+        }
+
+        let sliceIndex = channelIndex/4
+        let channelinSliceIndex = channelIndex % channelsPerPixel
+        
+        for (rowIndex, rowValues) /*[Float]*/ in channelValues.enumerated() {
+          if (width != rowValues.count) {
+            preconditionFailure("all rows must have same width")
+          }
+          for (columnIndex, columnValue) /*Float*/ in rowValues.enumerated() {
+            /*
+            print("channelIndex",channelIndex)
+            print("rowIndex",rowIndex)
+            print("columnIndex",columnIndex)
+            print("sliceIndex",sliceIndex)
+            print("channelinSliceIndex",channelinSliceIndex)
+             */
+            let offset = (imageIndex * imageOffset) + (rowIndex * destRowOffset) + (columnIndex * channelsPerPixel) + (sliceOffset * sliceIndex) + channelinSliceIndex
+            //print("offset = ", offset)
+            //print()
+            array[offset] = columnValue
+          }
+        }
+      }
+    }
+    /*
+    print("array", array)
+    
+    let float16Input = float32to16(&array, count: inputSize)
+    float16Input.withUnsafeBytes { buf in
+      // We copy <channelsPerPixel> channels worth of data at a time
+      //let bytesPerRow = width * 4 * MemoryLayout<Float16>.stride
+      let bytesPerRow = destRowOffset * MemoryLayout<Float16>.stride
+      print("bytesPerRow",bytesPerRow)
+      let slices = ((featureChannels + 3) / 4) * numberOfImages
+      var ptr = buf.baseAddress!
+      for s in 0..<slices {
+        texture.replace(region: MTLRegionMake2D(0, 0, width, height),
+                        mipmapLevel: 0,
+                        slice: s,
+                        withBytes: ptr,
+                        bytesPerRow: bytesPerRow,
+                        bytesPerImage: 0)
+        ptr += height * bytesPerRow
+      }
+    }
+     */
+    //print()
+    
+    self.init(device: device,
+              numberOfImages: numberOfImages,
+              width: width,
+              height: height,
+              featureChannels: channels,
+              array: &array,
+              count: inputSize)
   }
 }
 

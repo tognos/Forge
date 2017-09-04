@@ -173,21 +173,28 @@ public class MPSCNNLayer: Layer {
     // FUTURE: For a residual connection, where we may want to read from the
     // destination image (and write to that same destination image), we would
     // set mpscnn.offset and clipRect here using sourceTensor's channel offset.
-/*
-    if false {
+
+    //func debug(image: MPSImage) -> String {
+        
+    //}
+    if true {
       print("Encoding for layer:", self)
       print("sourceTensor:",sourceTensor,", destinationTensor:",destinationTensor)
       if let image = sourceTensor.image as? MPSTemporaryImage {
-        print("sourceTensor readcount:",image.readCount)
+        print("sourceTensor image:", image.debugDescription)
       }
       if let image = destinationTensor.image as? MPSTemporaryImage {
-        print("destinationTensor readcount:",image.readCount)
+        print("destinationTensor image:",image.debugDescription)
       }
     }
-*/
-    mpscnn.destinationFeatureChannelOffset = destinationTensor.destinationChannelOffset
-    mpscnn.offset = MPSOffset(x: 0, y: 0, z: destinationTensor.destinationImage)
 
+    //mpscnn.destinationFeatureChannelOffset = destinationTensor.totalChannelDestinationOffSet()
+    mpscnn.destinationFeatureChannelOffset = destinationTensor.destinationChannelOffset
+    print("mpscnn.destinationFeatureChannelOffset:",mpscnn.destinationFeatureChannelOffset)
+
+    mpscnn.offset = MPSOffset(x: 0, y: 0, z: 0)
+    mpscnn.clipRect.size.depth = 1
+    print("cliprect:", mpscnn.debugDescription)
     mpscnn.encode(commandBuffer: commandBuffer,
                   sourceImage: sourceTensor.image!,
                   destinationImage: destinationTensor.image!)
@@ -198,6 +205,11 @@ public class SpaceToDepthX2: Layer {
     
     /**
      Creates a new layer that reshapes input to half spatial size of four times the number of filters
+     The current implementation is limited to input that has at least 4 layers because you can't blit
+     between textures of different pixel format; to efficiently convert between different pixel formats
+     would require a custom compute shader.
+     Another restriction is that numImages must be 1, but this is currently a restriction for most Forge
+     layers anyway.
      */
     
     public init(name: String = "") {
@@ -211,7 +223,9 @@ public class SpaceToDepthX2: Layer {
     override public func outputShape(for inputShape: DataShape) -> DataShape {
         return DataShape(width: inputShape.width/2,
                          height: inputShape.height/2,
-                         channels: inputShape.channels*4)
+                         channels: inputShape.channels*4,
+                         numImages: inputShape.numImages
+        )
     }
     
     override public func encode(commandBuffer: MTLCommandBuffer,
@@ -220,6 +234,12 @@ public class SpaceToDepthX2: Layer {
         let sourceImage = sourceTensor.image!
         let destImage = destinationTensor.image!
         
+        if sourceImage.featureChannels < 4 {
+            fatalError("We are sorry, the current implementation of SpaceToDepthX2 requires the input to have at least 4 channels")
+        }
+        if sourceImage.numberOfImages > 1 {
+            fatalError("We are sorry, the current implementation of SpaceToDepthX2 requires the input to have only 1 image")
+        }
         let width = destinationTensor.shape.width
         let height = destinationTensor.shape.height
         let sourceRegion = [MTLRegionMake3D(0,     0,      0, width, height, 1),

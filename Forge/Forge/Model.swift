@@ -283,94 +283,112 @@ public class Model {
     guard compiled else { return "(Model is not compiled.)" }
 
     var s = ""
-    s += "Layer/Tensor                   Type       Output Shape     Parameters\n"
-    s += "---------------------------------------------------------------------\n"
+    s += "Layer/Tensor                   Type       Output Shape     Parameters    Outputs\n"
+    s += "--------------------------------------------------------------------------------\n"
 
     for tensor in tensors {
       s += tensor.summary() + "\n"
     }
 
-    s += "---------------------------------------------------------------------\n"
+    s += "--------------------------------------------------------------------------------\n"
     s += "Number of layers: \(numLayers) (tensors: \(tensors.count))\n"
     s += "Total parameters: \(totalParams)"
     return s
   }
 
   /**
-    Encodes the GPU commands for a forward pass of the neural network.
-  */
-  public func encode(commandBuffer: MTLCommandBuffer, texture: MTLTexture, inflightIndex: Int) {
+   Encodes the GPU commands for a forward pass of the neural network.
+   */
+
+  public func encode(commandBuffer: MTLCommandBuffer, texture: MTLTexture?, inflightIndex: Int, mpsImage : MPSImage? = nil) {
     //let startTime = CACurrentMediaTime()
     //print("====== Starting model encode ======, inflightIndex =",inflightIndex)
-
-
+    
+    
     if !compiled {
       print("Error: graph has not been compiled yet")
       return
     }
-
+    
     //MPSTemporaryImage.prefetchStorage(with: commandBuffer,
     //                                  imageDescriptorList: imageDescriptorList)
-
+    
     var sourceImage: MPSImage?
-    if firstLayerEatsTexture {
-      sourceTexture = texture
+    if (mpsImage == nil) {
+      if firstLayerEatsTexture {
+        sourceTexture = texture
+      } else {
+        sourceImage = MPSImage(texture: texture!, featureChannels: 3)
+      }
     } else {
-      sourceImage = MPSImage(texture: texture, featureChannels: 3)
+      precondition(texture == nil, "use either texture or mpsImage as input, but not both")
+      sourceImage = mpsImage
     }
-
+    
     tensors[0].image = sourceImage
-
+    
     for tensor in tensors {
-        //print("encoding"+tensor.debugDescription)
+      print("encoding for", tensor.debugDescription)
       encode(tensor: tensor, commandBuffer: commandBuffer, inflightIndex: inflightIndex)
     }
-
+    
     //let elapsed = CACurrentMediaTime() - startTime
     //print("Encoding took \(elapsed) seconds")
   }
-
+  
   func encode(tensor: Tensor, commandBuffer: MTLCommandBuffer, inflightIndex: Int) {
     // If a tensor does not have a layer (true for Input and Concatenate), then 
     // pass through the source image unchanged.
-    guard let layer = tensor.layer else { return }
-
+    // We need to set its read count properly though...
+    guard let layer = tensor.layer else {
+      print("tensor does not belong to a layer, tensor = "+tensor.debugDescription)
+      tensor.readCount = tensor.next.count
+      return
+    }
+    
     // If the tensor has a real MPSImage, use that. Otherwise make a temp one.
     func createImage(for tensor: Tensor) -> MPSImage {
-       // print("createImage for tensor "+tensor.debugDescription)
+      print("createImage for "+tensor.debugDescription)
       if let images = outputImages[tensor] {
+        print("createImage returning outputImages[tensor][inflightIndex]")
         return images[inflightIndex]
       } else {
         guard let desc = imageDescriptors[tensor.shape] else {
           fatalError("Error: no image descriptor found for shape \(tensor.shape)")
         }
+        print("createImage returning new image for shape \(tensor.shape)")
         let image = MPSTemporaryImage(commandBuffer: commandBuffer,
                                       imageDescriptor: desc)
         image.readCount = tensor.readCount
         return image
       }
     }
-
+    
     // If this tensor does not use its own image, then grab the one from the
     // destination tensor. Otherwise, make a new image.
     if let destTensor = tensor.destinationTensor {
       if let image = destTensor.image {
+        print("tensor has destinationTensor, using its existing image: \(image)")
         tensor.image = image
       } else {
+        print("tensor has destinationTensor, creating a new image for both")
         destTensor.readCount = destTensor.next.count
         destTensor.image = createImage(for: destTensor)
         tensor.image = destTensor.image
+        print("tensor has destinationTensor, done creating new image for both: \(image)")
       }
     } else {
+      print("tensor has no destinationTensor, creating own image:")
       tensor.readCount = tensor.next.count
       tensor.image = createImage(for: tensor)
     }
-
+    
     guard let inputTensor = tensor.input else {
       fatalError("Error: missing source tensor")
     }
-
+    
     if layer.wantsTextures {
+      print("layer wants texture")
       let inputTexture: MTLTexture
       if let sourceImage = inputTensor.image {
         inputTexture = sourceImage.texture
@@ -379,13 +397,14 @@ public class Model {
       } else {
         fatalError("Error: layer '\(layer.name)' expected source texture")
       }
-
+      
       layer.encode(commandBuffer: commandBuffer,
                    sourceTensor: inputTensor,
                    sourceTexture: inputTexture,
                    destinationTensor: tensor)
-
+      
       if let image = inputTensor.image as? MPSTemporaryImage {
+        print("decrementing readcount for input image, current = \(image.readCount)")
         image.readCount -= 1
       }
     } else {
@@ -393,15 +412,17 @@ public class Model {
                    sourceTensor: inputTensor,
                    destinationTensor: tensor)
     }
-
+    
     // At this point we've used the image from the sourceTensor, and should
     // decrement its reference count. When it hits 0, we nil out its `image`
     // property so that a new MPSTemporaryImage will be allocated on the next
     // pass through the network.
+    print("decrementing readcount for input tensor, current = \(inputTensor.readCount)")
     inputTensor.readCount -= 1
     if inputTensor.readCount <= 0 {
       inputTensor.image = nil
     }
+    print("done\n")
   }
 
   func images(for tensor: Tensor) -> [MPSImage] {
@@ -419,5 +440,16 @@ public class Model {
   /** Returns the output from the last tensor in the model. */
   public func outputImage(inflightIndex: Int) -> MPSImage {
     return image(for: output, inflightIndex: inflightIndex)
+  }
+  // Runs the model synchronously and returns the result
+  // This function is mainly intended for testing and debugging and
+  // should not be used in production code where performance is desired
+  public func evaluate(commandQueue: MTLCommandQueue, device : MTLDevice, model: Model, input: MPSImage) -> MPSImage {
+    guard let commandBuffer = commandQueue.makeCommandBuffer() else { fatalError("can't make command buffer") }
+    model.encode(commandBuffer: commandBuffer, texture: nil, inflightIndex: 0, mpsImage: input)
+    commandBuffer.commit()
+    commandBuffer.waitUntilCompleted()
+    let resultImage = model.outputImage(inflightIndex: 0)
+    return resultImage
   }
 }

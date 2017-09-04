@@ -72,3 +72,147 @@ extension Array where Element: Comparable {
     return a
   }
 }
+
+
+// Some functions to compare up to 4-dimensional arrays
+// unfortunately there is not yet really a better way to
+// do that in Swift4; maybe Swift5 will bring us a way
+// to specialize on associated types in protocols
+
+public func areAlmostEqual<T:FloatingPoint>(_ a1: T, _ a2: T, maxError: T) -> Bool {
+  return abs(a1 - a2) <= maxError
+}
+
+public func areAlmostEqual<T:FloatingPoint>(_ a1: [T], _ a2: [T], maxError: T, reportUnequal: (String) -> ()) -> Bool {
+  if a1.count != a2.count {
+    reportUnequal("count mismatch dim 0")
+    return false
+  }
+  for i in 0..<a1.count {
+    if !areAlmostEqual(a1[i], a2[i], maxError: maxError) {
+      //print(a1[i], a2[i])
+      reportUnequal("error > maxError, dim 0 index "+String(i)+", error="+String(describing: a1[i] - a2[i]))
+      return false
+    }
+  }
+  return true
+}
+
+public func areAlmostEqual<T:FloatingPoint>(_ a1: [[T]], _ a2: [[T]], maxError: T, reportUnequal: (String) -> ()) -> Bool {
+  if a1.count != a2.count {
+    reportUnequal("count mismatch dim 1")
+    return false
+  }
+  for i in 0..<a1.count {
+    if !areAlmostEqual(a1[i], a2[i], maxError: maxError, reportUnequal: reportUnequal) {
+      reportUnequal("error > maxError, dim 1 index "+String(i))
+      return false
+    }
+  }
+  return true
+}
+
+public func areAlmostEqual<T:FloatingPoint>(_ a1: [[[T]]], _ a2: [[[T]]], maxError: T, reportUnequal: (String) -> ()) -> Bool {
+  if a1.count != a2.count {
+    reportUnequal("count mismatch dim 2")
+    return false
+  }
+  for i in 0..<a1.count {
+    if !areAlmostEqual(a1[i], a2[i], maxError: maxError, reportUnequal: reportUnequal) {
+      reportUnequal("error > maxError, dim 2 index "+String(i))
+      return false
+    }
+  }
+  return true
+}
+
+public func areAlmostEqual<T:FloatingPoint>(_ a1: [[[[T]]]], _ a2: [[[[T]]]], maxError: T, reportUnequal: (String) -> ()) -> Bool {
+  if a1.count != a2.count {
+    reportUnequal("count mismatch dim 3")
+    return false
+  }
+  for i in 0..<a1.count {
+    if !areAlmostEqual(a1[i], a2[i], maxError: maxError, reportUnequal: reportUnequal) {
+      reportUnequal("val error > maxError, dim 3 index"+String(i))
+      return false
+    }
+  }
+  return true
+}
+
+public func == <T:Equatable>(_ a1: [[T]], _ a2: [[T]]) -> Bool {
+  if a1.count != a2.count {
+    print("count mismatch dim 2")
+    return false
+  }
+  for i in 0..<a1.count {
+    if !(a1[i] == a2[i]) {
+      print("val mismatch dim 2 index",i)
+      return false
+    }
+  }
+  return true
+}
+
+public func == <T:Equatable>(_ a1: [[[T]]], _ a2: [[[T]]]) -> Bool {
+  if a1.count != a2.count {
+    print("count mismatch dim 3")
+    return false
+  }
+  for i in 0..<a1.count {
+    if !(a1[i] == a2[i]) {
+      print("val mismatch dim 3 index",i)
+      return false
+    }
+  }
+  return true
+}
+
+public func == <T:Equatable>(_ a1: [[[[T]]]], _ a2: [[[[T]]]]) -> Bool {
+  if a1.count != a2.count {
+    print("count mismatch dim 4")
+    return false
+  }
+  for i in 0..<a1.count {
+    if !(a1[i] == a2[i]) {
+      print("val mismatch dim 4 index",i)
+      return false
+    }
+  }
+  return true
+}
+
+extension Array {
+
+  // reshape an array into an Array of Arrays
+  // The new array will contain dim1 arrays of size dim0
+  // Array.count/dim0 must be equal to dim1 when dim1 is != -1
+  // When dim1 == -1 it is computed from dim0 and the array size
+  public func reshaped(_ dim0 : Int,_ dim1_parm : Int) -> [[Element]] {
+    //print("Reshaping array of size \(count) to \(dim0),\(dim1_parm)")
+    precondition(self.count % dim0 == 0, "array size must be divisible by dim0")
+    var dim1 = dim1_parm
+    if (dim1 != -1) {
+      precondition(self.count / dim0 == dim1, "array size / dim 0 must equal dim1")
+    } else {
+      dim1 = self.count / dim0
+    }
+
+    let newArraySize = self.count / dim0
+    var result : [[Element]] = []
+    for i in 0..<newArraySize {
+      let new_slice = self[(i * dim0)..<((i + 1)*dim0)]
+      result.append(Array(new_slice))
+    }
+    precondition(result.count == dim1, "internal error")
+//    print(result)
+    return result
+  }
+  public func reshaped(_ dim0: Int, _ dim1: Int, _ dim2: Int) -> [[[Element]]] {
+    return reshaped(dim0, -1).reshaped(dim1, dim2)
+  }
+  public func reshaped(_ dim0: Int, _ dim1: Int, _ dim2: Int, _ dim3: Int) -> [[[[Element]]]] {
+    return reshaped(dim0, -1).reshaped(dim1, -1).reshaped(dim2, dim3)
+  }
+}
+

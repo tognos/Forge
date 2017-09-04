@@ -46,7 +46,7 @@ public struct DataShape {
   }
 
   var isFullySpecified: Bool {
-    return width != -1 && height != -1 && channels != -1
+    return width != -1 && height != -1 && channels != -1 && numImages != -1
   }
 
   func createImageDescriptor() -> MPSImageDescriptor {
@@ -67,7 +67,7 @@ extension DataShape: CustomDebugStringConvertible {
     if width    != -1 { dims.append("\(width)")    } else { dims.append("?") }
     if height   != -1 { dims.append("\(height)")   } else { dims.append("?") }
     if channels != -1 { dims.append("\(channels)") } else { dims.append("?") }
-    if numImages != 1 { dims.append("\(numImages)") } else { dims.append("?") }
+    if numImages != -1 { dims.append("\(numImages)") } else { dims.append("?") }
     return "(" + dims.joined(separator: ", ") + ")"
   }
 }

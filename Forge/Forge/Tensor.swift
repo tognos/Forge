@@ -68,19 +68,49 @@ public class Tensor {
 
   // Used to set destinationImage for merging the output from
   // multiple layers into one image.
-  var destinationImage = 0
+    var destinationImage = 0
+    /*
+    var destinationImage : Int {
+        get {
+            return _destinationImage
+        }
+        set(newDestination) {
+            _destinationImage = newDestination
+        }
+    }
+    */
+    public func totalChannelDestinationOffSet() -> Int {
+        return (shape.channels + 3) / 4 * destinationImage + destinationChannelOffset
+    }
 
   // If this is set, the layer will write into the MPSImage for the destination
   // tensor. If nil, a new (temporary) image is allocated for the tensor and we
   // write into that. Usually this will be nil.
-  var destinationTensor: Tensor?
-
+  var _destinationTensor: Tensor?
+    
+    var destinationTensor : Tensor? {
+        get {
+            return _destinationTensor
+        }
+        set(newImage) {
+            _destinationTensor = newImage
+        }
+    }
+ 
   // The image that the layer for this tensor will write into. Since the layers
   // may not be processed in their original order (depending on the topological
   // sort), this is how we keep track of which MPSImage to use where. Note that
   // image may point to the destinationTensor's image.
-  internal(set) public var image: MPSImage?
-
+  var _image: MPSImage?
+  internal(set) public var image : MPSImage? {
+        get {
+            return _image
+        }
+        set(newImage) {
+            _image = newImage
+            print(self," - image set to", String(describing: _image))
+        }
+    }
   // Reference count. It is used to set the readCount of the MPSTemporyImage
   // for this tensor, but also tells us when to set the `image` property to nil
   // when we're done using it (so that we don't hang on to images for longer
@@ -107,19 +137,22 @@ public class Tensor {
 
     input.next.append(self)
     shape = layer.outputShape(for: input.shape)
+    print("creating new shape of input:", input, "to layer:", layer,"shape:",shape)
   }
 
   func summary() -> String {
     let layerName = layer?.name ?? "**\(typeName)**"
     let layerType = layer?.typeName ?? "Tensor"
     let paramCount = layer?.paramCount ?? 0
+    let outputs = self.next.count
 
     let n = layerName.padding(toLength: 30, withPad: " ", startingAt: 0)
     let t = layerType.padding(toLength: 10, withPad: " ", startingAt: 0)
     let o = shape.debugDescription.padding(toLength: 16, withPad: " ", startingAt: 0)
-    let p = "\(paramCount)".padding(toLength: 10, withPad: " ", startingAt: 0)
+    let p = "\(paramCount)".padding(toLength: 13, withPad: " ", startingAt: 0)
+    let os = "\(outputs)".padding(toLength: 10, withPad: " ", startingAt: 0)
 
-    let s = String(format: "%@ %@ %@ %@", n, t, o, p)
+    let s = String(format: "%@ %@ %@ %@ %@", n, t, o, p, os)
     //      + "\(destinationChannelOffset)"
     return s
   }
@@ -160,12 +193,13 @@ extension Tensor: CustomDebugStringConvertible {
   (Without it, we won't know how large the `Convolution` layer's output will be
   and as a result we can't allocate an MPSTemporaryImage for it.)
 */
-public func Input(width: Int? = nil, height: Int? = nil, channels: Int? = nil) -> Tensor {
+public func Input(width: Int? = nil, height: Int? = nil, channels: Int? = nil, numImages: Int = 1) -> Tensor {
   let tensor = Tensor()
   tensor.typeName = "Input"
   tensor.shape = DataShape(width: width ?? -1,
                            height: height ?? -1,
-                           channels: channels ?? -1)
+                           channels: channels ?? -1,
+                           numImages: numImages)
   return tensor
 }
 
@@ -209,6 +243,7 @@ public func Concatenate(_ tensors: [Tensor]) -> Tensor {
  Depth-concatenates several tensors into one large tensor.
  */
 public func Merge(_ tensors: [Tensor]) -> Tensor  {
+    print("Creating Merge Tensor of:",tensors)
   let merged = Tensor()
   
   var maxWidth = 0
@@ -234,9 +269,10 @@ public func Merge(_ tensors: [Tensor]) -> Tensor  {
     input.next.append(merged)
   }
   
-  merged.shape = DataShape(width: maxWidth, height: maxHeight, channels: channels)
+  merged.shape = DataShape(width: maxWidth, height: maxHeight, channels: channels, numImages:image)
   merged.typeName = "Merge"
-  
+    print("Merged Shape:",merged.shape)
+
   // Note: We don't fill in the `input` property because we potentially have
   // multiple inputs, not just one. This is no problem because Concatenate is
   // skipped during encoding (as it has no layer).

@@ -104,4 +104,28 @@ public class ParameterLoaderRandom: ParameterData {
   }
 }
 
+public class ParameterLoaderFromMemory: ParameterData {
+    private(set) public var pointer: UnsafeMutablePointer<Float>
+    
+    public init?(name: String, count: Int, weights: [String : [Float]], suffix: String = "") {
+        
+        let data = weights[name+suffix]
+        
+        if let data : [Float] = data {
+            if data.count != count {
+                print("#ERROR: array size mismatch for array named:"+name)
+                return nil
+            }
+            self.pointer = UnsafeMutablePointer(mutating: data)
+        } else {
+            print("#ERROR: no array named:"+name)
+            return nil
+        }
+    }
+    
+    deinit {
+        free(pointer)
+    }
+}
+
 // FUTURE: add ParameterLoaderAssetCatalog to load using NSDataAsset
