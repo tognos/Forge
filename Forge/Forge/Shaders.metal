@@ -439,8 +439,8 @@ kernel void mergeImages(
     } else {
       out = applyOp(out, in / inTexture.get_array_size());
     }
-    outTexture.write(out, gid.xy);
   }
+  outTexture.write(out, gid.xy);
 }
 
 // Merges images with only multiple slice per image and multiple output slices
@@ -462,15 +462,15 @@ kernel void mergeImages_array(
   
   half4 out = opType != OpTypeMultiplay ? half4(0.0h) : half4(1.0h);
   
-    for (ushort image = 0; image < inputImages; ++image) {
-      const half4 in = inTexture.read(gid.xy, image * inputSlicesPerImage + gid.z/*slice*/);
-      if (opType != OpTypeAverage) {
-        out = applyOp(out, in);
-      } else {
-        out = applyOp(out, in / params.inputImages);
-      }
-      outTexture.write(out, gid.xy, gid.z /*slice*/);
+  for (ushort image = 0; image < inputImages; ++image) {
+    const half4 in = inTexture.read(gid.xy, image * inputSlicesPerImage + gid.z/*slice*/);
+    if (opType != OpTypeAverage) {
+      out = applyOp(out, in);
+    } else {
+      out = applyOp(out, in / params.inputImages);
     }
+  }
+  outTexture.write(out, gid.xy, gid.z /*slice*/);
 }
 
 

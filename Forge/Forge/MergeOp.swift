@@ -68,8 +68,15 @@ public class MergeOpKernel {
     let constants = MTLFunctionConstantValues()
     var op = ushort(featureOp.rawValue)
     constants.setConstantValue(&op, type: .ushort, withName: "opType")
+    
+    // We don't need really those parms
     self.params.inputImages = Int16(featureImages);
     self.params.inputSlicesPerImage = Int16((featureChannels + 3)/4);
+    
+    //print("MergeOpKernel: inputImages = ",self.params.inputImages)
+    //print("MergeOpKernel: inputSlicesPerImage = ",self.params.inputSlicesPerImage)
+    
+    // TODO: templatize functions for 1 and 2 channels
 
     // If there's more than one texture slice in the image, we have to use a
     // kernel that uses texture2d_array objects as output.
@@ -79,6 +86,7 @@ public class MergeOpKernel {
     } else {
       functionName = "mergeImages_array"
     }
+
     pipeline = makeFunction(device: device, name: functionName, constantValues: constants, useForgeLibrary: true)
   }
   
@@ -89,6 +97,7 @@ public class MergeOpKernel {
       encoder.setTexture(sourceImage.texture, index: 0)
       encoder.setTexture(destinationImage.texture, index: 1)
       encoder.setBytes(&params, length: MemoryLayout<MergeParams>.size, index: 0)
+      //print("MergeOpKernel: (dispatch) pipeline = ",pipeline.debugDescription)
       encoder.dispatch(pipeline: pipeline, image: destinationImage)
       encoder.endEncoding()
     }

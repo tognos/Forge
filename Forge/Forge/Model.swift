@@ -283,7 +283,7 @@ public class Model {
     guard compiled else { return "(Model is not compiled.)" }
 
     var s = ""
-    s += "Layer/Tensor                   Type       Output Shape     Parameters    Outputs\n"
+    s += "Layer/Tensor                   Type       Output Shape     Parameters    In/Out\n"
     s += "--------------------------------------------------------------------------------\n"
 
     for tensor in tensors {
@@ -293,6 +293,21 @@ public class Model {
     s += "--------------------------------------------------------------------------------\n"
     s += "Number of layers: \(numLayers) (tensors: \(tensors.count))\n"
     s += "Total parameters: \(totalParams)"
+    return s
+  }
+  public func debugSummary(current: Tensor, marker: String) -> String {
+    guard compiled else { return "(Model is not compiled.)" }
+    
+    var s = ""
+    s += "Layer/Tensor                   Type       Output Shape     Parameters    trc In/Out image                            w r x cur\n"
+    s += "------------------------------------------------------------------------------------------------------------------------------\n"
+
+    for tensor in tensors {
+      s += tensor.debugSummary(isCurrent: tensor === current, marker: marker) + "\n"
+    }
+    
+    s += "------------------------------------------------------------------------------------------------------------------------------\n"
+
     return s
   }
 
@@ -326,9 +341,15 @@ public class Model {
     }
     
     tensors[0].image = sourceImage
+    sourceImage?.writtenCount = 0
+
+    for tensor in tensors {
+      tensor.releasedReadCount = nil
+    }
     
     for tensor in tensors {
-      print("encoding for", tensor.debugDescription)
+      //print("Model: encoding for", tensor.debugDescription)
+      print(self.debugSummary(current: tensor, marker: "<--"))
       encode(tensor: tensor, commandBuffer: commandBuffer, inflightIndex: inflightIndex)
     }
     
@@ -340,6 +361,7 @@ public class Model {
     // If a tensor does not have a layer (true for Input and Concatenate), then 
     // pass through the source image unchanged.
     // We need to set its read count properly though...
+    tensor.writtenCount = 0
     guard let layer = tensor.layer else {
       print("tensor does not belong to a layer, tensor = "+tensor.debugDescription)
       tensor.readCount = tensor.next.count
@@ -350,16 +372,22 @@ public class Model {
     func createImage(for tensor: Tensor) -> MPSImage {
       print("createImage for "+tensor.debugDescription)
       if let images = outputImages[tensor] {
-        print("createImage returning outputImages[tensor][inflightIndex]")
-        return images[inflightIndex]
+        let storedImage = images[inflightIndex]
+        storedImage.writtenCount = 0
+        print("createImage returning outputImage[tensor=\(tensor.shortId)][inflightIndex=\(inflightIndex)], image=\(storedImage)")
+        return storedImage
       } else {
         guard let desc = imageDescriptors[tensor.shape] else {
           fatalError("Error: no image descriptor found for shape \(tensor.shape)")
         }
-        print("createImage returning new image for shape \(tensor.shape)")
+        print("createImage returning new temp image for shape \(tensor.shape)")
         let image = MPSTemporaryImage(commandBuffer: commandBuffer,
                                       imageDescriptor: desc)
-        image.readCount = tensor.readCount
+        // We have to use the image's readCount value to maintain our
+        // both read and write counts
+        //image.readCount = tensor.readCount
+        image.readCount = tensor.readCount + tensor.previous.count // add also number of inputs to bump up readcount with the writecount for this tensor
+        image.writtenCount = 0
         return image
       }
     }
@@ -368,17 +396,28 @@ public class Model {
     // destination tensor. Otherwise, make a new image.
     if let destTensor = tensor.destinationTensor {
       if let image = destTensor.image {
-        print("tensor has destinationTensor, using its existing image: \(image)")
+        print("Tensor",tensor.shortId,"has destinationTensor",destTensor.shortId,", using dest's existing image: \(image)")
         tensor.image = image
+        /*
+        if let tempImage = tensor.image as? MPSTemporaryImage {
+          // image is referenced by two tensors, so we bump up the image readCount
+          tempImage.readCount += 1
+        }
+         */
       } else {
-        print("tensor has destinationTensor, creating a new image for both")
+        print("Tensor",tensor.shortId,"has destinationTensor",destTensor.shortId," but no image, creating new for dest and itself w. read count",destTensor.next.count)
         destTensor.readCount = destTensor.next.count
         destTensor.image = createImage(for: destTensor)
         tensor.image = destTensor.image
-        print("tensor has destinationTensor, done creating new image for both: \(image)")
+        /*
+        if let tempImage = tensor.image as? MPSTemporaryImage {
+          // image is referenced by two tensors, so we bump up the image readCount
+          tempImage.readCount += 1
+        }
+        */
       }
     } else {
-      print("tensor has no destinationTensor, creating own image:")
+      print("Tensor",tensor.shortId,"has no destinationTensor, creating new own w. read count",tensor.next.count)
       tensor.readCount = tensor.next.count
       tensor.image = createImage(for: tensor)
     }
@@ -398,6 +437,7 @@ public class Model {
         fatalError("Error: layer '\(layer.name)' expected source texture")
       }
       
+      print(self.debugSummary(current: tensor, marker: "<*>"))
       layer.encode(commandBuffer: commandBuffer,
                    sourceTensor: inputTensor,
                    sourceTexture: inputTexture,
@@ -408,21 +448,30 @@ public class Model {
         image.readCount -= 1
       }
     } else {
+      if inputTensor.image!.writtenCount != inputTensor.previous.count {
+        fatalError("Error: input tensor \(inputTensor.shortId) has not received all its inputs yet, written=\(inputTensor.writtenCount), needed=\(inputTensor.previous.count)")
+      }
+      print(self.debugSummary(current: tensor, marker: "<->"))
+
       layer.encode(commandBuffer: commandBuffer,
                    sourceTensor: inputTensor,
                    destinationTensor: tensor)
     }
-    
+    print(self.debugSummary(current: tensor, marker: "-->"))
+
+    // count how many times this tensor has been written to so we can check
+    // for tensors with multiple inputs that all write have been completed
+    // before this tensor is used as a source tensor
+    tensor.writtenCount += 1
+
     // At this point we've used the image from the sourceTensor, and should
     // decrement its reference count. When it hits 0, we nil out its `image`
     // property so that a new MPSTemporaryImage will be allocated on the next
     // pass through the network.
-    print("decrementing readcount for input tensor, current = \(inputTensor.readCount)")
-    inputTensor.readCount -= 1
-    if inputTensor.readCount <= 0 {
-      inputTensor.image = nil
-    }
-    print("done\n")
+    
+    inputTensor.release(byLayer: layer)
+    
+    print("Model.encode Tensor done\n")
   }
 
   func images(for tensor: Tensor) -> [MPSImage] {
@@ -445,10 +494,12 @@ public class Model {
   // This function is mainly intended for testing and debugging and
   // should not be used in production code where performance is desired
   public func evaluate(commandQueue: MTLCommandQueue, device : MTLDevice, model: Model, input: MPSImage) -> MPSImage {
-    guard let commandBuffer = commandQueue.makeCommandBuffer() else { fatalError("can't make command buffer") }
-    model.encode(commandBuffer: commandBuffer, texture: nil, inflightIndex: 0, mpsImage: input)
-    commandBuffer.commit()
-    commandBuffer.waitUntilCompleted()
+    autoreleasepool {
+      guard let commandBuffer = commandQueue.makeCommandBuffer() else { fatalError("can't make command buffer") }
+      model.encode(commandBuffer: commandBuffer, texture: nil, inflightIndex: 0, mpsImage: input)
+      commandBuffer.commit()
+      commandBuffer.waitUntilCompleted()
+    }
     let resultImage = model.outputImage(inflightIndex: 0)
     return resultImage
   }

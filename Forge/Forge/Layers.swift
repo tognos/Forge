@@ -177,27 +177,37 @@ public class MPSCNNLayer: Layer {
     //func debug(image: MPSImage) -> String {
         
     //}
-    if true {
-      print("Encoding for layer:", self)
-      print("sourceTensor:",sourceTensor,", destinationTensor:",destinationTensor)
+    if false {
+        print("MPSCNNLayer: Encoding for layer:", self)
+        print("MPSCNNLayer:sourceTensor:",sourceTensor,", destinationTensor:",destinationTensor)
       if let image = sourceTensor.image as? MPSTemporaryImage {
-        print("sourceTensor image:", image.debugDescription)
+        print("MPSCNNLayer: sourceTensor image:", image.debugDescription)
       }
       if let image = destinationTensor.image as? MPSTemporaryImage {
-        print("destinationTensor image:",image.debugDescription)
+        print("MPSCNNLayer: destinationTensor image:",image.debugDescription)
       }
+    } else {
+        print("MPSCNNLayer: Encoding for layer:", self)
     }
 
-    //mpscnn.destinationFeatureChannelOffset = destinationTensor.totalChannelDestinationOffSet()
     mpscnn.destinationFeatureChannelOffset = destinationTensor.destinationChannelOffset
-    print("mpscnn.destinationFeatureChannelOffset:",mpscnn.destinationFeatureChannelOffset)
+    //print("mpscnn.destinationFeatureChannelOffset:",mpscnn.destinationFeatureChannelOffset)
 
     mpscnn.offset = MPSOffset(x: 0, y: 0, z: 0)
+    mpscnn.clipRect.origin.z = destinationTensor.destinationImage
     mpscnn.clipRect.size.depth = 1
-    print("cliprect:", mpscnn.debugDescription)
+    //print("cliprect:", mpscnn.debugDescription)
+    
+    if let image = sourceTensor.image as? MPSTemporaryImage {
+        print("Before encode: sourceImage.readCount = \(image.readCount)")
+    }
     mpscnn.encode(commandBuffer: commandBuffer,
                   sourceImage: sourceTensor.image!,
                   destinationImage: destinationTensor.image!)
+    destinationTensor.image!.incrementWrittenCount()
+    if let image = sourceTensor.image as? MPSTemporaryImage {
+        print("After encode: sourceImage.readCount = \(image.readCount)")
+    }
   }
 }
 
@@ -274,6 +284,7 @@ public class SpaceToDepthX2: Layer {
         if let image = sourceImage as? MPSTemporaryImage {
             image.readCount -= 1
         }
+        destinationTensor.image!.incrementWrittenCount()
     }
 }
 
@@ -348,6 +359,7 @@ public class ZeroPadding: Layer {
     if let image = sourceImage as? MPSTemporaryImage {
       image.readCount -= 1
     }
+    destinationTensor.image!.incrementWrittenCount()
   }
 }
 
@@ -383,13 +395,17 @@ public class MergeOperation: Layer {
     mopKernel!.encode(commandBuffer: commandBuffer,
                sourceImage: sourceTensor.image!,
                destinationImage: destinationTensor.image!)
+    destinationTensor.image!.incrementWrittenCount()
   }
     override public func createCompute(device: MTLDevice,
                                        inputShape: DataShape,
                                        outputShape: DataShape,
                                        weights: ParameterData?,
                                        biases: ParameterData?) throws {
-        mopKernel = MergeOpKernel(device: device, featureImages: outputShape.numImages, featureChannels: outputShape.channels, featureOp: self.operation)
+        mopKernel = MergeOpKernel(device: device,
+                                  featureImages: outputShape.numImages,
+                                  featureChannels: outputShape.channels,
+                                  featureOp: self.operation)
     }
 }
 
@@ -815,6 +831,7 @@ public class Resize: Layer {
     lanczos.encode(commandBuffer: commandBuffer,
                    sourceTexture: sourceTexture,
                    destinationTexture: destinationTensor.image!.texture)
+    destinationTensor.image!.incrementWrittenCount()
   }
 
   /**

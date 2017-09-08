@@ -42,12 +42,12 @@
 
 /* Begin PBXFileReference section */
 		7B3DA4E71EBB36D100BD3F06 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; tabWidth = 2; };
-		7B3DA4E91EBBB45D00BD3F06 /* Tensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tensor.swift; sourceTree = "<group>"; };
+		7B3DA4E91EBBB45D00BD3F06 /* Tensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Tensor.swift; sourceTree = "<group>"; tabWidth = 2; };
 		7B3DA4EB1EBBB48F00BD3F06 /* Layers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layers.swift; sourceTree = "<group>"; };
 		7B711C6F1EC73F97001CB7C2 /* ForgeKernel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgeKernel.swift; sourceTree = "<group>"; };
 		7B711C711EC751C1001CB7C2 /* BasicConvolutionKernel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicConvolutionKernel.swift; sourceTree = "<group>"; };
 		7B8236B61EAA4F4700127F0C /* RGB2Gray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RGB2Gray.swift; sourceTree = "<group>"; };
-		7B8236B71EAA4F4700127F0C /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		7B8236B71EAA4F4700127F0C /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; tabWidth = 2; };
 		7B8236BA1EAA4F9F00127F0C /* SimpleKernel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleKernel.swift; sourceTree = "<group>"; };
 		7B8236C21EAA5AF300127F0C /* SubtractMeanColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubtractMeanColor.swift; sourceTree = "<group>"; };
 		7B8236C41EAA5BFC00127F0C /* RGB2BGR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RGB2BGR.swift; sourceTree = "<group>"; };
