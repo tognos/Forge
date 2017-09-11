@@ -34,7 +34,7 @@ public struct MergeParams {
 }
 
 public enum MergeOpType: Int16 {
-  case Add = 1, Multiplay, Maximum, Average
+  case Add = 1, Multiply, Maximum, Average
 }
 
 

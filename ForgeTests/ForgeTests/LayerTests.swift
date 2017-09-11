@@ -10,6 +10,62 @@ import Foundation
 import Forge
 import MetalPerformanceShaders
 
+func URLinDocumentDirectory(fileName: String) -> URL {
+  let documentsDirectoryURL = try! FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+  return documentsDirectoryURL.appendingPathComponent(fileName)
+}
+
+extension UIImage {
+  func saveInDocumentDirectory(fileName: String) {
+    print("Saving", fileName)
+    do {
+      try UIImageJPEGRepresentation(self,1.0)!.write(to: URLinDocumentDirectory(fileName: fileName))
+      print("Image added successfully")
+    } catch {
+      print(error)
+    }
+  }
+}
+
+extension Data {
+  func saveInDocumentDirectory(fileName: String) -> Bool {
+    print("Saving data as ", fileName)
+    do {
+      try self.write(to: URLinDocumentDirectory(fileName: fileName))
+      print("Data saved successfully")
+      return true
+    } catch {
+      print(error)
+      return false
+    }
+  }
+}
+
+// Swift can really need some polishing
+protocol isFloat {}
+extension Float : isFloat {}
+extension Array where Element : isFloat {
+  func saveInDocumentDirectory(fileName: String) -> Bool {
+    return self.withUnsafeBytes({ (bufferptr) in
+      let data = Data(bufferptr)
+      return data.saveInDocumentDirectory(fileName: fileName)
+    })
+  }
+}
+
+public class DocumentDirectoryDumper : TensorDumper {
+  let filePrefix : String
+  public init(filePrefix: String) {
+    self.filePrefix = filePrefix
+  }
+  public func dump(tensor: Tensor) -> Bool {
+    let fileBase = filePrefix + "-" + tensor.shortId
+    let rawData = tensor.image!.toFloatArrayChannelsFirst()
+    let ok = rawData.saveInDocumentDirectory(fileName: fileBase+".floats")
+    return ok
+  }
+}
+
 class LayerTests {
   
   func printLocation(_ location: String) {
@@ -41,7 +97,7 @@ class LayerTests {
     let testInputData : [[[[Float]]]] = [[[[1,2,3],
                                              [4,5,6]]]]
     let testInputImage = MPSImage(device: device, images: testInputData)
-    let resultImage = model.evaluate(commandQueue: commandQueue, device: device, model: model, input: testInputImage)
+    let resultImage = model.evaluate(commandQueue: commandQueue, device: device, input: testInputImage)
 
     //print("resultImage=",resultImage)
     let resultData = resultImage.toFloatArray4D()
@@ -75,7 +131,7 @@ class LayerTests {
     
     let testInputData : [[[[Float]]]] = [[[[1]]]]
     let testInputImage = MPSImage(device: device, images: testInputData)
-    let resultImage = model.evaluate(commandQueue: commandQueue, device: device, model: model, input: testInputImage)
+    let resultImage = model.evaluate(commandQueue: commandQueue, device: device, input: testInputImage)
     
     print("resultImage=",resultImage)
     let resultData = resultImage.toFloatArray4D()
@@ -126,7 +182,7 @@ class LayerTests {
                                            [49, 410,411,412],
                                            [413,414,415,416]]]]
     let testInputImage = MPSImage(device: device, images: testInputData)
-    let resultImage = model.evaluate(commandQueue: commandQueue, device: device, model: model, input: testInputImage)
+    let resultImage = model.evaluate(commandQueue: commandQueue, device: device, input: testInputImage)
     
     print("resultImage=",resultImage)
     let resultData = resultImage.toFloatArray4D()
@@ -206,7 +262,7 @@ class LayerTests {
                                              [44,45,46]]]]
       
       let testInputImage = MPSImage(device: device, images: testInputData)
-      let resultImage = model.evaluate(commandQueue: commandQueue, device: device, model: model, input: testInputImage)
+      let resultImage = model.evaluate(commandQueue: commandQueue, device: device, input: testInputImage)
       
       //print("resultImage=",resultImage)
       let resultData = resultImage.toFloatArray4D()
@@ -272,7 +328,7 @@ class LayerTests {
                                              [44,45,46]]]]
 
       let testInputImage = MPSImage(device: device, images: testInputData)
-      let resultImage = model.evaluate(commandQueue: commandQueue, device: device, model: model, input: testInputImage)
+      let resultImage = model.evaluate(commandQueue: commandQueue, device: device, input: testInputImage)
       
       //print("resultImage=",resultImage)
       let resultData = resultImage.toFloatArray4D()
@@ -330,7 +386,7 @@ class LayerTests {
                                              [44,45,46]]]]
       
       let testInputImage = MPSImage(device: device, images: testInputData)
-      let resultImage = model.evaluate(commandQueue: commandQueue, device: device, model: model, input: testInputImage)
+      let resultImage = model.evaluate(commandQueue: commandQueue, device: device, input: testInputImage)
       
       //print("resultImage=",resultImage)
       let resultData = resultImage.toFloatArray4D()
@@ -543,7 +599,7 @@ class LayerTests {
       }
     }
   }
-  func testResNet() {
+  func testResNet(debug: Bool) {
     print("\(self).\(#function)")
     
     var model : Model
@@ -699,8 +755,13 @@ class LayerTests {
                                                        [24,25,26]],
                                                       [[31,32,33],
                                                        [34,35,36]]]]
+    
     let testInputImage = MPSImage(device: device, images: test_input_data_3x2_3c_1i)
-    let resultImage = model.evaluate(commandQueue: commandQueue, device: device, model: model, input: testInputImage)
-
+    if debug {
+      //let resultImage = model.evaluate(commandQueue: commandQueue, device: device, input: testInputImage)
+      model.debugEvaluate(commandQueue: commandQueue, device: device, input: testInputImage, dumper: DocumentDirectoryDumper(filePrefix: "resnet-50"))
+    } else {
+      let resultImage = model.evaluate(commandQueue: commandQueue, device: device, input: testInputImage)
+    }
   }
 }

@@ -46,6 +46,10 @@ public enum ModelError: Error {
   case compileError(message: String)
 }
 
+public protocol TensorDumper {
+  func dump(tensor: Tensor) -> Bool
+}
+
 /**
   The top-level object for the neural network.
   
@@ -57,15 +61,35 @@ public enum ModelError: Error {
   4. use `summary()` to verify that your model is correct,
   5. use `encode()` to perform inference.
 */
+
 public class Model {
   let input: Tensor
   let output: Tensor
 
+  public class ImageInfo {
+    init(owners : Set<Tensor> = [], writtenCount : Int = 0) {
+      self.owners = owners
+      self.writtenCount = writtenCount
+    }
+    public var owners : Set<Tensor>
+    public var writtenCount : Int
+    public var description: String {
+      get {
+        var line = "written " + writtenCount.description + ", owners:"
+        for tensor in owners {
+          line += tensor.shortId
+        }
+        return line
+      }
+    }
+  }
+  
   var compiled = false
   var tensors: [Tensor] = []
   var imageDescriptors: [DataShape: MPSImageDescriptor] = [:]
   var imageDescriptorList: [MPSImageDescriptor] = []
   var outputImages: [Tensor: [MPSImage]] = [:]
+  var imageInfos: [MPSImage: ImageInfo] = [:]
   var numLayers = 0
   var totalParams = 0
 
@@ -82,6 +106,16 @@ public class Model {
   public init(input: Tensor, output: Tensor) {
     self.input = input
     self.output = output
+  }
+  
+  var imageInfosDescription : String {
+    get {
+      var line = ""
+      for (image, info) in imageInfos {
+        line.append(image.description + ":" + info.description + "\n")
+      }
+      return line
+    }
   }
 
   /**
@@ -162,6 +196,7 @@ public class Model {
   */
   func completeGraph() throws {
     for (i, tensor) in tensors.enumerated() {
+      tensor.model = self
       if let layer = tensor.layer {
         numLayers += 1
 
@@ -258,20 +293,53 @@ public class Model {
       firstComputeLayer = false
     }
   }
+  
+  func written(image: MPSImage) {
+    imageInfos[image]!.writtenCount += 1
+    print("Written to image \(image), info: \(imageInfos[image]!.description)")
+  }
+  func addOwner(for owner: Tensor, of image: MPSImage) {
+    print("Adding owner \(owner) for image \(image)")
+    if imageInfos[image] != nil {
+      if imageInfos[image]!.owners.contains(owner) {
+        fatalError("tensor \(owner) already owns image \(image)")
+      }
+      imageInfos[image]!.owners.insert(owner)
+    } else {
+      imageInfos[image] = ImageInfo(owners: Set<Tensor>([owner]))
+    }
+  }
 
+  func removeOwner(for tensor: Tensor, of image: MPSImage) {
+    if imageInfos[image] != nil {
+      if !imageInfos[image]!.owners.contains(tensor) {
+        fatalError("tensor (\tensor) does not ows image \(self)")
+      }
+      imageInfos[image]!.owners.remove(tensor)
+    } else {
+      fatalError("tensor (\tensor) does not own any image)")
+    }
+  }
   func addOutputImage(for tensor: Tensor) {
     print("adding output image for tensor", tensor)
+    /*
     guard let imgDesc = imageDescriptors[tensor.shape] else {
       fatalError("Error: could not find image descriptor for shape \(tensor.shape)")
     }
-
+    */
+    let imgDesc = tensor.shape.createImageDescriptor()
     // Since the GPU can be working on several inputs at once, we need to
     // allocate multiple images.
+    imgDesc.storageMode = .shared
     var array: [MPSImage] = []
     for _ in 0..<inflightBuffers {
-      array.append(MPSImage(device: device, imageDescriptor: imgDesc))
+      let image = MPSImage(device: device, imageDescriptor: imgDesc)
+      array.append(image)
     }
     outputImages[tensor] = array
+  }
+  func removeOutputImage(for tensor: Tensor) {
+    outputImages.removeValue(forKey: tensor)
   }
 
   /**
@@ -292,10 +360,11 @@ public class Model {
 
     s += "--------------------------------------------------------------------------------\n"
     s += "Number of layers: \(numLayers) (tensors: \(tensors.count))\n"
-    s += "Total parameters: \(totalParams)"
+    s += "Total parameters: \(totalParams)\n"
+    s += debugGraph()
     return s
   }
-  public func debugSummary(current: Tensor, marker: String) -> String {
+  public func debugSummary(current: Tensor, marker: String, debugTensor: Tensor?) -> String {
     guard compiled else { return "(Model is not compiled.)" }
     
     var s = ""
@@ -304,18 +373,64 @@ public class Model {
 
     for tensor in tensors {
       s += tensor.debugSummary(isCurrent: tensor === current, marker: marker) + "\n"
+      if debugTensor != nil && tensor == debugTensor {
+        break
+      }
     }
     
     s += "------------------------------------------------------------------------------------------------------------------------------\n"
 
     return s
   }
+  
+  // Prints a dot description of the model
+  // Install dot and graphviz, copy the output to a file "fileName.dot"
+  // and use the following command to create a .png image of the the graph:
+  // dot -Tpng -o fileName.png fileName.dot
+  public func debugGraph() -> String {
+    guard compiled else { return "(Model is not compiled.)" }
+    
+    var s = "\n"
+    s += "digraph G {\n"
+    s += "concentrate=True;\n"
+    s += "rankdir=TB;\n"
+    s += "node [shape=record];\n"
+    
+    for tensor in tensors {
+      let layerName = tensor.layer?.name ?? tensor.shortId
+      let layerType = tensor.layer?.typeName ?? "Tensor"
+      s += "  \(layerName) [label=\"\(layerName) : \(layerType)\\n\(tensor.shape.debugDescription)\"];\n"
+      for out in tensor.next {
+        let outName = out.layer?.name ?? out.shortId
+        s += "  " + layerName + " -> " + outName + ";\n"
+      }
+    }
+    
+    s += "}\n"
 
+    return s
+  }
+
+  func reset() {
+    print("Clearing imageInfos")
+    for tensor in tensors {
+      tensor.release()
+      tensor.readCount = 0
+      tensor.releasedReadCount = nil
+    }
+    imageInfos = [:]
+  }
+  func clearTempImages() {
+    print("Clearing temp images")
+    for tensor in tensors {
+      tensor.deleteTempImageForced()
+    }
+  }
   /**
    Encodes the GPU commands for a forward pass of the neural network.
    */
 
-  public func encode(commandBuffer: MTLCommandBuffer, texture: MTLTexture?, inflightIndex: Int, mpsImage : MPSImage? = nil) {
+  public func encode(commandBuffer: MTLCommandBuffer, texture: MTLTexture?, inflightIndex: Int, mpsImage : MPSImage? = nil, debugOutput : Tensor?) {
     //let startTime = CACurrentMediaTime()
     //print("====== Starting model encode ======, inflightIndex =",inflightIndex)
     
@@ -324,9 +439,20 @@ public class Model {
       print("Error: graph has not been compiled yet")
       return
     }
+
+    print("Initial imageInfos:")
+    print(imageInfosDescription)
     
     //MPSTemporaryImage.prefetchStorage(with: commandBuffer,
     //                                  imageDescriptorList: imageDescriptorList)
+    var addedDebugOut = false
+    if debugOutput != nil {
+      // We are running in debug mode, so clear old output images
+      if outputImages[debugOutput!] == nil && debugOutput != tensors[0] {
+        addOutputImage(for: debugOutput!)
+        addedDebugOut = true
+      }
+    }
     
     var sourceImage: MPSImage?
     if (mpsImage == nil) {
@@ -341,27 +467,31 @@ public class Model {
     }
     
     tensors[0].image = sourceImage
-    sourceImage?.writtenCount = 0
-
-    for tensor in tensors {
-      tensor.releasedReadCount = nil
-    }
     
     for tensor in tensors {
       //print("Model: encoding for", tensor.debugDescription)
-      print(self.debugSummary(current: tensor, marker: "<--"))
-      encode(tensor: tensor, commandBuffer: commandBuffer, inflightIndex: inflightIndex)
+      //print(self.debugSummary(current: tensor, marker: "<--"))
+      encode(tensor: tensor, commandBuffer: commandBuffer, inflightIndex: inflightIndex, debugTensor: debugOutput)
+      if debugOutput != nil && tensor == debugOutput {
+        print("Reached debug output tensor", tensor.shortId)
+        if addedDebugOut {
+          // remove output image so it is a temporary image in the next run
+          removeOutputImage(for: debugOutput!)
+        }
+        print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+        return
+      }
     }
-    
+
     //let elapsed = CACurrentMediaTime() - startTime
     //print("Encoding took \(elapsed) seconds")
   }
   
-  func encode(tensor: Tensor, commandBuffer: MTLCommandBuffer, inflightIndex: Int) {
+  func encode(tensor: Tensor, commandBuffer: MTLCommandBuffer, inflightIndex: Int, debugTensor: Tensor?) {
     // If a tensor does not have a layer (true for Input and Concatenate), then 
     // pass through the source image unchanged.
     // We need to set its read count properly though...
-    tensor.writtenCount = 0
+    //tensor.writtenCount = 0
     guard let layer = tensor.layer else {
       print("tensor does not belong to a layer, tensor = "+tensor.debugDescription)
       tensor.readCount = tensor.next.count
@@ -373,7 +503,6 @@ public class Model {
       print("createImage for "+tensor.debugDescription)
       if let images = outputImages[tensor] {
         let storedImage = images[inflightIndex]
-        storedImage.writtenCount = 0
         print("createImage returning outputImage[tensor=\(tensor.shortId)][inflightIndex=\(inflightIndex)], image=\(storedImage)")
         return storedImage
       } else {
@@ -387,7 +516,6 @@ public class Model {
         // both read and write counts
         //image.readCount = tensor.readCount
         image.readCount = tensor.readCount + tensor.previous.count // add also number of inputs to bump up readcount with the writecount for this tensor
-        image.writtenCount = 0
         return image
       }
     }
@@ -437,32 +565,29 @@ public class Model {
         fatalError("Error: layer '\(layer.name)' expected source texture")
       }
       
-      print(self.debugSummary(current: tensor, marker: "<*>"))
+      //print(self.debugSummary(current: tensor, marker: "<*>"))
       layer.encode(commandBuffer: commandBuffer,
                    sourceTensor: inputTensor,
                    sourceTexture: inputTexture,
                    destinationTensor: tensor)
       
       if let image = inputTensor.image as? MPSTemporaryImage {
-        print("decrementing readcount for input image, current = \(image.readCount)")
+        //print("decrementing readcount for input image, current = \(image.readCount)")
         image.readCount -= 1
       }
     } else {
-      if inputTensor.image!.writtenCount != inputTensor.previous.count {
-        fatalError("Error: input tensor \(inputTensor.shortId) has not received all its inputs yet, written=\(inputTensor.writtenCount), needed=\(inputTensor.previous.count)")
+      if imageInfos[inputTensor.image!]!.writtenCount != inputTensor.previous.count {
+        fatalError("Error: input tensor \(inputTensor.shortId) has not received all its inputs yet, image=\(String(describing: inputTensor.image?.description)) written=\(imageInfos[inputTensor.image!]!.writtenCount), needed=\(inputTensor.previous.count)")
       }
-      print(self.debugSummary(current: tensor, marker: "<->"))
+      print(self.debugSummary(current: tensor, marker: "<->", debugTensor: debugTensor))
+      //print(self.imageInfosDescription)
 
       layer.encode(commandBuffer: commandBuffer,
                    sourceTensor: inputTensor,
                    destinationTensor: tensor)
     }
-    print(self.debugSummary(current: tensor, marker: "-->"))
+    //print(self.debugSummary(current: tensor, marker: "-->", debugTensor: debugTensor))
 
-    // count how many times this tensor has been written to so we can check
-    // for tensors with multiple inputs that all write have been completed
-    // before this tensor is used as a source tensor
-    tensor.writtenCount += 1
 
     // At this point we've used the image from the sourceTensor, and should
     // decrement its reference count. When it hits 0, we nil out its `image`
@@ -472,6 +597,8 @@ public class Model {
     inputTensor.release(byLayer: layer)
     
     print("Model.encode Tensor done\n")
+    print(self.imageInfosDescription)
+
   }
 
   func images(for tensor: Tensor) -> [MPSImage] {
@@ -493,14 +620,40 @@ public class Model {
   // Runs the model synchronously and returns the result
   // This function is mainly intended for testing and debugging and
   // should not be used in production code where performance is desired
-  public func evaluate(commandQueue: MTLCommandQueue, device : MTLDevice, model: Model, input: MPSImage) -> MPSImage {
+  public func evaluate(commandQueue: MTLCommandQueue, device : MTLDevice, input: MPSImage, debugOutput : Tensor? = nil) -> MPSImage {
     autoreleasepool {
       guard let commandBuffer = commandQueue.makeCommandBuffer() else { fatalError("can't make command buffer") }
-      model.encode(commandBuffer: commandBuffer, texture: nil, inflightIndex: 0, mpsImage: input)
+      self.encode(commandBuffer: commandBuffer, texture: nil, inflightIndex: 0, mpsImage: input, debugOutput: debugOutput)
       commandBuffer.commit()
+      self.clearTempImages()
       commandBuffer.waitUntilCompleted()
     }
-    let resultImage = model.outputImage(inflightIndex: 0)
-    return resultImage
+    if debugOutput == nil {
+      return self.outputImage(inflightIndex: 0)
+    } else {
+      return debugOutput!.image!
+    }
+  }
+
+  public func debugEvaluate(commandQueue: MTLCommandQueue, device : MTLDevice, input: MPSImage, dumper: TensorDumper) -> Void {
+    for tensor in tensors {
+      var ok = true
+      for out in tensor.next {
+        if out.previous.count > 1 {
+          ok = false
+        }
+      }
+      if ok {
+        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+        print("Running up to tensor"+tensor.shortId)
+        let _ = evaluate(commandQueue: commandQueue, device: device, input: input, debugOutput: tensor)
+        precondition(dumper.dump(tensor: tensor), "dumper failed")
+        self.reset() // make sure our output image will be properly cleared
+        print("ImageInfos:\n"+imageInfosDescription)
+      } else {
+        print("Skipping tensor "+tensor.shortId+" because destination tensor has multiple inputs")
+      }
+    }
   }
 }
+

@@ -1,3 +1,4 @@
+
 /*
   Copyright (c) 2016-2017 M.I. Hollemans
 
@@ -22,11 +23,20 @@
 
 import Foundation
 import MetalPerformanceShaders
-
+/*
 var imageOwners : [MPSImage : Set<Tensor>] = [:]
 var writtenCounts : [MPSImage : Int] = [:]
 
 extension MPSImage {
+  static func reset() {
+    for images in imageOwners {
+      for tensor in images.value {
+        tensor.reset()
+      }
+    }
+    imageOwners = [:]
+    writtenCounts = [:]
+  }
   var owners : Set<Tensor> {
     get {
       return imageOwners[self]!
@@ -68,6 +78,7 @@ extension MPSImage {
     }
   }
 }
+*/
 
 /**
   A tensor has a shape (width, height, depth). For each tensor there is an 
@@ -85,6 +96,9 @@ public class Tensor {
   */
   public var imageIsTemporary = true
   //public var imageIsTemporary = false
+  
+  // The Model this tensor belongs to; will be set during model compilation
+  public var model : Model? = nil
 
   // The layer that takes the data from `input`, transforms it, and stores it
   // inside this tensor. Is nil for Input and Concatenate tensors.
@@ -101,7 +115,7 @@ public class Tensor {
   var previous: [Tensor] = []
 
   // The shape of the tensor is determined by its input tensor and the layer.
-  var shape = DataShape()
+  public var shape = DataShape()
 
   // For debugging and printing the model summary.
   var typeName = "Tensor"
@@ -117,19 +131,6 @@ public class Tensor {
   // Used to set destinationImage for collecting the output from
   // multiple layers into one image.
   var destinationImage = 0
-    /*
-    var destinationImage : Int {
-        get {
-            return _destinationImage
-        }
-        set(newDestination) {
-            _destinationImage = newDestination
-        }
-    }
-    public func totalChannelDestinationOffSet() -> Int {
-        return ((shape.channels + 3) / 4) * 4 * destinationImage + destinationChannelOffset
-    }
-   */
 
   // If this is set, the layer will write into the MPSImage for the destination
   // tensor. If nil, a new (temporary) image is allocated for the tensor and we
@@ -144,9 +145,9 @@ public class Tensor {
       _destinationTensor = newTensor
     }
   }
-  var shortId : String {
+  public var shortId : String {
     get {
-      let sid = layer?.name ?? "**\(typeName)-\(id)**"
+      let sid = layer?.name ?? "__\(typeName)\(id != "" ? "_"+id : "")__"
       return sid
     }
   }
@@ -156,20 +157,21 @@ public class Tensor {
   // sort), this is how we keep track of which MPSImage to use where. Note that
   // image may point to the destinationTensor's image.
   var _image: MPSImage?
-  internal(set) public var image : MPSImage? {
+  
+  /*internal(set)*/ public var image : MPSImage? {
         get {
             return _image
         }
         set(newImage) {
           if _image != nil {
             let layerName = layer?.name ?? shortId
-            print("Remove output image for Tensor:" + layerName + ", owners = \(_image!.owners)")
-            _image!.removeOwner(tensor: self)
+            print("Remove output image for Tensor:" + layerName + ", owners = \(model!.imageInfos[_image!]!.owners)")
+            model!.removeOwner(for: self, of: _image!)
           }
           if newImage != nil {
-            newImage!.addOwner(tensor: self)
+            model!.addOwner(for: self, of: newImage!)
             let layerName = layer?.name ?? shortId
-            print("Set output image for Tensor:" + layerName + ", owners = \(newImage!.owners)")
+            print("Set output image for Tensor:" + layerName + ", owners = \(model!.imageInfos[newImage!]!.owners)")
           }
           _image = newImage
           //print(self," - image set to", String(describing: _image))
@@ -184,9 +186,11 @@ public class Tensor {
   
   // Tensor with mutiple layers writing into maintain a written count, too
   // so they won't be discarded too early until all the inbound layers have
-  // writtenn into the underlying image
+  // written into the underlying image
   // managed
-  var writtenCount = 0
+  func written() {
+    model!.written(image: _image!)
+  }
 
   fileprivate init() { }
 
@@ -212,34 +216,58 @@ public class Tensor {
     print("creating new shape of input:", input, "to layer:", layer,"shape:",shape)
   }
 
-  func releasePrevious() {
+  func releasePrevious(byLayer: Layer?) {
+    print("release: releasing \(previous.count) previous layers")
     for prev in previous {
-      
+      prev.release(byLayer: byLayer)
     }
   }
   
-  func release(byLayer: Layer) {
-    print("Decrementing readcount for input tensor \(self.shortId) of layer \(byLayer.name), current readCount = \(self.readCount)")
+  // deletes tensor's image with proper read-count
+  func deleteImageForced() {
+    self.image = nil
+  }
+  // deletes tensor's image with proper read-count
+  func deleteTempImageForced() {
+    if let image = self.image as? MPSTemporaryImage {
+      print("Force-deleting temp image of input tensor \(self.shortId), readCount was \(readCount)")
+      image.readCount = 0
+      self.image = nil
+    }
+  }
+  
+  func release(byLayer: Layer? = nil) {
+    if byLayer == nil {
+      deleteImageForced()
+      return
+    }
+    
+    if self.layer == nil {
+      print("release: tensor does not belong to a layer, tensor = "+self.debugDescription)
+      releasePrevious(byLayer: byLayer)
+    }
+    
+    //print("Decrementing readcount for input tensor \(self.shortId) of layer \(String(describing: byLayer?.name)), current readCount = \(self.readCount)")
     self.readCount -= 1
     if let image = self.image as? MPSTemporaryImage {
-      print("Image for input tensor \(self.shortId) of layer \(byLayer.name), has readCount = \(image.readCount)")
+      //print("Image for input tensor \(self.shortId) of layer \(String(describing: byLayer?.name)), has readCount = \(image.readCount)")
       if (image.readCount > 0) {
-        print("decrementing readcount for input image by its writtenCount = \(image.writtenCount)")
-        image.readCount -= image.writtenCount
+        //print("decrementing readcount for input image by its writtenCount = \(model!.imageInfos[image]!.writtenCount)")
+        image.readCount -= model!.imageInfos[image]!.writtenCount
       }
     }
     
     if self.readCount <= 0 {
-      print("Deleting image of input tensor \(self.shortId) of layer \(byLayer.name)")
+      //print("Deleting image of input tensor \(self.shortId) of layer \(String(describing: byLayer?.name))")
       
       if let image = self.image as? MPSTemporaryImage {
         self.image = nil
-        if image.owners.count == 0 {
+        if model!.imageInfos[image]!.owners.count == 0 {
           self.releasedReadCount = image.readCount.description
         } else {
           self.releasedReadCount = image.readCount.description + "*"
         }
-        print("Image for input tensor \(self.shortId) of layer \(byLayer.name), released with readCount = \(image.readCount), owners=\(image.owners.description)")
+        //print("Image for input tensor \(self.shortId) of layer \(String(describing: byLayer?.name)), released with readCount = \(image.readCount), owners=\(model!.imageInfos[image]!.owners.description)")
       } else {
         self.image = nil
       }
@@ -277,7 +305,8 @@ public class Tensor {
     let p = "\(paramCount)".padding(toLength: 13, withPad: " ", startingAt: 0)
     let ios = "\(inputs)/\(outputs)".padding(toLength: 6, withPad: " ", startingAt: 0)
     
-    let writtenCount = "\(self.image?.writtenCount.description ?? "-")"
+    
+    let writtenCount = "\(self.image != nil ? model!.imageInfos[image!]!.writtenCount.description : "-")"
     let tensorReadCount = "\(self.readCount)".padding(toLength: 3, withPad: " ", startingAt: 0)
 
     let releaseReadCount = "\(self.releasedReadCount?.description ?? "-")"
@@ -292,8 +321,6 @@ public class Tensor {
     return s
   }
 }
-
-
 
 extension Tensor: Hashable {
   // Needs to be hashable because for tensors whose imageIsTemporary flag is

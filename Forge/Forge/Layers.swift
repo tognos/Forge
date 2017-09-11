@@ -187,7 +187,7 @@ public class MPSCNNLayer: Layer {
         print("MPSCNNLayer: destinationTensor image:",image.debugDescription)
       }
     } else {
-        print("MPSCNNLayer: Encoding for layer:", self)
+        //print("MPSCNNLayer: Encoding for layer:", self)
     }
 
     mpscnn.destinationFeatureChannelOffset = destinationTensor.destinationChannelOffset
@@ -198,16 +198,16 @@ public class MPSCNNLayer: Layer {
     mpscnn.clipRect.size.depth = 1
     //print("cliprect:", mpscnn.debugDescription)
     
-    if let image = sourceTensor.image as? MPSTemporaryImage {
-        print("Before encode: sourceImage.readCount = \(image.readCount)")
-    }
+//    if let image = sourceTensor.image as? MPSTemporaryImage {
+//        print("Before encode: sourceImage.readCount = \(image.readCount)")
+//    }
     mpscnn.encode(commandBuffer: commandBuffer,
                   sourceImage: sourceTensor.image!,
                   destinationImage: destinationTensor.image!)
-    destinationTensor.image!.incrementWrittenCount()
-    if let image = sourceTensor.image as? MPSTemporaryImage {
-        print("After encode: sourceImage.readCount = \(image.readCount)")
-    }
+    destinationTensor.written()
+//    if let image = sourceTensor.image as? MPSTemporaryImage {
+//        print("After encode: sourceImage.readCount = \(image.readCount)")
+//    }
   }
 }
 
@@ -284,7 +284,7 @@ public class SpaceToDepthX2: Layer {
         if let image = sourceImage as? MPSTemporaryImage {
             image.readCount -= 1
         }
-        destinationTensor.image!.incrementWrittenCount()
+        destinationTensor.written()
     }
 }
 
@@ -359,7 +359,7 @@ public class ZeroPadding: Layer {
     if let image = sourceImage as? MPSTemporaryImage {
       image.readCount -= 1
     }
-    destinationTensor.image!.incrementWrittenCount()
+    destinationTensor.written()
   }
 }
 
@@ -378,7 +378,7 @@ public class MergeOperation: Layer {
   }
   
   override public var typeName: String {
-    return "MergeOperation"
+    return "\(operation)"
   }
   
   override public func outputShape(for inputShape: DataShape) -> DataShape {
@@ -395,7 +395,7 @@ public class MergeOperation: Layer {
     mopKernel!.encode(commandBuffer: commandBuffer,
                sourceImage: sourceTensor.image!,
                destinationImage: destinationTensor.image!)
-    destinationTensor.image!.incrementWrittenCount()
+    destinationTensor.written()
   }
     override public func createCompute(device: MTLDevice,
                                        inputShape: DataShape,
@@ -409,9 +409,26 @@ public class MergeOperation: Layer {
     }
 }
 
+//   case Add = 1, Multiply, Maximum, Average
+
 public class Add: MergeOperation {
   public init(name: String = "") {
     super.init(operation: .Add, name: name)
+  }
+}
+public class Multiply: MergeOperation {
+  public init(name: String = "") {
+    super.init(operation: .Multiply, name: name)
+  }
+}
+public class Maximum: MergeOperation {
+  public init(name: String = "") {
+    super.init(operation: .Maximum, name: name)
+  }
+}
+public class Average: MergeOperation {
+  public init(name: String = "") {
+    super.init(operation: .Average, name: name)
   }
 }
 
@@ -831,7 +848,7 @@ public class Resize: Layer {
     lanczos.encode(commandBuffer: commandBuffer,
                    sourceTexture: sourceTexture,
                    destinationTexture: destinationTensor.image!.texture)
-    destinationTensor.image!.incrementWrittenCount()
+    destinationTensor.written()
   }
 
   /**

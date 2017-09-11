@@ -52,17 +52,17 @@ class ViewController: UIViewController {
     arrayTests.testReshape()
 
     let layerTests = LayerTests()
-    /*
+    
     layerTests.testMPSImages()
     layerTests.testActivationLayer()
     layerTests.testZeroPaddingLayer()
     layerTests.testSpaceToDepthX2Layer()
     layerTests.testCollect()
     layerTests.testSimpleMerge()
-     */
+ 
     layerTests.testComplexMerge()
     //for i in 0..<4 {
-        layerTests.testResNet()
+    layerTests.testResNet(debug: false)
     //}
 
 /*
