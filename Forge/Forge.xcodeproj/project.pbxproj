@@ -38,6 +38,7 @@
 		7BA396841EAA0B1F00F4C4D6 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA396831EAA0B1F00F4C4D6 /* Random.swift */; };
 		7BD4249A1EB216B700451777 /* TransposeChannels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD424991EB216B700451777 /* TransposeChannels.swift */; };
 		E95496FF1F5617F0006BD4FF /* MergeOp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95496FE1F5617F0006BD4FF /* MergeOp.swift */; };
+		E9C8979A1F699C0A00096BFD /* PadKernel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C897991F699C0900096BFD /* PadKernel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,7 +53,7 @@
 		7B8236C21EAA5AF300127F0C /* SubtractMeanColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubtractMeanColor.swift; sourceTree = "<group>"; };
 		7B8236C41EAA5BFC00127F0C /* RGB2BGR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RGB2BGR.swift; sourceTree = "<group>"; };
 		7B8236C71EAA7CBF00127F0C /* Parameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; };
-		7B8236C91EAA7DE900127F0C /* DataShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataShape.swift; sourceTree = "<group>"; };
+		7B8236C91EAA7DE900127F0C /* DataShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = DataShape.swift; sourceTree = "<group>"; tabWidth = 2; };
 		7B8236FF1EABD42000127F0C /* DepthwiseConvolution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepthwiseConvolution.swift; sourceTree = "<group>"; };
 		7BA395BE1EA8C24100F4C4D6 /* Forge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Forge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BA395C11EA8C24100F4C4D6 /* Forge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Forge.h; sourceTree = "<group>"; };
@@ -74,6 +75,7 @@
 		7BA396831EAA0B1F00F4C4D6 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
 		7BD424991EB216B700451777 /* TransposeChannels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransposeChannels.swift; sourceTree = "<group>"; };
 		E95496FE1F5617F0006BD4FF /* MergeOp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeOp.swift; sourceTree = "<group>"; };
+		E9C897991F699C0900096BFD /* PadKernel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadKernel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				7B8236C21EAA5AF300127F0C /* SubtractMeanColor.swift */,
 				7BD424991EB216B700451777 /* TransposeChannels.swift */,
 				E95496FE1F5617F0006BD4FF /* MergeOp.swift */,
+				E9C897991F699C0900096BFD /* PadKernel.swift */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				7B8236CA1EAA7DE900127F0C /* DataShape.swift in Sources */,
 				7B8236C51EAA5BFC00127F0C /* RGB2BGR.swift in Sources */,
 				7BA396561EA8C58A00F4C4D6 /* LayerHelpers.swift in Sources */,
+				E9C8979A1F699C0A00096BFD /* PadKernel.swift in Sources */,
 				7B3DA4EA1EBBB45D00BD3F06 /* Tensor.swift in Sources */,
 				7B8236BB1EAA4F9F00127F0C /* SimpleKernel.swift in Sources */,
 				7BA396541EA8C58A00F4C4D6 /* ComputeHelpers.swift in Sources */,

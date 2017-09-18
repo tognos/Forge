@@ -205,7 +205,7 @@ extension VideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
   }
 
   public func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-    print("dropped frame")
+    //print("dropped frame")
   }
 }
 

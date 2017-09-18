@@ -23,62 +23,6 @@
 
 import Foundation
 import MetalPerformanceShaders
-/*
-var imageOwners : [MPSImage : Set<Tensor>] = [:]
-var writtenCounts : [MPSImage : Int] = [:]
-
-extension MPSImage {
-  static func reset() {
-    for images in imageOwners {
-      for tensor in images.value {
-        tensor.reset()
-      }
-    }
-    imageOwners = [:]
-    writtenCounts = [:]
-  }
-  var owners : Set<Tensor> {
-    get {
-      return imageOwners[self]!
-    }
-  }
-  var writtenCount : Int {
-    get {
-      //print("Returning writtenCount for image \(self))")
-      //print("WrittenCount for image \(self)) is \(writtenCounts[self]!) before read")
-      return writtenCounts[self]!
-    }
-    set(count) {
-      //print("Assigning writtenCount \(count) to image \(self))")
-       writtenCounts[self] = count
-      //print("WrittenCount for image \(self)) is \(writtenCounts[self]!) after write")
-   }
-  }
-  func incrementWrittenCount() -> Void {
-    writtenCounts[self] = writtenCounts[self]! + 1
-  }
-  func addOwner(tensor: Tensor) {
-    if imageOwners[self] != nil {
-      if imageOwners[self]!.contains(tensor) {
-        fatalError("tensor \(tensor) already owns image \(self)")
-      }
-      imageOwners[self]!.insert(tensor)
-    } else {
-      imageOwners[self] = Set<Tensor>([tensor])
-    }
-  }
-  func removeOwner(tensor: Tensor) {
-    if imageOwners[self] != nil {
-      if !imageOwners[self]!.contains(tensor) {
-        fatalError("tensor (\tensor) does not ows image \(self)")
-      }
-      imageOwners[self]!.remove(tensor)
-    } else {
-      fatalError("tensor (\tensor) does not own any image)")
-    }
-  }
-}
-*/
 
 /**
   A tensor has a shape (width, height, depth). For each tensor there is an 
@@ -112,7 +56,7 @@ public class Tensor {
   // for. The number of tensors in this array is also the readCount for this
   // tensor's MPSTemporaryImage.
   var next: [Tensor] = []
-  var previous: [Tensor] = []
+  public var previous: [Tensor] = [] // TODO: make only read accessible from outside or only for TensorDumper
 
   // The shape of the tensor is determined by its input tensor and the layer.
   public var shape = DataShape()
@@ -130,7 +74,7 @@ public class Tensor {
 
   // Used to set destinationImage for collecting the output from
   // multiple layers into one image.
-  var destinationImage = 0
+  public var destinationImageNumber = 0 // TODO: make only read accessible from outside or only for TensorDumper
 
   // If this is set, the layer will write into the MPSImage for the destination
   // tensor. If nil, a new (temporary) image is allocated for the tensor and we
@@ -164,14 +108,12 @@ public class Tensor {
         }
         set(newImage) {
           if _image != nil {
-            let layerName = layer?.name ?? shortId
-            print("Remove output image for Tensor:" + layerName + ", owners = \(model!.imageInfos[_image!]!.owners)")
+            //print("Remove output image for Tensor:" + layer?.name ?? shortId + ", owners = \(model!.imageInfos[_image!]!.owners)")
             model!.removeOwner(for: self, of: _image!)
           }
           if newImage != nil {
             model!.addOwner(for: self, of: newImage!)
-            let layerName = layer?.name ?? shortId
-            print("Set output image for Tensor:" + layerName + ", owners = \(model!.imageInfos[newImage!]!.owners)")
+            //print("Set output image for Tensor:" + layer?.name ?? shortId + ", owners = \(model!.imageInfos[newImage!]!.owners)")
           }
           _image = newImage
           //print(self," - image set to", String(describing: _image))
@@ -181,15 +123,35 @@ public class Tensor {
   // for this tensor, but also tells us when to set the `image` property to nil
   // when we're done using it (so that we don't hang on to images for longer
   // than necessary).
-  var readCount = 1
+  var _readCount = 0
+  var readCount : Int {
+    get {
+      return _readCount
+    }
+    set(newCount) {
+      //print("Setting readCount for tensor \(shortId) to \(newCount)")
+      _readCount = newCount
+    }
+  }
   var releasedReadCount : String?
   
   // Tensor with mutiple layers writing into maintain a written count, too
   // so they won't be discarded too early until all the inbound layers have
   // written into the underlying image
   // managed
-  func written() {
+  func written(byLayer: Layer?) {
     model!.written(image: _image!)
+    if let image = self.image as? MPSTemporaryImage {
+      if (self.model?.debugTrace)! {
+        print("Tensor:written: Image for input tensor \(self.shortId) of layer \(String(describing: byLayer?.name)), has readCount = \(image.readCount)")
+      }
+      if (image.readCount > 0) {
+        if (self.model?.debugTrace)! {
+          print("Tensor:written: decrementing readcount for input image of \(self.shortId) by 1")
+        }
+        image.readCount -= 1
+      }
+    }
   }
 
   fileprivate init() { }
@@ -213,11 +175,13 @@ public class Tensor {
     input.next.append(self)
     self.previous.append(input)
     shape = layer.outputShape(for: input.shape)
-    print("creating new shape of input:", input, "to layer:", layer,"shape:",shape)
+    //print("creating new shape of input:", input, "to layer:", layer,"shape:",shape)
   }
 
   func releasePrevious(byLayer: Layer?) {
-    print("release: releasing \(previous.count) previous layers")
+    if (self.model?.debugTrace)! {
+      print("releasePrevious: releasing \(previous.count) previous layers")
+    }
     for prev in previous {
       prev.release(byLayer: byLayer)
     }
@@ -230,7 +194,9 @@ public class Tensor {
   // deletes tensor's image with proper read-count
   func deleteTempImageForced() {
     if let image = self.image as? MPSTemporaryImage {
-      print("Force-deleting temp image of input tensor \(self.shortId), readCount was \(readCount)")
+      if (self.model?.debugTrace)! {
+        print("Force-deleting temp image of input tensor \(self.shortId), readCount was \(readCount)")
+      }
       image.readCount = 0
       self.image = nil
     }
@@ -243,31 +209,40 @@ public class Tensor {
     }
     
     if self.layer == nil {
-      print("release: tensor does not belong to a layer, tensor = "+self.debugDescription)
+      if (self.model?.debugTrace)! {
+        print("release: tensor does not belong to a layer, tensor = "+self.debugDescription)
+      }
       releasePrevious(byLayer: byLayer)
     }
     
-    //print("Decrementing readcount for input tensor \(self.shortId) of layer \(String(describing: byLayer?.name)), current readCount = \(self.readCount)")
+    if (self.model?.debugTrace)! {
+      print("Decrementing readcount for input tensor \(self.shortId) of layer \(String(describing: byLayer?.name)), current readCount = \(self.readCount)")
+    }
     self.readCount -= 1
-    if let image = self.image as? MPSTemporaryImage {
-      //print("Image for input tensor \(self.shortId) of layer \(String(describing: byLayer?.name)), has readCount = \(image.readCount)")
-      if (image.readCount > 0) {
-        //print("decrementing readcount for input image by its writtenCount = \(model!.imageInfos[image]!.writtenCount)")
-        image.readCount -= model!.imageInfos[image]!.writtenCount
+    
+    if (self.model?.debugTrace)! {
+      if let image = self.image as? MPSTemporaryImage {
+        print("Image for input tensor \(self.shortId) of layer \(String(describing: byLayer?.name)), has readCount = \(image.readCount)")
       }
     }
     
     if self.readCount <= 0 {
-      //print("Deleting image of input tensor \(self.shortId) of layer \(String(describing: byLayer?.name))")
+      if (self.model?.debugTrace)! {
+        print("Deleting image of input tensor \(self.shortId) of layer \(String(describing: byLayer?.name))")
+      }
       
       if let image = self.image as? MPSTemporaryImage {
         self.image = nil
+
         if model!.imageInfos[image]!.owners.count == 0 {
           self.releasedReadCount = image.readCount.description
+          image.readCount = 0 // We should not need this but inn some model topologies we end up with a positive image readCount
         } else {
           self.releasedReadCount = image.readCount.description + "*"
         }
-        //print("Image for input tensor \(self.shortId) of layer \(String(describing: byLayer?.name)), released with readCount = \(image.readCount), owners=\(model!.imageInfos[image]!.owners.description)")
+        if (self.model?.debugTrace)! {
+          print("Image for input tensor \(self.shortId) of layer \(String(describing: byLayer?.name)), released with readCount = \(image.readCount), owners=\(model!.imageInfos[image]!.owners.description)")
+        }
       } else {
         self.image = nil
       }
@@ -311,12 +286,12 @@ public class Tensor {
 
     let releaseReadCount = "\(self.releasedReadCount?.description ?? "-")"
 
-    var readCount = "-"
+    var iReadCount = "-"
     if let tempImage = self.image as? MPSTemporaryImage {
-      readCount = "\(tempImage.readCount)"
+      iReadCount = "\(tempImage.readCount)"
     }
     let indicator = isCurrent ? marker : ""
-    let s = String(format: "%@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@", n, t, o, p, tensorReadCount, ios, imageDescr, writtenCount, readCount, releaseReadCount, indicator)
+    let s = String(format: "%@ %@ %@ %@ %@ %@ %@ %@ %@ %@ %@", n, t, o, p, tensorReadCount, ios, imageDescr, writtenCount, iReadCount, releaseReadCount, indicator)
     //      + "\(destinationChannelOffset)"
     return s
   }
@@ -377,6 +352,7 @@ public func Concatenate(_ tensors: [Tensor], name:String = "") -> Tensor {
   var maxHeight = 0
   var channels = 0
 
+  var input_names_list = ""
   for input in tensors {
     // Tell the other tensor that it should write into our image and not
     // an image of its own.
@@ -392,11 +368,16 @@ public func Concatenate(_ tensors: [Tensor], name:String = "") -> Tensor {
     // will fail and the graph will be incomplete.
     input.next.append(merged)
     merged.previous.append(input)
+    input_names_list += input.shortId + "-"
   }
 
   merged.shape = DataShape(width: maxWidth, height: maxHeight, channels: channels)
   merged.typeName = "Concat"
-  merged.id = name
+  if name != "" {
+    merged.id = name
+  } else {
+    merged.id = input_names_list
+  }
 
   // Note: We don't fill in the `input` property because we potentially have
   // multiple inputs, not just one. This is no problem because Concatenate is
@@ -409,7 +390,7 @@ public func Concatenate(_ tensors: [Tensor], name:String = "") -> Tensor {
  Collects several tensors into images of one tensor.
  */
 public func Collect(_ tensors: [Tensor], name:String = "") -> Tensor  {
-  print("Creating Collection Tensor of:",tensors)
+  //print("Creating Collection Tensor of:",tensors)
   let collected = Tensor()
   
   var image = 0
@@ -418,13 +399,14 @@ public func Collect(_ tensors: [Tensor], name:String = "") -> Tensor  {
   let channels = tensors[0].shape.channels
   let width = tensors[0].shape.width
   let height = tensors[0].shape.height
+  var input_names_list = ""
   for input in tensors {
     //precondition(input.shape.channels != channels, "Number of channels must be equal in merge channel")
-    print("channels:",channels, "input.shape.channels:",input.shape.channels)
+    //print("channels:",channels, "input.shape.channels:",input.shape.channels)
     
     // Tell the other tensor that it should write into our image and not
     // an image of its own.
-    input.destinationImage = image
+    input.destinationImageNumber = image
     input.destinationTensor = collected
     
     // Figure out how large to make the collecting tensor's destination image.
@@ -441,12 +423,17 @@ public func Collect(_ tensors: [Tensor], name:String = "") -> Tensor  {
     // will fail and the graph will be incomplete.
     input.next.append(collected)
     collected.previous.append(input)
+    input_names_list += input.shortId + "-"
   }
   
   collected.shape = DataShape(width: width, height: height, channels: channels, numImages:image)
   collected.typeName = "Collect"
-  collected.id = name
-  print("Collected Shape:",collected.shape)
+  if name != "" {
+    collected.id = name
+  } else {
+    collected.id = input_names_list
+  }
+  //print("Collected Shape:",collected.shape)
 
   // Note: We don't fill in the `input` property because we potentially have
   // multiple inputs, not just one. This is no problem because Concatenate is

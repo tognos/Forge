@@ -65,6 +65,7 @@ public protocol TensorDumper {
 public class Model {
   let input: Tensor
   let output: Tensor
+  public var debugTrace = false
 
   public class ImageInfo {
     init(owners : Set<Tensor> = [], writtenCount : Int = 0) {
@@ -77,7 +78,7 @@ public class Model {
       get {
         var line = "written " + writtenCount.description + ", owners:"
         for tensor in owners {
-          line += tensor.shortId
+          line += tensor.shortId + " "
         }
         return line
       }
@@ -296,10 +297,10 @@ public class Model {
   
   func written(image: MPSImage) {
     imageInfos[image]!.writtenCount += 1
-    print("Written to image \(image), info: \(imageInfos[image]!.description)")
+    //print("Written to image \(image), info: \(imageInfos[image]!.description)")
   }
   func addOwner(for owner: Tensor, of image: MPSImage) {
-    print("Adding owner \(owner) for image \(image)")
+    //print("Adding owner \(owner) for image \(image)")
     if imageInfos[image] != nil {
       if imageInfos[image]!.owners.contains(owner) {
         fatalError("tensor \(owner) already owns image \(image)")
@@ -321,16 +322,18 @@ public class Model {
     }
   }
   func addOutputImage(for tensor: Tensor) {
-    print("adding output image for tensor", tensor)
+    //print("adding output image for tensor", tensor)
     /*
     guard let imgDesc = imageDescriptors[tensor.shape] else {
       fatalError("Error: could not find image descriptor for shape \(tensor.shape)")
     }
-    */
+     */
+    // create a new image descriptor for output images that need to have a storage mode
+    // .shared because we want to access them with the CPU
     let imgDesc = tensor.shape.createImageDescriptor()
+    imgDesc.storageMode = .shared
     // Since the GPU can be working on several inputs at once, we need to
     // allocate multiple images.
-    imgDesc.storageMode = .shared
     var array: [MPSImage] = []
     for _ in 0..<inflightBuffers {
       let image = MPSImage(device: device, imageDescriptor: imgDesc)
@@ -391,6 +394,7 @@ public class Model {
     guard compiled else { return "(Model is not compiled.)" }
     
     var s = "\n"
+    s += "# Install dot and graphviz, copy to fileName.dot and convert with 'dot -Tpng -o fileName.png fileName.dot'\n"
     s += "digraph G {\n"
     s += "concentrate=True;\n"
     s += "rankdir=TB;\n"
@@ -412,16 +416,16 @@ public class Model {
   }
 
   func reset() {
-    print("Clearing imageInfos")
+    //print("Clearing imageInfos")
     for tensor in tensors {
       tensor.release()
-      tensor.readCount = 0
+      tensor.readCount = tensor.next.count
       tensor.releasedReadCount = nil
     }
     imageInfos = [:]
   }
   func clearTempImages() {
-    print("Clearing temp images")
+    //print("Clearing temp images")
     for tensor in tensors {
       tensor.deleteTempImageForced()
     }
@@ -430,7 +434,7 @@ public class Model {
    Encodes the GPU commands for a forward pass of the neural network.
    */
 
-  public func encode(commandBuffer: MTLCommandBuffer, texture: MTLTexture?, inflightIndex: Int, mpsImage : MPSImage? = nil, debugOutput : Tensor?) {
+  public func encode(commandBuffer: MTLCommandBuffer, texture: MTLTexture?, inflightIndex: Int, mpsImage : MPSImage? = nil, debugOutput : Tensor? = nil) {
     //let startTime = CACurrentMediaTime()
     //print("====== Starting model encode ======, inflightIndex =",inflightIndex)
     
@@ -439,9 +443,10 @@ public class Model {
       print("Error: graph has not been compiled yet")
       return
     }
+    reset()
 
-    print("Initial imageInfos:")
-    print(imageInfosDescription)
+    //print("Initial imageInfos:")
+    //print(imageInfosDescription)
     
     //MPSTemporaryImage.prefetchStorage(with: commandBuffer,
     //                                  imageDescriptorList: imageDescriptorList)
@@ -456,7 +461,7 @@ public class Model {
     
     var sourceImage: MPSImage?
     if (mpsImage == nil) {
-      if firstLayerEatsTexture {
+      if firstLayerEatsTexture && (debugOutput != nil && debugOutput != tensors[0]) {
         sourceTexture = texture
       } else {
         sourceImage = MPSImage(texture: texture!, featureChannels: 3)
@@ -469,9 +474,16 @@ public class Model {
     tensors[0].image = sourceImage
     
     for tensor in tensors {
-      //print("Model: encoding for", tensor.debugDescription)
-      //print(self.debugSummary(current: tensor, marker: "<--"))
+      if debugTrace {
+        print("Model: encoding for", tensor.debugDescription)
+        print(self.debugSummary(current: tensor, marker: "<--", debugTensor: debugOutput))
+      }
+      
       encode(tensor: tensor, commandBuffer: commandBuffer, inflightIndex: inflightIndex, debugTensor: debugOutput)
+      
+      if debugTrace {
+        print("Model: done encoding for", tensor.debugDescription)
+      }
       if debugOutput != nil && tensor == debugOutput {
         print("Reached debug output tensor", tensor.shortId)
         if addedDebugOut {
@@ -490,32 +502,32 @@ public class Model {
   func encode(tensor: Tensor, commandBuffer: MTLCommandBuffer, inflightIndex: Int, debugTensor: Tensor?) {
     // If a tensor does not have a layer (true for Input and Concatenate), then 
     // pass through the source image unchanged.
-    // We need to set its read count properly though...
-    //tensor.writtenCount = 0
     guard let layer = tensor.layer else {
-      print("tensor does not belong to a layer, tensor = "+tensor.debugDescription)
-      tensor.readCount = tensor.next.count
+      //print("tensor does not belong to a layer, tensor = "+tensor.debugDescription)
       return
     }
     
     // If the tensor has a real MPSImage, use that. Otherwise make a temp one.
     func createImage(for tensor: Tensor) -> MPSImage {
-      print("createImage for "+tensor.debugDescription)
+      //print("createImage for "+tensor.debugDescription)
       if let images = outputImages[tensor] {
         let storedImage = images[inflightIndex]
-        print("createImage returning outputImage[tensor=\(tensor.shortId)][inflightIndex=\(inflightIndex)], image=\(storedImage)")
+        if debugTrace {
+          print("createImage returning outputImage[tensor=\(tensor.shortId)][inflightIndex=\(inflightIndex)], image=\(storedImage)")
+        }
         return storedImage
       } else {
         guard let desc = imageDescriptors[tensor.shape] else {
           fatalError("Error: no image descriptor found for shape \(tensor.shape)")
         }
-        print("createImage returning new temp image for shape \(tensor.shape)")
         let image = MPSTemporaryImage(commandBuffer: commandBuffer,
                                       imageDescriptor: desc)
-        // We have to use the image's readCount value to maintain our
-        // both read and write counts
-        //image.readCount = tensor.readCount
-        image.readCount = tensor.readCount + tensor.previous.count // add also number of inputs to bump up readcount with the writecount for this tensor
+        // We have to use the image's readCount value to maintain both read and write counts
+        // add also number of inputs to bump up readcount with the writecount for this tensor
+        image.readCount = tensor.readCount + tensor.previous.count
+        if debugTrace {
+          print("createImage returning new temp image \(image.description) with readcount \(image.readCount) (\(tensor.readCount)+\(tensor.previous.count)) for shape \(tensor.shape)")
+        }
         return image
       }
     }
@@ -524,30 +536,33 @@ public class Model {
     // destination tensor. Otherwise, make a new image.
     if let destTensor = tensor.destinationTensor {
       if let image = destTensor.image {
-        print("Tensor",tensor.shortId,"has destinationTensor",destTensor.shortId,", using dest's existing image: \(image)")
+        if debugTrace {
+          print("Tensor",tensor.shortId,"has destinationTensor",destTensor.shortId,", using dest's existing image: \(image)")
+        }
         tensor.image = image
-        /*
-        if let tempImage = tensor.image as? MPSTemporaryImage {
-          // image is referenced by two tensors, so we bump up the image readCount
-          tempImage.readCount += 1
-        }
-         */
       } else {
-        print("Tensor",tensor.shortId,"has destinationTensor",destTensor.shortId," but no image, creating new for dest and itself w. read count",destTensor.next.count)
-        destTensor.readCount = destTensor.next.count
+
         destTensor.image = createImage(for: destTensor)
-        tensor.image = destTensor.image
-        /*
-        if let tempImage = tensor.image as? MPSTemporaryImage {
-          // image is referenced by two tensors, so we bump up the image readCount
-          tempImage.readCount += 1
+        if debugTrace {
+          print("Tensor",tensor.shortId,"has destinationTensor",destTensor.shortId," but no image, creating new for dest and itself")
         }
-        */
+        if let tmpImage = destTensor.image as? MPSTemporaryImage {
+          tmpImage.readCount += 1
+          if debugTrace {
+          print("Tensor",tensor.shortId,"has destinationTensor",destTensor.shortId," but no image, got new tmp image for dest and itself w. read count",tmpImage.readCount)
+          }
+        }
+        tensor.image = destTensor.image
       }
     } else {
-      print("Tensor",tensor.shortId,"has no destinationTensor, creating new own w. read count",tensor.next.count)
-      tensor.readCount = tensor.next.count
       tensor.image = createImage(for: tensor)
+      if debugTrace {
+        if let tmpImage = tensor.image as? MPSTemporaryImage {
+          print("Tensor",tensor.shortId,"has no destinationTensor, created new own w. read count",tmpImage.readCount, "outputs:",tensor.next.count)
+        } else {
+          print("Tensor",tensor.shortId,"has no destinationTensor, created non-temporary image")
+        }
+      }
     }
     
     guard let inputTensor = tensor.input else {
@@ -555,7 +570,7 @@ public class Model {
     }
     
     if layer.wantsTextures {
-      print("layer wants texture")
+      //print("layer wants texture")
       let inputTexture: MTLTexture
       if let sourceImage = inputTensor.image {
         inputTexture = sourceImage.texture
@@ -565,7 +580,9 @@ public class Model {
         fatalError("Error: layer '\(layer.name)' expected source texture")
       }
       
-      //print(self.debugSummary(current: tensor, marker: "<*>"))
+      if debugTrace {
+        print(self.debugSummary(current: tensor, marker: "<*>", debugTensor: debugTensor))
+      }
       layer.encode(commandBuffer: commandBuffer,
                    sourceTensor: inputTensor,
                    sourceTexture: inputTexture,
@@ -579,14 +596,17 @@ public class Model {
       if imageInfos[inputTensor.image!]!.writtenCount != inputTensor.previous.count {
         fatalError("Error: input tensor \(inputTensor.shortId) has not received all its inputs yet, image=\(String(describing: inputTensor.image?.description)) written=\(imageInfos[inputTensor.image!]!.writtenCount), needed=\(inputTensor.previous.count)")
       }
-      print(self.debugSummary(current: tensor, marker: "<->", debugTensor: debugTensor))
+      //print("1)inputTensor.image=",inputTensor.image.debugDescription)
+      if debugTrace {
+        print(self.debugSummary(current: tensor, marker: "<->", debugTensor: debugTensor))
+      }
       //print(self.imageInfosDescription)
+      //print("2)inputTensor.image=",inputTensor.image.debugDescription)
 
       layer.encode(commandBuffer: commandBuffer,
                    sourceTensor: inputTensor,
                    destinationTensor: tensor)
     }
-    //print(self.debugSummary(current: tensor, marker: "-->", debugTensor: debugTensor))
 
 
     // At this point we've used the image from the sourceTensor, and should
@@ -595,9 +615,12 @@ public class Model {
     // pass through the network.
     
     inputTensor.release(byLayer: layer)
-    
-    print("Model.encode Tensor done\n")
-    print(self.imageInfosDescription)
+    if debugTrace {
+      print(self.debugSummary(current: tensor, marker: "-->", debugTensor: debugTensor))
+    }
+
+    //print("Model.encode Tensor done\n")
+    //print(self.imageInfosDescription)
 
   }
 
@@ -620,10 +643,12 @@ public class Model {
   // Runs the model synchronously and returns the result
   // This function is mainly intended for testing and debugging and
   // should not be used in production code where performance is desired
-  public func evaluate(commandQueue: MTLCommandQueue, device : MTLDevice, input: MPSImage, debugOutput : Tensor? = nil) -> MPSImage {
+  public func evaluate(commandQueue: MTLCommandQueue, device : MTLDevice, input: MPSImage?, inputTexure: MTLTexture? = nil, debugOutput : Tensor? = nil) -> MPSImage {
+    
+    //print("inputTexure:",inputTexure.debugDescription)
     autoreleasepool {
       guard let commandBuffer = commandQueue.makeCommandBuffer() else { fatalError("can't make command buffer") }
-      self.encode(commandBuffer: commandBuffer, texture: nil, inflightIndex: 0, mpsImage: input, debugOutput: debugOutput)
+      self.encode(commandBuffer: commandBuffer, texture: inputTexure, inflightIndex: 0, mpsImage: input, debugOutput: debugOutput)
       commandBuffer.commit()
       self.clearTempImages()
       commandBuffer.waitUntilCompleted()
@@ -635,7 +660,7 @@ public class Model {
     }
   }
 
-  public func debugEvaluate(commandQueue: MTLCommandQueue, device : MTLDevice, input: MPSImage, dumper: TensorDumper) -> Void {
+  public func debugEvaluate(commandQueue: MTLCommandQueue, device : MTLDevice, input: MPSImage?, inputTexure: MTLTexture? = nil, dumper: TensorDumper) -> Void {
     for tensor in tensors {
       var ok = true
       for out in tensor.next {
@@ -645,11 +670,12 @@ public class Model {
       }
       if ok {
         print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-        print("Running up to tensor"+tensor.shortId)
-        let _ = evaluate(commandQueue: commandQueue, device: device, input: input, debugOutput: tensor)
+        print("Running up to tensor: "+tensor.shortId)
+        let _ = evaluate(commandQueue: commandQueue, device: device, input: input, inputTexure: inputTexure, debugOutput: tensor)
         precondition(dumper.dump(tensor: tensor), "dumper failed")
+        print("ImageInfos after evaluating:\n"+imageInfosDescription)
+        self.clearTempImages()
         self.reset() // make sure our output image will be properly cleared
-        print("ImageInfos:\n"+imageInfosDescription)
       } else {
         print("Skipping tensor "+tensor.shortId+" because destination tensor has multiple inputs")
       }

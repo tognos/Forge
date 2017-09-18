@@ -78,3 +78,6 @@ public class TransposeChannelsKernel {
     }
   }
 }
+
+extension TransposeChannelsKernel: CustomKernel { }
+

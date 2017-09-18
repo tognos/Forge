@@ -130,7 +130,7 @@ class CameraViewController: UIViewController {
 
     runner.predict(network: network, texture: texture, queue: .main) { result in
       self.show(predictions: result.predictions)
-      print("runner.predict:", result.predictions)
+      //print("runner.predict:", result.predictions)
 
       if let texture = result.debugTexture {
         self.debugImageView.image = UIImage.image(texture: texture)

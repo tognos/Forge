@@ -108,7 +108,7 @@ public class ParameterLoaderFromMemory: ParameterData {
     private(set) public var pointer: UnsafeMutablePointer<Float>
     
     public init?(name: String, count: Int, weights: [String : [Float]], suffix: String = "") {
-        
+        print("ParameterLoaderFromMemory: Loading params for \(name+suffix)")
         let data = weights[name+suffix]
         
         if let data : [Float] = data {
@@ -124,7 +124,26 @@ public class ParameterLoaderFromMemory: ParameterData {
     }
     
     deinit {
-        free(pointer)
+        //free(pointer)
+    }
+}
+
+// A loader that allows to load data either either from the bundle or for selective layers data from memory that
+// has been modified for debug purposes
+public class ParameterLoaderBundleOrMemory: ParameterData {
+    private(set) public var pointer: UnsafeMutablePointer<Float>
+    
+    private var loader: ParameterData?
+    
+    public init?(name: String, count: Int, prefix: String = "", suffix: String = "", ext: String, weights: [String : [Float]]) {
+        let data = weights[name+suffix]
+        if data != nil {
+            self.loader = ParameterLoaderFromMemory(name: name, count: count, weights: weights, suffix: suffix)
+            self.pointer = loader!.pointer
+        } else {
+            self.loader = ParameterLoaderBundle(name: name, count: count, prefix: prefix, suffix: suffix, ext: ext)
+            self.pointer = loader!.pointer
+        }
     }
 }
 

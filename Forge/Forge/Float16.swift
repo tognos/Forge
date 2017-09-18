@@ -40,7 +40,11 @@ public func float16to32(_ input: UnsafeMutablePointer<Float16>, count: Int) -> [
   float16to32(input: input, output: &output, count: count)
   return output
 }
-
+public func uint8toFloat32(_ input: UnsafeMutablePointer<UInt8>, count: Int) -> [Float] {
+    var output = [Float](repeating: 0, count: count)
+    uint8toFloat32(input: input, output: &output, count: count)
+    return output
+}
 /**
   Converts a buffer of float-16s into a buffer of `Float`s, in-place.
 */
@@ -51,6 +55,30 @@ public func float16to32(input: UnsafeMutablePointer<Float16>, output: UnsafeMuta
   if vImageConvert_Planar16FtoPlanarF(&bufferFloat16, &bufferFloat32, 0) != kvImageNoError {
     print("Error converting float16 to float32")
   }
+}
+/**
+ Converts a buffer of UIn8 into a buffer of `Float`s, in-place.
+ */
+public func uint8toFloat32(input: UnsafeMutablePointer<UInt8>, output: UnsafeMutablePointer<Float32>, count: Int) {
+    for i in 0..<count {
+        output[i] = Float(input[i])
+    }
+    /*
+    var bufferUInt32 = vImage_Buffer(data: input,  height: 1, width: UInt(count), rowBytes: count)
+    var bufferFloat32_a = vImage_Buffer(data: output, height: 1, width: UInt(count), rowBytes: count * 4)
+    var bufferFloat32_r = vImage_Buffer(data: output, height: 1, width: UInt(count), rowBytes: count * 4)
+    var bufferFloat32_g = vImage_Buffer(data: output, height: 1, width: UInt(count), rowBytes: count * 4)
+    var bufferFloat32_b = vImage_Buffer(data: output, height: 1, width: UInt(count), rowBytes: count * 4)
+
+    if  vImageConvert_ARGBFFFFtoPlanarF(&bufferUInt32,
+                                        &bufferFloat32_a,
+                                        &bufferFloat32_r,
+                                        &bufferFloat32_g,
+                                        &bufferFloat32_b,
+                                        vImage_Flags(kvImageLeaveAlphaUnchanged)) != kvImageNoError {
+        print("Error converting uint8 to float32")
+    }
+    */
 }
 
 /**
@@ -73,3 +101,14 @@ public func float32to16(input: UnsafeMutablePointer<Float>, output: UnsafeMutabl
     print("Error converting float32 to float16")
   }
 }
+
+public func float16From32(_ val: Float32) -> Float16 {
+    var result : Float16 = 0
+    storeAsF16(val, &result)
+    return result
+}
+public func float32From16(_ val: Float16) -> Float32 {
+    var xval: Float16 = val // did do find a way to pass the argument just with casting that compiles
+    return loadFromF16(&xval)
+}
+

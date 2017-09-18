@@ -72,6 +72,14 @@ extension DataShape: CustomDebugStringConvertible {
   }
 }
 
+extension DataShape {
+  public var asArray: [Int] {
+    get {
+      return [width, height, channels, numImages]
+    }
+  }
+}
+
 extension DataShape: Hashable {
   // Needs to be hashable because we'll create a cache of MPSImageDescriptor
   // objects. The DataShape is the key they're stored under.

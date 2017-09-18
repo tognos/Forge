@@ -41,9 +41,15 @@ func offsetForConvolution(padding: PaddingType,
   if padding == .same {
     let padH = (destinationHeight - 1) * strideInPixelsY + kernelHeight - sourceHeight
     let padW = (destinationWidth  - 1) * strideInPixelsX + kernelWidth  - sourceWidth
-    return MPSOffset(x: (kernelWidth - padW)/2, y: (kernelHeight - padH)/2, z: 0)
+    //print("offsetForConvolution same: padH: \(padH), padW: \(padW)" )
+    let offset = MPSOffset(x: (kernelWidth - padW)/2, y: (kernelHeight - padH)/2, z: 0)
+    //print("offsetForConvolution same: offset: \(offset)" )
+    return offset
   } else {
-    return MPSOffset(x: kernelWidth/2, y: kernelHeight/2, z: 0)
+    let offset = MPSOffset(x: kernelWidth/2, y: kernelHeight/2, z: 0)
+    //let offset = MPSOffset(x: 0, y: 0, z: 0)
+    //print("offsetForConvolution valid: offset: \(offset)" )
+    return offset
   }
 }
 
@@ -174,9 +180,7 @@ public class MPSCNNLayer: Layer {
     // destination image (and write to that same destination image), we would
     // set mpscnn.offset and clipRect here using sourceTensor's channel offset.
 
-    //func debug(image: MPSImage) -> String {
-        
-    //}
+    /*
     if false {
         print("MPSCNNLayer: Encoding for layer:", self)
         print("MPSCNNLayer:sourceTensor:",sourceTensor,", destinationTensor:",destinationTensor)
@@ -187,14 +191,15 @@ public class MPSCNNLayer: Layer {
         print("MPSCNNLayer: destinationTensor image:",image.debugDescription)
       }
     } else {
-        //print("MPSCNNLayer: Encoding for layer:", self)
+        print("MPSCNNLayer: Encoding for layer:", self)
     }
-
+    */
+    
     mpscnn.destinationFeatureChannelOffset = destinationTensor.destinationChannelOffset
     //print("mpscnn.destinationFeatureChannelOffset:",mpscnn.destinationFeatureChannelOffset)
 
-    mpscnn.offset = MPSOffset(x: 0, y: 0, z: 0)
-    mpscnn.clipRect.origin.z = destinationTensor.destinationImage
+    //mpscnn.offset = MPSOffset(x: 0, y: 0, z: 0)
+    mpscnn.clipRect.origin.z = destinationTensor.destinationImageNumber
     mpscnn.clipRect.size.depth = 1
     //print("cliprect:", mpscnn.debugDescription)
     
@@ -204,7 +209,7 @@ public class MPSCNNLayer: Layer {
     mpscnn.encode(commandBuffer: commandBuffer,
                   sourceImage: sourceTensor.image!,
                   destinationImage: destinationTensor.image!)
-    destinationTensor.written()
+    destinationTensor.written(byLayer: self)
 //    if let image = sourceTensor.image as? MPSTemporaryImage {
 //        print("After encode: sourceImage.readCount = \(image.readCount)")
 //    }
@@ -256,7 +261,7 @@ public class SpaceToDepthX2: Layer {
                             MTLRegionMake3D(width, 0,      0, width, height, 1),
                             MTLRegionMake3D(0,     height, 0, width, height, 1),
                             MTLRegionMake3D(width, height, 0, width, height, 1)]
-        let destOrigin = MTLOrigin(x: 0, y: 0, z: destinationTensor.destinationImage)
+        let destOrigin = MTLOrigin(x: 0, y: 0, z: destinationTensor.destinationImageNumber)
         
         let srcChannels = sourceTensor.shape.channels
         let srcSlices = (srcChannels + 3)/4
@@ -284,7 +289,7 @@ public class SpaceToDepthX2: Layer {
         if let image = sourceImage as? MPSTemporaryImage {
             image.readCount -= 1
         }
-        destinationTensor.written()
+        destinationTensor.written(byLayer: self)
     }
 }
 
@@ -294,17 +299,22 @@ public class ZeroPadding: Layer {
    Creates a new layer that creates an output enlarged by outer zero padding
    */
   
-  let top_padding: Int
-  let bottom_padding: Int
-  let left_padding: Int
-  let right_padding: Int
+  let topPadding: Int
+  let bottomPadding: Int
+  let leftPadding: Int
+  let rightPadding: Int
+  let padValue: Float
+  
+  var padKernel: PadKernel? = nil
 
   public init(tblr_padding: (Int, Int, Int, Int),
+              padValue: Float = 0,
               name: String = "") {
-    self.top_padding = tblr_padding.0
-    self.bottom_padding = tblr_padding.1
-    self.left_padding = tblr_padding.2
-    self.right_padding = tblr_padding.3
+    self.topPadding = tblr_padding.0
+    self.bottomPadding = tblr_padding.1
+    self.leftPadding = tblr_padding.2
+    self.rightPadding = tblr_padding.3
+    self.padValue = padValue
     super.init(name: name)
   }
   
@@ -313,11 +323,45 @@ public class ZeroPadding: Layer {
   }
   
   override public func outputShape(for inputShape: DataShape) -> DataShape {
-    return DataShape(width: inputShape.width + left_padding + right_padding,
-                     height: inputShape.height + top_padding + bottom_padding,
+    return DataShape(width: inputShape.width + leftPadding + rightPadding,
+                     height: inputShape.height + topPadding + bottomPadding,
                      channels: inputShape.channels)
   }
-  
+  override public func createCompute(device: MTLDevice,
+                                     inputShape: DataShape,
+                                     outputShape: DataShape,
+                                     weights: ParameterData?,
+                                     biases: ParameterData?) throws {
+    self.padKernel = PadKernel(device: device,
+                               tblr_padding: (topPadding, bottomPadding, leftPadding, rightPadding),
+                               padValue: self.padValue,
+                               featureChannels: inputShape.channels,
+                               writesToArray: outputShape.channels > 4 || outputShape.numImages > 1)
+  }
+  override public func encode(commandBuffer: MTLCommandBuffer,
+                              sourceTensor: Tensor,
+                              destinationTensor: Tensor) {
+    precondition(destinationTensor.destinationChannelOffset % 4 == 0, "destinationChannelOffset must be a multiple of 4")
+    let destinationSliceOffset = (destinationTensor.destinationChannelOffset / 4) +
+      destinationTensor.destinationImageNumber * (sourceTensor.shape.channels+3)/4
+    self.padKernel?.encode(commandBuffer: commandBuffer,
+                           sourceImage: sourceTensor.image!,
+                           destinationImage: destinationTensor.image!,
+                           destinationSliceOffset: destinationSliceOffset)
+    /*
+    if let image = sourceTensor.image! as? MPSTemporaryImage {
+      image.readCount -= 1
+    }
+     */
+    destinationTensor.written(byLayer: self)
+    
+  }
+
+/*
+   // This version using the blitencoder works, but depending on what happens before
+   // it exhibits strange behavior like rescaling all values to a range from 0..1,
+   // returning an all black image or strange data; therefore we use a
+   // above custom kernel for the procedure
   override public func encode(commandBuffer: MTLCommandBuffer,
                               sourceTensor: Tensor,
                               destinationTensor: Tensor) {
@@ -329,7 +373,7 @@ public class ZeroPadding: Layer {
     let sourceRegion = MTLRegionMake3D(0,     0,      0,
                                        width, height, 1)
     
-    let destOrigin = MTLOrigin(x: left_padding, y: top_padding, z: destinationTensor.destinationImage)
+    let destOrigin = MTLOrigin(x: leftPadding, y: topPadding, z: destinationTensor.destinationImage)
     
     let srcChannels = sourceTensor.shape.channels
     let srcSlices = (srcChannels + 3)/4
@@ -337,9 +381,10 @@ public class ZeroPadding: Layer {
     if let blitEncoder = commandBuffer.makeBlitCommandEncoder() {
       
       let buffer = destImage.texture.buffer!
-      // __fill(_ buffer: MTLBuffer, range: NSRange, value: UInt8)
       blitEncoder.__fill(buffer, range: NSMakeRange(0, buffer.length), value: 0)
+      
       for slice in 0..<srcSlices {
+          print("ZeroPadding:encode: blitEncoder copying slice \(slice)")
           blitEncoder.copy(from: sourceImage.texture,
                            sourceSlice: slice,
                            sourceLevel: 0,
@@ -352,7 +397,10 @@ public class ZeroPadding: Layer {
         
       }
       
+      print("ZeroPadding:encode: sourceImage=\(sourceImage.debugDescription)\nsourceImage.texture=\(sourceImage.texture.debugDescription)")
+      print("ZeroPadding:encode: destImage=\(destImage.debugDescription)\ndestImage.texture=\(destImage.texture.debugDescription)")
       blitEncoder.endEncoding()
+      //blitEncoder.synchronize(resource: destImage.texture)
     } else {
       print("Error: ZeroPadding2D.encode: cant create blitEncoder")
     }
@@ -361,6 +409,7 @@ public class ZeroPadding: Layer {
     }
     destinationTensor.written()
   }
+ */
 }
 
 public class MergeOperation: Layer {
@@ -395,7 +444,7 @@ public class MergeOperation: Layer {
     mopKernel!.encode(commandBuffer: commandBuffer,
                sourceImage: sourceTensor.image!,
                destinationImage: destinationTensor.image!)
-    destinationTensor.written()
+    destinationTensor.written(byLayer: self)
   }
     override public func createCompute(device: MTLDevice,
                                        inputShape: DataShape,
@@ -848,7 +897,7 @@ public class Resize: Layer {
     lanczos.encode(commandBuffer: commandBuffer,
                    sourceTexture: sourceTexture,
                    destinationTexture: destinationTensor.image!.texture)
-    destinationTensor.written()
+    destinationTensor.written(byLayer: self)
   }
 
   /**
@@ -947,6 +996,7 @@ public class Custom: Layer {
     custom.encode(commandBuffer: commandBuffer,
                   sourceImage: sourceTensor.image!,
                   destinationImage: destinationTensor.image!)
+    destinationTensor.written(byLayer: self)
   }
 }
 

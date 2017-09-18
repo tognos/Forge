@@ -50,20 +50,25 @@ class ViewController: UIViewController {
     arrayTests.testArgsort()
     arrayTests.testGather()
     arrayTests.testReshape()
+    arrayTests.testTranspose()
+    
 
     let layerTests = LayerTests()
     
     layerTests.testMPSImages()
     layerTests.testActivationLayer()
-    layerTests.testZeroPaddingLayer()
     layerTests.testSpaceToDepthX2Layer()
     layerTests.testCollect()
     layerTests.testSimpleMerge()
- 
+    
+
     layerTests.testComplexMerge()
-    //for i in 0..<4 {
-    layerTests.testResNet(debug: false)
-    //}
+    layerTests.testZeroPaddingLayer_1ch()
+    layerTests.testZeroPaddingLayer_3ch()
+    //layerTests.testZeroPaddingLayer_3ch_Image()
+ 
+    layerTests.testSubtractMean()
+    layerTests.testResNet(debug: true)
 
 /*
     let basicConvTests = BasicConvolutionTests()
