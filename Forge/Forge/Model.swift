@@ -485,12 +485,16 @@ public class Model {
         print("Model: done encoding for", tensor.debugDescription)
       }
       if debugOutput != nil && tensor == debugOutput {
-        print("Reached debug output tensor", tensor.shortId)
+        if debugTrace {
+          print("Reached debug output tensor", tensor.shortId)
+        }
         if addedDebugOut {
           // remove output image so it is a temporary image in the next run
           removeOutputImage(for: debugOutput!)
         }
-        print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+        if debugTrace {
+          print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+        }
         return
       }
     }
@@ -669,11 +673,15 @@ public class Model {
         }
       }
       if ok {
-        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-        print("Running up to tensor: "+tensor.shortId)
+        if debugTrace {
+          print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+          print("Running up to tensor: "+tensor.shortId)
+        }
         let _ = evaluate(commandQueue: commandQueue, device: device, input: input, inputTexure: inputTexure, debugOutput: tensor)
         precondition(dumper.dump(tensor: tensor), "dumper failed")
-        print("ImageInfos after evaluating:\n"+imageInfosDescription)
+        if debugTrace {
+          print("ImageInfos after evaluating:\n"+imageInfosDescription)
+        }
         self.clearTempImages()
         self.reset() // make sure our output image will be properly cleared
       } else {

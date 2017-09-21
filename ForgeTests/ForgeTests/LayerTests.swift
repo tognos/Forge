@@ -87,7 +87,7 @@ public class DocumentDirectoryDumper : TensorDumper {
     var ok = false
     if tensor.shape.numImages == 1 {
       let fileName = filePrefix + "-" + tensor.shortId + ".floats"
-      let rawData = tensor.image!.toFloatArrayChannelsFirst()
+      let rawData = tensor.image!.toFloatArrayChannelsInterleaved()
       ok = rawData.saveInDocumentDirectory(fileName: fileName)
       if ok {
         shapes[fileName] = tensor.shape.asArray
@@ -97,7 +97,7 @@ public class DocumentDirectoryDumper : TensorDumper {
       print("DocumentDirectoryDumper: Tensor \(tensor.shortId) has \(tensor.shape.numImages) images, saving as outputs of inputs")
       for input in tensor.previous {
         print("DocumentDirectoryDumper: Saving output for Tensor \(input.shortId) images, saving as outputs of inputs")
-        let rawData = tensor.image!.toFloatArrayChannelsFirst(fromImage: input.destinationImageNumber, numImages:1)
+        let rawData = tensor.image!.toFloatArrayChannelsInterleaved(fromImage: input.destinationImageNumber, numImages:1)
         let fileName = filePrefix + "-" + input.shortId + ".floats"
         ok = rawData.saveInDocumentDirectory(fileName: fileName)
         if ok {
@@ -576,6 +576,13 @@ class LayerTests {
       if !(areAlmostEqual(test_input_data_3x2_1c_1i, test_read_data_3x2_1c_1i, maxError: maxError, reportUnequal: printLocation)) {
         fatalError("Assertion failed: \(test_input_data_3x2_1c_1i) not equal to \(test_read_data_3x2_1c_1i)")
       }
+      
+      print("shape3211=\(shape(test_input_data_3x2_1c_1i))")
+      let linear = test_input_image_3x2_1c_1i.toFloatArrayChannelsInterleaved()
+      let reshaped = linear.reshaped(test_input_image_3x2_1c_1i.shapeChannelsInterleaved)
+      print("reshaped: \(reshaped)")
+      let transposedData = transposed(reshaped, axes: (2,0,1,3))
+      print("transposed: \(transposedData)")
     }
     // 2 channels
     do {
@@ -601,6 +608,7 @@ class LayerTests {
                                                          [204,205,206]],
                                                         [[301,302,303],
                                                          [304,305,306]]]]
+      print("test_input_data_3x2_3c_1i shape:\(shape(test_input_data_3x2_3c_1i))")
 //      print("test_input_data_3x2_3c_1i:",test_input_data_3x2_3c_1i)
       let test_input_image_3x2_3c_1i = MPSImage(device: device, images: test_input_data_3x2_3c_1i)
       
@@ -609,6 +617,21 @@ class LayerTests {
       
       if !(areAlmostEqual(test_input_data_3x2_3c_1i, test_read_data_3x2_3c_1i, maxError: maxError, reportUnequal: printLocation)) {
         fatalError("Assertion failed: \(test_input_data_3x2_3c_1i) not equal to \(test_read_data_3x2_3c_1i)")
+      }
+      let linear = test_input_image_3x2_3c_1i.toFloatArrayChannelsInterleaved()
+      let reshaped = linear.reshaped(test_input_image_3x2_3c_1i.shapeChannelsInterleaved)
+      print("reshaped: \(reshaped)")
+      let interleaved : [[[[Float]]]] = [[[[101, 201, 301], [102, 202, 302], [103, 203, 303]],
+                                          [[104, 204, 304], [105, 205, 305], [106, 206, 306]]]]
+      if !(areAlmostEqual(reshaped, interleaved, maxError: maxError, reportUnequal: printLocation)) {
+        fatalError("Assertion failed: \(reshaped) not equal to \(interleaved)")
+      }
+      print("interleaved shape:\(shape(interleaved))")
+      let transposedData = transposed(reshaped, axes: (0,3,1,2)) // transpose from channel interleaved to channels together
+      print("transposed: \(transposedData)")
+      let expected = [[[[101.0, 201.0, 301.0], [104.0, 204.0, 304.0]]], [[[102.0, 202.0, 302.0], [105.0, 205.0, 305.0]]], [[[103.0, 203.0, 303.0], [106.0, 206.0, 306.0]]]]
+      if !(areAlmostEqual(test_input_data_3x2_3c_1i, transposedData, maxError: maxError, reportUnequal: printLocation)) {
+        fatalError("Assertion failed: \(test_input_data_3x2_3c_1i) not equal to \(transposedData)")
       }
     }
     // 4 channels
@@ -799,19 +822,20 @@ class LayerTests {
     let relu = MPSCNNNeuronReLU(device: device, a: 0)
     let input = Input()
     let swap_channels = Custom(TransposeChannelsKernel(device: device, featureChannels: 3, permute: [2,1,0]), name: "rgb2bgr")
+    //let swap_channels2 = Custom(TransposeChannelsKernel(device: device, featureChannels: 3, permute: [2,1,0]), name: "rgb2bgr")
     let subtract_mean = Custom(SubtractMeanColor(device:device, red: 123.68, green: 116.779, blue: 103.939, scale: 255.0), name: "subtract_mean")
-    let input_2 = input --> Resize(width: 224, height: 224) -->  swap_channels --> subtract_mean
+    let input_2 = input --> Resize(width: 224, height: 224) -->  swap_channels --> subtract_mean //--> swap_channels2
     let zero_padding2d_1 = ZeroPadding(tblr_padding: (3, 3, 3, 3), name: "zero_padding2d_1")
-    //let conv1 = Convolution(kernel: (7, 7), channels: 64, stride: (2, 2), padding: .valid, activation: relu, name: "conv1")
-    let conv1 = Convolution(kernel: (7, 7), channels: 64, stride: (2, 2), padding: .valid, activation: nil, name: "conv1")
+    let conv1 = Convolution(kernel: (7, 7), channels: 64, stride: (2, 2), padding: .valid, activation: relu, name: "conv1")
+    //let conv1 = Convolution(kernel: (7, 7), channels: 64, stride: (2, 2), padding: .valid, activation: nil, name: "conv1")
     let max_pooling2d_1 = MaxPooling(kernel: (3, 3), stride: (2, 2), name: "max_pooling2d_1")
     let res2a_branch2a = Convolution(kernel: (1, 1), channels: 64, padding: .valid, activation: relu, name: "res2a_branch2a")
     let res2a_branch2b = Convolution(kernel: (3, 3), channels: 64, activation: relu, name: "res2a_branch2b")
     let res2a_branch2c = Convolution(kernel: (1, 1), channels: 256, padding: .valid, name: "res2a_branch2c")
     let res2a_branch1 = Convolution(kernel: (1, 1), channels: 256, padding: .valid, name: "res2a_branch1")
     let activation_4 = Activation(relu, name: "activation_4")
-    //let res2b_branch2a = Convolution(kernel: (1, 1), channels: 64, padding: .valid, activation: relu, name: "res2b_branch2a")
-    let res2b_branch2a = Convolution(kernel: (1, 1), channels: 64, padding: .valid, activation: nil, name: "res2b_branch2a")
+    let res2b_branch2a = Convolution(kernel: (1, 1), channels: 64, padding: .valid, activation: relu, name: "res2b_branch2a")
+    //let res2b_branch2a = Convolution(kernel: (1, 1), channels: 64, padding: .valid, activation: nil, name: "res2b_branch2a")
     let res2b_branch2b = Convolution(kernel: (3, 3), channels: 64, activation: relu, name: "res2b_branch2b")
     let res2b_branch2c = Convolution(kernel: (1, 1), channels: 256, padding: .valid, name: "res2b_branch2c")
     let activation_7 = Activation(relu, name: "activation_7")
@@ -938,16 +962,112 @@ class LayerTests {
     var success = false
     let inflightBuffers = 1
     if debug {
+      
       /*
-
       var weights : [String : [Float]] = [:]
+
+      let identity_filter_plane : [[Float]] = [[0,0,0,0,0,0,0],
+                                               [0,0,0,0,0,0,0],
+                                               [0,0,0,0,0,0,0],
+                                               [0,0,0,1,0,0,0],
+                                               [0,0,0,0,0,0,0],
+                                               [0,0,0,0,0,0,0],
+                                               [0,0,0,0,0,0,0]]
+      let zero_filter_plane : [[Float]] =     [[0,0,0,0,0,0,0],
+                                               [0,0,0,0,0,0,0],
+                                               [0,0,0,0,0,0,0],
+                                               [0,0,0,0,0,0,0],
+                                               [0,0,0,0,0,0,0],
+                                               [0,0,0,0,0,0,0],
+                                               [0,0,0,0,0,0,0]]
+      let horizontal_filter_plane : [[Float]] = [[0,0,0,0,0,0,0],
+                                                 [0,0,0,0,0,0,0],
+                                                 [0,0,1,2,1,0,0],
+                                                 [0,0,0,0,0,0,0],
+                                                 [0,0,-1,-2,-1,0,0],
+                                                 [0,0,0,0,0,0,0],
+                                                 [0,0,0,0,0,0,0]]
+      let vertical_filter_plane : [[Float]] = [[0,0,0,0,0,0,0],
+                                               [0,0,0,0,0,0,0],
+                                               [0,0,1,0,-1,0,0],
+                                               [0,0,2,0,-2,0,0],
+                                               [0,0,1,0,-1,0,0],
+                                               [0,0,0,0,0,0,0],
+                                               [0,0,0,0,0,0,0]]
+      let edge_filter_plane : [[Float]] = [[0,0,0,0,0,0,0],
+                                           [0,0,0,0,0,0,0],
+                                           [0,0,1,2,-1,0,0],
+                                           [0,0,2,0,-2,0,0],
+                                           [0,0,1,-2,-2,0,0],
+                                           [0,0,0,0,0,0,0],
+                                           [0,0,0,0,0,0,0]]
+      let blur_filter_plane : [[Float]] =     [[0,0,0,0,0,0,0],
+                                               [0,0,0,0,0,0,0],
+                                               [0,0,1,0,-1,0,0],
+                                               [0,0,2,0,-2,0,0],
+                                               [0,0,1,0,-1,0,0],
+                                               [0,0,0,0,0,0,0],
+                                               [0,0,0,0,0,0,0]]
+      let zero_filter : [[[Float]]] = [zero_filter_plane, zero_filter_plane, zero_filter_plane]
+      let identiy_filter : [[[Float]]] = [identity_filter_plane, identity_filter_plane, identity_filter_plane]
+      let red_filter : [[[Float]]] = [identity_filter_plane, zero_filter_plane, zero_filter_plane]
+      let green_filter : [[[Float]]] = [zero_filter_plane, identity_filter_plane, zero_filter_plane]
+      let blue_filter : [[[Float]]] = [zero_filter_plane, zero_filter_plane, identity_filter_plane]
+      let hor_edge_filter : [[[Float]]] = [horizontal_filter_plane, horizontal_filter_plane, horizontal_filter_plane]
+      let vert_edge_filter : [[[Float]]] = [vertical_filter_plane, vertical_filter_plane, vertical_filter_plane]
+      let edge_filter : [[[Float]]] = [edge_filter_plane, edge_filter_plane, edge_filter_plane]
+
+      let filter_64 = [identiy_filter, zero_filter, red_filter, zero_filter, green_filter, zero_filter, blue_filter, zero_filter,
+                       zero_filter, hor_edge_filter, zero_filter, vert_edge_filter, zero_filter, edge_filter, zero_filter, identiy_filter,
+                       zero_filter, zero_filter, zero_filter, zero_filter, zero_filter, zero_filter, zero_filter, zero_filter,
+                       identiy_filter, identiy_filter,identiy_filter,identiy_filter,identiy_filter,identiy_filter,identiy_filter,identiy_filter,
+                       red_filter, red_filter, red_filter, red_filter, red_filter, red_filter, red_filter, red_filter,
+                       green_filter, green_filter, green_filter, green_filter, green_filter, green_filter, green_filter, green_filter,
+                       blue_filter, blue_filter, blue_filter, blue_filter, blue_filter, blue_filter, blue_filter, blue_filter,
+                       edge_filter, zero_filter,  edge_filter, zero_filter, edge_filter, zero_filter, edge_filter, zero_filter]
+      /*
+      var filter_64 = makeArray(dim: (64,3,7,7), value: Float(0.0))
+      filter_64[0] = identiy_filter
+      filter_64[1] = hor_edge_filter
+      */
+
+      /*
+      //let test_weights = makeArray(dim: (64,7,7,3), value: 0)
+      //let loadedWeightsShaped = loadedWeights.reshaped((3,7,7,64))
+      //let transposedWeights = transposed(loadedWeightsShaped, axes: (3,2,1,0))
+      //let flattenedWeights = flattened(transposedWeights)
+      */
+      /*
+      print("should be (64,3,7,7): filter_64 shape=\(shape(filter_64))")
+      let transposedWeights = transposed(filter_64, axes: (0,2,3,1))
+      print("transposedWeights 64,7,7,3 shape=\(shape(transposedWeights))")
+      let flattenedWeights = flattened(transposedWeights)
+       */
+      /*
       let testWeights = ParameterLoaderBundle(name: "res2b_branch2a", count: 16384, prefix: "resnet_50-",
-                                                      suffix: ".weights", ext: "bin")
+                                              suffix: ".weights", ext: "bin")
       weights["res2b_branch2a.weights"] = Array<Float>(UnsafeBufferPointer(start: testWeights!.pointer, count: 16384))
+      */
       
       let testWeights0 = ParameterLoaderBundle(name: "conv1", count: 9408, prefix: "resnet_50-",
-                                              suffix: ".weights", ext: "bin")
-      weights["conv1.weights"] = Array<Float>(UnsafeBufferPointer(start: testWeights0!.pointer, count: 9408))
+                                               suffix: ".weights", ext: "bin")
+      let loadedWeights = Array<Float>(UnsafeBufferPointer(start: testWeights0!.pointer, count: 9408))
+      /*
+      let loadedWeightsShaped = loadedWeights.reshaped((3,7,7,64))
+      let transposedWeights = transposed(loadedWeightsShaped, axes: (3,1,2,0)) // or (3,2,1,0) --> 0,81 avrg diff 22,92 max diff
+      let loadedWeightsShaped = loadedWeights.reshaped((3,7,7,64)) // best  --> 0,81 avrg
+      */
+      
+      let loadedWeightsShaped = loadedWeights.reshaped((3,7,7,64))
+      let transposedWeights = transposed(loadedWeightsShaped, axes: (3,1,2,0)) // or (3,2,1,0) --> 0,81 avrg diff 22,92 max diff
+      //let transposedWeights = transposed(loadedWeightsShaped, axes: (3,2,1,0)) // or (3,1,2,0)
+      let flattenedWeights = flattened(transposedWeights)
+      
+      // MPSCNN expects [outputChannels][kernelHeight][kernelWidth][inputChannels]
+      //_ = flattenedWeights.saveInDocumentDirectory(fileName: "test_64_7_7_3_oc_h_w_ic.floats")
+      _ = flattenedWeights.saveInDocumentDirectory(fileName: "test_conv1.floats")
+      weights["conv1.weights"] = flattenedWeights
+      //weights["conv1.biases"] = [Float](repeatElement(0, count: 64))
 
       
       success = model.compile(device: device, inflightBuffers: inflightBuffers) {
@@ -957,19 +1077,20 @@ class LayerTests {
                                                    suffix: type == .weights ? ".weights" : ".biases",
                                                    ext: "bin",
                                                    weights: weights) }
- */
+      */
+      
       success = model.compile(device: device, inflightBuffers: inflightBuffers) {
         name, count, type in ParameterLoaderBundle(name: name,
                                                            count: count,
                                                            prefix: "resnet_50-",
                                                            suffix: type == .weights ? ".weights" : ".biases",
                                                            ext: "bin") }
+     
       } else {
         success = model.compile(device: device, inflightBuffers: 1) {
           name, count, type in ParameterLoaderRandom(count: count)
         }
       }
-    
     // end of autogenerated forge net generation code
     
     if success {
@@ -988,7 +1109,7 @@ class LayerTests {
       let probabilitiesImage = model.outputImage(inflightIndex: 0)
       let probabilities = probabilitiesImage.toFloatArray()
       assert(probabilities.count == 1000)
-      print("probabilities: \(probabilitiesImage.toFloatArrayChannelsFirst())")
+      print("probabilities: \(probabilitiesImage.toFloatArrayChannelsInterleaved())")
       
       typealias Prediction = (label: String, probability: Float, index: Int)
       var result = NeuralNetworkResult<Prediction>()

@@ -71,8 +71,11 @@ extension MPSImage {
       default: fatalError("Pixel format \(pixelFormat) not supported")
     }
   }
-  // converts to a float array of layout shape [width, height, channels, images]
-  @nonobjc public func toFloatArrayChannelsLast(fromImage: Int = 0, numImages: Int = 0) -> [Float] {
+  
+  // converts to a float array that would be indexed by [image][channel][y][x]
+  // when reshaped to (width, height, channels, images)
+  
+  @nonobjc public func toFloatArrayChannelsTogether(fromImage: Int = 0, numImages: Int = 0) -> [Float] {
     let withPadding = self.toFloatArray()
     //print("toFloatArrayChannelsLast: withPadding:",withPadding)
     // Find how many elements we need to copy over from each pixel in a slice.
@@ -113,13 +116,24 @@ extension MPSImage {
     return output
   }
   @nonobjc public func toFloatArray4D() -> [[[[Float]]]] {
-    let array = self.toFloatArrayChannelsLast()
-    return array.reshaped(width, height, featureChannels, numberOfImages)
+    let array = self.toFloatArrayChannelsTogether()
+    return array.reshaped(self.shape)
   }
- 
-  // converts to a float array of layout shape [channels, width, height]
-
-  @nonobjc public func toFloatArrayChannelsFirst(fromImage: Int = 0, numImages: Int = 0) -> [Float] {
+  @nonobjc public var shape : (Int, Int, Int, Int) {
+    get {
+      return (numberOfImages, featureChannels, height, width)
+    }
+  }
+  @nonobjc public var shapeChannelsInterleaved : (Int, Int, Int, Int) {
+    get {
+      return (numberOfImages, height, width, featureChannels)
+    }
+  }
+  
+  // converts to a float array that would be indexed by [image][y][x][channel]
+  // when reshaped to (channels, height, width, images)
+  
+  @nonobjc public func toFloatArrayChannelsInterleaved(fromImage: Int = 0, numImages: Int = 0) -> [Float] {
     let withPadding = self.toFloatArray()
     
     let numComponents = (featureChannels < 3) ? featureChannels : 4

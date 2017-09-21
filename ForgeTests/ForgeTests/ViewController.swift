@@ -49,6 +49,8 @@ class ViewController: UIViewController {
     arrayTests.testArgmax()
     arrayTests.testArgsort()
     arrayTests.testGather()
+    
+    arrayTests.testMakeArray()
     arrayTests.testReshape()
     arrayTests.testTranspose()
     

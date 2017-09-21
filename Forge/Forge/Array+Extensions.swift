@@ -189,14 +189,14 @@ public func shape<T>(_ a : [T]) -> [Int] {
   
 }
 public func shape<T>(_ a : [[T]]) -> [Int] {
-  return [a[0].count, a.count]
+  return [a.count, a[0].count]
 }
 
 public func shape<T>(_ a : [[[T]]]) -> [Int] {
-  return [a[0][0].count, a[0].count, a.count]
+  return [a.count, a[0].count, a[0][0].count]
 }
 public func shape<T>(_ a : [[[[T]]]]) -> [Int] {
-  return [a[0][0][0].count, a[0][0].count, a[0].count, a.count]
+  return [a.count, a[0].count, a[0][0].count, a[0][0][0].count]
 }
 
 public func flattened<T>(_ a : [[T]]) -> [T] {
@@ -215,24 +215,23 @@ public func makeArray<T>(dim: Int, value: T) -> [T] {
   return [T](repeating: value, count: dim)
 }
 
-public func makeArray2D<T>(dim: (Int, Int), value: T) -> [[T]] {
-  return makeArray(dim: dim.1, value: makeArray(dim: dim.0, value: value))
+public func makeArray<T>(dim: (Int, Int), value: T) -> [[T]] {
+  return makeArray(dim: dim.0, value: makeArray(dim: dim.1, value: value))
 }
 
-public func makeArray3D<T>(dim: (Int, Int, Int), value: T) -> [[[T]]] {
-  return makeArray(dim: dim.2, value: makeArray2D(dim: (dim.0, dim.1), value: value))
+public func makeArray<T>(dim: (Int, Int, Int), value: T) -> [[[T]]] {
+  return makeArray(dim: dim.0, value: makeArray(dim: (dim.1, dim.2), value: value))
 }
 
-public func makeArray4D<T>(dim: (Int, Int, Int, Int), value: T) -> [[[[T]]]] {
-  return makeArray(dim: dim.3, value: makeArray3D(dim: (dim.0, dim.1, dim.2), value: value))
+public func makeArray<T>(dim: (Int, Int, Int, Int), value: T) -> [[[[T]]]] {
+  return makeArray(dim: dim.0, value: makeArray(dim: (dim.1, dim.2, dim.3), value: value))
 }
 
-public func transposed2D<T>(_ a : [[T]]) -> [[T]] {
-  var result : [[T]] = [[]]
+public func transposed<T>(_ a : [[T]]) -> [[T]] {
   let dims = shape(a)
-  let srcColumns = dims[0]
-  let srcRows = dims[1]
-  result = makeArray2D(dim: (srcRows, srcColumns), value: a[0][0])
+  let srcColumns = dims[1]
+  let srcRows = dims[0]
+  var result = makeArray(dim: (srcColumns, srcRows), value: a[0][0])
   for j in 0..<srcRows {
     for i in 0..<srcColumns {
       result[i][j] = a[j][i]
@@ -241,38 +240,33 @@ public func transposed2D<T>(_ a : [[T]]) -> [[T]] {
   return result
 }
 
-public func transposed3D<T>(_ a : [[[T]]], axes: (Int, Int, Int)) -> [[[T]]] {
-  
-  var result : [[[T]]] = [[[]]]
+public func transposed<T>(_ a : [[[T]]], axes: (Int, Int, Int)) -> [[[T]]] {
   let srcDims = shape(a)
-  let (srcColumns, srcRows, srcPlanes) = (srcDims[0],srcDims[1], srcDims[2])
+  let (srcPlanes, srcRows, srcColumns) = (srcDims[0],srcDims[1], srcDims[2])
   
   precondition(axes.0 != axes.1 && axes.0 != axes.2 && axes.1 != axes.2, "axes must be different")
   precondition((0...2).contains(axes.0) && (0...2).contains(axes.1) && (0...2).contains(axes.2), "axes must 0, 1 or 2")
   
   let destDims = (srcDims[axes.0], srcDims[axes.1], srcDims[axes.2])
   let axisArray = [axes.0, axes.1, axes.2]
-  let destAxes = axisArray.argsort(by: <)
-  
-  result = makeArray3D(dim: destDims, value: a[0][0][0])
+
+  var result = makeArray(dim: destDims, value: a[0][0][0])
   precondition(shape(result) == [destDims.0, destDims.1, destDims.2])
   for k in 0..<srcPlanes {
     for j in 0..<srcRows {
       for i in 0..<srcColumns {
         let src = [k, j, i]
-        let (di, dj, dk) = (src[destAxes[0]], src[destAxes[1]], src[destAxes[2]])
-        result[di][dj][dk] = a[k][j][i]
+        let (dk, dj, di) = (src[axisArray[0]], src[axisArray[1]], src[axisArray[2]])
+        result[dk][dj][di] = a[k][j][i]
       }
     }
   }
   return result
 }
 
-public func transposed4D<T>(_ a : [[[[T]]]], axes: (Int, Int, Int, Int)) -> [[[[T]]]] {
-  
-  var result : [[[[T]]]] = [[[[]]]]
+public func transposed<T>(_ a : [[[[T]]]], axes: (Int, Int, Int, Int)) -> [[[[T]]]] {
   let srcDims = shape(a)
-  let (srcColumns, srcRows, srcPlanes, srcCubes) = (srcDims[0],srcDims[1], srcDims[2], srcDims[3])
+  let (srcCubes, srcPlanes, srcRows, srcColumns) = (srcDims[0],srcDims[1], srcDims[2], srcDims[3])
   
   precondition(axes.0 != axes.1 && axes.0 != axes.2 && axes.0 != axes.3 &&
                          axes.1 != axes.2 && axes.1 != axes.3 &&
@@ -282,17 +276,18 @@ public func transposed4D<T>(_ a : [[[[T]]]], axes: (Int, Int, Int, Int)) -> [[[[
   
   let destDims = (srcDims[axes.0], srcDims[axes.1], srcDims[axes.2], srcDims[axes.3])
   let axisArray = [axes.0, axes.1, axes.2, axes.3]
-  let destAxes = axisArray.argsort(by: <)
   
-  result = makeArray4D(dim: destDims, value: a[0][0][0][0])
+  var result = makeArray(dim: destDims, value: a[0][0][0][0])
+  
   precondition(shape(result) == [destDims.0, destDims.1, destDims.2, destDims.3])
+
   for l in 0..<srcCubes {
     for k in 0..<srcPlanes {
       for j in 0..<srcRows {
         for i in 0..<srcColumns {
           let src = [l, k, j, i]
-          let (di, dj, dk, dl) = (src[destAxes[0]], src[destAxes[1]], src[destAxes[2]], src[destAxes[3]])
-          result[di][dj][dk][dl] = a[l][k][j][i]
+          let (dl, dk, dj, di) = (src[axisArray[0]], src[axisArray[1]], src[axisArray[2]], src[axisArray[3]])
+          result[dl][dk][dj][di] = a[l][k][j][i]
         }
       }
     }
@@ -300,36 +295,98 @@ public func transposed4D<T>(_ a : [[[[T]]]], axes: (Int, Int, Int, Int)) -> [[[[
   return result
 }
 
+public func reverse(axes: (Int, Int, Int, Int)) -> (Int, Int ,Int, Int) {
+  let axisArray = [axes.0, axes.1, axes.2, axes.3]
+  let revAxes = axisArray.argsort(by: <)
+  return (revAxes[0], revAxes[1], revAxes[2], revAxes[3])
+}
 
 extension Array {
 
   // reshape an array into an Array of Arrays
   // The new array will contain dim1 arrays of size dim0
-  // Array.count/dim0 must be equal to dim1 when dim1 is != -1
-  // When dim1 == -1 it is computed from dim0 and the array size
-  public func reshaped(_ dim0 : Int,_ dim1_parm : Int) -> [[Element]] {
-    precondition(self.count % dim0 == 0, "array size must be divisible by dim0")
-    var dim1 = dim1_parm
-    if (dim1 != -1) {
-      precondition(self.count / dim0 == dim1, "array size / dim 0 must equal dim1")
+  // Array.count/dim1 must be equal to dim1 when dim0 is != -1
+  // When dim0 == -1 it is computed from dim1 and the array size
+  public func reshaped(_ dim0_parm : Int,_ dim1 : Int) -> [[Element]] {
+    precondition(self.count % dim1 == 0, "array size must be divisible by dim0")
+    var dim0 = dim0_parm
+    if (dim0 != -1) {
+      precondition(self.count / dim1 == dim0, "array size / dim 1 must equal dim0")
     } else {
-      dim1 = self.count / dim0
+      dim0 = self.count / dim1
     }
 
-    let newArraySize = self.count / dim0
+    let newArraySize = self.count / dim1
     var result : [[Element]] = []
     for i in 0..<newArraySize {
-      let new_slice = self[(i * dim0)..<((i + 1)*dim0)]
+      let new_slice = self[(i * dim1)..<((i + 1)*dim1)]
       result.append(Array(new_slice))
     }
-    precondition(result.count == dim1, "internal error")
+    precondition(result.count == dim0, "internal error")
     return result
   }
+  public func reshaped(_ dims :(Int, Int)) -> [[Element]] {
+    return reshaped(dims.0, dims.1)
+  }
+  public func reshaped(_ dims :(Int, Int, Int)) -> [[[Element]]] {
+    return reshaped(dims.0, dims.1, dims.2)
+  }
   public func reshaped(_ dim0: Int, _ dim1: Int, _ dim2: Int) -> [[[Element]]] {
-    return reshaped(dim0, -1).reshaped(dim1, dim2)
+    return reshaped(-1, dim2).reshaped(dim0, dim1)
+  }
+  public func reshaped(_ dims :(Int, Int, Int, Int)) -> [[[[Element]]]] {
+    return reshaped(dims.0, dims.1, dims.2, dims.3)
   }
   public func reshaped(_ dim0: Int, _ dim1: Int, _ dim2: Int, _ dim3: Int) -> [[[[Element]]]] {
-    return reshaped(dim0, -1).reshaped(dim1, -1).reshaped(dim2, dim3)
+    return reshaped(-1, dim3).reshaped(-1, dim2).reshaped(dim0, dim1)
   }
 }
+/*
+extension Array where Element : RandomAccessCollection {
+  public func transposed(axes: (Int, Int)) -> [Element] {
+    let dims = shape(self)
+    let srcColumns = dims[1]
+    let srcRows = dims[0]
+    var result = makeArray(dim: (srcColumns, srcRows), value: self.first!)
+    for (j,e) in self.enumerated() {
+      for (i, s) in e.enumerated() {
+        result[i][j] = s
+      }
+    }
+    /*
+     for j in 0..<srcRows {
+     for i in 0..<srcColumns {
+     result[i][j] = self[j][i]
+     }
+     }
+     */
+    return result
+  }
+}
+ */
+/*
+protocol Array2D : Collection where Element: Collection {
+}
+protocol Array3D : Collection where Element: Array2D {
+}
+protocol Array4D : Collection where Element: Array3D {
+}
+
+
+extension Array {
+  subscript<Indices: Sequence>(indices: Indices) -> [Element]
+    where Indices.Iterator.Element == Int {
+      var result = [Element]()
+      for index in indices {
+        result.append(self[index])
+      }
+      return result
+  }
+}
+
+
+
+
+ */
+
 
