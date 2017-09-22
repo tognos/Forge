@@ -823,12 +823,10 @@ class LayerTests {
     let relu = MPSCNNNeuronReLU(device: device, a: 0)
     let input = Input()
     let swap_channels = Custom(TransposeChannelsKernel(device: device, featureChannels: 3, permute: [2,1,0]), name: "rgb2bgr")
-    //let swap_channels2 = Custom(TransposeChannelsKernel(device: device, featureChannels: 3, permute: [2,1,0]), name: "rgb2bgr")
     let subtract_mean = Custom(SubtractMeanColor(device:device, red: 123.68, green: 116.779, blue: 103.939, scale: 255.0), name: "subtract_mean")
-    let input_2 = input --> Resize(width: 224, height: 224) -->  swap_channels --> subtract_mean //--> swap_channels2
+    let input_2 = input --> Resize(width: 224, height: 224) -->  swap_channels -->  subtract_mean
     let zero_padding2d_1 = ZeroPadding(tblr_padding: (3, 3, 3, 3), name: "zero_padding2d_1")
     let conv1 = Convolution(kernel: (7, 7), channels: 64, stride: (2, 2), padding: .valid, activation: relu, name: "conv1")
-    //let conv1 = Convolution(kernel: (7, 7), channels: 64, stride: (2, 2), padding: .valid, activation: nil, name: "conv1")
     let max_pooling2d_1 = MaxPooling(kernel: (3, 3), stride: (2, 2), name: "max_pooling2d_1")
     let res2a_branch2a = Convolution(kernel: (1, 1), channels: 64, padding: .valid, activation: relu, name: "res2a_branch2a")
     let res2a_branch2b = Convolution(kernel: (3, 3), channels: 64, activation: relu, name: "res2a_branch2b")
@@ -836,7 +834,6 @@ class LayerTests {
     let res2a_branch1 = Convolution(kernel: (1, 1), channels: 256, padding: .valid, name: "res2a_branch1")
     let activation_4 = Activation(relu, name: "activation_4")
     let res2b_branch2a = Convolution(kernel: (1, 1), channels: 64, padding: .valid, activation: relu, name: "res2b_branch2a")
-    //let res2b_branch2a = Convolution(kernel: (1, 1), channels: 64, padding: .valid, activation: nil, name: "res2b_branch2a")
     let res2b_branch2b = Convolution(kernel: (3, 3), channels: 64, activation: relu, name: "res2b_branch2b")
     let res2b_branch2c = Convolution(kernel: (1, 1), channels: 256, padding: .valid, name: "res2b_branch2c")
     let activation_7 = Activation(relu, name: "activation_7")
@@ -900,7 +897,7 @@ class LayerTests {
     let res5c_branch2c = Convolution(kernel: (1, 1), channels: 2048, padding: .valid, name: "res5c_branch2c")
     let activation_49 = Activation(relu, name: "activation_49")
     let avg_pool = AveragePooling(kernel: (7, 7), stride: (7, 7), name: "avg_pool")
-    let fc1000 = Dense(neurons: 1000, name: "fc1000")
+    let fc1000 = Dense(neurons: 1000, activation: nil, name: "fc1000")
     
     do {
       let max_pooling2d_1 = input_2 --> zero_padding2d_1 --> conv1 --> max_pooling2d_1
@@ -915,8 +912,8 @@ class LayerTests {
       let res2c_branch2c = activation_7 --> res2c_branch2a --> res2c_branch2b --> res2c_branch2c
       let add_3 = Collect([res2c_branch2c, activation_7], name: "for_add_3") --> Add(name: "add_3")
       let activation_10 = add_3 --> activation_10
-      let res3a_branch2c = activation_10 --> res3a_branch2a --> res3a_branch2b --> res3a_branch2c
       let res3a_branch1 = activation_10 --> res3a_branch1
+      let res3a_branch2c = activation_10 --> res3a_branch2a --> res3a_branch2b --> res3a_branch2c
       let add_4 = Collect([res3a_branch2c, res3a_branch1], name: "for_add_4") --> Add(name: "add_4")
       let activation_13 = add_4 --> activation_13
       let res3b_branch2c = activation_13 --> res3b_branch2a --> res3b_branch2b --> res3b_branch2c

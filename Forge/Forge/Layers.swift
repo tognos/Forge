@@ -171,6 +171,7 @@ extension Layer: CustomDebugStringConvertible {
 */
 public class MPSCNNLayer: Layer {
   var mpscnn: MPSCNNKernel!
+  var encodedOffset: MPSOffset!
 
   override public func encode(commandBuffer: MTLCommandBuffer,
                               sourceTensor: Tensor,
@@ -181,7 +182,7 @@ public class MPSCNNLayer: Layer {
     // set mpscnn.offset and clipRect here using sourceTensor's channel offset.
 
     /*
-    if false {
+    if true {
         print("MPSCNNLayer: Encoding for layer:", self)
         print("MPSCNNLayer:sourceTensor:",sourceTensor,", destinationTensor:",destinationTensor)
       if let image = sourceTensor.image as? MPSTemporaryImage {
@@ -198,6 +199,9 @@ public class MPSCNNLayer: Layer {
     mpscnn.destinationFeatureChannelOffset = destinationTensor.destinationChannelOffset
     //print("mpscnn.destinationFeatureChannelOffset:",mpscnn.destinationFeatureChannelOffset)
 
+    mpscnn.offset = encodedOffset
+    mpscnn.offset.z = sourceTensor.destinationImageNumber
+    
     //mpscnn.offset = MPSOffset(x: 0, y: 0, z: 0)
     mpscnn.clipRect.origin.z = destinationTensor.destinationImageNumber
     mpscnn.clipRect.size.depth = 1
@@ -580,15 +584,15 @@ public class Convolution: MPSCNNLayer {
     // We compute the padding at encode-time, so that this layer can be
     // reused on tensors of different sizes. Note that the input and output
     // depth must not vary, only the width and height may be different.
-    conv.offset = offsetForConvolution(padding: padding,
-                                       sourceWidth: sourceTensor.shape.width,
-                                       sourceHeight: sourceTensor.shape.height,
-                                       destinationWidth: destinationTensor.shape.width,
-                                       destinationHeight: destinationTensor.shape.height,
-                                       kernelWidth: kernel.0,
-                                       kernelHeight: kernel.1,
-                                       strideInPixelsX: stride.0,
-                                       strideInPixelsY: stride.1)
+    self.encodedOffset = offsetForConvolution(padding: padding,
+                                              sourceWidth: sourceTensor.shape.width,
+                                              sourceHeight: sourceTensor.shape.height,
+                                              destinationWidth: destinationTensor.shape.width,
+                                              destinationHeight: destinationTensor.shape.height,
+                                              kernelWidth: kernel.0,
+                                              kernelHeight: kernel.1,
+                                              strideInPixelsX: stride.0,
+                                              strideInPixelsY: stride.1)
 
     super.encode(commandBuffer: commandBuffer,
                  sourceTensor: sourceTensor,
@@ -645,7 +649,7 @@ public class Pooling: MPSCNNLayer {
 
     // We compute the padding at encode-time, so that this layer can be
     // reused on tensors of different sizes.
-    pool.offset = offsetForPooling(padding: padding,
+    self.encodedOffset = offsetForPooling(padding: padding,
                                    sourceWidth: sourceTensor.shape.width,
                                    sourceHeight: sourceTensor.shape.height,
                                    kernelWidth: kernel.0,
@@ -735,7 +739,7 @@ public class GlobalAveragePooling: MPSCNNLayer {
                                     strideInPixelsX: inputShape.width,
                                     strideInPixelsY: inputShape.height)
 
-    pool.offset = MPSOffset(x: inputShape.width/2, y: inputShape.height/2, z: 0)
+    self.encodedOffset = MPSOffset(x: inputShape.width/2, y: inputShape.height/2, z: 0)
     pool.edgeMode = .clamp
     self.mpscnn = pool
   }
@@ -762,6 +766,7 @@ public class Dense: MPSCNNLayer {
     self.neurons = neurons
     self.activation = activation
     super.init(name: name, useBias: useBias)
+    self.encodedOffset = MPSOffset(x: 0, y: 0, z: 0)
   }
 
   override public var typeName: String {
@@ -835,6 +840,7 @@ public class Softmax: MPSCNNLayer {
                                      outputShape: DataShape,
                                      weights: ParameterData?,
                                      biases: ParameterData?) throws {
+    self.encodedOffset = MPSOffset(x: 0, y: 0, z: 0)
     mpscnn = MPSCNNSoftMax(device: device)
   }
 }
@@ -846,6 +852,7 @@ public class Activation: MPSCNNLayer {
   public init(_ activation: MPSCNNNeuron, name: String = "") {
     super.init(name: name)
     self.mpscnn = activation
+    self.encodedOffset = MPSOffset(x: 0, y: 0, z: 0)
   }
 
   override public var typeName: String {
@@ -1121,6 +1128,7 @@ public class DepthwiseConvolution: Layer {
                               sourceTensor: Tensor,
                               destinationTensor: Tensor) {
 
+    
     compute.offset = offsetForConvolution(padding: .same,
                                           sourceWidth: sourceTensor.shape.width,
                                           sourceHeight: sourceTensor.shape.height,
