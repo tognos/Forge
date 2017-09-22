@@ -17,6 +17,38 @@
 		7B3DA5601EC5E14100BD3F06 /* Forge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B3DA55F1EC5E14100BD3F06 /* Forge.framework */; };
 		7B3DA5611EC5E14100BD3F06 /* Forge.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7B3DA55F1EC5E14100BD3F06 /* Forge.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7B711C741EC7533F001CB7C2 /* BasicConvolutionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B711C731EC7533F001CB7C2 /* BasicConvolutionTests.swift */; };
+		E90F6A4E1F754A4A002993FC /* vgg_16-block5_conv2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A2E1F754A47002993FC /* vgg_16-block5_conv2.weights.bin */; };
+		E90F6A4F1F754A4A002993FC /* vgg_16-block1_conv2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A2F1F754A47002993FC /* vgg_16-block1_conv2.biases.bin */; };
+		E90F6A501F754A4A002993FC /* vgg_16-block4_conv3.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A301F754A47002993FC /* vgg_16-block4_conv3.weights.bin */; };
+		E90F6A511F754A4A002993FC /* vgg_16-fc1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A311F754A47002993FC /* vgg_16-fc1.biases.bin */; };
+		E90F6A521F754A4A002993FC /* vgg_16-block4_conv3.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A321F754A47002993FC /* vgg_16-block4_conv3.biases.bin */; };
+		E90F6A531F754A4A002993FC /* vgg_16-block3_conv1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A331F754A48002993FC /* vgg_16-block3_conv1.biases.bin */; };
+		E90F6A541F754A4A002993FC /* vgg_16-block4_conv2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A341F754A48002993FC /* vgg_16-block4_conv2.weights.bin */; };
+		E90F6A551F754A4A002993FC /* vgg_16-fc1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A351F754A48002993FC /* vgg_16-fc1.weights.bin */; };
+		E90F6A561F754A4A002993FC /* vgg_16-block1_conv2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A361F754A48002993FC /* vgg_16-block1_conv2.weights.bin */; };
+		E90F6A571F754A4A002993FC /* vgg_16-block2_conv2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A371F754A48002993FC /* vgg_16-block2_conv2.biases.bin */; };
+		E90F6A581F754A4A002993FC /* vgg_16-block5_conv3.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A381F754A48002993FC /* vgg_16-block5_conv3.biases.bin */; };
+		E90F6A591F754A4A002993FC /* vgg_16-block5_conv1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A391F754A48002993FC /* vgg_16-block5_conv1.weights.bin */; };
+		E90F6A5A1F754A4A002993FC /* vgg_16-block1_conv1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A3A1F754A48002993FC /* vgg_16-block1_conv1.biases.bin */; };
+		E90F6A5B1F754A4A002993FC /* vgg_16-block5_conv1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A3B1F754A48002993FC /* vgg_16-block5_conv1.biases.bin */; };
+		E90F6A5C1F754A4A002993FC /* vgg_16-block5_conv3.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A3C1F754A48002993FC /* vgg_16-block5_conv3.weights.bin */; };
+		E90F6A5D1F754A4A002993FC /* vgg_16-fc2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A3D1F754A49002993FC /* vgg_16-fc2.biases.bin */; };
+		E90F6A5E1F754A4A002993FC /* vgg_16-block3_conv2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A3E1F754A49002993FC /* vgg_16-block3_conv2.weights.bin */; };
+		E90F6A5F1F754A4A002993FC /* vgg_16-predictions.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A3F1F754A49002993FC /* vgg_16-predictions.biases.bin */; };
+		E90F6A601F754A4A002993FC /* vgg_16-fc2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A401F754A49002993FC /* vgg_16-fc2.weights.bin */; };
+		E90F6A611F754A4A002993FC /* vgg_16-block4_conv1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A411F754A49002993FC /* vgg_16-block4_conv1.biases.bin */; };
+		E90F6A621F754A4A002993FC /* vgg_16-block3_conv3.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A421F754A49002993FC /* vgg_16-block3_conv3.weights.bin */; };
+		E90F6A631F754A4A002993FC /* vgg_16-block3_conv1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A431F754A49002993FC /* vgg_16-block3_conv1.weights.bin */; };
+		E90F6A641F754A4A002993FC /* vgg_16-block1_conv1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A441F754A49002993FC /* vgg_16-block1_conv1.weights.bin */; };
+		E90F6A651F754A4A002993FC /* vgg_16-block2_conv1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A451F754A49002993FC /* vgg_16-block2_conv1.biases.bin */; };
+		E90F6A661F754A4A002993FC /* vgg_16-block5_conv2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A461F754A49002993FC /* vgg_16-block5_conv2.biases.bin */; };
+		E90F6A671F754A4A002993FC /* vgg_16-block2_conv1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A471F754A49002993FC /* vgg_16-block2_conv1.weights.bin */; };
+		E90F6A681F754A4A002993FC /* vgg_16-block4_conv1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A481F754A4A002993FC /* vgg_16-block4_conv1.weights.bin */; };
+		E90F6A691F754A4A002993FC /* vgg_16-predictions.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A491F754A4A002993FC /* vgg_16-predictions.weights.bin */; };
+		E90F6A6A1F754A4A002993FC /* vgg_16-block3_conv2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A4A1F754A4A002993FC /* vgg_16-block3_conv2.biases.bin */; };
+		E90F6A6B1F754A4A002993FC /* vgg_16-block2_conv2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A4B1F754A4A002993FC /* vgg_16-block2_conv2.weights.bin */; };
+		E90F6A6C1F754A4A002993FC /* vgg_16-block3_conv3.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A4C1F754A4A002993FC /* vgg_16-block3_conv3.biases.bin */; };
+		E90F6A6D1F754A4A002993FC /* vgg_16-block4_conv2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E90F6A4D1F754A4A002993FC /* vgg_16-block4_conv2.biases.bin */; };
 		E94FA0131F69E40500AFE3FD /* final1-224.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E94FA0121F69E40500AFE3FD /* final1-224.jpg */; };
 		E95A9F421F5AC88100D0D6CE /* LayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A9F411F5AC88000D0D6CE /* LayerTests.swift */; };
 		E9C897061F67E14E00096BFD /* resnet_50-res5a_branch2a.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E9C8969A1F67E13300096BFD /* resnet_50-res5a_branch2a.biases.bin */; };
@@ -164,6 +196,38 @@
 		7B3DA55C1EC5E0FA00BD3F06 /* Asserts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Asserts.swift; sourceTree = "<group>"; };
 		7B3DA55F1EC5E14100BD3F06 /* Forge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Forge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B711C731EC7533F001CB7C2 /* BasicConvolutionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicConvolutionTests.swift; sourceTree = "<group>"; };
+		E90F6A2E1F754A47002993FC /* vgg_16-block5_conv2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block5_conv2.weights.bin"; sourceTree = "<group>"; };
+		E90F6A2F1F754A47002993FC /* vgg_16-block1_conv2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block1_conv2.biases.bin"; sourceTree = "<group>"; };
+		E90F6A301F754A47002993FC /* vgg_16-block4_conv3.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block4_conv3.weights.bin"; sourceTree = "<group>"; };
+		E90F6A311F754A47002993FC /* vgg_16-fc1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-fc1.biases.bin"; sourceTree = "<group>"; };
+		E90F6A321F754A47002993FC /* vgg_16-block4_conv3.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block4_conv3.biases.bin"; sourceTree = "<group>"; };
+		E90F6A331F754A48002993FC /* vgg_16-block3_conv1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block3_conv1.biases.bin"; sourceTree = "<group>"; };
+		E90F6A341F754A48002993FC /* vgg_16-block4_conv2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block4_conv2.weights.bin"; sourceTree = "<group>"; };
+		E90F6A351F754A48002993FC /* vgg_16-fc1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-fc1.weights.bin"; sourceTree = "<group>"; };
+		E90F6A361F754A48002993FC /* vgg_16-block1_conv2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block1_conv2.weights.bin"; sourceTree = "<group>"; };
+		E90F6A371F754A48002993FC /* vgg_16-block2_conv2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block2_conv2.biases.bin"; sourceTree = "<group>"; };
+		E90F6A381F754A48002993FC /* vgg_16-block5_conv3.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block5_conv3.biases.bin"; sourceTree = "<group>"; };
+		E90F6A391F754A48002993FC /* vgg_16-block5_conv1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block5_conv1.weights.bin"; sourceTree = "<group>"; };
+		E90F6A3A1F754A48002993FC /* vgg_16-block1_conv1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block1_conv1.biases.bin"; sourceTree = "<group>"; };
+		E90F6A3B1F754A48002993FC /* vgg_16-block5_conv1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block5_conv1.biases.bin"; sourceTree = "<group>"; };
+		E90F6A3C1F754A48002993FC /* vgg_16-block5_conv3.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block5_conv3.weights.bin"; sourceTree = "<group>"; };
+		E90F6A3D1F754A49002993FC /* vgg_16-fc2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-fc2.biases.bin"; sourceTree = "<group>"; };
+		E90F6A3E1F754A49002993FC /* vgg_16-block3_conv2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block3_conv2.weights.bin"; sourceTree = "<group>"; };
+		E90F6A3F1F754A49002993FC /* vgg_16-predictions.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-predictions.biases.bin"; sourceTree = "<group>"; };
+		E90F6A401F754A49002993FC /* vgg_16-fc2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-fc2.weights.bin"; sourceTree = "<group>"; };
+		E90F6A411F754A49002993FC /* vgg_16-block4_conv1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block4_conv1.biases.bin"; sourceTree = "<group>"; };
+		E90F6A421F754A49002993FC /* vgg_16-block3_conv3.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block3_conv3.weights.bin"; sourceTree = "<group>"; };
+		E90F6A431F754A49002993FC /* vgg_16-block3_conv1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block3_conv1.weights.bin"; sourceTree = "<group>"; };
+		E90F6A441F754A49002993FC /* vgg_16-block1_conv1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block1_conv1.weights.bin"; sourceTree = "<group>"; };
+		E90F6A451F754A49002993FC /* vgg_16-block2_conv1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block2_conv1.biases.bin"; sourceTree = "<group>"; };
+		E90F6A461F754A49002993FC /* vgg_16-block5_conv2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block5_conv2.biases.bin"; sourceTree = "<group>"; };
+		E90F6A471F754A49002993FC /* vgg_16-block2_conv1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block2_conv1.weights.bin"; sourceTree = "<group>"; };
+		E90F6A481F754A4A002993FC /* vgg_16-block4_conv1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block4_conv1.weights.bin"; sourceTree = "<group>"; };
+		E90F6A491F754A4A002993FC /* vgg_16-predictions.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-predictions.weights.bin"; sourceTree = "<group>"; };
+		E90F6A4A1F754A4A002993FC /* vgg_16-block3_conv2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block3_conv2.biases.bin"; sourceTree = "<group>"; };
+		E90F6A4B1F754A4A002993FC /* vgg_16-block2_conv2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block2_conv2.weights.bin"; sourceTree = "<group>"; };
+		E90F6A4C1F754A4A002993FC /* vgg_16-block3_conv3.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block3_conv3.biases.bin"; sourceTree = "<group>"; };
+		E90F6A4D1F754A4A002993FC /* vgg_16-block4_conv2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "vgg_16-block4_conv2.biases.bin"; sourceTree = "<group>"; };
 		E94FA0121F69E40500AFE3FD /* final1-224.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "final1-224.jpg"; path = "../../../Examples/Inception/Test Images/final1-224.jpg"; sourceTree = "<group>"; };
 		E95A9F411F5AC88000D0D6CE /* LayerTests.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = LayerTests.swift; sourceTree = "<group>"; tabWidth = 2; };
 		E9C8969A1F67E13300096BFD /* resnet_50-res5a_branch2a.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "resnet_50-res5a_branch2a.biases.bin"; sourceTree = "<group>"; };
@@ -361,6 +425,38 @@
 		E9C897981F697F9300096BFD /* Test Weights */ = {
 			isa = PBXGroup;
 			children = (
+				E90F6A3A1F754A48002993FC /* vgg_16-block1_conv1.biases.bin */,
+				E90F6A441F754A49002993FC /* vgg_16-block1_conv1.weights.bin */,
+				E90F6A2F1F754A47002993FC /* vgg_16-block1_conv2.biases.bin */,
+				E90F6A361F754A48002993FC /* vgg_16-block1_conv2.weights.bin */,
+				E90F6A451F754A49002993FC /* vgg_16-block2_conv1.biases.bin */,
+				E90F6A471F754A49002993FC /* vgg_16-block2_conv1.weights.bin */,
+				E90F6A371F754A48002993FC /* vgg_16-block2_conv2.biases.bin */,
+				E90F6A4B1F754A4A002993FC /* vgg_16-block2_conv2.weights.bin */,
+				E90F6A331F754A48002993FC /* vgg_16-block3_conv1.biases.bin */,
+				E90F6A431F754A49002993FC /* vgg_16-block3_conv1.weights.bin */,
+				E90F6A4A1F754A4A002993FC /* vgg_16-block3_conv2.biases.bin */,
+				E90F6A3E1F754A49002993FC /* vgg_16-block3_conv2.weights.bin */,
+				E90F6A4C1F754A4A002993FC /* vgg_16-block3_conv3.biases.bin */,
+				E90F6A421F754A49002993FC /* vgg_16-block3_conv3.weights.bin */,
+				E90F6A411F754A49002993FC /* vgg_16-block4_conv1.biases.bin */,
+				E90F6A481F754A4A002993FC /* vgg_16-block4_conv1.weights.bin */,
+				E90F6A4D1F754A4A002993FC /* vgg_16-block4_conv2.biases.bin */,
+				E90F6A341F754A48002993FC /* vgg_16-block4_conv2.weights.bin */,
+				E90F6A321F754A47002993FC /* vgg_16-block4_conv3.biases.bin */,
+				E90F6A301F754A47002993FC /* vgg_16-block4_conv3.weights.bin */,
+				E90F6A3B1F754A48002993FC /* vgg_16-block5_conv1.biases.bin */,
+				E90F6A391F754A48002993FC /* vgg_16-block5_conv1.weights.bin */,
+				E90F6A461F754A49002993FC /* vgg_16-block5_conv2.biases.bin */,
+				E90F6A2E1F754A47002993FC /* vgg_16-block5_conv2.weights.bin */,
+				E90F6A381F754A48002993FC /* vgg_16-block5_conv3.biases.bin */,
+				E90F6A3C1F754A48002993FC /* vgg_16-block5_conv3.weights.bin */,
+				E90F6A311F754A47002993FC /* vgg_16-fc1.biases.bin */,
+				E90F6A351F754A48002993FC /* vgg_16-fc1.weights.bin */,
+				E90F6A3D1F754A49002993FC /* vgg_16-fc2.biases.bin */,
+				E90F6A401F754A49002993FC /* vgg_16-fc2.weights.bin */,
+				E90F6A3F1F754A49002993FC /* vgg_16-predictions.biases.bin */,
+				E90F6A491F754A4A002993FC /* vgg_16-predictions.weights.bin */,
 				E9C896C71F67E14300096BFD /* resnet_50-conv1.biases.bin */,
 				E9C897051F67E14C00096BFD /* resnet_50-conv1.weights.bin */,
 				E9C896E41F67E14700096BFD /* resnet_50-fc1000.biases.bin */,
@@ -537,6 +633,8 @@
 				E9C897531F67E14E00096BFD /* resnet_50-res2c_branch2a.biases.bin in Resources */,
 				E9C897111F67E14E00096BFD /* resnet_50-res4f_branch2a.weights.bin in Resources */,
 				E9C8976C1F67E14E00096BFD /* resnet_50-res5b_branch2c.weights.bin in Resources */,
+				E90F6A5B1F754A4A002993FC /* vgg_16-block5_conv1.biases.bin in Resources */,
+				E90F6A501F754A4A002993FC /* vgg_16-block4_conv3.weights.bin in Resources */,
 				E9C897161F67E14E00096BFD /* resnet_50-res4a_branch2c.biases.bin in Resources */,
 				E9C897391F67E14E00096BFD /* resnet_50-res4b_branch2b.biases.bin in Resources */,
 				E9C8973B1F67E14E00096BFD /* resnet_50-res4b_branch2c.biases.bin in Resources */,
@@ -544,11 +642,15 @@
 				E9C8971D1F67E14E00096BFD /* resnet_50-res4a_branch2a.weights.bin in Resources */,
 				7B3DA54E1EC4E67200BD3F06 /* Assets.xcassets in Resources */,
 				E9C897931F697F8100096BFD /* final0-224.jpg in Resources */,
+				E90F6A621F754A4A002993FC /* vgg_16-block3_conv3.weights.bin in Resources */,
 				E9C897081F67E14E00096BFD /* resnet_50-res3a_branch2b.biases.bin in Resources */,
 				E9C897671F67E14E00096BFD /* resnet_50-res4a_branch1.biases.bin in Resources */,
+				E90F6A611F754A4A002993FC /* vgg_16-block4_conv1.biases.bin in Resources */,
 				E9C8976F1F67E14E00096BFD /* resnet_50-res3a_branch2a.biases.bin in Resources */,
 				E9C8976E1F67E14E00096BFD /* resnet_50-res4b_branch2a.biases.bin in Resources */,
+				E90F6A601F754A4A002993FC /* vgg_16-fc2.weights.bin in Resources */,
 				E9C897361F67E14E00096BFD /* resnet_50-res4f_branch2a.biases.bin in Resources */,
+				E90F6A651F754A4A002993FC /* vgg_16-block2_conv1.biases.bin in Resources */,
 				E9C8975A1F67E14E00096BFD /* resnet_50-res2b_branch2a.weights.bin in Resources */,
 				E9C897141F67E14E00096BFD /* resnet_50-res3d_branch2b.weights.bin in Resources */,
 				E9C897121F67E14E00096BFD /* resnet_50-res4d_branch2a.weights.bin in Resources */,
@@ -565,41 +667,54 @@
 				E9C8971F1F67E14E00096BFD /* resnet_50-res5b_branch2a.biases.bin in Resources */,
 				E9C897511F67E14E00096BFD /* resnet_50-res2a_branch2a.weights.bin in Resources */,
 				E9C8975B1F67E14E00096BFD /* resnet_50-res4e_branch2c.biases.bin in Resources */,
+				E90F6A591F754A4A002993FC /* vgg_16-block5_conv1.weights.bin in Resources */,
 				E9C8976A1F67E14E00096BFD /* resnet_50-res3c_branch2a.biases.bin in Resources */,
 				E9C897631F67E14E00096BFD /* resnet_50-res5c_branch2a.weights.bin in Resources */,
+				E90F6A5F1F754A4A002993FC /* vgg_16-predictions.biases.bin in Resources */,
 				E9C897611F67E14E00096BFD /* resnet_50-res4c_branch2b.weights.bin in Resources */,
 				E9C897171F67E14E00096BFD /* resnet_50-res4c_branch2a.weights.bin in Resources */,
 				E9C897191F67E14E00096BFD /* resnet_50-res4a_branch2a.biases.bin in Resources */,
 				E9C8971A1F67E14E00096BFD /* resnet_50-res4a_branch2c.weights.bin in Resources */,
 				E94FA0131F69E40500AFE3FD /* final1-224.jpg in Resources */,
 				E9C897131F67E14E00096BFD /* resnet_50-res2c_branch2a.weights.bin in Resources */,
+				E90F6A6D1F754A4A002993FC /* vgg_16-block4_conv2.biases.bin in Resources */,
 				E9C897331F67E14E00096BFD /* resnet_50-conv1.biases.bin in Resources */,
+				E90F6A661F754A4A002993FC /* vgg_16-block5_conv2.biases.bin in Resources */,
 				E9C897181F67E14E00096BFD /* resnet_50-res2a_branch2a.biases.bin in Resources */,
 				E9C8972C1F67E14E00096BFD /* resnet_50-res3d_branch2a.weights.bin in Resources */,
 				E9C8975D1F67E14E00096BFD /* resnet_50-res3b_branch2a.biases.bin in Resources */,
+				E90F6A631F754A4A002993FC /* vgg_16-block3_conv1.weights.bin in Resources */,
 				E9C897351F67E14E00096BFD /* resnet_50-res2a_branch2c.biases.bin in Resources */,
 				E9C897441F67E14E00096BFD /* resnet_50-res2a_branch1.weights.bin in Resources */,
 				E9C897431F67E14E00096BFD /* resnet_50-res5c_branch2c.weights.bin in Resources */,
 				E9C8975E1F67E14E00096BFD /* resnet_50-res2b_branch2a.biases.bin in Resources */,
 				E9C897231F67E14E00096BFD /* resnet_50-res2b_branch2b.biases.bin in Resources */,
 				E9C8972A1F67E14E00096BFD /* resnet_50-res4d_branch2b.biases.bin in Resources */,
+				E90F6A6C1F754A4A002993FC /* vgg_16-block3_conv3.biases.bin in Resources */,
 				E9C8973E1F67E14E00096BFD /* resnet_50-res2b_branch2c.biases.bin in Resources */,
 				E9C8975C1F67E14E00096BFD /* resnet_50-res4e_branch2b.weights.bin in Resources */,
 				E9C897921F697F8100096BFD /* final0.jpg in Resources */,
+				E90F6A641F754A4A002993FC /* vgg_16-block1_conv1.weights.bin in Resources */,
 				E9C8976D1F67E14E00096BFD /* resnet_50-fc1000.weights.bin in Resources */,
 				E9C897551F67E14E00096BFD /* resnet_50-res3c_branch2c.weights.bin in Resources */,
+				E90F6A4F1F754A4A002993FC /* vgg_16-block1_conv2.biases.bin in Resources */,
 				E9C897301F67E14E00096BFD /* resnet_50-res3b_branch2c.weights.bin in Resources */,
+				E90F6A671F754A4A002993FC /* vgg_16-block2_conv1.weights.bin in Resources */,
+				E90F6A541F754A4A002993FC /* vgg_16-block4_conv2.weights.bin in Resources */,
 				E9C8978F1F697F8100096BFD /* final3.jpg in Resources */,
 				E9C897941F697F8100096BFD /* final4.jpg in Resources */,
 				E9C8970F1F67E14E00096BFD /* resnet_50-res3d_branch2b.biases.bin in Resources */,
 				E9C8974E1F67E14E00096BFD /* resnet_50-res5a_branch2b.biases.bin in Resources */,
 				E9C897661F67E14E00096BFD /* resnet_50-res2b_branch2c.weights.bin in Resources */,
+				E90F6A511F754A4A002993FC /* vgg_16-fc1.biases.bin in Resources */,
 				E9C897241F67E14E00096BFD /* resnet_50-res2a_branch2b.biases.bin in Resources */,
 				E9C897341F67E14E00096BFD /* resnet_50-res4c_branch2c.weights.bin in Resources */,
 				E9C897271F67E14E00096BFD /* resnet_50-res2c_branch2c.weights.bin in Resources */,
 				E9C897371F67E14E00096BFD /* resnet_50-res5a_branch1.weights.bin in Resources */,
 				E9C8971B1F67E14E00096BFD /* resnet_50-res2a_branch2c.weights.bin in Resources */,
+				E90F6A6B1F754A4A002993FC /* vgg_16-block2_conv2.weights.bin in Resources */,
 				E9C8974B1F67E14E00096BFD /* resnet_50-res4b_branch2a.weights.bin in Resources */,
+				E90F6A691F754A4A002993FC /* vgg_16-predictions.weights.bin in Resources */,
 				E9C897651F67E14E00096BFD /* resnet_50-res3d_branch2c.biases.bin in Resources */,
 				E9C897201F67E14E00096BFD /* resnet_50-res4a_branch2b.biases.bin in Resources */,
 				E9C8972B1F67E14E00096BFD /* resnet_50-res5a_branch2b.weights.bin in Resources */,
@@ -609,14 +724,20 @@
 				E9C897281F67E14E00096BFD /* resnet_50-res3a_branch2a.weights.bin in Resources */,
 				E9C897221F67E14E00096BFD /* resnet_50-res4d_branch2c.biases.bin in Resources */,
 				E9C8970E1F67E14E00096BFD /* resnet_50-res3a_branch2c.weights.bin in Resources */,
+				E90F6A5E1F754A4A002993FC /* vgg_16-block3_conv2.weights.bin in Resources */,
 				E9C897451F67E14E00096BFD /* resnet_50-res2c_branch2b.biases.bin in Resources */,
 				E9C897091F67E14E00096BFD /* resnet_50-res4e_branch2a.biases.bin in Resources */,
+				E90F6A5D1F754A4A002993FC /* vgg_16-fc2.biases.bin in Resources */,
 				E9C897621F67E14E00096BFD /* resnet_50-res4a_branch2b.weights.bin in Resources */,
+				E90F6A5A1F754A4A002993FC /* vgg_16-block1_conv1.biases.bin in Resources */,
 				E9C897541F67E14E00096BFD /* resnet_50-res3c_branch2c.biases.bin in Resources */,
 				E9C897911F697F8100096BFD /* final1.jpg in Resources */,
 				E9C8973A1F67E14E00096BFD /* resnet_50-res4b_branch2b.weights.bin in Resources */,
+				E90F6A521F754A4A002993FC /* vgg_16-block4_conv3.biases.bin in Resources */,
 				E9C8970A1F67E14E00096BFD /* resnet_50-res3a_branch2c.biases.bin in Resources */,
+				E90F6A551F754A4A002993FC /* vgg_16-fc1.weights.bin in Resources */,
 				E9C8972E1F67E14E00096BFD /* resnet_50-res4d_branch2c.weights.bin in Resources */,
+				E90F6A581F754A4A002993FC /* vgg_16-block5_conv3.biases.bin in Resources */,
 				E9C897491F67E14E00096BFD /* resnet_50-res2c_branch2c.biases.bin in Resources */,
 				E9C897601F67E14E00096BFD /* resnet_50-res3b_branch2a.weights.bin in Resources */,
 				E9C8972D1F67E14E00096BFD /* resnet_50-res4d_branch2b.weights.bin in Resources */,
@@ -636,20 +757,27 @@
 				E9C897951F697F8100096BFD /* final2.jpg in Resources */,
 				E9C897261F67E14E00096BFD /* resnet_50-res5a_branch2c.biases.bin in Resources */,
 				E9C897591F67E14E00096BFD /* resnet_50-res2a_branch2b.weights.bin in Resources */,
+				E90F6A681F754A4A002993FC /* vgg_16-block4_conv1.weights.bin in Resources */,
+				E90F6A6A1F754A4A002993FC /* vgg_16-block3_conv2.biases.bin in Resources */,
 				E9C897641F67E14E00096BFD /* resnet_50-res5b_branch2b.weights.bin in Resources */,
+				E90F6A5C1F754A4A002993FC /* vgg_16-block5_conv3.weights.bin in Resources */,
 				E9C8976B1F67E14E00096BFD /* resnet_50-res4f_branch2b.weights.bin in Resources */,
 				E9C8974A1F67E14E00096BFD /* resnet_50-res5c_branch2b.biases.bin in Resources */,
 				E9C897561F67E14E00096BFD /* resnet_50-res3a_branch2b.weights.bin in Resources */,
 				E9C897461F67E14E00096BFD /* resnet_50-res3a_branch1.weights.bin in Resources */,
+				E90F6A571F754A4A002993FC /* vgg_16-block2_conv2.biases.bin in Resources */,
+				E90F6A561F754A4A002993FC /* vgg_16-block1_conv2.weights.bin in Resources */,
 				E9C897961F697F8100096BFD /* final7.jpg in Resources */,
 				E9C8974F1F67E14E00096BFD /* resnet_50-res4f_branch2b.biases.bin in Resources */,
 				E9C897211F67E14E00096BFD /* resnet_50-res5b_branch2c.biases.bin in Resources */,
 				E9C897691F67E14E00096BFD /* resnet_50-res4e_branch2c.weights.bin in Resources */,
 				E9C897971F697F8100096BFD /* final6.jpg in Resources */,
 				E9C897901F697F8100096BFD /* final5.jpg in Resources */,
+				E90F6A4E1F754A4A002993FC /* vgg_16-block5_conv2.weights.bin in Resources */,
 				E9C897581F67E14E00096BFD /* resnet_50-res3c_branch2b.biases.bin in Resources */,
 				E9C897701F67E14E00096BFD /* resnet_50-res5b_branch2a.weights.bin in Resources */,
 				E9C897481F67E14E00096BFD /* resnet_50-res3b_branch2b.biases.bin in Resources */,
+				E90F6A531F754A4A002993FC /* vgg_16-block3_conv1.biases.bin in Resources */,
 				E9C897521F67E14E00096BFD /* resnet_50-res4b_branch2c.weights.bin in Resources */,
 				E9C897101F67E14E00096BFD /* resnet_50-res4c_branch2a.biases.bin in Resources */,
 				E9C8972F1F67E14E00096BFD /* resnet_50-res4d_branch2a.biases.bin in Resources */,
