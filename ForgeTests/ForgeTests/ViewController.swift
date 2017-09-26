@@ -53,7 +53,7 @@ class ViewController: UIViewController {
     arrayTests.testMakeArray()
     arrayTests.testReshape()
     arrayTests.testTranspose()
-    
+    arrayTests.testSlice()
 
     let layerTests = LayerTests()
     
@@ -70,8 +70,9 @@ class ViewController: UIViewController {
     //layerTests.testZeroPaddingLayer_3ch_Image()
  
     layerTests.testSubtractMean()
-    //layerTests.testVGG16(debug: true)
+    layerTests.testVGG16(debug: true)
     layerTests.testResNet(debug: true)
+    layerTests.testInception_V3(debug: true)
 
 /*
     let basicConvTests = BasicConvolutionTests()

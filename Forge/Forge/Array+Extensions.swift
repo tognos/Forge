@@ -186,7 +186,6 @@ public func == <T:Equatable>(_ a1: [[[[T]]]], _ a2: [[[[T]]]]) -> Bool {
 
 public func shape<T>(_ a : [T]) -> [Int] {
   return [a.count]
-  
 }
 public func shape<T>(_ a : [[T]]) -> [Int] {
   return [a.count, a[0].count]
@@ -197,6 +196,11 @@ public func shape<T>(_ a : [[[T]]]) -> [Int] {
 }
 public func shape<T>(_ a : [[[[T]]]]) -> [Int] {
   return [a.count, a[0].count, a[0][0].count, a[0][0][0].count]
+}
+
+public func quadruple<T>(_ a : [T]) -> (T, T, T, T) {
+  precondition(a.count == 4, "quadruple input array must have a length of 4")
+  return (a[0], a[1], a[2], a[3])
 }
 
 public func flattened<T>(_ a : [[T]]) -> [T] {
@@ -225,6 +229,25 @@ public func makeArray<T>(dim: (Int, Int, Int), value: T) -> [[[T]]] {
 
 public func makeArray<T>(dim: (Int, Int, Int, Int), value: T) -> [[[[T]]]] {
   return makeArray(dim: dim.0, value: makeArray(dim: (dim.1, dim.2, dim.3), value: value))
+}
+
+public func sliceArray<T>(_ a : [[[[T]]]], from: (Int, Int, Int, Int), size: (Int, Int, Int, Int)) -> [[[[T]]]] {
+  let srcDims = shape(a)
+  precondition(from.0 >= 0 && from.1 >= 0 && from.2 >= 0 && from.3 >= 0 &&
+               from.0 + size.0 <= srcDims[0] && from.1 + size.1 <= srcDims[1] &&
+               from.2 + size.2 <= srcDims[2] && from.3 + size.3 <= srcDims[3],
+               "from + size must be smaller than dims")
+  var result = makeArray(dim: size, value: a[0][0][0][0])
+  for l in 0..<size.0 {
+    for k in 0..<size.1 {
+      for j in 0..<size.2 {
+        for i in 0..<size.3 {
+          result[l][k][j][i] = a[from.0 + l][from.1 + k][from.2 + j][from.3 + i]
+        }
+      }
+    }
+  }
+  return result
 }
 
 public func transposed<T>(_ a : [[T]]) -> [[T]] {
@@ -341,52 +364,6 @@ extension Array {
     return reshaped(-1, dim3).reshaped(-1, dim2).reshaped(dim0, dim1)
   }
 }
-/*
-extension Array where Element : RandomAccessCollection {
-  public func transposed(axes: (Int, Int)) -> [Element] {
-    let dims = shape(self)
-    let srcColumns = dims[1]
-    let srcRows = dims[0]
-    var result = makeArray(dim: (srcColumns, srcRows), value: self.first!)
-    for (j,e) in self.enumerated() {
-      for (i, s) in e.enumerated() {
-        result[i][j] = s
-      }
-    }
-    /*
-     for j in 0..<srcRows {
-     for i in 0..<srcColumns {
-     result[i][j] = self[j][i]
-     }
-     }
-     */
-    return result
-  }
-}
- */
-/*
-protocol Array2D : Collection where Element: Collection {
-}
-protocol Array3D : Collection where Element: Array2D {
-}
-protocol Array4D : Collection where Element: Array3D {
-}
 
-
-extension Array {
-  subscript<Indices: Sequence>(indices: Indices) -> [Element]
-    where Indices.Iterator.Element == Int {
-      var result = [Element]()
-      for index in indices {
-        result.append(self[index])
-      }
-      return result
-  }
-}
-
-
-
-
- */
 
 

@@ -62,7 +62,7 @@ public class Tensor {
   public var shape = DataShape()
 
   // For debugging and printing the model summary.
-  var typeName = "Tensor"
+  public var typeName : String = "Tensor"
   var id = "" // can be used to identify tensors like Concatente and Collect that do not have a layer
 
   // Used to set offset and clipRect for reading from another tensor's image.
@@ -70,7 +70,7 @@ public class Tensor {
 
   // Used to set destinationFeatureChannelOffset for merging the output from
   // multiple layers into one image.
-  var destinationChannelOffset = 0
+  public var destinationChannelOffset = 0
 
   // Used to set destinationImage for collecting the output from
   // multiple layers into one image.
@@ -356,6 +356,12 @@ public func Concatenate(_ tensors: [Tensor], name:String = "") -> Tensor {
   for input in tensors {
     // Tell the other tensor that it should write into our image and not
     // an image of its own.
+    if input.typeName == "Concat" {
+      preconditionFailure("Concatenate  \(name) has Concatenate Tensor as input; please feed the inputs directly into one Concatenate function")
+    }
+    if input.next.count > 1 {
+      preconditionFailure("One of the inputs of Concatenate \(name) has multiple outputs; this will not work with the Concat function; you have to use Collect() -> ConcatImages() which does not yet exist")
+    }
     input.destinationChannelOffset = channels
     input.destinationTensor = merged
 

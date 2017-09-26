@@ -156,15 +156,6 @@ class ArrayTests {
       do {
         // 3D-all dims transpose
         
-        let trans_out_expected_342: [[[Float]]] = [[[1, 3, 5],
-                                                    [7, 9, 11],
-                                                    [13, 15, 17],
-                                                    [19, 21, 23]],
-                                                   [[2, 4, 6],
-                                                    [8, 10, 12],
-                                                    [14, 16, 18],
-                                                    [20, 22, 24]]]
-        
         let trans_out_expected_423: [[[Float]]] =  [[[1, 7, 13, 19],
                                                      [2, 8, 14, 20]],
                                                     [[3, 9, 15, 21],
@@ -295,5 +286,96 @@ class ArrayTests {
         }
       }}
 
+  }
+  func testSlice() {
+    print("\(self).\(#function)")
+    do {
+      // 2D-transpose
+      
+      let slice_in_3252 : [[[[Int]]]] = [[[[111,112,113],
+                                             [114,115,116]],
+                                            [[211,212,213],
+                                             [214,215,216]],
+                                            [[311,312,313],
+                                             [314,315,316]],
+                                            [[411,412,413],
+                                             [414,415,416]],
+                                            [[511,512,513],
+                                             [514,515,516]]],
+                                           [[[121,122,123],
+                                             [124,125,126]],
+                                            [[221,222,223],
+                                             [224,225,226]],
+                                            [[321,322,323],
+                                             [324,325,326]],
+                                            [[421,422,423],
+                                             [424,425,426]],
+                                            [[521,522,523],
+                                             [524,525,526]]]]
+      let inShape = shape(slice_in_3252)
+      //print("shape of slice test input:",inShape)
+      let slice_out = sliceArray( slice_in_3252, from: (0,0,0,0), size: quadruple(inShape) )
+      if !(slice_out == slice_in_3252) {
+        fatalError("Assertion failed: \(slice_out) not equal to \(slice_in_3252)")
+      }
+      let slice_out2 = sliceArray( slice_in_3252, from: (0,0,0,0), size: (1, inShape[1], inShape[2], inShape[3]) )
+      //print("slice_out2", slice_out2)
+      //print("slice_out2 shape", shape(slice_out2))
+      let slice_out2_expected = [[[[111, 112, 113],
+                                   [114, 115, 116]],
+                                  [[211, 212, 213],
+                                   [214, 215, 216]],
+                                  [[311, 312, 313],
+                                   [314, 315, 316]],
+                                  [[411, 412, 413],
+                                   [414, 415, 416]],
+                                  [[511, 512, 513],
+                                   [514, 515, 516]]]]
+      if !(slice_out2 == slice_out2_expected) {
+        fatalError("Assertion failed: \(slice_out2) not equal to \(slice_out2_expected)")
+      }
+      
+      let slice_out3 = sliceArray( slice_in_3252, from: (0,0,0,0), size: (inShape[0], 1, inShape[2], inShape[3]) )
+      //print("slice_out3", slice_out3)
+      //print("slice_out3 shape", shape(slice_out3))
+      let slice_out3_expected = [[[[111, 112, 113], [114, 115, 116]]], [[[121, 122, 123], [124, 125, 126]]]]
+      if !(slice_out3 == slice_out3_expected) {
+        fatalError("Assertion failed: \(slice_out3) not equal to \(slice_out3_expected)")
+      }
+      
+      let slice_out4 = sliceArray( slice_in_3252, from: (0,0,0,0), size: (inShape[0], inShape[1], 1, inShape[3]) )
+      //print("slice_out4", slice_out4)
+      //print("slice_out4 shape", shape(slice_out4))
+      let slice_out4_expected = [[[[111, 112, 113]],
+                                  [[211, 212, 213]],
+                                  [[311, 312, 313]],
+                                  [[411, 412, 413]],
+                                  [[511, 512, 513]]],
+                                 [[[121, 122, 123]],
+                                  [[221, 222, 223]],
+                                  [[321, 322, 323]],
+                                  [[421, 422, 423]],
+                                  [[521, 522, 523]]]]
+      if !(slice_out4 == slice_out4_expected) {
+        fatalError("Assertion failed: \(slice_out4) not equal to \(slice_out4_expected)")
+      }
+      
+      let slice_out5 = sliceArray( slice_in_3252, from: (0,0,0,0), size: (inShape[0], inShape[1], inShape[2], 1) )
+      //print("slice_out5", slice_out5)
+      //print("slice_out5 shape", shape(slice_out5))
+      let slice_out5_expected = [[[[111], [114]], [[211], [214]], [[311], [314]], [[411], [414]], [[511], [514]]],
+                                 [[[121], [124]], [[221], [224]], [[321], [324]], [[421], [424]], [[521], [524]]]]
+      if !(slice_out5 == slice_out5_expected) {
+        fatalError("Assertion failed: \(slice_out5) not equal to \(slice_out5_expected)")
+      }
+      
+      let slice_out6 = sliceArray( slice_in_3252, from: (1,1,1,1), size: (inShape[0]-1, inShape[1]-1, inShape[2]-1, inShape[3]-1) )
+      //print("slice_out6", slice_out6)
+      //print("slice_out6 shape", shape(slice_out6))
+      let slice_out6_expected = [[[[225, 226]], [[325, 326]], [[425, 426]], [[525, 526]]]]
+      if !(slice_out6 == slice_out6_expected) {
+        fatalError("Assertion failed: \(slice_out6) not equal to \(slice_out6_expected)")
+      }
+    }
   }
 }
