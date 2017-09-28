@@ -4,7 +4,7 @@
 //
 //  TinyYolo.swift
 //
-//  created 2017-09-28 23:16 by keras2metal.py
+//  created 2017-09-29 01:42 by keras2metal.py
 //
 //  Converter wittenn by Pavel Mayer, Tognos GmbH, http://tognos.com/
 //  based on YADK and Forge yolo2metal.py
@@ -14,7 +14,7 @@ import Foundation
 import Forge
 import MetalPerformanceShaders
 
-class TinyYolo {
+final class TinyYolo {
 
 var model: Model
 var device: MTLDevice
