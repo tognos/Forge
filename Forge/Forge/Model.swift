@@ -364,7 +364,7 @@ public class Model {
     s += "--------------------------------------------------------------------------------\n"
     s += "Number of layers: \(numLayers) (tensors: \(tensors.count))\n"
     s += "Total parameters: \(totalParams)\n"
-    s += debugGraph()
+    //s += debugGraph()
     return s
   }
   public func debugSummary(current: Tensor, marker: String, debugTensor: Tensor?) -> String {
@@ -513,7 +513,7 @@ public class Model {
     
     // If the tensor has a real MPSImage, use that. Otherwise make a temp one.
     func createImage(for tensor: Tensor) -> MPSImage {
-      //print("createImage for "+tensor.debugDescription)
+      if debugTrace { print("createImage for "+tensor.debugDescription) }
       if let images = outputImages[tensor] {
         let storedImage = images[inflightIndex]
         if debugTrace {
@@ -529,6 +529,24 @@ public class Model {
         // We have to use the image's readCount value to maintain both read and write counts
         // add also number of inputs to bump up readcount with the writecount for this tensor
         image.readCount = tensor.readCount + tensor.previous.count
+        if tensor.typeName == "Collect" {
+          // for collect tensors, all the outputs of our inputs will also read this image
+          for input in tensor.previous {
+            if debugTrace {
+              print("Collect, raising image read count from \(image.readCount) by outputs of input \(input.shortId) = \(input.next.count)")
+            }
+            image.readCount += input.next.count
+            // when an input is a concat tensor, all its inputs will directly write to our image,
+            // and all their outputs would read from our image, but concat inputs can not have
+            // multiple outputs, we ensure that during initialization
+            if input.typeName == "Concat" && input.destinationTensor != nil {
+              if debugTrace {
+                print("Concat --> Collect, raising image read count from \(image.readCount) by # of concat inputs = \(input.previous.count)")
+              }
+              image.readCount += input.previous.count
+            }
+          }
+        }
         if debugTrace {
           print("createImage returning new temp image \(image.description) with readcount \(image.readCount) (\(tensor.readCount)+\(tensor.previous.count)) for shape \(tensor.shape)")
         }
@@ -597,7 +615,7 @@ public class Model {
         image.readCount -= 1
       }
     } else {
-      if imageInfos[inputTensor.image!]!.writtenCount != inputTensor.previous.count {
+      if imageInfos[inputTensor.image!]!.writtenCount < inputTensor.previous.count {
         fatalError("Error: input tensor \(inputTensor.shortId) has not received all its inputs yet, image=\(String(describing: inputTensor.image?.description)) written=\(imageInfos[inputTensor.image!]!.writtenCount), needed=\(inputTensor.previous.count)")
       }
       //print("1)inputTensor.image=",inputTensor.image.debugDescription)

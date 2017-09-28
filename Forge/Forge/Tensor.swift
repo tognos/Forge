@@ -104,7 +104,12 @@ public class Tensor {
   
   /*internal(set)*/ public var image : MPSImage? {
         get {
-            return _image
+          if typeName == "Concat" && destinationTensor != nil {
+            // We have a concat tensor that writes into a Collect Tensor, so lets
+            // return it's image
+            return destinationTensor!.image
+          }
+          return _image
         }
         set(newImage) {
           if _image != nil {
@@ -313,7 +318,7 @@ public func == (lhs: Tensor, rhs: Tensor) -> Bool {
 
 extension Tensor: CustomDebugStringConvertible {
   public var debugDescription: String {
-    return "Tensor, shape \(shape), layer " + (layer?.name ?? typeName)
+    return "Tensor, shape \(shape), id " + shortId
   }
 }
 
@@ -360,7 +365,7 @@ public func Concatenate(_ tensors: [Tensor], name:String = "") -> Tensor {
       preconditionFailure("Concatenate  \(name) has Concatenate Tensor as input; please feed the inputs directly into one Concatenate function")
     }
     if input.next.count > 1 {
-      preconditionFailure("One of the inputs of Concatenate \(name) has multiple outputs; this will not work with the Concat function; you have to use Collect() -> ConcatImages() which does not yet exist")
+      preconditionFailure("One of the inputs of Concatenate \(name) has multiple outputs; this will not work with the Concat function because the MPSCNN can not read with a (src) channel offset; you have to use Collect() -> ConcatImages() which does not yet exist")
     }
     input.destinationChannelOffset = channels
     input.destinationTensor = merged
@@ -399,7 +404,7 @@ public func Collect(_ tensors: [Tensor], name:String = "") -> Tensor  {
   //print("Creating Collection Tensor of:",tensors)
   let collected = Tensor()
   
-  var image = 0
+  var imageNumber = 0
     
   // the first tensors dimensions define the dimensions the other tensors have to match
   let channels = tensors[0].shape.channels
@@ -412,18 +417,30 @@ public func Collect(_ tensors: [Tensor], name:String = "") -> Tensor  {
     
     // Tell the other tensor that it should write into our image and not
     // an image of its own.
-    input.destinationImageNumber = image
+    input.destinationImageNumber = imageNumber
     input.destinationTensor = collected
+    
+    //print("Handle Collect input #\(imageNumber) id \(input.shortId) for Tensor \(name)")
+
+    // handle Concat --> Collect
+    if input.typeName == "Concat" {
+      //print("Handle Concat Tensor \(input.shortId) --> Collect for Tensor \(name)")
+      for input_of_input in input.previous {
+        input_of_input.destinationTensor = collected
+        input_of_input.destinationImageNumber = imageNumber
+        //print("Set input_of_input \(input_of_input.shortId) to destinationImageNumber \(imageNumber)")
+      }
+    }
     
     // Figure out how large to make the collecting tensor's destination image.
     if input.shape.width != width {
-      fatalError("input tensor #"+String(image)+" of Collect function does not match width of first input tensor")
+      fatalError("input tensor #"+String(imageNumber)+" of Collect function does not match width of first input tensor")
     }
     if input.shape.height != height {
-      fatalError("input tensor #"+String(image)+" of Collect function does not match height of first input tensor")
+      fatalError("input tensor #"+String(imageNumber)+" of Collect function does not match height of first input tensor")
     }
 
-    image += input.shape.numImages
+    imageNumber += input.shape.numImages
     
     // Connect each tensor to the collecting tensor, or the topological sort
     // will fail and the graph will be incomplete.
@@ -432,7 +449,7 @@ public func Collect(_ tensors: [Tensor], name:String = "") -> Tensor  {
     input_names_list += input.shortId + "-"
   }
   
-  collected.shape = DataShape(width: width, height: height, channels: channels, numImages:image)
+  collected.shape = DataShape(width: width, height: height, channels: channels, numImages:imageNumber)
   collected.typeName = "Collect"
   if name != "" {
     collected.id = name

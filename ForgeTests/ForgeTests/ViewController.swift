@@ -70,9 +70,17 @@ class ViewController: UIViewController {
     //layerTests.testZeroPaddingLayer_3ch_Image()
  
     layerTests.testSubtractMean()
+    /*
     layerTests.testVGG16(debug: true)
     layerTests.testResNet(debug: true)
     layerTests.testInception_V3(debug: true)
+    layerTests.testInceptionResnet(debug: true)
+ */
+    let modeTests = ModelTests()
+    modeTests.testVGG16(debug: false)
+    modeTests.testResnet50(debug: false)
+    modeTests.testInceptionV3(debug: false)
+    modeTests.testInceptionResnetV2(debug: false)
 
 /*
     let basicConvTests = BasicConvolutionTests()

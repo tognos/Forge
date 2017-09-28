@@ -205,6 +205,7 @@ public class MPSCNNLayer: Layer {
     //mpscnn.offset = MPSOffset(x: 0, y: 0, z: 0)
     mpscnn.clipRect.origin.z = destinationTensor.destinationImageNumber
     mpscnn.clipRect.size.depth = 1
+    //print("MPSCNNLayer: Encoding for layer '\(self.name), sourceTensor='\(sourceTensor.shortId)', src offset=\(mpscnn.offset), src image=\(sourceTensor.image?.description ?? "nil")")
     //print("cliprect:", mpscnn.debugDescription)
     
 //    if let image = sourceTensor.image as? MPSTemporaryImage {
