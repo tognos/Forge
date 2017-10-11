@@ -394,6 +394,7 @@ enum NeuronType: ushort {
       //ushort inputFeatureChannels;
       ushort inputImages;
       ushort inputSlicesPerImage;
+      ushort destSliceOffset;
       //ushort inputOffsetX;
       //ushort inputOffsetY;
       //ushort inputOffsetZ;
@@ -461,9 +462,11 @@ enum NeuronType: ushort {
           gid.y >= outTexture.get_height() ||
           gid.z >= outTexture.get_array_size()) return;
       
-      const ushort inputImages = inTexture.get_array_size()/outTexture.get_array_size();
-      const ushort inputSlicesPerImage = outTexture.get_array_size();
-      
+      //const ushort inputImages = inTexture.get_array_size()/outTexture.get_array_size();
+      //const ushort inputSlicesPerImage = outTexture.get_array_size();
+      const ushort inputImages = params.inputImages;
+      const ushort inputSlicesPerImage = params.inputSlicesPerImage;
+
       half4 out = opType != OpTypeMultiplay ? half4(0.0h) : half4(1.0h);
       
       for (ushort image = 0; image < inputImages; ++image) {
@@ -474,7 +477,7 @@ enum NeuronType: ushort {
           out = applyOp(out, in / params.inputImages);
         }
       }
-      outTexture.write(out, gid.xy, gid.z /*slice*/);
+      outTexture.write(out, gid.xy, gid.z + params.destSliceOffset /*slice*/);
     }
     
     // ------------- Padding --------------

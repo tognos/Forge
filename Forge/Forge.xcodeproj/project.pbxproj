@@ -84,7 +84,7 @@
 		7BA396811EAA07A200F4C4D6 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		7BA396831EAA0B1F00F4C4D6 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
 		7BD424991EB216B700451777 /* TransposeChannels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransposeChannels.swift; sourceTree = "<group>"; };
-		E95496FE1F5617F0006BD4FF /* MergeOp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeOp.swift; sourceTree = "<group>"; };
+		E95496FE1F5617F0006BD4FF /* MergeOp.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = MergeOp.swift; sourceTree = "<group>"; tabWidth = 2; };
 		E972E7D01F86792A0091C573 /* Vgg16Builder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Vgg16Builder.swift; path = Networks/Vgg16Builder.swift; sourceTree = "<group>"; };
 		E972E7D21F867A440091C573 /* Resnet50Builder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Resnet50Builder.swift; path = Networks/Resnet50Builder.swift; sourceTree = "<group>"; };
 		E972E7D41F867C840091C573 /* InceptionV3Builder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InceptionV3Builder.swift; path = Networks/InceptionV3Builder.swift; sourceTree = "<group>"; };

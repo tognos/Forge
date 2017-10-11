@@ -963,7 +963,6 @@
 		E97B98B61F7D97C200E7C410 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97B98B51F7D97C200E7C410 /* ModelTests.swift */; };
 		E97B98B81F7D980100E7C410 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97B98B71F7D980100E7C410 /* TestUtils.swift */; };
 		E994B1EF1F8E717F00A237CB /* xception-block6_sepconv2_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1591F8E717500A237CB /* xception-block6_sepconv2_sep.weights.bin */; };
-		E994B1F01F8E717F00A237CB /* xception-block5_sepconv1-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B15A1F8E717600A237CB /* xception-block5_sepconv1-sep.weights.bin */; };
 		E994B1F11F8E717F00A237CB /* xception-block12_sepconv1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B15B1F8E717600A237CB /* xception-block12_sepconv1.biases.bin */; };
 		E994B1F21F8E717F00A237CB /* xception-block3_sepconv1_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B15C1F8E717600A237CB /* xception-block3_sepconv1_sep.weights.bin */; };
 		E994B1F31F8E717F00A237CB /* xception-block1_conv2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B15D1F8E717600A237CB /* xception-block1_conv2.biases.bin */; };
@@ -971,7 +970,6 @@
 		E994B1F51F8E717F00A237CB /* xception-block5_sepconv3.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B15F1F8E717600A237CB /* xception-block5_sepconv3.biases.bin */; };
 		E994B1F61F8E717F00A237CB /* xception-block6_sepconv3.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1601F8E717600A237CB /* xception-block6_sepconv3.biases.bin */; };
 		E994B1F71F8E717F00A237CB /* xception-block4_sepconv2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1611F8E717600A237CB /* xception-block4_sepconv2.biases.bin */; };
-		E994B1F81F8E717F00A237CB /* xception-block7_sepconv2-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1621F8E717600A237CB /* xception-block7_sepconv2-sep.weights.bin */; };
 		E994B1F91F8E717F00A237CB /* xception-block2_sepconv2_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1631F8E717600A237CB /* xception-block2_sepconv2_sep.weights.bin */; };
 		E994B1FA1F8E717F00A237CB /* xception-block6_sepconv1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1641F8E717600A237CB /* xception-block6_sepconv1.weights.bin */; };
 		E994B1FB1F8E717F00A237CB /* xception-block11_sepconv2_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1651F8E717600A237CB /* xception-block11_sepconv2_sep.weights.bin */; };
@@ -983,18 +981,13 @@
 		E994B2011F8E717F00A237CB /* xception-block1_conv1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B16B1F8E717600A237CB /* xception-block1_conv1.weights.bin */; };
 		E994B2021F8E717F00A237CB /* xception-block6_sepconv2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B16C1F8E717600A237CB /* xception-block6_sepconv2.biases.bin */; };
 		E994B2031F8E717F00A237CB /* xception-block9_sepconv1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B16D1F8E717600A237CB /* xception-block9_sepconv1.biases.bin */; };
-		E994B2041F8E717F00A237CB /* xception-block11_sepconv3-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B16E1F8E717700A237CB /* xception-block11_sepconv3-sep.weights.bin */; };
 		E994B2051F8E717F00A237CB /* xception-block13_sepconv1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B16F1F8E717700A237CB /* xception-block13_sepconv1.weights.bin */; };
 		E994B2061F8E717F00A237CB /* xception-block10_sepconv3_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1701F8E717700A237CB /* xception-block10_sepconv3_sep.weights.bin */; };
 		E994B2071F8E717F00A237CB /* xception-block13_sepconv2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1711F8E717700A237CB /* xception-block13_sepconv2.biases.bin */; };
-		E994B2081F8E717F00A237CB /* xception-block8_sepconv3-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1721F8E717700A237CB /* xception-block8_sepconv3-sep.weights.bin */; };
 		E994B2091F8E717F00A237CB /* xception-block13_sepconv2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1731F8E717700A237CB /* xception-block13_sepconv2.weights.bin */; };
 		E994B20A1F8E717F00A237CB /* xception-conv2d_1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1741F8E717700A237CB /* xception-conv2d_1.weights.bin */; };
-		E994B20B1F8E717F00A237CB /* xception-block2_sepconv2-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1751F8E717700A237CB /* xception-block2_sepconv2-sep.weights.bin */; };
-		E994B20C1F8E717F00A237CB /* xception-block6_sepconv3-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1761F8E717700A237CB /* xception-block6_sepconv3-sep.weights.bin */; };
 		E994B20D1F8E717F00A237CB /* xception-block7_sepconv2_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1771F8E717700A237CB /* xception-block7_sepconv2_sep.weights.bin */; };
 		E994B20E1F8E717F00A237CB /* xception-block9_sepconv3.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1781F8E717700A237CB /* xception-block9_sepconv3.weights.bin */; };
-		E994B20F1F8E717F00A237CB /* xception-block10_sepconv3-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1791F8E717700A237CB /* xception-block10_sepconv3-sep.weights.bin */; };
 		E994B2101F8E717F00A237CB /* xception-block10_sepconv1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B17A1F8E717700A237CB /* xception-block10_sepconv1.biases.bin */; };
 		E994B2111F8E717F00A237CB /* xception-conv2d_2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B17B1F8E717700A237CB /* xception-conv2d_2.biases.bin */; };
 		E994B2121F8E717F00A237CB /* xception-conv2d_4.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B17C1F8E717700A237CB /* xception-conv2d_4.biases.bin */; };
@@ -1005,15 +998,12 @@
 		E994B2171F8E717F00A237CB /* xception-block3_sepconv2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1811F8E717700A237CB /* xception-block3_sepconv2.biases.bin */; };
 		E994B2181F8E717F00A237CB /* xception-block11_sepconv3_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1821F8E717700A237CB /* xception-block11_sepconv3_sep.weights.bin */; };
 		E994B2191F8E717F00A237CB /* xception-block9_sepconv2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1831F8E717800A237CB /* xception-block9_sepconv2.biases.bin */; };
-		E994B21A1F8E717F00A237CB /* xception-block12_sepconv2-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1841F8E717800A237CB /* xception-block12_sepconv2-sep.weights.bin */; };
 		E994B21B1F8E717F00A237CB /* xception-block13_sepconv1_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1851F8E717800A237CB /* xception-block13_sepconv1_sep.weights.bin */; };
 		E994B21C1F8E717F00A237CB /* xception-predictions.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1861F8E717800A237CB /* xception-predictions.weights.bin */; };
-		E994B21D1F8E717F00A237CB /* xception-block13_sepconv2-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1871F8E717800A237CB /* xception-block13_sepconv2-sep.weights.bin */; };
 		E994B21E1F8E717F00A237CB /* xception-block3_sepconv1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1881F8E717800A237CB /* xception-block3_sepconv1.weights.bin */; };
 		E994B21F1F8E717F00A237CB /* xception-block11_sepconv1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1891F8E717800A237CB /* xception-block11_sepconv1.biases.bin */; };
 		E994B2201F8E717F00A237CB /* xception-conv2d_4.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B18A1F8E717800A237CB /* xception-conv2d_4.weights.bin */; };
 		E994B2211F8E717F00A237CB /* xception-block9_sepconv2_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B18B1F8E717800A237CB /* xception-block9_sepconv2_sep.weights.bin */; };
-		E994B2221F8E717F00A237CB /* xception-block9_sepconv2-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B18C1F8E717800A237CB /* xception-block9_sepconv2-sep.weights.bin */; };
 		E994B2231F8E717F00A237CB /* xception-block5_sepconv3.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B18D1F8E717800A237CB /* xception-block5_sepconv3.weights.bin */; };
 		E994B2241F8E717F00A237CB /* xception-block8_sepconv3.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B18E1F8E717800A237CB /* xception-block8_sepconv3.weights.bin */; };
 		E994B2251F8E717F00A237CB /* xception-conv2d_3.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B18F1F8E717800A237CB /* xception-conv2d_3.weights.bin */; };
@@ -1022,46 +1012,32 @@
 		E994B2281F8E717F00A237CB /* xception-block2_sepconv2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1921F8E717800A237CB /* xception-block2_sepconv2.weights.bin */; };
 		E994B2291F8E717F00A237CB /* xception-block5_sepconv3_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1931F8E717800A237CB /* xception-block5_sepconv3_sep.weights.bin */; };
 		E994B22A1F8E717F00A237CB /* xception-block5_sepconv2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1941F8E717800A237CB /* xception-block5_sepconv2.biases.bin */; };
-		E994B22B1F8E717F00A237CB /* xception-block12_sepconv3-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1951F8E717800A237CB /* xception-block12_sepconv3-sep.weights.bin */; };
 		E994B22C1F8E717F00A237CB /* xception-block14_sepconv2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1961F8E717800A237CB /* xception-block14_sepconv2.weights.bin */; };
-		E994B22D1F8E717F00A237CB /* xception-block11_sepconv2-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1971F8E717800A237CB /* xception-block11_sepconv2-sep.weights.bin */; };
 		E994B22E1F8E717F00A237CB /* xception-block11_sepconv1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1981F8E717900A237CB /* xception-block11_sepconv1.weights.bin */; };
 		E994B22F1F8E717F00A237CB /* xception-block11_sepconv3.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1991F8E717900A237CB /* xception-block11_sepconv3.weights.bin */; };
-		E994B2301F8E717F00A237CB /* xception-block11_sepconv1-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B19A1F8E717900A237CB /* xception-block11_sepconv1-sep.weights.bin */; };
 		E994B2311F8E717F00A237CB /* xception-block7_sepconv1_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B19B1F8E717900A237CB /* xception-block7_sepconv1_sep.weights.bin */; };
 		E994B2321F8E717F00A237CB /* xception-block7_sepconv2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B19C1F8E717900A237CB /* xception-block7_sepconv2.weights.bin */; };
 		E994B2331F8E717F00A237CB /* xception-block8_sepconv3_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B19D1F8E717900A237CB /* xception-block8_sepconv3_sep.weights.bin */; };
 		E994B2341F8E717F00A237CB /* xception-block10_sepconv3.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B19E1F8E717900A237CB /* xception-block10_sepconv3.biases.bin */; };
-		E994B2351F8E717F00A237CB /* xception-block7_sepconv3-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B19F1F8E717900A237CB /* xception-block7_sepconv3-sep.weights.bin */; };
 		E994B2361F8E717F00A237CB /* xception-block7_sepconv3.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1A01F8E717900A237CB /* xception-block7_sepconv3.biases.bin */; };
 		E994B2371F8E717F00A237CB /* xception-block7_sepconv2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1A11F8E717900A237CB /* xception-block7_sepconv2.biases.bin */; };
 		E994B2381F8E717F00A237CB /* xception-block3_sepconv2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1A21F8E717900A237CB /* xception-block3_sepconv2.weights.bin */; };
 		E994B2391F8E717F00A237CB /* xception-block5_sepconv2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1A31F8E717900A237CB /* xception-block5_sepconv2.weights.bin */; };
 		E994B23A1F8E717F00A237CB /* xception-block4_sepconv1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1A41F8E717900A237CB /* xception-block4_sepconv1.biases.bin */; };
-		E994B23B1F8E717F00A237CB /* xception-block9_sepconv3-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1A51F8E717900A237CB /* xception-block9_sepconv3-sep.weights.bin */; };
-		E994B23C1F8E717F00A237CB /* xception-block2_sepconv1-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1A61F8E717900A237CB /* xception-block2_sepconv1-sep.weights.bin */; };
 		E994B23D1F8E717F00A237CB /* xception-block10_sepconv3.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1A71F8E717900A237CB /* xception-block10_sepconv3.weights.bin */; };
 		E994B23E1F8E717F00A237CB /* xception-block8_sepconv1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1A81F8E717900A237CB /* xception-block8_sepconv1.weights.bin */; };
 		E994B23F1F8E717F00A237CB /* xception-block10_sepconv2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1A91F8E717900A237CB /* xception-block10_sepconv2.biases.bin */; };
-		E994B2401F8E717F00A237CB /* xception-block13_sepconv1-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1AA1F8E717900A237CB /* xception-block13_sepconv1-sep.weights.bin */; };
 		E994B2411F8E717F00A237CB /* xception-block11_sepconv2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1AB1F8E717900A237CB /* xception-block11_sepconv2.biases.bin */; };
 		E994B2421F8E717F00A237CB /* xception-block12_sepconv2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1AC1F8E717A00A237CB /* xception-block12_sepconv2.biases.bin */; };
 		E994B2431F8E717F00A237CB /* xception-block8_sepconv2_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1AD1F8E717A00A237CB /* xception-block8_sepconv2_sep.weights.bin */; };
-		E994B2441F8E717F00A237CB /* xception-block12_sepconv1-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1AE1F8E717A00A237CB /* xception-block12_sepconv1-sep.weights.bin */; };
 		E994B2451F8E717F00A237CB /* xception-block7_sepconv1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1AF1F8E717A00A237CB /* xception-block7_sepconv1.biases.bin */; };
 		E994B2461F8E717F00A237CB /* xception-block5_sepconv1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1B01F8E717A00A237CB /* xception-block5_sepconv1.biases.bin */; };
-		E994B2471F8E717F00A237CB /* xception-block14_sepconv2-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1B11F8E717A00A237CB /* xception-block14_sepconv2-sep.weights.bin */; };
-		E994B2481F8E717F00A237CB /* xception-block14_sepconv1-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1B21F8E717A00A237CB /* xception-block14_sepconv1-sep.weights.bin */; };
-		E994B2491F8E717F00A237CB /* xception-block9_sepconv1-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1B31F8E717A00A237CB /* xception-block9_sepconv1-sep.weights.bin */; };
 		E994B24A1F8E717F00A237CB /* xception-block14_sepconv2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1B41F8E717A00A237CB /* xception-block14_sepconv2.biases.bin */; };
 		E994B24B1F8E717F00A237CB /* xception-block12_sepconv1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1B51F8E717A00A237CB /* xception-block12_sepconv1.weights.bin */; };
-		E994B24C1F8E717F00A237CB /* xception-block4_sepconv1-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1B61F8E717A00A237CB /* xception-block4_sepconv1-sep.weights.bin */; };
-		E994B24D1F8E717F00A237CB /* xception-block10_sepconv2-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1B71F8E717A00A237CB /* xception-block10_sepconv2-sep.weights.bin */; };
 		E994B24E1F8E717F00A237CB /* xception-block12_sepconv3.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1B81F8E717A00A237CB /* xception-block12_sepconv3.biases.bin */; };
 		E994B24F1F8E717F00A237CB /* xception-block9_sepconv1_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1B91F8E717A00A237CB /* xception-block9_sepconv1_sep.weights.bin */; };
 		E994B2501F8E717F00A237CB /* xception-block3_sepconv2_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1BA1F8E717A00A237CB /* xception-block3_sepconv2_sep.weights.bin */; };
 		E994B2511F8E717F00A237CB /* xception-block14_sepconv1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1BB1F8E717A00A237CB /* xception-block14_sepconv1.weights.bin */; };
-		E994B2521F8E717F00A237CB /* xception-block6_sepconv1-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1BC1F8E717A00A237CB /* xception-block6_sepconv1-sep.weights.bin */; };
 		E994B2531F8E717F00A237CB /* xception-block9_sepconv2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1BD1F8E717A00A237CB /* xception-block9_sepconv2.weights.bin */; };
 		E994B2541F8E717F00A237CB /* xception-block12_sepconv1_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1BE1F8E717A00A237CB /* xception-block12_sepconv1_sep.weights.bin */; };
 		E994B2551F8E717F00A237CB /* xception-block5_sepconv1_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1BF1F8E717A00A237CB /* xception-block5_sepconv1_sep.weights.bin */; };
@@ -1070,38 +1046,28 @@
 		E994B2581F8E717F00A237CB /* xception-block11_sepconv3.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1C21F8E717B00A237CB /* xception-block11_sepconv3.biases.bin */; };
 		E994B2591F8E717F00A237CB /* xception-block14_sepconv1_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1C31F8E717B00A237CB /* xception-block14_sepconv1_sep.weights.bin */; };
 		E994B25A1F8E717F00A237CB /* xception-block5_sepconv2_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1C41F8E717B00A237CB /* xception-block5_sepconv2_sep.weights.bin */; };
-		E994B25B1F8E717F00A237CB /* xception-block4_sepconv2-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1C51F8E717B00A237CB /* xception-block4_sepconv2-sep.weights.bin */; };
 		E994B25C1F8E717F00A237CB /* xception-block6_sepconv3_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1C61F8E717B00A237CB /* xception-block6_sepconv3_sep.weights.bin */; };
 		E994B25D1F8E717F00A237CB /* xception-predictions.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1C71F8E717B00A237CB /* xception-predictions.biases.bin */; };
-		E994B25E1F8E717F00A237CB /* xception-block3_sepconv1-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1C81F8E717B00A237CB /* xception-block3_sepconv1-sep.weights.bin */; };
-		E994B25F1F8E717F00A237CB /* xception-block3_sepconv2-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1C91F8E717B00A237CB /* xception-block3_sepconv2-sep.weights.bin */; };
 		E994B2601F8E717F00A237CB /* xception-block4_sepconv2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1CA1F8E717B00A237CB /* xception-block4_sepconv2.weights.bin */; };
 		E994B2611F8E717F00A237CB /* xception-block8_sepconv2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1CB1F8E717B00A237CB /* xception-block8_sepconv2.weights.bin */; };
 		E994B2621F8E717F00A237CB /* xception-block12_sepconv3_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1CC1F8E717B00A237CB /* xception-block12_sepconv3_sep.weights.bin */; };
-		E994B2631F8E717F00A237CB /* xception-block10_sepconv1-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1CD1F8E717B00A237CB /* xception-block10_sepconv1-sep.weights.bin */; };
 		E994B2641F8E717F00A237CB /* xception-block7_sepconv3_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1CE1F8E717C00A237CB /* xception-block7_sepconv3_sep.weights.bin */; };
-		E994B2651F8E717F00A237CB /* xception-block8_sepconv2-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1CF1F8E717C00A237CB /* xception-block8_sepconv2-sep.weights.bin */; };
 		E994B2661F8E717F00A237CB /* xception-block12_sepconv2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1D01F8E717C00A237CB /* xception-block12_sepconv2.weights.bin */; };
 		E994B2671F8E717F00A237CB /* xception-block2_sepconv1_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1D11F8E717C00A237CB /* xception-block2_sepconv1_sep.weights.bin */; };
-		E994B2681F8E717F00A237CB /* xception-block6_sepconv2-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1D21F8E717C00A237CB /* xception-block6_sepconv2-sep.weights.bin */; };
 		E994B2691F8E717F00A237CB /* xception-block9_sepconv1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1D31F8E717C00A237CB /* xception-block9_sepconv1.weights.bin */; };
 		E994B26A1F8E717F00A237CB /* xception-block3_sepconv1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1D41F8E717C00A237CB /* xception-block3_sepconv1.biases.bin */; };
 		E994B26B1F8E717F00A237CB /* xception-block12_sepconv3.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1D51F8E717C00A237CB /* xception-block12_sepconv3.weights.bin */; };
 		E994B26C1F8E717F00A237CB /* xception-block13_sepconv2_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1D61F8E717C00A237CB /* xception-block13_sepconv2_sep.weights.bin */; };
-		E994B26D1F8E717F00A237CB /* xception-block7_sepconv1-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1D71F8E717C00A237CB /* xception-block7_sepconv1-sep.weights.bin */; };
 		E994B26E1F8E717F00A237CB /* xception-block13_sepconv1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1D81F8E717C00A237CB /* xception-block13_sepconv1.biases.bin */; };
 		E994B26F1F8E717F00A237CB /* xception-block9_sepconv3.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1D91F8E717C00A237CB /* xception-block9_sepconv3.biases.bin */; };
 		E994B2701F8E717F00A237CB /* xception-conv2d_2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1DA1F8E717C00A237CB /* xception-conv2d_2.weights.bin */; };
 		E994B2711F8E717F00A237CB /* xception-block6_sepconv1_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1DB1F8E717D00A237CB /* xception-block6_sepconv1_sep.weights.bin */; };
-		E994B2721F8E717F00A237CB /* xception-block5_sepconv2-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1DC1F8E717D00A237CB /* xception-block5_sepconv2-sep.weights.bin */; };
-		E994B2731F8E717F00A237CB /* xception-block5_sepconv3-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1DD1F8E717D00A237CB /* xception-block5_sepconv3-sep.weights.bin */; };
 		E994B2741F8E717F00A237CB /* xception-block14_sepconv1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1DE1F8E717D00A237CB /* xception-block14_sepconv1.biases.bin */; };
 		E994B2751F8E717F00A237CB /* xception-block2_sepconv1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1DF1F8E717D00A237CB /* xception-block2_sepconv1.biases.bin */; };
 		E994B2761F8E717F00A237CB /* xception-block2_sepconv2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1E01F8E717D00A237CB /* xception-block2_sepconv2.biases.bin */; };
 		E994B2771F8E717F00A237CB /* xception-block5_sepconv1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1E11F8E717D00A237CB /* xception-block5_sepconv1.weights.bin */; };
 		E994B2781F8E717F00A237CB /* xception-block8_sepconv1_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1E21F8E717D00A237CB /* xception-block8_sepconv1_sep.weights.bin */; };
 		E994B2791F8E717F00A237CB /* xception-block2_sepconv1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1E31F8E717D00A237CB /* xception-block2_sepconv1.weights.bin */; };
-		E994B27A1F8E717F00A237CB /* xception-block8_sepconv1-sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1E41F8E717E00A237CB /* xception-block8_sepconv1-sep.weights.bin */; };
 		E994B27B1F8E717F00A237CB /* xception-block1_conv2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1E51F8E717E00A237CB /* xception-block1_conv2.weights.bin */; };
 		E994B27C1F8E717F00A237CB /* xception-block11_sepconv2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1E61F8E717E00A237CB /* xception-block11_sepconv2.weights.bin */; };
 		E994B27D1F8E717F00A237CB /* xception-block14_sepconv2_sep.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E994B1E71F8E717E00A237CB /* xception-block14_sepconv2_sep.weights.bin */; };
@@ -2095,7 +2061,6 @@
 		E97B98B51F7D97C200E7C410 /* ModelTests.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; tabWidth = 2; };
 		E97B98B71F7D980100E7C410 /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 		E994B1591F8E717500A237CB /* xception-block6_sepconv2_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block6_sepconv2_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block6_sepconv2_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B15A1F8E717600A237CB /* xception-block5_sepconv1-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block5_sepconv1-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block5_sepconv1-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B15B1F8E717600A237CB /* xception-block12_sepconv1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block12_sepconv1.biases.bin"; path = "ForgeTests/TestWeights/xception-block12_sepconv1.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B15C1F8E717600A237CB /* xception-block3_sepconv1_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block3_sepconv1_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block3_sepconv1_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B15D1F8E717600A237CB /* xception-block1_conv2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block1_conv2.biases.bin"; path = "ForgeTests/TestWeights/xception-block1_conv2.biases.bin"; sourceTree = SOURCE_ROOT; };
@@ -2103,7 +2068,6 @@
 		E994B15F1F8E717600A237CB /* xception-block5_sepconv3.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block5_sepconv3.biases.bin"; path = "ForgeTests/TestWeights/xception-block5_sepconv3.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1601F8E717600A237CB /* xception-block6_sepconv3.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block6_sepconv3.biases.bin"; path = "ForgeTests/TestWeights/xception-block6_sepconv3.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1611F8E717600A237CB /* xception-block4_sepconv2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block4_sepconv2.biases.bin"; path = "ForgeTests/TestWeights/xception-block4_sepconv2.biases.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1621F8E717600A237CB /* xception-block7_sepconv2-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block7_sepconv2-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block7_sepconv2-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1631F8E717600A237CB /* xception-block2_sepconv2_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block2_sepconv2_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block2_sepconv2_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1641F8E717600A237CB /* xception-block6_sepconv1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block6_sepconv1.weights.bin"; path = "ForgeTests/TestWeights/xception-block6_sepconv1.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1651F8E717600A237CB /* xception-block11_sepconv2_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block11_sepconv2_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block11_sepconv2_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
@@ -2115,18 +2079,13 @@
 		E994B16B1F8E717600A237CB /* xception-block1_conv1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block1_conv1.weights.bin"; path = "ForgeTests/TestWeights/xception-block1_conv1.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B16C1F8E717600A237CB /* xception-block6_sepconv2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block6_sepconv2.biases.bin"; path = "ForgeTests/TestWeights/xception-block6_sepconv2.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B16D1F8E717600A237CB /* xception-block9_sepconv1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block9_sepconv1.biases.bin"; path = "ForgeTests/TestWeights/xception-block9_sepconv1.biases.bin"; sourceTree = SOURCE_ROOT; };
-		E994B16E1F8E717700A237CB /* xception-block11_sepconv3-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block11_sepconv3-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block11_sepconv3-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B16F1F8E717700A237CB /* xception-block13_sepconv1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block13_sepconv1.weights.bin"; path = "ForgeTests/TestWeights/xception-block13_sepconv1.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1701F8E717700A237CB /* xception-block10_sepconv3_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block10_sepconv3_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block10_sepconv3_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1711F8E717700A237CB /* xception-block13_sepconv2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block13_sepconv2.biases.bin"; path = "ForgeTests/TestWeights/xception-block13_sepconv2.biases.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1721F8E717700A237CB /* xception-block8_sepconv3-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block8_sepconv3-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block8_sepconv3-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1731F8E717700A237CB /* xception-block13_sepconv2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block13_sepconv2.weights.bin"; path = "ForgeTests/TestWeights/xception-block13_sepconv2.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1741F8E717700A237CB /* xception-conv2d_1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-conv2d_1.weights.bin"; path = "ForgeTests/TestWeights/xception-conv2d_1.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1751F8E717700A237CB /* xception-block2_sepconv2-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block2_sepconv2-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block2_sepconv2-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1761F8E717700A237CB /* xception-block6_sepconv3-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block6_sepconv3-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block6_sepconv3-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1771F8E717700A237CB /* xception-block7_sepconv2_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block7_sepconv2_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block7_sepconv2_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1781F8E717700A237CB /* xception-block9_sepconv3.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block9_sepconv3.weights.bin"; path = "ForgeTests/TestWeights/xception-block9_sepconv3.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1791F8E717700A237CB /* xception-block10_sepconv3-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block10_sepconv3-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block10_sepconv3-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B17A1F8E717700A237CB /* xception-block10_sepconv1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block10_sepconv1.biases.bin"; path = "ForgeTests/TestWeights/xception-block10_sepconv1.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B17B1F8E717700A237CB /* xception-conv2d_2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-conv2d_2.biases.bin"; path = "ForgeTests/TestWeights/xception-conv2d_2.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B17C1F8E717700A237CB /* xception-conv2d_4.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-conv2d_4.biases.bin"; path = "ForgeTests/TestWeights/xception-conv2d_4.biases.bin"; sourceTree = SOURCE_ROOT; };
@@ -2137,15 +2096,12 @@
 		E994B1811F8E717700A237CB /* xception-block3_sepconv2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block3_sepconv2.biases.bin"; path = "ForgeTests/TestWeights/xception-block3_sepconv2.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1821F8E717700A237CB /* xception-block11_sepconv3_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block11_sepconv3_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block11_sepconv3_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1831F8E717800A237CB /* xception-block9_sepconv2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block9_sepconv2.biases.bin"; path = "ForgeTests/TestWeights/xception-block9_sepconv2.biases.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1841F8E717800A237CB /* xception-block12_sepconv2-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block12_sepconv2-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block12_sepconv2-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1851F8E717800A237CB /* xception-block13_sepconv1_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block13_sepconv1_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block13_sepconv1_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1861F8E717800A237CB /* xception-predictions.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-predictions.weights.bin"; path = "ForgeTests/TestWeights/xception-predictions.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1871F8E717800A237CB /* xception-block13_sepconv2-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block13_sepconv2-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block13_sepconv2-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1881F8E717800A237CB /* xception-block3_sepconv1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block3_sepconv1.weights.bin"; path = "ForgeTests/TestWeights/xception-block3_sepconv1.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1891F8E717800A237CB /* xception-block11_sepconv1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block11_sepconv1.biases.bin"; path = "ForgeTests/TestWeights/xception-block11_sepconv1.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B18A1F8E717800A237CB /* xception-conv2d_4.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-conv2d_4.weights.bin"; path = "ForgeTests/TestWeights/xception-conv2d_4.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B18B1F8E717800A237CB /* xception-block9_sepconv2_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block9_sepconv2_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block9_sepconv2_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B18C1F8E717800A237CB /* xception-block9_sepconv2-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block9_sepconv2-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block9_sepconv2-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B18D1F8E717800A237CB /* xception-block5_sepconv3.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block5_sepconv3.weights.bin"; path = "ForgeTests/TestWeights/xception-block5_sepconv3.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B18E1F8E717800A237CB /* xception-block8_sepconv3.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block8_sepconv3.weights.bin"; path = "ForgeTests/TestWeights/xception-block8_sepconv3.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B18F1F8E717800A237CB /* xception-conv2d_3.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-conv2d_3.weights.bin"; path = "ForgeTests/TestWeights/xception-conv2d_3.weights.bin"; sourceTree = SOURCE_ROOT; };
@@ -2154,46 +2110,32 @@
 		E994B1921F8E717800A237CB /* xception-block2_sepconv2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block2_sepconv2.weights.bin"; path = "ForgeTests/TestWeights/xception-block2_sepconv2.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1931F8E717800A237CB /* xception-block5_sepconv3_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block5_sepconv3_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block5_sepconv3_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1941F8E717800A237CB /* xception-block5_sepconv2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block5_sepconv2.biases.bin"; path = "ForgeTests/TestWeights/xception-block5_sepconv2.biases.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1951F8E717800A237CB /* xception-block12_sepconv3-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block12_sepconv3-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block12_sepconv3-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1961F8E717800A237CB /* xception-block14_sepconv2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block14_sepconv2.weights.bin"; path = "ForgeTests/TestWeights/xception-block14_sepconv2.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1971F8E717800A237CB /* xception-block11_sepconv2-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block11_sepconv2-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block11_sepconv2-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1981F8E717900A237CB /* xception-block11_sepconv1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block11_sepconv1.weights.bin"; path = "ForgeTests/TestWeights/xception-block11_sepconv1.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1991F8E717900A237CB /* xception-block11_sepconv3.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block11_sepconv3.weights.bin"; path = "ForgeTests/TestWeights/xception-block11_sepconv3.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B19A1F8E717900A237CB /* xception-block11_sepconv1-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block11_sepconv1-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block11_sepconv1-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B19B1F8E717900A237CB /* xception-block7_sepconv1_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block7_sepconv1_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block7_sepconv1_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B19C1F8E717900A237CB /* xception-block7_sepconv2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block7_sepconv2.weights.bin"; path = "ForgeTests/TestWeights/xception-block7_sepconv2.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B19D1F8E717900A237CB /* xception-block8_sepconv3_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block8_sepconv3_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block8_sepconv3_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B19E1F8E717900A237CB /* xception-block10_sepconv3.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block10_sepconv3.biases.bin"; path = "ForgeTests/TestWeights/xception-block10_sepconv3.biases.bin"; sourceTree = SOURCE_ROOT; };
-		E994B19F1F8E717900A237CB /* xception-block7_sepconv3-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block7_sepconv3-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block7_sepconv3-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1A01F8E717900A237CB /* xception-block7_sepconv3.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block7_sepconv3.biases.bin"; path = "ForgeTests/TestWeights/xception-block7_sepconv3.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1A11F8E717900A237CB /* xception-block7_sepconv2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block7_sepconv2.biases.bin"; path = "ForgeTests/TestWeights/xception-block7_sepconv2.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1A21F8E717900A237CB /* xception-block3_sepconv2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block3_sepconv2.weights.bin"; path = "ForgeTests/TestWeights/xception-block3_sepconv2.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1A31F8E717900A237CB /* xception-block5_sepconv2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block5_sepconv2.weights.bin"; path = "ForgeTests/TestWeights/xception-block5_sepconv2.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1A41F8E717900A237CB /* xception-block4_sepconv1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block4_sepconv1.biases.bin"; path = "ForgeTests/TestWeights/xception-block4_sepconv1.biases.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1A51F8E717900A237CB /* xception-block9_sepconv3-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block9_sepconv3-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block9_sepconv3-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1A61F8E717900A237CB /* xception-block2_sepconv1-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block2_sepconv1-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block2_sepconv1-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1A71F8E717900A237CB /* xception-block10_sepconv3.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block10_sepconv3.weights.bin"; path = "ForgeTests/TestWeights/xception-block10_sepconv3.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1A81F8E717900A237CB /* xception-block8_sepconv1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block8_sepconv1.weights.bin"; path = "ForgeTests/TestWeights/xception-block8_sepconv1.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1A91F8E717900A237CB /* xception-block10_sepconv2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block10_sepconv2.biases.bin"; path = "ForgeTests/TestWeights/xception-block10_sepconv2.biases.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1AA1F8E717900A237CB /* xception-block13_sepconv1-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block13_sepconv1-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block13_sepconv1-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1AB1F8E717900A237CB /* xception-block11_sepconv2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block11_sepconv2.biases.bin"; path = "ForgeTests/TestWeights/xception-block11_sepconv2.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1AC1F8E717A00A237CB /* xception-block12_sepconv2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block12_sepconv2.biases.bin"; path = "ForgeTests/TestWeights/xception-block12_sepconv2.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1AD1F8E717A00A237CB /* xception-block8_sepconv2_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block8_sepconv2_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block8_sepconv2_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1AE1F8E717A00A237CB /* xception-block12_sepconv1-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block12_sepconv1-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block12_sepconv1-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1AF1F8E717A00A237CB /* xception-block7_sepconv1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block7_sepconv1.biases.bin"; path = "ForgeTests/TestWeights/xception-block7_sepconv1.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1B01F8E717A00A237CB /* xception-block5_sepconv1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block5_sepconv1.biases.bin"; path = "ForgeTests/TestWeights/xception-block5_sepconv1.biases.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1B11F8E717A00A237CB /* xception-block14_sepconv2-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block14_sepconv2-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block14_sepconv2-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1B21F8E717A00A237CB /* xception-block14_sepconv1-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block14_sepconv1-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block14_sepconv1-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1B31F8E717A00A237CB /* xception-block9_sepconv1-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block9_sepconv1-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block9_sepconv1-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1B41F8E717A00A237CB /* xception-block14_sepconv2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block14_sepconv2.biases.bin"; path = "ForgeTests/TestWeights/xception-block14_sepconv2.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1B51F8E717A00A237CB /* xception-block12_sepconv1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block12_sepconv1.weights.bin"; path = "ForgeTests/TestWeights/xception-block12_sepconv1.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1B61F8E717A00A237CB /* xception-block4_sepconv1-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block4_sepconv1-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block4_sepconv1-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1B71F8E717A00A237CB /* xception-block10_sepconv2-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block10_sepconv2-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block10_sepconv2-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1B81F8E717A00A237CB /* xception-block12_sepconv3.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block12_sepconv3.biases.bin"; path = "ForgeTests/TestWeights/xception-block12_sepconv3.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1B91F8E717A00A237CB /* xception-block9_sepconv1_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block9_sepconv1_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block9_sepconv1_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1BA1F8E717A00A237CB /* xception-block3_sepconv2_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block3_sepconv2_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block3_sepconv2_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1BB1F8E717A00A237CB /* xception-block14_sepconv1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block14_sepconv1.weights.bin"; path = "ForgeTests/TestWeights/xception-block14_sepconv1.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1BC1F8E717A00A237CB /* xception-block6_sepconv1-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block6_sepconv1-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block6_sepconv1-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1BD1F8E717A00A237CB /* xception-block9_sepconv2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block9_sepconv2.weights.bin"; path = "ForgeTests/TestWeights/xception-block9_sepconv2.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1BE1F8E717A00A237CB /* xception-block12_sepconv1_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block12_sepconv1_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block12_sepconv1_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1BF1F8E717A00A237CB /* xception-block5_sepconv1_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block5_sepconv1_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block5_sepconv1_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
@@ -2202,38 +2144,28 @@
 		E994B1C21F8E717B00A237CB /* xception-block11_sepconv3.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block11_sepconv3.biases.bin"; path = "ForgeTests/TestWeights/xception-block11_sepconv3.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1C31F8E717B00A237CB /* xception-block14_sepconv1_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block14_sepconv1_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block14_sepconv1_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1C41F8E717B00A237CB /* xception-block5_sepconv2_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block5_sepconv2_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block5_sepconv2_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1C51F8E717B00A237CB /* xception-block4_sepconv2-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block4_sepconv2-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block4_sepconv2-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1C61F8E717B00A237CB /* xception-block6_sepconv3_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block6_sepconv3_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block6_sepconv3_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1C71F8E717B00A237CB /* xception-predictions.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-predictions.biases.bin"; path = "ForgeTests/TestWeights/xception-predictions.biases.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1C81F8E717B00A237CB /* xception-block3_sepconv1-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block3_sepconv1-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block3_sepconv1-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1C91F8E717B00A237CB /* xception-block3_sepconv2-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block3_sepconv2-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block3_sepconv2-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1CA1F8E717B00A237CB /* xception-block4_sepconv2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block4_sepconv2.weights.bin"; path = "ForgeTests/TestWeights/xception-block4_sepconv2.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1CB1F8E717B00A237CB /* xception-block8_sepconv2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block8_sepconv2.weights.bin"; path = "ForgeTests/TestWeights/xception-block8_sepconv2.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1CC1F8E717B00A237CB /* xception-block12_sepconv3_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block12_sepconv3_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block12_sepconv3_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1CD1F8E717B00A237CB /* xception-block10_sepconv1-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block10_sepconv1-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block10_sepconv1-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1CE1F8E717C00A237CB /* xception-block7_sepconv3_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block7_sepconv3_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block7_sepconv3_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1CF1F8E717C00A237CB /* xception-block8_sepconv2-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block8_sepconv2-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block8_sepconv2-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1D01F8E717C00A237CB /* xception-block12_sepconv2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block12_sepconv2.weights.bin"; path = "ForgeTests/TestWeights/xception-block12_sepconv2.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1D11F8E717C00A237CB /* xception-block2_sepconv1_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block2_sepconv1_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block2_sepconv1_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1D21F8E717C00A237CB /* xception-block6_sepconv2-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block6_sepconv2-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block6_sepconv2-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1D31F8E717C00A237CB /* xception-block9_sepconv1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block9_sepconv1.weights.bin"; path = "ForgeTests/TestWeights/xception-block9_sepconv1.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1D41F8E717C00A237CB /* xception-block3_sepconv1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block3_sepconv1.biases.bin"; path = "ForgeTests/TestWeights/xception-block3_sepconv1.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1D51F8E717C00A237CB /* xception-block12_sepconv3.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block12_sepconv3.weights.bin"; path = "ForgeTests/TestWeights/xception-block12_sepconv3.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1D61F8E717C00A237CB /* xception-block13_sepconv2_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block13_sepconv2_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block13_sepconv2_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1D71F8E717C00A237CB /* xception-block7_sepconv1-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block7_sepconv1-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block7_sepconv1-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1D81F8E717C00A237CB /* xception-block13_sepconv1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block13_sepconv1.biases.bin"; path = "ForgeTests/TestWeights/xception-block13_sepconv1.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1D91F8E717C00A237CB /* xception-block9_sepconv3.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block9_sepconv3.biases.bin"; path = "ForgeTests/TestWeights/xception-block9_sepconv3.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1DA1F8E717C00A237CB /* xception-conv2d_2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-conv2d_2.weights.bin"; path = "ForgeTests/TestWeights/xception-conv2d_2.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1DB1F8E717D00A237CB /* xception-block6_sepconv1_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block6_sepconv1_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block6_sepconv1_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1DC1F8E717D00A237CB /* xception-block5_sepconv2-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block5_sepconv2-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block5_sepconv2-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1DD1F8E717D00A237CB /* xception-block5_sepconv3-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block5_sepconv3-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block5_sepconv3-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1DE1F8E717D00A237CB /* xception-block14_sepconv1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block14_sepconv1.biases.bin"; path = "ForgeTests/TestWeights/xception-block14_sepconv1.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1DF1F8E717D00A237CB /* xception-block2_sepconv1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block2_sepconv1.biases.bin"; path = "ForgeTests/TestWeights/xception-block2_sepconv1.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1E01F8E717D00A237CB /* xception-block2_sepconv2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block2_sepconv2.biases.bin"; path = "ForgeTests/TestWeights/xception-block2_sepconv2.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1E11F8E717D00A237CB /* xception-block5_sepconv1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block5_sepconv1.weights.bin"; path = "ForgeTests/TestWeights/xception-block5_sepconv1.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1E21F8E717D00A237CB /* xception-block8_sepconv1_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block8_sepconv1_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block8_sepconv1_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1E31F8E717D00A237CB /* xception-block2_sepconv1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block2_sepconv1.weights.bin"; path = "ForgeTests/TestWeights/xception-block2_sepconv1.weights.bin"; sourceTree = SOURCE_ROOT; };
-		E994B1E41F8E717E00A237CB /* xception-block8_sepconv1-sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block8_sepconv1-sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block8_sepconv1-sep.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1E51F8E717E00A237CB /* xception-block1_conv2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block1_conv2.weights.bin"; path = "ForgeTests/TestWeights/xception-block1_conv2.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1E61F8E717E00A237CB /* xception-block11_sepconv2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block11_sepconv2.weights.bin"; path = "ForgeTests/TestWeights/xception-block11_sepconv2.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E994B1E71F8E717E00A237CB /* xception-block14_sepconv2_sep.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "xception-block14_sepconv2_sep.weights.bin"; path = "ForgeTests/TestWeights/xception-block14_sepconv2_sep.weights.bin"; sourceTree = SOURCE_ROOT; };
@@ -2339,139 +2271,105 @@
 				E994B15D1F8E717600A237CB /* xception-block1_conv2.biases.bin */,
 				E994B1E51F8E717E00A237CB /* xception-block1_conv2.weights.bin */,
 				E994B1D11F8E717C00A237CB /* xception-block2_sepconv1_sep.weights.bin */,
-				E994B1A61F8E717900A237CB /* xception-block2_sepconv1-sep.weights.bin */,
 				E994B1DF1F8E717D00A237CB /* xception-block2_sepconv1.biases.bin */,
 				E994B1E31F8E717D00A237CB /* xception-block2_sepconv1.weights.bin */,
 				E994B1631F8E717600A237CB /* xception-block2_sepconv2_sep.weights.bin */,
-				E994B1751F8E717700A237CB /* xception-block2_sepconv2-sep.weights.bin */,
 				E994B1E01F8E717D00A237CB /* xception-block2_sepconv2.biases.bin */,
 				E994B1921F8E717800A237CB /* xception-block2_sepconv2.weights.bin */,
 				E994B15C1F8E717600A237CB /* xception-block3_sepconv1_sep.weights.bin */,
-				E994B1C81F8E717B00A237CB /* xception-block3_sepconv1-sep.weights.bin */,
 				E994B1D41F8E717C00A237CB /* xception-block3_sepconv1.biases.bin */,
 				E994B1881F8E717800A237CB /* xception-block3_sepconv1.weights.bin */,
 				E994B1BA1F8E717A00A237CB /* xception-block3_sepconv2_sep.weights.bin */,
-				E994B1C91F8E717B00A237CB /* xception-block3_sepconv2-sep.weights.bin */,
 				E994B1811F8E717700A237CB /* xception-block3_sepconv2.biases.bin */,
 				E994B1A21F8E717900A237CB /* xception-block3_sepconv2.weights.bin */,
 				E994B15E1F8E717600A237CB /* xception-block4_sepconv1_sep.weights.bin */,
-				E994B1B61F8E717A00A237CB /* xception-block4_sepconv1-sep.weights.bin */,
 				E994B1A41F8E717900A237CB /* xception-block4_sepconv1.biases.bin */,
 				E994B17D1F8E717700A237CB /* xception-block4_sepconv1.weights.bin */,
 				E994B17E1F8E717700A237CB /* xception-block4_sepconv2_sep.weights.bin */,
-				E994B1C51F8E717B00A237CB /* xception-block4_sepconv2-sep.weights.bin */,
 				E994B1611F8E717600A237CB /* xception-block4_sepconv2.biases.bin */,
 				E994B1CA1F8E717B00A237CB /* xception-block4_sepconv2.weights.bin */,
 				E994B1BF1F8E717A00A237CB /* xception-block5_sepconv1_sep.weights.bin */,
-				E994B15A1F8E717600A237CB /* xception-block5_sepconv1-sep.weights.bin */,
 				E994B1B01F8E717A00A237CB /* xception-block5_sepconv1.biases.bin */,
 				E994B1E11F8E717D00A237CB /* xception-block5_sepconv1.weights.bin */,
 				E994B1C41F8E717B00A237CB /* xception-block5_sepconv2_sep.weights.bin */,
-				E994B1DC1F8E717D00A237CB /* xception-block5_sepconv2-sep.weights.bin */,
 				E994B1941F8E717800A237CB /* xception-block5_sepconv2.biases.bin */,
 				E994B1A31F8E717900A237CB /* xception-block5_sepconv2.weights.bin */,
 				E994B1931F8E717800A237CB /* xception-block5_sepconv3_sep.weights.bin */,
-				E994B1DD1F8E717D00A237CB /* xception-block5_sepconv3-sep.weights.bin */,
 				E994B15F1F8E717600A237CB /* xception-block5_sepconv3.biases.bin */,
 				E994B18D1F8E717800A237CB /* xception-block5_sepconv3.weights.bin */,
 				E994B1DB1F8E717D00A237CB /* xception-block6_sepconv1_sep.weights.bin */,
-				E994B1BC1F8E717A00A237CB /* xception-block6_sepconv1-sep.weights.bin */,
 				E994B1EE1F8E717E00A237CB /* xception-block6_sepconv1.biases.bin */,
 				E994B1641F8E717600A237CB /* xception-block6_sepconv1.weights.bin */,
 				E994B1591F8E717500A237CB /* xception-block6_sepconv2_sep.weights.bin */,
-				E994B1D21F8E717C00A237CB /* xception-block6_sepconv2-sep.weights.bin */,
 				E994B16C1F8E717600A237CB /* xception-block6_sepconv2.biases.bin */,
 				E994B1691F8E717600A237CB /* xception-block6_sepconv2.weights.bin */,
 				E994B1C61F8E717B00A237CB /* xception-block6_sepconv3_sep.weights.bin */,
-				E994B1761F8E717700A237CB /* xception-block6_sepconv3-sep.weights.bin */,
 				E994B1601F8E717600A237CB /* xception-block6_sepconv3.biases.bin */,
 				E994B1681F8E717600A237CB /* xception-block6_sepconv3.weights.bin */,
 				E994B19B1F8E717900A237CB /* xception-block7_sepconv1_sep.weights.bin */,
-				E994B1D71F8E717C00A237CB /* xception-block7_sepconv1-sep.weights.bin */,
 				E994B1AF1F8E717A00A237CB /* xception-block7_sepconv1.biases.bin */,
 				E994B1EC1F8E717E00A237CB /* xception-block7_sepconv1.weights.bin */,
 				E994B1771F8E717700A237CB /* xception-block7_sepconv2_sep.weights.bin */,
-				E994B1621F8E717600A237CB /* xception-block7_sepconv2-sep.weights.bin */,
 				E994B1A11F8E717900A237CB /* xception-block7_sepconv2.biases.bin */,
 				E994B19C1F8E717900A237CB /* xception-block7_sepconv2.weights.bin */,
 				E994B1CE1F8E717C00A237CB /* xception-block7_sepconv3_sep.weights.bin */,
-				E994B19F1F8E717900A237CB /* xception-block7_sepconv3-sep.weights.bin */,
 				E994B1A01F8E717900A237CB /* xception-block7_sepconv3.biases.bin */,
 				E994B1C11F8E717B00A237CB /* xception-block7_sepconv3.weights.bin */,
 				E994B1E21F8E717D00A237CB /* xception-block8_sepconv1_sep.weights.bin */,
-				E994B1E41F8E717E00A237CB /* xception-block8_sepconv1-sep.weights.bin */,
 				E994B1661F8E717600A237CB /* xception-block8_sepconv1.biases.bin */,
 				E994B1A81F8E717900A237CB /* xception-block8_sepconv1.weights.bin */,
 				E994B1AD1F8E717A00A237CB /* xception-block8_sepconv2_sep.weights.bin */,
-				E994B1CF1F8E717C00A237CB /* xception-block8_sepconv2-sep.weights.bin */,
 				E994B1EA1F8E717E00A237CB /* xception-block8_sepconv2.biases.bin */,
 				E994B1CB1F8E717B00A237CB /* xception-block8_sepconv2.weights.bin */,
 				E994B19D1F8E717900A237CB /* xception-block8_sepconv3_sep.weights.bin */,
-				E994B1721F8E717700A237CB /* xception-block8_sepconv3-sep.weights.bin */,
 				E994B1671F8E717600A237CB /* xception-block8_sepconv3.biases.bin */,
 				E994B18E1F8E717800A237CB /* xception-block8_sepconv3.weights.bin */,
 				E994B1B91F8E717A00A237CB /* xception-block9_sepconv1_sep.weights.bin */,
-				E994B1B31F8E717A00A237CB /* xception-block9_sepconv1-sep.weights.bin */,
 				E994B16D1F8E717600A237CB /* xception-block9_sepconv1.biases.bin */,
 				E994B1D31F8E717C00A237CB /* xception-block9_sepconv1.weights.bin */,
 				E994B18B1F8E717800A237CB /* xception-block9_sepconv2_sep.weights.bin */,
-				E994B18C1F8E717800A237CB /* xception-block9_sepconv2-sep.weights.bin */,
 				E994B1831F8E717800A237CB /* xception-block9_sepconv2.biases.bin */,
 				E994B1BD1F8E717A00A237CB /* xception-block9_sepconv2.weights.bin */,
 				E994B1C01F8E717B00A237CB /* xception-block9_sepconv3_sep.weights.bin */,
-				E994B1A51F8E717900A237CB /* xception-block9_sepconv3-sep.weights.bin */,
 				E994B1D91F8E717C00A237CB /* xception-block9_sepconv3.biases.bin */,
 				E994B1781F8E717700A237CB /* xception-block9_sepconv3.weights.bin */,
 				E994B16A1F8E717600A237CB /* xception-block10_sepconv1_sep.weights.bin */,
-				E994B1CD1F8E717B00A237CB /* xception-block10_sepconv1-sep.weights.bin */,
 				E994B17A1F8E717700A237CB /* xception-block10_sepconv1.biases.bin */,
 				E994B1911F8E717800A237CB /* xception-block10_sepconv1.weights.bin */,
 				E994B1E91F8E717E00A237CB /* xception-block10_sepconv2_sep.weights.bin */,
-				E994B1B71F8E717A00A237CB /* xception-block10_sepconv2-sep.weights.bin */,
 				E994B1A91F8E717900A237CB /* xception-block10_sepconv2.biases.bin */,
 				E994B1EB1F8E717E00A237CB /* xception-block10_sepconv2.weights.bin */,
 				E994B1701F8E717700A237CB /* xception-block10_sepconv3_sep.weights.bin */,
-				E994B1791F8E717700A237CB /* xception-block10_sepconv3-sep.weights.bin */,
 				E994B19E1F8E717900A237CB /* xception-block10_sepconv3.biases.bin */,
 				E994B1A71F8E717900A237CB /* xception-block10_sepconv3.weights.bin */,
 				E994B1901F8E717800A237CB /* xception-block11_sepconv1_sep.weights.bin */,
-				E994B19A1F8E717900A237CB /* xception-block11_sepconv1-sep.weights.bin */,
 				E994B1891F8E717800A237CB /* xception-block11_sepconv1.biases.bin */,
 				E994B1981F8E717900A237CB /* xception-block11_sepconv1.weights.bin */,
 				E994B1651F8E717600A237CB /* xception-block11_sepconv2_sep.weights.bin */,
-				E994B1971F8E717800A237CB /* xception-block11_sepconv2-sep.weights.bin */,
 				E994B1AB1F8E717900A237CB /* xception-block11_sepconv2.biases.bin */,
 				E994B1E61F8E717E00A237CB /* xception-block11_sepconv2.weights.bin */,
 				E994B1821F8E717700A237CB /* xception-block11_sepconv3_sep.weights.bin */,
-				E994B16E1F8E717700A237CB /* xception-block11_sepconv3-sep.weights.bin */,
 				E994B1C21F8E717B00A237CB /* xception-block11_sepconv3.biases.bin */,
 				E994B1991F8E717900A237CB /* xception-block11_sepconv3.weights.bin */,
 				E994B1BE1F8E717A00A237CB /* xception-block12_sepconv1_sep.weights.bin */,
-				E994B1AE1F8E717A00A237CB /* xception-block12_sepconv1-sep.weights.bin */,
 				E994B15B1F8E717600A237CB /* xception-block12_sepconv1.biases.bin */,
 				E994B1B51F8E717A00A237CB /* xception-block12_sepconv1.weights.bin */,
 				E994B1E81F8E717E00A237CB /* xception-block12_sepconv2_sep.weights.bin */,
-				E994B1841F8E717800A237CB /* xception-block12_sepconv2-sep.weights.bin */,
 				E994B1AC1F8E717A00A237CB /* xception-block12_sepconv2.biases.bin */,
 				E994B1D01F8E717C00A237CB /* xception-block12_sepconv2.weights.bin */,
 				E994B1CC1F8E717B00A237CB /* xception-block12_sepconv3_sep.weights.bin */,
-				E994B1951F8E717800A237CB /* xception-block12_sepconv3-sep.weights.bin */,
 				E994B1B81F8E717A00A237CB /* xception-block12_sepconv3.biases.bin */,
 				E994B1D51F8E717C00A237CB /* xception-block12_sepconv3.weights.bin */,
 				E994B1851F8E717800A237CB /* xception-block13_sepconv1_sep.weights.bin */,
-				E994B1AA1F8E717900A237CB /* xception-block13_sepconv1-sep.weights.bin */,
 				E994B1D81F8E717C00A237CB /* xception-block13_sepconv1.biases.bin */,
 				E994B16F1F8E717700A237CB /* xception-block13_sepconv1.weights.bin */,
 				E994B1D61F8E717C00A237CB /* xception-block13_sepconv2_sep.weights.bin */,
-				E994B1871F8E717800A237CB /* xception-block13_sepconv2-sep.weights.bin */,
 				E994B1711F8E717700A237CB /* xception-block13_sepconv2.biases.bin */,
 				E994B1731F8E717700A237CB /* xception-block13_sepconv2.weights.bin */,
 				E994B1C31F8E717B00A237CB /* xception-block14_sepconv1_sep.weights.bin */,
-				E994B1B21F8E717A00A237CB /* xception-block14_sepconv1-sep.weights.bin */,
 				E994B1DE1F8E717D00A237CB /* xception-block14_sepconv1.biases.bin */,
 				E994B1BB1F8E717A00A237CB /* xception-block14_sepconv1.weights.bin */,
 				E994B1E71F8E717E00A237CB /* xception-block14_sepconv2_sep.weights.bin */,
-				E994B1B11F8E717A00A237CB /* xception-block14_sepconv2-sep.weights.bin */,
 				E994B1B41F8E717A00A237CB /* xception-block14_sepconv2.biases.bin */,
 				E994B1961F8E717800A237CB /* xception-block14_sepconv2.weights.bin */,
 				E994B1801F8E717700A237CB /* xception-conv2d_1.biases.bin */,
@@ -3558,7 +3456,6 @@
 				E994B2151F8E717F00A237CB /* xception-conv2d_3.biases.bin in Resources */,
 				E97B975C1F7D974500E7C410 /* inception_resnet_v2-conv2d_136.weights.bin in Resources */,
 				E97B96E61F7D974500E7C410 /* inception_resnet_v2-conv2d_162.weights.bin in Resources */,
-				E994B22D1F8E717F00A237CB /* xception-block11_sepconv2-sep.weights.bin in Resources */,
 				E97B958B1F7D974500E7C410 /* inception_v3-conv2d_51.weights.bin in Resources */,
 				E97B955E1F7D974500E7C410 /* inception_v3-conv2d_24.biases.bin in Resources */,
 				E97B976E1F7D974500E7C410 /* inception_resnet_v2-conv2d_36.biases.bin in Resources */,
@@ -3590,7 +3487,6 @@
 				E972E8381F87A6D40091C573 /* mobilenet-conv_pw_4.weights.bin in Resources */,
 				E97B98731F7D974600E7C410 /* resnet_50-res4d_branch2a.biases.bin in Resources */,
 				E994B2091F8E717F00A237CB /* xception-block13_sepconv2.weights.bin in Resources */,
-				E994B25E1F8E717F00A237CB /* xception-block3_sepconv1-sep.weights.bin in Resources */,
 				E994B21C1F8E717F00A237CB /* xception-predictions.weights.bin in Resources */,
 				E97B970F1F7D974500E7C410 /* inception_resnet_v2-conv2d_129.weights.bin in Resources */,
 				E97B96BF1F7D974500E7C410 /* resnet_50-res2c_branch2b.weights.bin in Resources */,
@@ -3633,15 +3529,12 @@
 				E97B96581F7D974500E7C410 /* inception_v3-conv2d_79.weights.bin in Resources */,
 				E97B98631F7D974600E7C410 /* inception_resnet_v2-conv2d_107.weights.bin in Resources */,
 				E97B97161F7D974500E7C410 /* inception_resnet_v2-block35_9_conv.biases.bin in Resources */,
-				E994B2081F8E717F00A237CB /* xception-block8_sepconv3-sep.weights.bin in Resources */,
 				E994B2361F8E717F00A237CB /* xception-block7_sepconv3.biases.bin in Resources */,
 				E994B2241F8E717F00A237CB /* xception-block8_sepconv3.weights.bin in Resources */,
 				E97B95521F7D974500E7C410 /* vgg_16-fc1.weights.bin in Resources */,
 				E97B96301F7D974500E7C410 /* inception_resnet_v2-conv2d_157.weights.bin in Resources */,
 				E97B95AE1F7D974500E7C410 /* inception_resnet_v2-conv2d_29.biases.bin in Resources */,
-				E994B2491F8E717F00A237CB /* xception-block9_sepconv1-sep.weights.bin in Resources */,
 				E97B96EE1F7D974500E7C410 /* inception_resnet_v2-block17_14_conv.biases.bin in Resources */,
-				E994B24D1F8E717F00A237CB /* xception-block10_sepconv2-sep.weights.bin in Resources */,
 				E97B97001F7D974500E7C410 /* inception_resnet_v2-conv2d_201.weights.bin in Resources */,
 				E97B98011F7D974500E7C410 /* vgg_16-block5_conv2.biases.bin in Resources */,
 				E97B96D21F7D974500E7C410 /* inception_resnet_v2-block17_17_conv.biases.bin in Resources */,
@@ -3692,7 +3585,6 @@
 				E97B96681F7D974500E7C410 /* inception_resnet_v2-conv2d_18.weights.bin in Resources */,
 				E97B97051F7D974500E7C410 /* resnet_50-res5a_branch2a.biases.bin in Resources */,
 				E994B2011F8E717F00A237CB /* xception-block1_conv1.weights.bin in Resources */,
-				E994B2441F8E717F00A237CB /* xception-block12_sepconv1-sep.weights.bin in Resources */,
 				E97B96931F7D974500E7C410 /* inception_v3-conv2d_87.biases.bin in Resources */,
 				E97B95B01F7D974500E7C410 /* inception_v3-conv2d_17.weights.bin in Resources */,
 				E97B97C91F7D974500E7C410 /* inception_resnet_v2-conv2d_91.biases.bin in Resources */,
@@ -3703,7 +3595,6 @@
 				E97B98081F7D974500E7C410 /* inception_resnet_v2-block35_5_conv.biases.bin in Resources */,
 				E97B97821F7D974500E7C410 /* inception_resnet_v2-conv2d_51.weights.bin in Resources */,
 				E97B95C81F7D974500E7C410 /* inception_v3-conv2d_27.biases.bin in Resources */,
-				E994B2041F8E717F00A237CB /* xception-block11_sepconv3-sep.weights.bin in Resources */,
 				E97B98371F7D974600E7C410 /* inception_resnet_v2-conv2d_105.biases.bin in Resources */,
 				E97B984D1F7D974600E7C410 /* resnet_50-res4d_branch2b.weights.bin in Resources */,
 				E97B972B1F7D974500E7C410 /* yolo-conv2d_13.biases.bin in Resources */,
@@ -3767,7 +3658,6 @@
 				E97B95531F7D974500E7C410 /* inception_v3-conv2d_86.biases.bin in Resources */,
 				E97B978D1F7D974500E7C410 /* inception_resnet_v2-conv2d_108.biases.bin in Resources */,
 				E97B989C1F7D974600E7C410 /* inception_resnet_v2-conv2d_187.biases.bin in Resources */,
-				E994B21A1F8E717F00A237CB /* xception-block12_sepconv2-sep.weights.bin in Resources */,
 				E9C897911F697F8100096BFD /* final1.jpg in Resources */,
 				E97B98841F7D974600E7C410 /* inception_resnet_v2-conv2d_142.biases.bin in Resources */,
 				E97B962D1F7D974500E7C410 /* yolo-conv2d_13.weights.bin in Resources */,
@@ -3792,7 +3682,6 @@
 				E97B98101F7D974500E7C410 /* resnet_50-res2a_branch2b.biases.bin in Resources */,
 				E97B95491F7D974500E7C410 /* inception_resnet_v2-conv2d_123.biases.bin in Resources */,
 				E97B966F1F7D974500E7C410 /* inception_v3-conv2d_31.weights.bin in Resources */,
-				E994B23B1F8E717F00A237CB /* xception-block9_sepconv3-sep.weights.bin in Resources */,
 				E97B986C1F7D974600E7C410 /* inception_resnet_v2-conv2d_135.biases.bin in Resources */,
 				E97B96AC1F7D974500E7C410 /* inception_v3-conv2d_34.biases.bin in Resources */,
 				E97B97BE1F7D974500E7C410 /* inception_resnet_v2-conv2d_68.biases.bin in Resources */,
@@ -3806,7 +3695,6 @@
 				E994B2771F8E717F00A237CB /* xception-block5_sepconv1.weights.bin in Resources */,
 				E97B97FC1F7D974500E7C410 /* inception_resnet_v2-conv2d_194.weights.bin in Resources */,
 				E97B95461F7D974500E7C410 /* vgg_16-block4_conv1.weights.bin in Resources */,
-				E994B1F81F8E717F00A237CB /* xception-block7_sepconv2-sep.weights.bin in Resources */,
 				E97B97A91F7D974500E7C410 /* inception_resnet_v2-conv2d_32.weights.bin in Resources */,
 				E97B98161F7D974500E7C410 /* inception_v3-conv2d_21.weights.bin in Resources */,
 				E97B96471F7D974500E7C410 /* inception_resnet_v2-conv2d_199.biases.bin in Resources */,
@@ -3853,7 +3741,6 @@
 				E994B2371F8E717F00A237CB /* xception-block7_sepconv2.biases.bin in Resources */,
 				E97B98021F7D974500E7C410 /* resnet_50-res3a_branch2b.weights.bin in Resources */,
 				E97B95EB1F7D974500E7C410 /* inception_resnet_v2-conv2d_196.weights.bin in Resources */,
-				E994B2731F8E717F00A237CB /* xception-block5_sepconv3-sep.weights.bin in Resources */,
 				E97B963A1F7D974500E7C410 /* yolo-conv2d_6.biases.bin in Resources */,
 				E97B98901F7D974600E7C410 /* tiny_yolo-conv2d_3.biases.bin in Resources */,
 				E97B984E1F7D974600E7C410 /* resnet_50-conv1.weights.bin in Resources */,
@@ -3863,13 +3750,11 @@
 				E97B95EE1F7D974500E7C410 /* inception_resnet_v2-conv2d_88.weights.bin in Resources */,
 				E97B971C1F7D974500E7C410 /* inception_resnet_v2-conv2d_83.weights.bin in Resources */,
 				E97B98401F7D974600E7C410 /* inception_v3-conv2d_16.weights.bin in Resources */,
-				E994B24C1F8E717F00A237CB /* xception-block4_sepconv1-sep.weights.bin in Resources */,
 				E97B95831F7D974500E7C410 /* inception_resnet_v2-predictions.biases.bin in Resources */,
 				E97B95ED1F7D974500E7C410 /* yolo-conv2d_8.weights.bin in Resources */,
 				E994B2551F8E717F00A237CB /* xception-block5_sepconv1_sep.weights.bin in Resources */,
 				E97B98891F7D974600E7C410 /* inception_v3-conv2d_67.weights.bin in Resources */,
 				E97B962E1F7D974500E7C410 /* inception_resnet_v2-block8_8_conv.biases.bin in Resources */,
-				E994B2481F8E717F00A237CB /* xception-block14_sepconv1-sep.weights.bin in Resources */,
 				E97B97C61F7D974500E7C410 /* inception_resnet_v2-conv2d_76.weights.bin in Resources */,
 				E97B98351F7D974600E7C410 /* yolo-conv2d_20.weights.bin in Resources */,
 				E97B97991F7D974500E7C410 /* yolo-conv2d_21.weights.bin in Resources */,
@@ -3897,7 +3782,6 @@
 				E97B97741F7D974500E7C410 /* tiny_yolo-conv2d_2.weights.bin in Resources */,
 				E994B25A1F8E717F00A237CB /* xception-block5_sepconv2_sep.weights.bin in Resources */,
 				E97B97F51F7D974500E7C410 /* inception_v3-conv2d_67.biases.bin in Resources */,
-				E994B2651F8E717F00A237CB /* xception-block8_sepconv2-sep.weights.bin in Resources */,
 				E97B959F1F7D974500E7C410 /* resnet_50-res2b_branch2a.biases.bin in Resources */,
 				E97B95741F7D974500E7C410 /* inception_v3-conv2d_1.weights.bin in Resources */,
 				E97B95D01F7D974500E7C410 /* inception_v3-conv2d_80.weights.bin in Resources */,
@@ -3918,7 +3802,6 @@
 				E97B954A1F7D974500E7C410 /* inception_resnet_v2-conv2d_149.weights.bin in Resources */,
 				E97B96B41F7D974500E7C410 /* inception_resnet_v2-conv2d_141.biases.bin in Resources */,
 				E972E8361F87A6D40091C573 /* mobilenet-conv_dw_13.weights.bin in Resources */,
-				E994B27A1F8E717F00A237CB /* xception-block8_sepconv1-sep.weights.bin in Resources */,
 				E97B97E81F7D974500E7C410 /* inception_resnet_v2-conv2d_132.biases.bin in Resources */,
 				E972E8271F87A6D40091C573 /* mobilenet-conv_dw_5.biases.bin in Resources */,
 				E97B97F01F7D974500E7C410 /* inception_v3-conv2d_55.biases.bin in Resources */,
@@ -4006,7 +3889,6 @@
 				E97B97131F7D974500E7C410 /* resnet_50-res2a_branch2a.biases.bin in Resources */,
 				E97B97501F7D974500E7C410 /* resnet_50-res4c_branch2c.weights.bin in Resources */,
 				E994B2541F8E717F00A237CB /* xception-block12_sepconv1_sep.weights.bin in Resources */,
-				E994B20B1F8E717F00A237CB /* xception-block2_sepconv2-sep.weights.bin in Resources */,
 				E97B976A1F7D974500E7C410 /* resnet_50-res5a_branch2a.weights.bin in Resources */,
 				E97B97B51F7D974500E7C410 /* inception_v3-conv2d_87.weights.bin in Resources */,
 				E994B2291F8E717F00A237CB /* xception-block5_sepconv3_sep.weights.bin in Resources */,
@@ -4014,7 +3896,6 @@
 				E994B2791F8E717F00A237CB /* xception-block2_sepconv1.weights.bin in Resources */,
 				E97B967F1F7D974500E7C410 /* inception_resnet_v2-block17_6_conv.biases.bin in Resources */,
 				E97B959B1F7D974500E7C410 /* inception_v3-conv2d_23.weights.bin in Resources */,
-				E994B20C1F8E717F00A237CB /* xception-block6_sepconv3-sep.weights.bin in Resources */,
 				E97B97951F7D974500E7C410 /* inception_resnet_v2-conv2d_34.biases.bin in Resources */,
 				E97B954D1F7D974500E7C410 /* tiny_yolo-conv2d_7.biases.bin in Resources */,
 				E994B1F61F8E717F00A237CB /* xception-block6_sepconv3.biases.bin in Resources */,
@@ -4045,7 +3926,6 @@
 				E97B95951F7D974500E7C410 /* resnet_50-res2b_branch2b.weights.bin in Resources */,
 				E97B977E1F7D974500E7C410 /* inception_resnet_v2-conv2d_144.weights.bin in Resources */,
 				E97B95B11F7D974500E7C410 /* inception_resnet_v2-conv2d_95.weights.bin in Resources */,
-				E994B2521F8E717F00A237CB /* xception-block6_sepconv1-sep.weights.bin in Resources */,
 				E97B966E1F7D974500E7C410 /* inception_resnet_v2-conv2d_72.biases.bin in Resources */,
 				E97B96A31F7D974500E7C410 /* inception_v3-conv2d_4.weights.bin in Resources */,
 				E994B2161F8E717F00A237CB /* xception-conv2d_1.biases.bin in Resources */,
@@ -4082,7 +3962,6 @@
 				E97B98641F7D974600E7C410 /* inception_resnet_v2-conv2d_43.biases.bin in Resources */,
 				E97B979B1F7D974500E7C410 /* inception_resnet_v2-conv2d_42.biases.bin in Resources */,
 				E97B97481F7D974500E7C410 /* inception_resnet_v2-conv2d_77.biases.bin in Resources */,
-				E994B21D1F8E717F00A237CB /* xception-block13_sepconv2-sep.weights.bin in Resources */,
 				E97B97861F7D974500E7C410 /* yolo-conv2d_14.biases.bin in Resources */,
 				E97B98441F7D974600E7C410 /* inception_resnet_v2-conv2d_79.weights.bin in Resources */,
 				E97B96231F7D974500E7C410 /* inception_resnet_v2-conv2d_19.biases.bin in Resources */,
@@ -4110,7 +3989,6 @@
 				E97B96F01F7D974500E7C410 /* inception_resnet_v2-conv2d_179.weights.bin in Resources */,
 				E97B95F11F7D974500E7C410 /* inception_resnet_v2-conv2d_198.biases.bin in Resources */,
 				E97B962F1F7D974500E7C410 /* inception_resnet_v2-conv2d_9.weights.bin in Resources */,
-				E994B25F1F8E717F00A237CB /* xception-block3_sepconv2-sep.weights.bin in Resources */,
 				E97B95C11F7D974500E7C410 /* resnet_50-res4a_branch2c.biases.bin in Resources */,
 				E97B98621F7D974600E7C410 /* inception_resnet_v2-conv2d_186.weights.bin in Resources */,
 				E97B97311F7D974500E7C410 /* inception_resnet_v2-conv2d_55.biases.bin in Resources */,
@@ -4127,7 +4005,6 @@
 				E97B96991F7D974500E7C410 /* resnet_50-res4c_branch2b.biases.bin in Resources */,
 				E994B2561F8E717F00A237CB /* xception-block9_sepconv3_sep.weights.bin in Resources */,
 				E97B960E1F7D974500E7C410 /* inception_resnet_v2-conv2d_173.weights.bin in Resources */,
-				E994B22B1F8E717F00A237CB /* xception-block12_sepconv3-sep.weights.bin in Resources */,
 				E97B963C1F7D974500E7C410 /* inception_resnet_v2-block35_5_conv.weights.bin in Resources */,
 				E97B97731F7D974500E7C410 /* inception_resnet_v2-block35_6_conv.weights.bin in Resources */,
 				E97B95B81F7D974500E7C410 /* inception_v3-conv2d_22.weights.bin in Resources */,
@@ -4180,7 +4057,6 @@
 				E97B96001F7D974500E7C410 /* inception_v3-conv2d_79.biases.bin in Resources */,
 				E97B97891F7D974500E7C410 /* inception_v3-conv2d_83.biases.bin in Resources */,
 				E994B21E1F8E717F00A237CB /* xception-block3_sepconv1.weights.bin in Resources */,
-				E994B2301F8E717F00A237CB /* xception-block11_sepconv1-sep.weights.bin in Resources */,
 				E994B2341F8E717F00A237CB /* xception-block10_sepconv3.biases.bin in Resources */,
 				E97B987D1F7D974600E7C410 /* inception_resnet_v2-block35_1_conv.biases.bin in Resources */,
 				E97B962A1F7D974500E7C410 /* inception_v3-conv2d_13.weights.bin in Resources */,
@@ -4207,7 +4083,6 @@
 				E994B2261F8E717F00A237CB /* xception-block11_sepconv1_sep.weights.bin in Resources */,
 				E97B95D91F7D974500E7C410 /* inception_v3-conv2d_78.biases.bin in Resources */,
 				E97B97BB1F7D974500E7C410 /* resnet_50-res4e_branch2b.weights.bin in Resources */,
-				E994B2221F8E717F00A237CB /* xception-block9_sepconv2-sep.weights.bin in Resources */,
 				E97B97AB1F7D974500E7C410 /* inception_resnet_v2-conv2d_164.biases.bin in Resources */,
 				E97B980F1F7D974500E7C410 /* inception_v3-conv2d_13.biases.bin in Resources */,
 				E97B97CD1F7D974500E7C410 /* inception_resnet_v2-conv2d_145.biases.bin in Resources */,
@@ -4236,7 +4111,6 @@
 				E97B98A91F7D974600E7C410 /* resnet_50-res4f_branch2b.weights.bin in Resources */,
 				E97B956D1F7D974500E7C410 /* inception_resnet_v2-block17_19_conv.weights.bin in Resources */,
 				E97B96181F7D974500E7C410 /* inception_v3-conv2d_66.biases.bin in Resources */,
-				E994B2681F8E717F00A237CB /* xception-block6_sepconv2-sep.weights.bin in Resources */,
 				E97B96E11F7D974500E7C410 /* inception_resnet_v2-conv2d_37.weights.bin in Resources */,
 				E97B96701F7D974500E7C410 /* inception_v3-conv2d_43.weights.bin in Resources */,
 				E97B97D31F7D974500E7C410 /* resnet_50-res2a_branch2a.weights.bin in Resources */,
@@ -4288,7 +4162,6 @@
 				E97B987A1F7D974600E7C410 /* inception_v3-conv2d_8.biases.bin in Resources */,
 				E97B95A41F7D974500E7C410 /* inception_resnet_v2-conv2d_69.biases.bin in Resources */,
 				E97B989B1F7D974600E7C410 /* inception_resnet_v2-conv2d_38.weights.bin in Resources */,
-				E994B20F1F8E717F00A237CB /* xception-block10_sepconv3-sep.weights.bin in Resources */,
 				E97B98801F7D974600E7C410 /* tiny_yolo-conv2d_4.weights.bin in Resources */,
 				E97B96D81F7D974500E7C410 /* yolo-conv2d_5.biases.bin in Resources */,
 				E97B96971F7D974500E7C410 /* inception_resnet_v2-conv2d_113.biases.bin in Resources */,
@@ -4372,7 +4245,6 @@
 				E97B98881F7D974600E7C410 /* resnet_50-res4b_branch2c.weights.bin in Resources */,
 				E97B97571F7D974500E7C410 /* inception_resnet_v2-conv2d_64.biases.bin in Resources */,
 				E97B97411F7D974500E7C410 /* inception_resnet_v2-conv2d_51.biases.bin in Resources */,
-				E994B2401F8E717F00A237CB /* xception-block13_sepconv1-sep.weights.bin in Resources */,
 				E97B96711F7D974500E7C410 /* inception_v3-conv2d_50.biases.bin in Resources */,
 				E97B96921F7D974500E7C410 /* inception_v3-conv2d_78.weights.bin in Resources */,
 				E97B972C1F7D974500E7C410 /* inception_resnet_v2-conv2d_53.biases.bin in Resources */,
@@ -4387,7 +4259,6 @@
 				E97B95D11F7D974500E7C410 /* vgg_16-block4_conv1.biases.bin in Resources */,
 				E97B97201F7D974500E7C410 /* inception_resnet_v2-conv2d_123.weights.bin in Resources */,
 				E97B98AD1F7D974600E7C410 /* inception_resnet_v2-conv2d_39.biases.bin in Resources */,
-				E994B2471F8E717F00A237CB /* xception-block14_sepconv2-sep.weights.bin in Resources */,
 				E97B96D41F7D974500E7C410 /* inception_resnet_v2-conv2d_41.biases.bin in Resources */,
 				E97B97841F7D974500E7C410 /* resnet_50-res4f_branch2c.weights.bin in Resources */,
 				E97B956B1F7D974500E7C410 /* resnet_50-res4a_branch2b.biases.bin in Resources */,
@@ -4418,7 +4289,6 @@
 				E97B96541F7D974500E7C410 /* resnet_50-res2b_branch2c.weights.bin in Resources */,
 				E972E8461F87A6D40091C573 /* mobilenet-conv_dw_5.weights.bin in Resources */,
 				E994B1FC1F8E717F00A237CB /* xception-block8_sepconv1.biases.bin in Resources */,
-				E994B26D1F8E717F00A237CB /* xception-block7_sepconv1-sep.weights.bin in Resources */,
 				E994B2121F8E717F00A237CB /* xception-conv2d_4.biases.bin in Resources */,
 				E97B97C51F7D974500E7C410 /* vgg_16-block4_conv3.weights.bin in Resources */,
 				E97B95541F7D974500E7C410 /* inception_resnet_v2-conv2d_80.biases.bin in Resources */,
@@ -4434,8 +4304,6 @@
 				E994B1FB1F8E717F00A237CB /* xception-block11_sepconv2_sep.weights.bin in Resources */,
 				E97B96531F7D974500E7C410 /* inception_resnet_v2-conv2d_66.weights.bin in Resources */,
 				E97B95C61F7D974500E7C410 /* inception_resnet_v2-conv2d_75.weights.bin in Resources */,
-				E994B1F01F8E717F00A237CB /* xception-block5_sepconv1-sep.weights.bin in Resources */,
-				E994B23C1F8E717F00A237CB /* xception-block2_sepconv1-sep.weights.bin in Resources */,
 				E97B95F71F7D974500E7C410 /* inception_resnet_v2-conv2d_33.biases.bin in Resources */,
 				E97B96441F7D974500E7C410 /* inception_v3-conv2d_17.biases.bin in Resources */,
 				E97B96FB1F7D974500E7C410 /* inception_resnet_v2-conv2d_130.weights.bin in Resources */,
@@ -4476,7 +4344,6 @@
 				E97B980D1F7D974500E7C410 /* inception_resnet_v2-block17_5_conv.weights.bin in Resources */,
 				E97B97AD1F7D974500E7C410 /* inception_resnet_v2-conv2d_98.biases.bin in Resources */,
 				E97B97EE1F7D974500E7C410 /* inception_resnet_v2-conv2d_106.weights.bin in Resources */,
-				E994B2351F8E717F00A237CB /* xception-block7_sepconv3-sep.weights.bin in Resources */,
 				E97B97041F7D974500E7C410 /* resnet_50-res5c_branch2a.biases.bin in Resources */,
 				E994B2031F8E717F00A237CB /* xception-block9_sepconv1.biases.bin in Resources */,
 				E994B2451F8E717F00A237CB /* xception-block7_sepconv1.biases.bin in Resources */,
@@ -4559,7 +4426,6 @@
 				E97B97471F7D974500E7C410 /* inception_resnet_v2-block8_6_conv.weights.bin in Resources */,
 				E97B96981F7D974500E7C410 /* inception_resnet_v2-conv2d_63.biases.bin in Resources */,
 				E972E84E1F87A6D40091C573 /* mobilenet-conv_pw_8.biases.bin in Resources */,
-				E994B2631F8E717F00A237CB /* xception-block10_sepconv1-sep.weights.bin in Resources */,
 				E9C897971F697F8100096BFD /* final6.jpg in Resources */,
 				E97B95CB1F7D974500E7C410 /* inception_resnet_v2-conv2d_49.biases.bin in Resources */,
 				E97B95C41F7D974500E7C410 /* vgg_16-block4_conv3.biases.bin in Resources */,
@@ -4570,13 +4436,11 @@
 				E97B95A91F7D974500E7C410 /* vgg_16-block1_conv2.weights.bin in Resources */,
 				E97B95EC1F7D974500E7C410 /* inception_resnet_v2-conv2d_152.weights.bin in Resources */,
 				E97B96A11F7D974500E7C410 /* inception_resnet_v2-conv2d_77.weights.bin in Resources */,
-				E994B25B1F8E717F00A237CB /* xception-block4_sepconv2-sep.weights.bin in Resources */,
 				E97B98191F7D974500E7C410 /* inception_resnet_v2-block17_11_conv.biases.bin in Resources */,
 				E97B95A01F7D974500E7C410 /* inception_resnet_v2-block17_17_conv.weights.bin in Resources */,
 				E972E8431F87A6D40091C573 /* mobilenet-conv_preds.weights.bin in Resources */,
 				E97B95D81F7D974500E7C410 /* inception_v3-conv2d_18.biases.bin in Resources */,
 				E97B98611F7D974600E7C410 /* resnet_50-res3a_branch2a.weights.bin in Resources */,
-				E994B2721F8E717F00A237CB /* xception-block5_sepconv2-sep.weights.bin in Resources */,
 				E97B98691F7D974600E7C410 /* resnet_50-res5b_branch2a.biases.bin in Resources */,
 				E9C897901F697F8100096BFD /* final5.jpg in Resources */,
 				E97B95E11F7D974500E7C410 /* inception_v3-conv2d_68.weights.bin in Resources */,

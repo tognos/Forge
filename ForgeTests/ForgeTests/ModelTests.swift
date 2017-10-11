@@ -15,39 +15,45 @@ class ModelTests {
     print("\(self).\(#function)")
     testModel(net: Vgg16Builder(device: device), testImageName: "final1-224.jpg",
               correctTop: [717, 661],
+              minTopScore: 0.6,
               debug: debug)
   }
   func testResnet50(debug: Bool) {
     print("\(self).\(#function)")
     testModel(net: Resnet50Builder(device: device), testImageName: "final1-224.jpg",
               correctTop: [717,661],
+              minTopScore: 0.87,
               debug: debug)
   }
   func testInceptionV3(debug: Bool) {
     print("\(self).\(#function)")
     testModel(net: InceptionV3Builder(device: device), testImageName: "final1-299.jpg",
               correctTop: [717, 661],
+              minTopScore: 0.58,
               debug: debug)
   }
   func testInceptionResnetV2(debug: Bool) {
     print("\(self).\(#function)")
     testModel(net: InceptionResnetV2Builder(device: device), testImageName: "final1-299.jpg",
               correctTop: [717, 864],
+              minTopScore: 0.75,
               debug: debug)
   }
   func testMobileNet(debug: Bool) {
     print("\(self).\(#function)")
     testModel(net: MobilenetBuilder(device: device), testImageName: "final1-224.jpg",
               correctTop: [717, 864],
+              minTopScore: 0.9,
               debug: debug)
   }
   func testXception(debug: Bool) {
     print("\(self).\(#function)")
     testModel(net: XceptionBuilder(device: device), testImageName: "final1-299.jpg",
-              correctTop: [717, 864],
+              correctTop: [717, 661],
+              minTopScore: 0.45,
               debug: debug)
   }
-  func testModel(net : NetworkBuilder, testImageName: String, correctTop: [Int], debug: Bool) {
+  func testModel(net : NetworkBuilder, testImageName: String, correctTop: [Int], minTopScore: Float, debug: Bool) {
     print("\(self).\(#function) \(net.name)")
     
     let success = net.compile(inflightBuffers: 1)
@@ -79,6 +85,6 @@ class ModelTests {
     for (predicted, correct) in zip(result.predictions, correctTop) {
       precondition(predicted.index == correct, "Bad prediction: \(predicted)")
     }
-    precondition(result.predictions[0].probability > 0.5, "confidence < 0.5 for top prediction")
+    precondition(result.predictions[0].probability > minTopScore, "confidence < minTopScore for top prediction")
   }
 }

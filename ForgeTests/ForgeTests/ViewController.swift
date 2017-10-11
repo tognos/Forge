@@ -62,7 +62,6 @@ class ViewController: UIViewController {
     layerTests.testSpaceToDepthX2Layer()
     layerTests.testCollect()
     layerTests.testSimpleMerge()
-    
 
     layerTests.testComplexMerge()
     layerTests.testZeroPaddingLayer_1ch()
@@ -77,14 +76,13 @@ class ViewController: UIViewController {
     layerTests.testInceptionResnet(debug: true)
  */
     let modelTests = ModelTests()
-    /*
+
     modelTests.testVGG16(debug: false)
     modelTests.testResnet50(debug: false)
     modelTests.testInceptionV3(debug: false)
     modelTests.testInceptionResnetV2(debug: false)
     modelTests.testMobileNet(debug: false)
-     */
-    modelTests.testXception(debug: true)
+    modelTests.testXception(debug: false)
 
 
 /*

@@ -29,8 +29,9 @@ import Accelerate
  These values get passed to the compute kernel.
  */
 public struct MergeParams {
-  var inputImages: Int16 = 0;
-  var inputSlicesPerImage: Int16 = 0;
+  var inputImages: Int16 = 0
+  var inputSlicesPerImage: Int16 = 0
+  var destSliceOffset: Int16 = 0
 }
 
 public enum MergeOpType: Int16 {
@@ -44,7 +45,8 @@ public enum MergeOpType: Int16 {
 public class MergeOpKernel {
   
   let device: MTLDevice
-  let pipeline: MTLComputePipelineState
+  let pipeline_array: MTLComputePipelineState
+  var pipeline_single: MTLComputePipelineState? = nil
   var params = MergeParams()
 
   /**
@@ -53,52 +55,61 @@ public class MergeOpKernel {
    - Parameters:
    - featureChannels: The number of channels in the input image. The output
    image will have the same number of channels.
-   - permute: A list of channels to permute. (The same channel index is
-   allowed to appear more than once.)
+
    */
   
+  var featureChannels : Int
+  var inputFeatureImages : Int
+  var inputSlicesPerImage : Int
 
   public init(device: MTLDevice,
-              featureImages: Int,
+              inputFeatureImages: Int,
               featureChannels: Int,
               featureOp: MergeOpType) {
     
     self.device = device
-    
+    self.inputFeatureImages = inputFeatureImages
+    self.featureChannels = featureChannels
+    self.inputSlicesPerImage = (featureChannels + 3)/4
+
     let constants = MTLFunctionConstantValues()
     var op = ushort(featureOp.rawValue)
     constants.setConstantValue(&op, type: .ushort, withName: "opType")
-    
-    // We don't need really those parms
-    self.params.inputImages = Int16(featureImages);
-    self.params.inputSlicesPerImage = Int16((featureChannels + 3)/4);
-    
-    //print("MergeOpKernel: inputImages = ",self.params.inputImages)
-    //print("MergeOpKernel: inputSlicesPerImage = ",self.params.inputSlicesPerImage)
-    
-    // TODO: templatize functions for 1 and 2 channels
 
-    // If there's more than one texture slice in the image, we have to use a
-    // kernel that uses texture2d_array objects as output.
-    let functionName: String
+    // If there's only one texture slice in the image, we have might
+    // use kernel that uses texture2d objects as output, depending on the output image
     if featureChannels <= 4 {
-      functionName = "mergeImages"
-    } else {
-      functionName = "mergeImages_array"
+      pipeline_single = makeFunction(device: device, name: "mergeImages", constantValues: constants, useForgeLibrary: true)
     }
-
-    pipeline = makeFunction(device: device, name: functionName, constantValues: constants, useForgeLibrary: true)
+    pipeline_array = makeFunction(device: device, name: "mergeImages_array", constantValues: constants, useForgeLibrary: true)
   }
   
   public func encode(commandBuffer: MTLCommandBuffer,
-                     sourceImage: MPSImage, destinationImage: MPSImage) {
+                     sourceImage: MPSImage,
+                     destinationImage: MPSImage,
+                     destinationChannelOffset: Int,
+                     destinationImageNumber: Int) {
+    precondition(destinationChannelOffset % 4 == 0)
+    precondition(destinationChannelOffset < self.featureChannels)
+    precondition(destinationImageNumber < destinationImage.numberOfImages)
     if let encoder = commandBuffer.makeComputeCommandEncoder() {
+      let pipeline = (featureChannels <= 4 && destinationImage.numberOfImages == 1) ? pipeline_single! : pipeline_array
+
       encoder.setComputePipelineState(pipeline)
       encoder.setTexture(sourceImage.texture, index: 0)
       encoder.setTexture(destinationImage.texture, index: 1)
+      self.params.inputImages = Int16(sourceImage.numberOfImages);
+      self.params.inputSlicesPerImage = Int16((sourceImage.featureChannels + 3)/4);
+      let destSliceOffset = self.inputSlicesPerImage * destinationImageNumber + destinationChannelOffset/4
+      self.params.destSliceOffset = Int16(destSliceOffset)
       encoder.setBytes(&params, length: MemoryLayout<MergeParams>.size, index: 0)
-      //print("MergeOpKernel: (dispatch) pipeline = ",pipeline.debugDescription)
-      encoder.dispatch(pipeline: pipeline, image: destinationImage)
+      
+      encoder.dispatch(pipeline: pipeline,
+                       width: destinationImage.width,
+                       height: destinationImage.height,
+                       featureChannels: self.featureChannels,
+                       numberOfImages: 1)
+      
       encoder.endEncoding()
     }
     

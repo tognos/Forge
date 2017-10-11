@@ -41,9 +41,26 @@ func offsetForConvolution(padding: PaddingType,
   if padding == .same {
     let padH = (destinationHeight - 1) * strideInPixelsY + kernelHeight - sourceHeight
     let padW = (destinationWidth  - 1) * strideInPixelsX + kernelWidth  - sourceWidth
-    //print("offsetForConvolution same: padH: \(padH), padW: \(padW)" )
-    let offset = MPSOffset(x: (kernelWidth - padW)/2, y: (kernelHeight - padH)/2, z: 0)
-    //print("offsetForConvolution same: offset: \(offset)" )
+    /*
+    let testDestinationHeight = (sourceHeight - kernelHeight + padH) / strideInPixelsX + 1
+    let testDestinationWidth = (sourceWidth - kernelWidth + padW) / strideInPixelsY + 1
+    assert(destinationHeight == testDestinationHeight)
+    assert(destinationWidth == testDestinationWidth)
+    */
+    // TODO: above offset calculation seems ok at first glance, but yields negative
+    // pad values for kernel size 1 and stride 2, so we just clamp it to zero for now,
+    // but the calculation should be checked for other possible failure cases
+    let padWC = max(padW, 0)
+    let padHC = max(padH, 0)
+
+    //let offset = MPSOffset(x: (kernelWidth - padW)/2, y: (kernelHeight - padH)/2, z: 0)
+    let offset = MPSOffset(x: (kernelWidth - padWC)/2, y: (kernelHeight - padHC)/2, z: 0)
+    /*
+    if strideInPixelsX != 1 {
+      print("offsetForConvolution same: padH: \(padH), padW: \(padW)" )
+      print("offsetForConvolution same: offset: \(offset)" )
+    }
+    */
     return offset
   } else {
     let offset = MPSOffset(x: kernelWidth/2, y: kernelHeight/2, z: 0)
@@ -448,7 +465,9 @@ public class MergeOperation: Layer {
     
     mopKernel!.encode(commandBuffer: commandBuffer,
                sourceImage: sourceTensor.image!,
-               destinationImage: destinationTensor.image!)
+               destinationImage: destinationTensor.image!,
+               destinationChannelOffset: destinationTensor.destinationChannelOffset,
+               destinationImageNumber: destinationTensor.destinationImageNumber)
     destinationTensor.written(byLayer: self)
   }
     override public func createCompute(device: MTLDevice,
@@ -457,8 +476,8 @@ public class MergeOperation: Layer {
                                        weights: ParameterData?,
                                        biases: ParameterData?) throws {
         mopKernel = MergeOpKernel(device: device,
-                                  featureImages: outputShape.numImages,
-                                  featureChannels: outputShape.channels,
+                                  inputFeatureImages: inputShape.numImages,
+                                  featureChannels: inputShape.channels,
                                   featureOp: self.operation)
     }
 }
@@ -573,7 +592,7 @@ public class Convolution: MPSCNNLayer {
                              convolutionDescriptor: desc,
                              kernelWeights: weights.pointer,
                              biasTerms: biases?.pointer,
-                             flags: .none)
+                          flags: .none)
     conv.edgeMode = .zero
     /*
     print("Neuron=\(conv.neuronType.rawValue)")
@@ -590,6 +609,11 @@ public class Convolution: MPSCNNLayer {
     // We compute the padding at encode-time, so that this layer can be
     // reused on tensors of different sizes. Note that the input and output
     // depth must not vary, only the width and height may be different.
+    /*
+    if stride.0 != 1 {
+      print("Ecoding for Layer \(self.name)")
+    }
+    */
     self.encodedOffset = offsetForConvolution(padding: padding,
                                               sourceWidth: sourceTensor.shape.width,
                                               sourceHeight: sourceTensor.shape.height,
