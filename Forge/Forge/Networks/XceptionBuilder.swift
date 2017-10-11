@@ -4,7 +4,7 @@
 //
 //  XceptionBuilder.swift
 //
-//  created 2017-10-11 19:43 by keras2metal.py
+//  created 2017-10-11 21:53 by keras2metal.py
 //
 //  Converter wittenn by Pavel Mayer, Tognos GmbH, http://tognos.com/
 //  based on YADK and Forge yolo2metal.py
@@ -125,14 +125,15 @@ let conv2d_1 = block1_conv2 --> conv2d_1
 let block2_pool = block1_conv2 --> block2_sepconv1_sep --> block2_sepconv1 --> block2_sepconv2_sep --> block2_sepconv2
          --> block2_pool
 let add_1 = Collect([block2_pool, conv2d_1], name: "for_add_1") --> Add(name: "add_1")
+let conv2d_2 = add_1 --> conv2d_2
 let block3_pool = add_1 --> block3_sepconv1_act --> block3_sepconv1_sep --> block3_sepconv1
          --> block3_sepconv2_sep --> block3_sepconv2 --> block3_pool
-let conv2d_2 = add_1 --> conv2d_2
 let add_2 = Collect([block3_pool, conv2d_2], name: "for_add_2") --> Add(name: "add_2")
-let conv2d_3 = add_2 --> conv2d_3
 let block4_pool = add_2 --> block4_sepconv1_act --> block4_sepconv1_sep --> block4_sepconv1
          --> block4_sepconv2_sep --> block4_sepconv2 --> block4_pool
-let add_3 = Collect([block4_pool, conv2d_3], name: "for_add_3") --> Add(name: "add_3")
+let conv2d_3 = add_2 --> conv2d_3
+//let add_3 = Collect([block4_pool, conv2d_3], name: "for_add_3") --> Add(name: "add_3")
+let add_3 = Collect([conv2d_3, block4_pool], name: "for_add_3") --> Add(name: "add_3")
 let block5_sepconv3 = add_3 --> block5_sepconv1_act --> block5_sepconv1_sep --> block5_sepconv1
          --> block5_sepconv2_sep --> block5_sepconv2 --> block5_sepconv3_sep --> block5_sepconv3
         

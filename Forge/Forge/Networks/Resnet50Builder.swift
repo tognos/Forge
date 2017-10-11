@@ -4,7 +4,7 @@
 //
 //  Resnet50Builder.swift
 //
-//  created 2017-10-05 16:32 by keras2metal.py
+//  created 2017-10-11 20:41 by keras2metal.py
 //
 //  Converter wittenn by Pavel Mayer, Tognos GmbH, http://tognos.com/
 //  based on YADK and Forge yolo2metal.py
@@ -115,8 +115,8 @@ let activation_7 = add_2 --> activation_7
 let res2c_branch2c = activation_7 --> res2c_branch2a --> res2c_branch2b --> res2c_branch2c
 let add_3 = Collect([res2c_branch2c, activation_7], name: "for_add_3") --> Add(name: "add_3")
 let activation_10 = add_3 --> activation_10
-let res3a_branch2c = activation_10 --> res3a_branch2a --> res3a_branch2b --> res3a_branch2c
 let res3a_branch1 = activation_10 --> res3a_branch1
+let res3a_branch2c = activation_10 --> res3a_branch2a --> res3a_branch2b --> res3a_branch2c
 let add_4 = Collect([res3a_branch2c, res3a_branch1], name: "for_add_4") --> Add(name: "add_4")
 let activation_13 = add_4 --> activation_13
 let res3b_branch2c = activation_13 --> res3b_branch2a --> res3b_branch2b --> res3b_branch2c
@@ -128,8 +128,8 @@ let activation_19 = add_6 --> activation_19
 let res3d_branch2c = activation_19 --> res3d_branch2a --> res3d_branch2b --> res3d_branch2c
 let add_7 = Collect([res3d_branch2c, activation_19], name: "for_add_7") --> Add(name: "add_7")
 let activation_22 = add_7 --> activation_22
-let res4a_branch1 = activation_22 --> res4a_branch1
 let res4a_branch2c = activation_22 --> res4a_branch2a --> res4a_branch2b --> res4a_branch2c
+let res4a_branch1 = activation_22 --> res4a_branch1
 let add_8 = Collect([res4a_branch2c, res4a_branch1], name: "for_add_8") --> Add(name: "add_8")
 let activation_25 = add_8 --> activation_25
 let res4b_branch2c = activation_25 --> res4b_branch2a --> res4b_branch2b --> res4b_branch2c

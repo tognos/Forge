@@ -4,7 +4,7 @@
 //
 //  InceptionV3Builder.swift
 //
-//  created 2017-10-05 16:35 by keras2metal.py
+//  created 2017-10-11 20:40 by keras2metal.py
 //
 //  Converter wittenn by Pavel Mayer, Tognos GmbH, http://tognos.com/
 //  based on YADK and Forge yolo2metal.py
@@ -140,70 +140,70 @@ let predictions = Dense(neurons: 1000, name: "predictions")
 do {
 let max_pooling2d_2 = input_2 --> conv2d_1 --> conv2d_2 --> conv2d_3 --> max_pooling2d_1 --> conv2d_4
          --> conv2d_5 --> max_pooling2d_2
-let conv2d_8 = max_pooling2d_2 --> conv2d_7 --> conv2d_8
-let conv2d_11 = max_pooling2d_2 --> conv2d_9 --> conv2d_10 --> conv2d_11
 let conv2d_6 = max_pooling2d_2 --> conv2d_6
+let conv2d_11 = max_pooling2d_2 --> conv2d_9 --> conv2d_10 --> conv2d_11
+let conv2d_8 = max_pooling2d_2 --> conv2d_7 --> conv2d_8
 let conv2d_12 = max_pooling2d_2 --> average_pooling2d_1 --> conv2d_12
 let mixed0 = Concatenate([conv2d_6, conv2d_8, conv2d_11, conv2d_12], name: "mixed0")
 let conv2d_19 = mixed0 --> average_pooling2d_2 --> conv2d_19
-let conv2d_15 = mixed0 --> conv2d_14 --> conv2d_15
 let conv2d_18 = mixed0 --> conv2d_16 --> conv2d_17 --> conv2d_18
 let conv2d_13 = mixed0 --> conv2d_13
+let conv2d_15 = mixed0 --> conv2d_14 --> conv2d_15
 let mixed1 = Concatenate([conv2d_13, conv2d_15, conv2d_18, conv2d_19], name: "mixed1")
-let conv2d_26 = mixed1 --> average_pooling2d_3 --> conv2d_26
-let conv2d_25 = mixed1 --> conv2d_23 --> conv2d_24 --> conv2d_25
 let conv2d_22 = mixed1 --> conv2d_21 --> conv2d_22
+let conv2d_25 = mixed1 --> conv2d_23 --> conv2d_24 --> conv2d_25
+let conv2d_26 = mixed1 --> average_pooling2d_3 --> conv2d_26
 let conv2d_20 = mixed1 --> conv2d_20
 let mixed2 = Concatenate([conv2d_20, conv2d_22, conv2d_25, conv2d_26], name: "mixed2")
+let conv2d_30 = mixed2 --> conv2d_28 --> conv2d_29 --> conv2d_30
 let max_pooling2d_3 = mixed2 --> max_pooling2d_3
 let conv2d_27 = mixed2 --> conv2d_27
-let conv2d_30 = mixed2 --> conv2d_28 --> conv2d_29 --> conv2d_30
 let mixed3 = Concatenate([conv2d_27, conv2d_30, max_pooling2d_3], name: "mixed3")
+let conv2d_34 = mixed3 --> conv2d_32 --> conv2d_33 --> conv2d_34
 let conv2d_40 = mixed3 --> average_pooling2d_4 --> conv2d_40
 let conv2d_31 = mixed3 --> conv2d_31
 let conv2d_39 = mixed3 --> conv2d_35 --> conv2d_36 --> conv2d_37 --> conv2d_38 --> conv2d_39
         
-let conv2d_34 = mixed3 --> conv2d_32 --> conv2d_33 --> conv2d_34
 let mixed4 = Concatenate([conv2d_31, conv2d_34, conv2d_39, conv2d_40], name: "mixed4")
+let conv2d_41 = mixed4 --> conv2d_41
 let conv2d_44 = mixed4 --> conv2d_42 --> conv2d_43 --> conv2d_44
 let conv2d_49 = mixed4 --> conv2d_45 --> conv2d_46 --> conv2d_47 --> conv2d_48 --> conv2d_49
         
 let conv2d_50 = mixed4 --> average_pooling2d_5 --> conv2d_50
-let conv2d_41 = mixed4 --> conv2d_41
 let mixed5 = Concatenate([conv2d_41, conv2d_44, conv2d_49, conv2d_50], name: "mixed5")
+let conv2d_51 = mixed5 --> conv2d_51
 let conv2d_54 = mixed5 --> conv2d_52 --> conv2d_53 --> conv2d_54
 let conv2d_59 = mixed5 --> conv2d_55 --> conv2d_56 --> conv2d_57 --> conv2d_58 --> conv2d_59
         
 let conv2d_60 = mixed5 --> average_pooling2d_6 --> conv2d_60
-let conv2d_51 = mixed5 --> conv2d_51
 let mixed6 = Concatenate([conv2d_51, conv2d_54, conv2d_59, conv2d_60], name: "mixed6")
-let conv2d_64 = mixed6 --> conv2d_62 --> conv2d_63 --> conv2d_64
 let conv2d_69 = mixed6 --> conv2d_65 --> conv2d_66 --> conv2d_67 --> conv2d_68 --> conv2d_69
         
 let conv2d_70 = mixed6 --> average_pooling2d_7 --> conv2d_70
 let conv2d_61 = mixed6 --> conv2d_61
+let conv2d_64 = mixed6 --> conv2d_62 --> conv2d_63 --> conv2d_64
 let mixed7 = Concatenate([conv2d_61, conv2d_64, conv2d_69, conv2d_70], name: "mixed7")
-let conv2d_76 = mixed7 --> conv2d_73 --> conv2d_74 --> conv2d_75 --> conv2d_76
-let conv2d_72 = mixed7 --> conv2d_71 --> conv2d_72
 let max_pooling2d_4 = mixed7 --> max_pooling2d_4
+let conv2d_72 = mixed7 --> conv2d_71 --> conv2d_72
+let conv2d_76 = mixed7 --> conv2d_73 --> conv2d_74 --> conv2d_75 --> conv2d_76
 let mixed8 = Concatenate([conv2d_72, conv2d_76, max_pooling2d_4], name: "mixed8")
-let conv2d_78 = mixed8 --> conv2d_78
-let conv2d_79 = conv2d_78 --> conv2d_79
 let conv2d_85 = mixed8 --> average_pooling2d_8 --> conv2d_85
-let conv2d_77 = mixed8 --> conv2d_77
 let conv2d_82 = mixed8 --> conv2d_81 --> conv2d_82
-let conv2d_80 = conv2d_78 --> conv2d_80
+let conv2d_77 = mixed8 --> conv2d_77
+let conv2d_78 = mixed8 --> conv2d_78
 let conv2d_84 = conv2d_82 --> conv2d_84
 let conv2d_83 = conv2d_82 --> conv2d_83
+let conv2d_80 = conv2d_78 --> conv2d_80
+let conv2d_79 = conv2d_78 --> conv2d_79
 let mixed9 = Concatenate([conv2d_77, conv2d_79, conv2d_80, conv2d_83, conv2d_84, conv2d_85], name: "mixed9")
-let conv2d_87 = mixed9 --> conv2d_87
 let conv2d_86 = mixed9 --> conv2d_86
-let conv2d_88 = conv2d_87 --> conv2d_88
 let conv2d_91 = mixed9 --> conv2d_90 --> conv2d_91
+let conv2d_92 = conv2d_91 --> conv2d_92
+let conv2d_87 = mixed9 --> conv2d_87
 let conv2d_94 = mixed9 --> average_pooling2d_9 --> conv2d_94
 let conv2d_89 = conv2d_87 --> conv2d_89
 let conv2d_93 = conv2d_91 --> conv2d_93
-let conv2d_92 = conv2d_91 --> conv2d_92
+let conv2d_88 = conv2d_87 --> conv2d_88
 let mixed10 = Concatenate([conv2d_86, conv2d_88, conv2d_89, conv2d_92, conv2d_93, conv2d_94], name: "mixed10")
 let predictions = mixed10 --> avg_pool --> predictions
 let output = predictions --> Softmax()

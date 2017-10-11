@@ -4,7 +4,7 @@
 //
 //  YoloBuilder.swift
 //
-//  created 2017-10-05 16:43 by keras2metal.py
+//  created 2017-10-11 20:39 by keras2metal.py
 //
 //  Converter wittenn by Pavel Mayer, Tognos GmbH, http://tognos.com/
 //  based on YADK and Forge yolo2metal.py
@@ -62,9 +62,9 @@ let conv2d_13 = input_1 --> conv2d_1 --> max_pooling2d_1 --> conv2d_2 --> max_po
          --> conv2d_3 --> conv2d_4 --> conv2d_5 --> max_pooling2d_3 --> conv2d_6
          --> conv2d_7 --> conv2d_8 --> max_pooling2d_4 --> conv2d_9 --> conv2d_10
          --> conv2d_11 --> conv2d_12 --> conv2d_13
+let space_to_depth_x2 = conv2d_13 --> conv2d_21 --> space_to_depth_x2
 let conv2d_20 = conv2d_13 --> max_pooling2d_5 --> conv2d_14 --> conv2d_15 --> conv2d_16
          --> conv2d_17 --> conv2d_18 --> conv2d_19 --> conv2d_20
-let space_to_depth_x2 = conv2d_13 --> conv2d_21 --> space_to_depth_x2
 let concatenate_1 = Concatenate([space_to_depth_x2, conv2d_20], name: "concatenate_1")
 let conv2d_23 = concatenate_1 --> conv2d_22 --> conv2d_23
 let output = conv2d_23
