@@ -38,10 +38,15 @@ class ModelTests {
   func testMobileNet(debug: Bool) {
     print("\(self).\(#function)")
     testModel(net: MobilenetBuilder(device: device), testImageName: "final1-224.jpg",
-              correctTop: [717, 661],
+              correctTop: [717, 864],
               debug: debug)
   }
-  
+  func testXception(debug: Bool) {
+    print("\(self).\(#function)")
+    testModel(net: XceptionBuilder(device: device), testImageName: "final1-299.jpg",
+              correctTop: [717, 864],
+              debug: debug)
+  }
   func testModel(net : NetworkBuilder, testImageName: String, correctTop: [Int], debug: Bool) {
     print("\(self).\(#function) \(net.name)")
     

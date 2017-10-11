@@ -81,10 +81,11 @@ class ViewController: UIViewController {
     modelTests.testVGG16(debug: false)
     modelTests.testResnet50(debug: false)
     modelTests.testInceptionV3(debug: false)
-    */
     modelTests.testInceptionResnetV2(debug: false)
-    modelTests.testMobileNet(debug: true)
-    
+    modelTests.testMobileNet(debug: false)
+     */
+    modelTests.testXception(debug: true)
+
 
 /*
     let basicConvTests = BasicConvolutionTests()

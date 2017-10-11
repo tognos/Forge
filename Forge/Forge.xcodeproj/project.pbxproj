@@ -45,6 +45,7 @@
 		E972E7DA1F867CCE0091C573 /* YoloBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E972E7D81F867CCE0091C573 /* YoloBuilder.swift */; };
 		E972E7DB1F867CCE0091C573 /* TinyYoloBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E972E7D91F867CCE0091C573 /* TinyYoloBuilder.swift */; };
 		E972E7E21F87A0960091C573 /* MobilenetBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E972E7E11F87A0960091C573 /* MobilenetBuilder.swift */; };
+		E994B1581F8E640700A237CB /* XceptionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994B1571F8E640700A237CB /* XceptionBuilder.swift */; };
 		E99754A01F864E430003BDC2 /* ImageNetLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99754991F864E430003BDC2 /* ImageNetLabels.swift */; };
 		E99754A61F864F5A0003BDC2 /* NetworkBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99754A51F864F5A0003BDC2 /* NetworkBuilder.swift */; };
 		E9C8979A1F699C0A00096BFD /* PadKernel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C897991F699C0900096BFD /* PadKernel.swift */; };
@@ -91,6 +92,7 @@
 		E972E7D81F867CCE0091C573 /* YoloBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YoloBuilder.swift; path = Networks/YoloBuilder.swift; sourceTree = "<group>"; };
 		E972E7D91F867CCE0091C573 /* TinyYoloBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinyYoloBuilder.swift; path = Networks/TinyYoloBuilder.swift; sourceTree = "<group>"; };
 		E972E7E11F87A0960091C573 /* MobilenetBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; name = MobilenetBuilder.swift; path = Networks/MobilenetBuilder.swift; sourceTree = "<group>"; tabWidth = 2; };
+		E994B1571F8E640700A237CB /* XceptionBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XceptionBuilder.swift; path = Networks/XceptionBuilder.swift; sourceTree = "<group>"; };
 		E99754991F864E430003BDC2 /* ImageNetLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageNetLabels.swift; path = Networks/ImageNetLabels.swift; sourceTree = "<group>"; };
 		E99754A51F864F5A0003BDC2 /* NetworkBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkBuilder.swift; path = Networks/NetworkBuilder.swift; sourceTree = "<group>"; };
 		E9C897991F699C0900096BFD /* PadKernel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadKernel.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 		E99754961F864E1F0003BDC2 /* Networks */ = {
 			isa = PBXGroup;
 			children = (
+				E994B1571F8E640700A237CB /* XceptionBuilder.swift */,
 				E972E7E11F87A0960091C573 /* MobilenetBuilder.swift */,
 				E972E7D91F867CCE0091C573 /* TinyYoloBuilder.swift */,
 				E972E7D81F867CCE0091C573 /* YoloBuilder.swift */,
@@ -316,6 +319,7 @@
 				E99754A01F864E430003BDC2 /* ImageNetLabels.swift in Sources */,
 				7BA396581EA8C58A00F4C4D6 /* MTLTexture+Array.swift in Sources */,
 				7BA3966D1EA94D8900F4C4D6 /* MTLBuffer+Array.swift in Sources */,
+				E994B1581F8E640700A237CB /* XceptionBuilder.swift in Sources */,
 				7BA396551EA8C58A00F4C4D6 /* Float16.swift in Sources */,
 				E95496FF1F5617F0006BD4FF /* MergeOp.swift in Sources */,
 				E972E7D61F867C840091C573 /* InceptionV3Builder.swift in Sources */,

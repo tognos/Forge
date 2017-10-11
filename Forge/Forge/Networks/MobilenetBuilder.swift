@@ -4,7 +4,7 @@
 //
 //  MobilenetBuilder.swift
 //
-//  created 2017-10-11 13:12 by keras2metal.py
+//  created 2017-10-11 14:41 by keras2metal.py
 //
 //  Converter wittenn by Pavel Mayer, Tognos GmbH, http://tognos.com/
 //  based on YADK and Forge yolo2metal.py
