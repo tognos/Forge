@@ -20,12 +20,62 @@
 		E94FA0131F69E40500AFE3FD /* final1-224.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E94FA0121F69E40500AFE3FD /* final1-224.jpg */; };
 		E95811A91F795DA500D9AEEF /* final1-299.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E95811A81F795DA500D9AEEF /* final1-299.jpg */; };
 		E95A9F421F5AC88100D0D6CE /* LayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95A9F411F5AC88000D0D6CE /* LayerTests.swift */; };
-		E97B91C21F7D7BD100E7C410 /* Vgg16.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97B91C11F7D7BD100E7C410 /* Vgg16.swift */; };
-		E97B91C81F7D93FF00E7C410 /* InceptionV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97B91C31F7D93FE00E7C410 /* InceptionV3.swift */; };
-		E97B91C91F7D93FF00E7C410 /* Yolo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97B91C41F7D93FE00E7C410 /* Yolo.swift */; };
-		E97B91CA1F7D93FF00E7C410 /* TinyYolo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97B91C51F7D93FF00E7C410 /* TinyYolo.swift */; };
-		E97B91CB1F7D93FF00E7C410 /* Resnet50.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97B91C61F7D93FF00E7C410 /* Resnet50.swift */; };
-		E97B91CC1F7D93FF00E7C410 /* InceptionResnetV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97B91C71F7D93FF00E7C410 /* InceptionResnetV2.swift */; };
+		E972E81B1F87A6D40091C573 /* mobilenet-conv_dw_12.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7E31F87A6CE0091C573 /* mobilenet-conv_dw_12.biases.bin */; };
+		E972E81C1F87A6D40091C573 /* mobilenet-conv_pw_7.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7E41F87A6CE0091C573 /* mobilenet-conv_pw_7.biases.bin */; };
+		E972E81D1F87A6D40091C573 /* mobilenet-conv_pw_3.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7E51F87A6CE0091C573 /* mobilenet-conv_pw_3.biases.bin */; };
+		E972E81E1F87A6D40091C573 /* mobilenet-conv_pw_5.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7E61F87A6CE0091C573 /* mobilenet-conv_pw_5.biases.bin */; };
+		E972E81F1F87A6D40091C573 /* mobilenet-conv_dw_11.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7E71F87A6CF0091C573 /* mobilenet-conv_dw_11.weights.bin */; };
+		E972E8201F87A6D40091C573 /* mobilenet-conv_dw_4.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7E81F87A6CF0091C573 /* mobilenet-conv_dw_4.weights.bin */; };
+		E972E8211F87A6D40091C573 /* mobilenet-conv_dw_10.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7E91F87A6CF0091C573 /* mobilenet-conv_dw_10.biases.bin */; };
+		E972E8221F87A6D40091C573 /* mobilenet-conv_pw_7.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7EA1F87A6CF0091C573 /* mobilenet-conv_pw_7.weights.bin */; };
+		E972E8231F87A6D40091C573 /* mobilenet-conv_pw_11.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7EB1F87A6CF0091C573 /* mobilenet-conv_pw_11.biases.bin */; };
+		E972E8241F87A6D40091C573 /* mobilenet-conv_dw_8.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7EC1F87A6CF0091C573 /* mobilenet-conv_dw_8.weights.bin */; };
+		E972E8251F87A6D40091C573 /* mobilenet-conv_dw_1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7ED1F87A6CF0091C573 /* mobilenet-conv_dw_1.biases.bin */; };
+		E972E8261F87A6D40091C573 /* mobilenet-conv1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7EE1F87A6CF0091C573 /* mobilenet-conv1.biases.bin */; };
+		E972E8271F87A6D40091C573 /* mobilenet-conv_dw_5.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7EF1F87A6CF0091C573 /* mobilenet-conv_dw_5.biases.bin */; };
+		E972E8281F87A6D40091C573 /* mobilenet-conv_dw_10.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7F01F87A6CF0091C573 /* mobilenet-conv_dw_10.weights.bin */; };
+		E972E8291F87A6D40091C573 /* mobilenet-conv_dw_9.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7F11F87A6D00091C573 /* mobilenet-conv_dw_9.weights.bin */; };
+		E972E82A1F87A6D40091C573 /* mobilenet-conv_pw_9.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7F21F87A6D00091C573 /* mobilenet-conv_pw_9.weights.bin */; };
+		E972E82B1F87A6D40091C573 /* mobilenet-conv_dw_1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7F31F87A6D00091C573 /* mobilenet-conv_dw_1.weights.bin */; };
+		E972E82C1F87A6D40091C573 /* mobilenet-conv_dw_11.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7F41F87A6D00091C573 /* mobilenet-conv_dw_11.biases.bin */; };
+		E972E82D1F87A6D40091C573 /* mobilenet-conv_pw_2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7F51F87A6D00091C573 /* mobilenet-conv_pw_2.weights.bin */; };
+		E972E82E1F87A6D40091C573 /* mobilenet-conv_pw_12.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7F61F87A6D00091C573 /* mobilenet-conv_pw_12.biases.bin */; };
+		E972E82F1F87A6D40091C573 /* mobilenet-conv_dw_9.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7F71F87A6D00091C573 /* mobilenet-conv_dw_9.biases.bin */; };
+		E972E8301F87A6D40091C573 /* mobilenet-conv_pw_13.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7F81F87A6D00091C573 /* mobilenet-conv_pw_13.weights.bin */; };
+		E972E8311F87A6D40091C573 /* mobilenet-conv_dw_4.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7F91F87A6D00091C573 /* mobilenet-conv_dw_4.biases.bin */; };
+		E972E8321F87A6D40091C573 /* mobilenet-conv_dw_7.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7FA1F87A6D00091C573 /* mobilenet-conv_dw_7.weights.bin */; };
+		E972E8331F87A6D40091C573 /* mobilenet-conv_dw_12.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7FB1F87A6D00091C573 /* mobilenet-conv_dw_12.weights.bin */; };
+		E972E8341F87A6D40091C573 /* mobilenet-conv_pw_4.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7FC1F87A6D10091C573 /* mobilenet-conv_pw_4.biases.bin */; };
+		E972E8351F87A6D40091C573 /* mobilenet-conv_dw_2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7FD1F87A6D10091C573 /* mobilenet-conv_dw_2.biases.bin */; };
+		E972E8361F87A6D40091C573 /* mobilenet-conv_dw_13.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7FE1F87A6D10091C573 /* mobilenet-conv_dw_13.weights.bin */; };
+		E972E8371F87A6D40091C573 /* mobilenet-conv_dw_2.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E7FF1F87A6D10091C573 /* mobilenet-conv_dw_2.weights.bin */; };
+		E972E8381F87A6D40091C573 /* mobilenet-conv_pw_4.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E8001F87A6D10091C573 /* mobilenet-conv_pw_4.weights.bin */; };
+		E972E8391F87A6D40091C573 /* mobilenet-conv_dw_3.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E8011F87A6D10091C573 /* mobilenet-conv_dw_3.weights.bin */; };
+		E972E83A1F87A6D40091C573 /* mobilenet-conv_pw_8.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E8021F87A6D10091C573 /* mobilenet-conv_pw_8.weights.bin */; };
+		E972E83B1F87A6D40091C573 /* mobilenet-conv1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E8031F87A6D10091C573 /* mobilenet-conv1.weights.bin */; };
+		E972E83C1F87A6D40091C573 /* mobilenet-conv_pw_5.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E8041F87A6D10091C573 /* mobilenet-conv_pw_5.weights.bin */; };
+		E972E83D1F87A6D40091C573 /* mobilenet-conv_dw_6.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E8051F87A6D10091C573 /* mobilenet-conv_dw_6.biases.bin */; };
+		E972E83E1F87A6D40091C573 /* mobilenet-conv_pw_13.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E8061F87A6D20091C573 /* mobilenet-conv_pw_13.biases.bin */; };
+		E972E83F1F87A6D40091C573 /* mobilenet-conv_preds.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E8071F87A6D20091C573 /* mobilenet-conv_preds.biases.bin */; };
+		E972E8401F87A6D40091C573 /* mobilenet-conv_dw_13.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E8081F87A6D20091C573 /* mobilenet-conv_dw_13.biases.bin */; };
+		E972E8411F87A6D40091C573 /* mobilenet-conv_pw_12.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E8091F87A6D20091C573 /* mobilenet-conv_pw_12.weights.bin */; };
+		E972E8421F87A6D40091C573 /* mobilenet-conv_dw_8.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E80A1F87A6D20091C573 /* mobilenet-conv_dw_8.biases.bin */; };
+		E972E8431F87A6D40091C573 /* mobilenet-conv_preds.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E80B1F87A6D20091C573 /* mobilenet-conv_preds.weights.bin */; };
+		E972E8441F87A6D40091C573 /* mobilenet-conv_dw_7.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E80C1F87A6D20091C573 /* mobilenet-conv_dw_7.biases.bin */; };
+		E972E8451F87A6D40091C573 /* mobilenet-conv_pw_2.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E80D1F87A6D20091C573 /* mobilenet-conv_pw_2.biases.bin */; };
+		E972E8461F87A6D40091C573 /* mobilenet-conv_dw_5.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E80E1F87A6D20091C573 /* mobilenet-conv_dw_5.weights.bin */; };
+		E972E8471F87A6D40091C573 /* mobilenet-conv_pw_3.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E80F1F87A6D30091C573 /* mobilenet-conv_pw_3.weights.bin */; };
+		E972E8481F87A6D40091C573 /* mobilenet-conv_pw_6.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E8101F87A6D30091C573 /* mobilenet-conv_pw_6.biases.bin */; };
+		E972E8491F87A6D40091C573 /* mobilenet-conv_pw_6.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E8111F87A6D30091C573 /* mobilenet-conv_pw_6.weights.bin */; };
+		E972E84A1F87A6D40091C573 /* mobilenet-conv_pw_11.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E8121F87A6D30091C573 /* mobilenet-conv_pw_11.weights.bin */; };
+		E972E84B1F87A6D40091C573 /* mobilenet-conv_pw_1.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E8131F87A6D30091C573 /* mobilenet-conv_pw_1.biases.bin */; };
+		E972E84C1F87A6D40091C573 /* mobilenet-conv_pw_10.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E8141F87A6D30091C573 /* mobilenet-conv_pw_10.weights.bin */; };
+		E972E84D1F87A6D40091C573 /* mobilenet-conv_pw_10.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E8151F87A6D30091C573 /* mobilenet-conv_pw_10.biases.bin */; };
+		E972E84E1F87A6D40091C573 /* mobilenet-conv_pw_8.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E8161F87A6D30091C573 /* mobilenet-conv_pw_8.biases.bin */; };
+		E972E84F1F87A6D40091C573 /* mobilenet-conv_pw_9.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E8171F87A6D30091C573 /* mobilenet-conv_pw_9.biases.bin */; };
+		E972E8501F87A6D40091C573 /* mobilenet-conv_dw_6.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E8181F87A6D30091C573 /* mobilenet-conv_dw_6.weights.bin */; };
+		E972E8511F87A6D40091C573 /* mobilenet-conv_pw_1.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E8191F87A6D30091C573 /* mobilenet-conv_pw_1.weights.bin */; };
+		E972E8521F87A6D40091C573 /* mobilenet-conv_dw_3.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E972E81A1F87A6D40091C573 /* mobilenet-conv_dw_3.biases.bin */; };
 		E97B95411F7D974500E7C410 /* tiny_yolo-conv2d_8.biases.bin in Resources */ = {isa = PBXBuildFile; fileRef = E97B91CD1F7D96E300E7C410 /* tiny_yolo-conv2d_8.biases.bin */; };
 		E97B95421F7D974500E7C410 /* inception_resnet_v2-conv2d_197.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E97B91CE1F7D96E300E7C410 /* inception_resnet_v2-conv2d_197.weights.bin */; };
 		E97B95431F7D974500E7C410 /* inception_v3-conv2d_19.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E97B91CF1F7D96E300E7C410 /* inception_v3-conv2d_19.weights.bin */; };
@@ -912,7 +962,6 @@
 		E97B98B41F7D974600E7C410 /* inception_resnet_v2-conv2d_198.weights.bin in Resources */ = {isa = PBXBuildFile; fileRef = E97B95401F7D974400E7C410 /* inception_resnet_v2-conv2d_198.weights.bin */; };
 		E97B98B61F7D97C200E7C410 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97B98B51F7D97C200E7C410 /* ModelTests.swift */; };
 		E97B98B81F7D980100E7C410 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97B98B71F7D980100E7C410 /* TestUtils.swift */; };
-		E97B98BA1F7D9B5100E7C410 /* ImageNetLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97B98B91F7D9B5100E7C410 /* ImageNetLabels.swift */; };
 		E9C8978F1F697F8100096BFD /* final3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E9C897861F697F8000096BFD /* final3.jpg */; };
 		E9C897901F697F8100096BFD /* final5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E9C897871F697F8000096BFD /* final5.jpg */; };
 		E9C897911F697F8100096BFD /* final1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E9C897881F697F8000096BFD /* final1.jpg */; };
@@ -953,12 +1002,62 @@
 		E94FA0121F69E40500AFE3FD /* final1-224.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "final1-224.jpg"; path = "../../../Examples/Inception/Test Images/final1-224.jpg"; sourceTree = "<group>"; };
 		E95811A81F795DA500D9AEEF /* final1-299.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "final1-299.jpg"; path = "../../../Examples/Inception/Test Images/final1-299.jpg"; sourceTree = "<group>"; };
 		E95A9F411F5AC88000D0D6CE /* LayerTests.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = LayerTests.swift; sourceTree = "<group>"; tabWidth = 2; };
-		E97B91C11F7D7BD100E7C410 /* Vgg16.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vgg16.swift; sourceTree = "<group>"; };
-		E97B91C31F7D93FE00E7C410 /* InceptionV3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InceptionV3.swift; sourceTree = "<group>"; };
-		E97B91C41F7D93FE00E7C410 /* Yolo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Yolo.swift; sourceTree = "<group>"; };
-		E97B91C51F7D93FF00E7C410 /* TinyYolo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TinyYolo.swift; sourceTree = "<group>"; };
-		E97B91C61F7D93FF00E7C410 /* Resnet50.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resnet50.swift; sourceTree = "<group>"; };
-		E97B91C71F7D93FF00E7C410 /* InceptionResnetV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InceptionResnetV2.swift; sourceTree = "<group>"; };
+		E972E7E31F87A6CE0091C573 /* mobilenet-conv_dw_12.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_12.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_12.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7E41F87A6CE0091C573 /* mobilenet-conv_pw_7.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_7.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_7.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7E51F87A6CE0091C573 /* mobilenet-conv_pw_3.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_3.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_3.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7E61F87A6CE0091C573 /* mobilenet-conv_pw_5.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_5.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_5.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7E71F87A6CF0091C573 /* mobilenet-conv_dw_11.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_11.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_11.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7E81F87A6CF0091C573 /* mobilenet-conv_dw_4.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_4.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_4.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7E91F87A6CF0091C573 /* mobilenet-conv_dw_10.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_10.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_10.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7EA1F87A6CF0091C573 /* mobilenet-conv_pw_7.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_7.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_7.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7EB1F87A6CF0091C573 /* mobilenet-conv_pw_11.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_11.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_11.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7EC1F87A6CF0091C573 /* mobilenet-conv_dw_8.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_8.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_8.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7ED1F87A6CF0091C573 /* mobilenet-conv_dw_1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_1.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_1.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7EE1F87A6CF0091C573 /* mobilenet-conv1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv1.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv1.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7EF1F87A6CF0091C573 /* mobilenet-conv_dw_5.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_5.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_5.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7F01F87A6CF0091C573 /* mobilenet-conv_dw_10.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_10.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_10.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7F11F87A6D00091C573 /* mobilenet-conv_dw_9.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_9.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_9.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7F21F87A6D00091C573 /* mobilenet-conv_pw_9.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_9.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_9.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7F31F87A6D00091C573 /* mobilenet-conv_dw_1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_1.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_1.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7F41F87A6D00091C573 /* mobilenet-conv_dw_11.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_11.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_11.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7F51F87A6D00091C573 /* mobilenet-conv_pw_2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_2.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_2.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7F61F87A6D00091C573 /* mobilenet-conv_pw_12.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_12.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_12.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7F71F87A6D00091C573 /* mobilenet-conv_dw_9.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_9.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_9.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7F81F87A6D00091C573 /* mobilenet-conv_pw_13.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_13.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_13.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7F91F87A6D00091C573 /* mobilenet-conv_dw_4.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_4.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_4.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7FA1F87A6D00091C573 /* mobilenet-conv_dw_7.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_7.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_7.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7FB1F87A6D00091C573 /* mobilenet-conv_dw_12.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_12.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_12.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7FC1F87A6D10091C573 /* mobilenet-conv_pw_4.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_4.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_4.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7FD1F87A6D10091C573 /* mobilenet-conv_dw_2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_2.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_2.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7FE1F87A6D10091C573 /* mobilenet-conv_dw_13.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_13.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_13.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E7FF1F87A6D10091C573 /* mobilenet-conv_dw_2.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_2.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_2.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E8001F87A6D10091C573 /* mobilenet-conv_pw_4.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_4.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_4.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E8011F87A6D10091C573 /* mobilenet-conv_dw_3.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_3.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_3.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E8021F87A6D10091C573 /* mobilenet-conv_pw_8.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_8.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_8.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E8031F87A6D10091C573 /* mobilenet-conv1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv1.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv1.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E8041F87A6D10091C573 /* mobilenet-conv_pw_5.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_5.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_5.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E8051F87A6D10091C573 /* mobilenet-conv_dw_6.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_6.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_6.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E8061F87A6D20091C573 /* mobilenet-conv_pw_13.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_13.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_13.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E8071F87A6D20091C573 /* mobilenet-conv_preds.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_preds.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_preds.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E8081F87A6D20091C573 /* mobilenet-conv_dw_13.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_13.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_13.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E8091F87A6D20091C573 /* mobilenet-conv_pw_12.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_12.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_12.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E80A1F87A6D20091C573 /* mobilenet-conv_dw_8.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_8.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_8.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E80B1F87A6D20091C573 /* mobilenet-conv_preds.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_preds.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_preds.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E80C1F87A6D20091C573 /* mobilenet-conv_dw_7.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_7.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_7.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E80D1F87A6D20091C573 /* mobilenet-conv_pw_2.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_2.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_2.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E80E1F87A6D20091C573 /* mobilenet-conv_dw_5.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_5.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_5.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E80F1F87A6D30091C573 /* mobilenet-conv_pw_3.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_3.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_3.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E8101F87A6D30091C573 /* mobilenet-conv_pw_6.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_6.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_6.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E8111F87A6D30091C573 /* mobilenet-conv_pw_6.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_6.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_6.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E8121F87A6D30091C573 /* mobilenet-conv_pw_11.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_11.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_11.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E8131F87A6D30091C573 /* mobilenet-conv_pw_1.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_1.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_1.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E8141F87A6D30091C573 /* mobilenet-conv_pw_10.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_10.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_10.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E8151F87A6D30091C573 /* mobilenet-conv_pw_10.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_10.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_10.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E8161F87A6D30091C573 /* mobilenet-conv_pw_8.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_8.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_8.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E8171F87A6D30091C573 /* mobilenet-conv_pw_9.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_9.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_9.biases.bin"; sourceTree = SOURCE_ROOT; };
+		E972E8181F87A6D30091C573 /* mobilenet-conv_dw_6.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_6.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_6.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E8191F87A6D30091C573 /* mobilenet-conv_pw_1.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_pw_1.weights.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_pw_1.weights.bin"; sourceTree = SOURCE_ROOT; };
+		E972E81A1F87A6D40091C573 /* mobilenet-conv_dw_3.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "mobilenet-conv_dw_3.biases.bin"; path = "ForgeTests/TestWeights/mobilenet-conv_dw_3.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E97B91CD1F7D96E300E7C410 /* tiny_yolo-conv2d_8.biases.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "tiny_yolo-conv2d_8.biases.bin"; path = "ForgeTests/TestWeights/tiny_yolo-conv2d_8.biases.bin"; sourceTree = SOURCE_ROOT; };
 		E97B91CE1F7D96E300E7C410 /* inception_resnet_v2-conv2d_197.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "inception_resnet_v2-conv2d_197.weights.bin"; path = "ForgeTests/TestWeights/inception_resnet_v2-conv2d_197.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E97B91CF1F7D96E300E7C410 /* inception_v3-conv2d_19.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "inception_v3-conv2d_19.weights.bin"; path = "ForgeTests/TestWeights/inception_v3-conv2d_19.weights.bin"; sourceTree = SOURCE_ROOT; };
@@ -1845,7 +1944,6 @@
 		E97B95401F7D974400E7C410 /* inception_resnet_v2-conv2d_198.weights.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; name = "inception_resnet_v2-conv2d_198.weights.bin"; path = "ForgeTests/TestWeights/inception_resnet_v2-conv2d_198.weights.bin"; sourceTree = SOURCE_ROOT; };
 		E97B98B51F7D97C200E7C410 /* ModelTests.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; tabWidth = 2; };
 		E97B98B71F7D980100E7C410 /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
-		E97B98B91F7D9B5100E7C410 /* ImageNetLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNetLabels.swift; sourceTree = "<group>"; };
 		E9C897861F697F8000096BFD /* final3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = final3.jpg; path = "../../../Examples/Inception/Test Images/final3.jpg"; sourceTree = "<group>"; };
 		E9C897871F697F8000096BFD /* final5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = final5.jpg; path = "../../../Examples/Inception/Test Images/final5.jpg"; sourceTree = "<group>"; };
 		E9C897881F697F8000096BFD /* final1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = final1.jpg; path = "../../../Examples/Inception/Test Images/final1.jpg"; sourceTree = "<group>"; };
@@ -1905,19 +2003,12 @@
 		7B3DA55E1EC5E10800BD3F06 /* Test Cases */ = {
 			isa = PBXGroup;
 			children = (
-				E97B91C71F7D93FF00E7C410 /* InceptionResnetV2.swift */,
-				E97B91C31F7D93FE00E7C410 /* InceptionV3.swift */,
-				E97B91C61F7D93FF00E7C410 /* Resnet50.swift */,
-				E97B91C51F7D93FF00E7C410 /* TinyYolo.swift */,
-				E97B91C41F7D93FE00E7C410 /* Yolo.swift */,
-				E97B91C11F7D7BD100E7C410 /* Vgg16.swift */,
 				7B3DA5581EC4E81600BD3F06 /* ArrayTests.swift */,
 				7B711C731EC7533F001CB7C2 /* BasicConvolutionTests.swift */,
 				7B3DA55A1EC4E88B00BD3F06 /* DepthwiseConvolutionTests.swift */,
 				E95A9F411F5AC88000D0D6CE /* LayerTests.swift */,
 				E97B98B51F7D97C200E7C410 /* ModelTests.swift */,
 				E97B98B71F7D980100E7C410 /* TestUtils.swift */,
-				E97B98B91F7D9B5100E7C410 /* ImageNetLabels.swift */,
 			);
 			name = "Test Cases";
 			sourceTree = "<group>";
@@ -1943,6 +2034,62 @@
 		E9C897981F697F9300096BFD /* TestWeights */ = {
 			isa = PBXGroup;
 			children = (
+				E972E7ED1F87A6CF0091C573 /* mobilenet-conv_dw_1.biases.bin */,
+				E972E7F31F87A6D00091C573 /* mobilenet-conv_dw_1.weights.bin */,
+				E972E7FD1F87A6D10091C573 /* mobilenet-conv_dw_2.biases.bin */,
+				E972E7FF1F87A6D10091C573 /* mobilenet-conv_dw_2.weights.bin */,
+				E972E81A1F87A6D40091C573 /* mobilenet-conv_dw_3.biases.bin */,
+				E972E8011F87A6D10091C573 /* mobilenet-conv_dw_3.weights.bin */,
+				E972E7F91F87A6D00091C573 /* mobilenet-conv_dw_4.biases.bin */,
+				E972E7E81F87A6CF0091C573 /* mobilenet-conv_dw_4.weights.bin */,
+				E972E7EF1F87A6CF0091C573 /* mobilenet-conv_dw_5.biases.bin */,
+				E972E80E1F87A6D20091C573 /* mobilenet-conv_dw_5.weights.bin */,
+				E972E8051F87A6D10091C573 /* mobilenet-conv_dw_6.biases.bin */,
+				E972E8181F87A6D30091C573 /* mobilenet-conv_dw_6.weights.bin */,
+				E972E80C1F87A6D20091C573 /* mobilenet-conv_dw_7.biases.bin */,
+				E972E7FA1F87A6D00091C573 /* mobilenet-conv_dw_7.weights.bin */,
+				E972E80A1F87A6D20091C573 /* mobilenet-conv_dw_8.biases.bin */,
+				E972E7EC1F87A6CF0091C573 /* mobilenet-conv_dw_8.weights.bin */,
+				E972E7F71F87A6D00091C573 /* mobilenet-conv_dw_9.biases.bin */,
+				E972E7F11F87A6D00091C573 /* mobilenet-conv_dw_9.weights.bin */,
+				E972E7E91F87A6CF0091C573 /* mobilenet-conv_dw_10.biases.bin */,
+				E972E7F01F87A6CF0091C573 /* mobilenet-conv_dw_10.weights.bin */,
+				E972E7F41F87A6D00091C573 /* mobilenet-conv_dw_11.biases.bin */,
+				E972E7E71F87A6CF0091C573 /* mobilenet-conv_dw_11.weights.bin */,
+				E972E7E31F87A6CE0091C573 /* mobilenet-conv_dw_12.biases.bin */,
+				E972E7FB1F87A6D00091C573 /* mobilenet-conv_dw_12.weights.bin */,
+				E972E8081F87A6D20091C573 /* mobilenet-conv_dw_13.biases.bin */,
+				E972E7FE1F87A6D10091C573 /* mobilenet-conv_dw_13.weights.bin */,
+				E972E8071F87A6D20091C573 /* mobilenet-conv_preds.biases.bin */,
+				E972E80B1F87A6D20091C573 /* mobilenet-conv_preds.weights.bin */,
+				E972E8131F87A6D30091C573 /* mobilenet-conv_pw_1.biases.bin */,
+				E972E8191F87A6D30091C573 /* mobilenet-conv_pw_1.weights.bin */,
+				E972E80D1F87A6D20091C573 /* mobilenet-conv_pw_2.biases.bin */,
+				E972E7F51F87A6D00091C573 /* mobilenet-conv_pw_2.weights.bin */,
+				E972E7E51F87A6CE0091C573 /* mobilenet-conv_pw_3.biases.bin */,
+				E972E80F1F87A6D30091C573 /* mobilenet-conv_pw_3.weights.bin */,
+				E972E7FC1F87A6D10091C573 /* mobilenet-conv_pw_4.biases.bin */,
+				E972E8001F87A6D10091C573 /* mobilenet-conv_pw_4.weights.bin */,
+				E972E7E61F87A6CE0091C573 /* mobilenet-conv_pw_5.biases.bin */,
+				E972E8041F87A6D10091C573 /* mobilenet-conv_pw_5.weights.bin */,
+				E972E8101F87A6D30091C573 /* mobilenet-conv_pw_6.biases.bin */,
+				E972E8111F87A6D30091C573 /* mobilenet-conv_pw_6.weights.bin */,
+				E972E7E41F87A6CE0091C573 /* mobilenet-conv_pw_7.biases.bin */,
+				E972E7EA1F87A6CF0091C573 /* mobilenet-conv_pw_7.weights.bin */,
+				E972E8161F87A6D30091C573 /* mobilenet-conv_pw_8.biases.bin */,
+				E972E8021F87A6D10091C573 /* mobilenet-conv_pw_8.weights.bin */,
+				E972E8171F87A6D30091C573 /* mobilenet-conv_pw_9.biases.bin */,
+				E972E7F21F87A6D00091C573 /* mobilenet-conv_pw_9.weights.bin */,
+				E972E8151F87A6D30091C573 /* mobilenet-conv_pw_10.biases.bin */,
+				E972E8141F87A6D30091C573 /* mobilenet-conv_pw_10.weights.bin */,
+				E972E7EB1F87A6CF0091C573 /* mobilenet-conv_pw_11.biases.bin */,
+				E972E8121F87A6D30091C573 /* mobilenet-conv_pw_11.weights.bin */,
+				E972E7F61F87A6D00091C573 /* mobilenet-conv_pw_12.biases.bin */,
+				E972E8091F87A6D20091C573 /* mobilenet-conv_pw_12.weights.bin */,
+				E972E8061F87A6D20091C573 /* mobilenet-conv_pw_13.biases.bin */,
+				E972E7F81F87A6D00091C573 /* mobilenet-conv_pw_13.weights.bin */,
+				E972E7EE1F87A6CF0091C573 /* mobilenet-conv1.biases.bin */,
+				E972E8031F87A6D10091C573 /* mobilenet-conv1.weights.bin */,
 				E97B92EE1F7D970000E7C410 /* inception_resnet_v2-block8_1_conv.biases.bin */,
 				E97B93BF1F7D971700E7C410 /* inception_resnet_v2-block8_1_conv.weights.bin */,
 				E97B93351F7D970700E7C410 /* inception_resnet_v2-block8_2_conv.biases.bin */,
@@ -2930,6 +3077,7 @@
 				E97B95821F7D974500E7C410 /* inception_resnet_v2-block17_9_conv.biases.bin in Resources */,
 				E97B974A1F7D974500E7C410 /* vgg_16-block5_conv3.weights.bin in Resources */,
 				E97B96491F7D974500E7C410 /* inception_resnet_v2-conv2d_133.biases.bin in Resources */,
+				E972E8441F87A6D40091C573 /* mobilenet-conv_dw_7.biases.bin in Resources */,
 				E97B97901F7D974500E7C410 /* inception_resnet_v2-block17_20_conv.biases.bin in Resources */,
 				E97B98271F7D974600E7C410 /* inception_resnet_v2-conv2d_15.weights.bin in Resources */,
 				E97B96DA1F7D974500E7C410 /* inception_resnet_v2-conv2d_153.weights.bin in Resources */,
@@ -2972,6 +3120,7 @@
 				E97B954E1F7D974500E7C410 /* inception_resnet_v2-block35_2_conv.biases.bin in Resources */,
 				E97B978F1F7D974500E7C410 /* inception_v3-conv2d_36.weights.bin in Resources */,
 				E97B96321F7D974500E7C410 /* inception_resnet_v2-conv2d_121.weights.bin in Resources */,
+				E972E8381F87A6D40091C573 /* mobilenet-conv_pw_4.weights.bin in Resources */,
 				E97B98731F7D974600E7C410 /* resnet_50-res4d_branch2a.biases.bin in Resources */,
 				E97B970F1F7D974500E7C410 /* inception_resnet_v2-conv2d_129.weights.bin in Resources */,
 				E97B96BF1F7D974500E7C410 /* resnet_50-res2c_branch2b.weights.bin in Resources */,
@@ -2983,12 +3132,14 @@
 				E97B95FB1F7D974500E7C410 /* inception_resnet_v2-conv2d_149.biases.bin in Resources */,
 				E97B95651F7D974500E7C410 /* vgg_16-block4_conv2.biases.bin in Resources */,
 				E97B962B1F7D974500E7C410 /* inception_resnet_v2-conv2d_131.biases.bin in Resources */,
+				E972E8231F87A6D40091C573 /* mobilenet-conv_pw_11.biases.bin in Resources */,
 				E97B96CC1F7D974500E7C410 /* inception_resnet_v2-conv2d_128.biases.bin in Resources */,
 				E97B981E1F7D974600E7C410 /* resnet_50-res3c_branch2c.weights.bin in Resources */,
 				E97B98251F7D974600E7C410 /* inception_v3-conv2d_81.weights.bin in Resources */,
 				E97B97C31F7D974500E7C410 /* resnet_50-res3a_branch1.biases.bin in Resources */,
 				E97B95F81F7D974500E7C410 /* inception_v3-conv2d_21.biases.bin in Resources */,
 				E97B95411F7D974500E7C410 /* tiny_yolo-conv2d_8.biases.bin in Resources */,
+				E972E8311F87A6D40091C573 /* mobilenet-conv_dw_4.biases.bin in Resources */,
 				E97B96251F7D974500E7C410 /* inception_resnet_v2-conv2d_74.biases.bin in Resources */,
 				E97B95A31F7D974500E7C410 /* resnet_50-res3c_branch2b.weights.bin in Resources */,
 				E97B95F21F7D974500E7C410 /* inception_resnet_v2-conv2d_114.weights.bin in Resources */,
@@ -3000,6 +3151,7 @@
 				E97B96E21F7D974500E7C410 /* vgg_16-block3_conv2.weights.bin in Resources */,
 				E97B95661F7D974500E7C410 /* inception_resnet_v2-conv2d_135.weights.bin in Resources */,
 				E97B97E31F7D974500E7C410 /* resnet_50-res5b_branch2b.weights.bin in Resources */,
+				E972E8511F87A6D40091C573 /* mobilenet-conv_pw_1.weights.bin in Resources */,
 				E97B961F1F7D974500E7C410 /* resnet_50-res3d_branch2a.weights.bin in Resources */,
 				E97B97801F7D974500E7C410 /* vgg_16-block4_conv2.weights.bin in Resources */,
 				E97B97231F7D974500E7C410 /* inception_v3-conv2d_63.weights.bin in Resources */,
@@ -3035,7 +3187,9 @@
 				E97B956F1F7D974500E7C410 /* inception_v3-conv2d_82.biases.bin in Resources */,
 				E97B978E1F7D974500E7C410 /* inception_resnet_v2-block17_19_conv.biases.bin in Resources */,
 				E97B965F1F7D974500E7C410 /* inception_resnet_v2-conv2d_12.weights.bin in Resources */,
+				E972E84A1F87A6D40091C573 /* mobilenet-conv_pw_11.weights.bin in Resources */,
 				E97B95E51F7D974500E7C410 /* inception_resnet_v2-conv2d_178.biases.bin in Resources */,
+				E972E83F1F87A6D40091C573 /* mobilenet-conv_preds.biases.bin in Resources */,
 				E97B96331F7D974500E7C410 /* inception_resnet_v2-conv2d_76.biases.bin in Resources */,
 				E97B96561F7D974500E7C410 /* inception_resnet_v2-conv2d_176.biases.bin in Resources */,
 				E97B958D1F7D974500E7C410 /* inception_v3-conv2d_88.weights.bin in Resources */,
@@ -3106,6 +3260,7 @@
 				E97B98111F7D974500E7C410 /* vgg_16-block3_conv1.weights.bin in Resources */,
 				E97B95AA1F7D974500E7C410 /* yolo-conv2d_23.weights.bin in Resources */,
 				E97B95561F7D974500E7C410 /* vgg_16-block3_conv3.biases.bin in Resources */,
+				E972E81B1F87A6D40091C573 /* mobilenet-conv_dw_12.biases.bin in Resources */,
 				E9C897941F697F8100096BFD /* final4.jpg in Resources */,
 				E97B974D1F7D974500E7C410 /* inception_v3-conv2d_32.weights.bin in Resources */,
 				E97B97121F7D974500E7C410 /* inception_resnet_v2-conv2d_22.weights.bin in Resources */,
@@ -3125,6 +3280,7 @@
 				E97B96131F7D974500E7C410 /* inception_resnet_v2-conv2d_203.weights.bin in Resources */,
 				E97B97D51F7D974500E7C410 /* inception_resnet_v2-conv2d_165.biases.bin in Resources */,
 				E97B97191F7D974500E7C410 /* resnet_50-res3c_branch2a.biases.bin in Resources */,
+				E972E83E1F87A6D40091C573 /* mobilenet-conv_pw_13.biases.bin in Resources */,
 				E97B95811F7D974500E7C410 /* resnet_50-res3d_branch2b.weights.bin in Resources */,
 				E97B95781F7D974500E7C410 /* inception_v3-conv2d_41.biases.bin in Resources */,
 				E97B955B1F7D974500E7C410 /* resnet_50-res3a_branch2b.biases.bin in Resources */,
@@ -3185,6 +3341,7 @@
 				E97B97291F7D974500E7C410 /* inception_resnet_v2-conv2d_16.weights.bin in Resources */,
 				E97B95581F7D974500E7C410 /* inception_resnet_v2-conv2d_8.weights.bin in Resources */,
 				E97B97D01F7D974500E7C410 /* inception_resnet_v2-conv2d_41.weights.bin in Resources */,
+				E972E82E1F87A6D40091C573 /* mobilenet-conv_pw_12.biases.bin in Resources */,
 				E97B98AB1F7D974600E7C410 /* inception_resnet_v2-conv2d_62.weights.bin in Resources */,
 				E97B979C1F7D974500E7C410 /* inception_resnet_v2-conv2d_124.weights.bin in Resources */,
 				E97B98341F7D974600E7C410 /* yolo-conv2d_12.biases.bin in Resources */,
@@ -3216,10 +3373,14 @@
 				E97B98AC1F7D974600E7C410 /* inception_v3-conv2d_54.weights.bin in Resources */,
 				E97B95E41F7D974500E7C410 /* inception_resnet_v2-conv2d_152.biases.bin in Resources */,
 				E97B95DA1F7D974500E7C410 /* yolo-conv2d_3.biases.bin in Resources */,
+				E972E83C1F87A6D40091C573 /* mobilenet-conv_pw_5.weights.bin in Resources */,
+				E972E8491F87A6D40091C573 /* mobilenet-conv_pw_6.weights.bin in Resources */,
 				E97B96271F7D974500E7C410 /* inception_resnet_v2-conv2d_27.biases.bin in Resources */,
 				E97B96521F7D974500E7C410 /* resnet_50-res4f_branch2a.weights.bin in Resources */,
 				E97B978B1F7D974500E7C410 /* yolo-conv2d_4.weights.bin in Resources */,
 				E97B96791F7D974500E7C410 /* inception_resnet_v2-conv2d_145.weights.bin in Resources */,
+				E972E81D1F87A6D40091C573 /* mobilenet-conv_pw_3.biases.bin in Resources */,
+				E972E8371F87A6D40091C573 /* mobilenet-conv_dw_2.weights.bin in Resources */,
 				E97B963F1F7D974500E7C410 /* inception_resnet_v2-conv2d_121.biases.bin in Resources */,
 				E97B95691F7D974500E7C410 /* vgg_16-block1_conv2.biases.bin in Resources */,
 				E97B97741F7D974500E7C410 /* tiny_yolo-conv2d_2.weights.bin in Resources */,
@@ -3227,6 +3388,7 @@
 				E97B959F1F7D974500E7C410 /* resnet_50-res2b_branch2a.biases.bin in Resources */,
 				E97B95741F7D974500E7C410 /* inception_v3-conv2d_1.weights.bin in Resources */,
 				E97B95D01F7D974500E7C410 /* inception_v3-conv2d_80.weights.bin in Resources */,
+				E972E8481F87A6D40091C573 /* mobilenet-conv_pw_6.biases.bin in Resources */,
 				E97B98A61F7D974600E7C410 /* resnet_50-res3d_branch2a.biases.bin in Resources */,
 				E97B98551F7D974600E7C410 /* inception_resnet_v2-conv2d_71.weights.bin in Resources */,
 				E97B988F1F7D974600E7C410 /* inception_v3-conv2d_39.biases.bin in Resources */,
@@ -3241,7 +3403,9 @@
 				E97B96881F7D974500E7C410 /* inception_v3-conv2d_37.biases.bin in Resources */,
 				E97B954A1F7D974500E7C410 /* inception_resnet_v2-conv2d_149.weights.bin in Resources */,
 				E97B96B41F7D974500E7C410 /* inception_resnet_v2-conv2d_141.biases.bin in Resources */,
+				E972E8361F87A6D40091C573 /* mobilenet-conv_dw_13.weights.bin in Resources */,
 				E97B97E81F7D974500E7C410 /* inception_resnet_v2-conv2d_132.biases.bin in Resources */,
+				E972E8271F87A6D40091C573 /* mobilenet-conv_dw_5.biases.bin in Resources */,
 				E97B97F01F7D974500E7C410 /* inception_v3-conv2d_55.biases.bin in Resources */,
 				E97B961A1F7D974500E7C410 /* vgg_16-block2_conv2.weights.bin in Resources */,
 				E97B97351F7D974500E7C410 /* tiny_yolo-conv2d_5.biases.bin in Resources */,
@@ -3254,10 +3418,12 @@
 				E97B969D1F7D974500E7C410 /* inception_resnet_v2-conv2d_127.weights.bin in Resources */,
 				E97B95EA1F7D974500E7C410 /* inception_v3-conv2d_62.weights.bin in Resources */,
 				E97B97641F7D974500E7C410 /* inception_resnet_v2-conv2d_191.weights.bin in Resources */,
+				E972E8221F87A6D40091C573 /* mobilenet-conv_pw_7.weights.bin in Resources */,
 				E97B98701F7D974600E7C410 /* inception_resnet_v2-conv2d_189.biases.bin in Resources */,
 				E97B95A71F7D974500E7C410 /* inception_v3-conv2d_90.weights.bin in Resources */,
 				E97B98241F7D974600E7C410 /* inception_resnet_v2-conv2d_200.biases.bin in Resources */,
 				E97B97931F7D974500E7C410 /* inception_v3-conv2d_9.biases.bin in Resources */,
+				E972E8331F87A6D40091C573 /* mobilenet-conv_dw_12.weights.bin in Resources */,
 				E97B969B1F7D974500E7C410 /* resnet_50-res2c_branch2a.biases.bin in Resources */,
 				E97B96C51F7D974500E7C410 /* inception_v3-conv2d_1.biases.bin in Resources */,
 				E97B98131F7D974500E7C410 /* inception_resnet_v2-conv2d_188.biases.bin in Resources */,
@@ -3267,9 +3433,11 @@
 				E97B98121F7D974500E7C410 /* inception_v3-conv2d_20.biases.bin in Resources */,
 				E97B984B1F7D974600E7C410 /* inception_v3-conv2d_60.biases.bin in Resources */,
 				E97B96C71F7D974500E7C410 /* inception_v3-conv2d_44.biases.bin in Resources */,
+				E972E8411F87A6D40091C573 /* mobilenet-conv_pw_12.weights.bin in Resources */,
 				E97B98141F7D974500E7C410 /* inception_resnet_v2-conv2d_35.biases.bin in Resources */,
 				E97B973B1F7D974500E7C410 /* inception_resnet_v2-conv2d_35.weights.bin in Resources */,
 				E97B97C01F7D974500E7C410 /* inception_resnet_v2-conv2d_24.biases.bin in Resources */,
+				E972E8471F87A6D40091C573 /* mobilenet-conv_pw_3.weights.bin in Resources */,
 				E97B97921F7D974500E7C410 /* inception_resnet_v2-conv2d_48.weights.bin in Resources */,
 				E97B98061F7D974500E7C410 /* resnet_50-res4a_branch2b.weights.bin in Resources */,
 				E97B96AA1F7D974500E7C410 /* inception_resnet_v2-conv2d_2.biases.bin in Resources */,
@@ -3285,6 +3453,7 @@
 				E97B96DE1F7D974500E7C410 /* inception_resnet_v2-conv2d_122.weights.bin in Resources */,
 				E97B96101F7D974500E7C410 /* inception_resnet_v2-conv2d_163.weights.bin in Resources */,
 				E97B97D61F7D974500E7C410 /* inception_resnet_v2-conv2d_120.biases.bin in Resources */,
+				E972E84F1F87A6D40091C573 /* mobilenet-conv_pw_9.biases.bin in Resources */,
 				E97B988E1F7D974600E7C410 /* inception_resnet_v2-conv2d_6.biases.bin in Resources */,
 				E97B97441F7D974500E7C410 /* resnet_50-res2a_branch2b.weights.bin in Resources */,
 				E97B97F91F7D974500E7C410 /* resnet_50-res4f_branch2c.biases.bin in Resources */,
@@ -3297,6 +3466,7 @@
 				E97B982D1F7D974600E7C410 /* inception_resnet_v2-conv2d_158.biases.bin in Resources */,
 				E97B98451F7D974600E7C410 /* inception_resnet_v2-conv2d_50.weights.bin in Resources */,
 				E97B97FA1F7D974500E7C410 /* inception_v3-conv2d_2.biases.bin in Resources */,
+				E972E82F1F87A6D40091C573 /* mobilenet-conv_dw_9.biases.bin in Resources */,
 				E97B983D1F7D974600E7C410 /* yolo-conv2d_17.biases.bin in Resources */,
 				E97B98601F7D974600E7C410 /* inception_resnet_v2-conv2d_151.biases.bin in Resources */,
 				E97B98A11F7D974600E7C410 /* inception_v3-conv2d_11.weights.bin in Resources */,
@@ -3307,6 +3477,7 @@
 				E97B95791F7D974500E7C410 /* resnet_50-res3d_branch2c.biases.bin in Resources */,
 				E97B98781F7D974600E7C410 /* inception_resnet_v2-conv2d_111.biases.bin in Resources */,
 				E97B98031F7D974500E7C410 /* inception_resnet_v2-conv2d_24.weights.bin in Resources */,
+				E972E82B1F87A6D40091C573 /* mobilenet-conv_dw_1.weights.bin in Resources */,
 				E97B988A1F7D974600E7C410 /* inception_resnet_v2-conv2d_180.weights.bin in Resources */,
 				E97B98941F7D974600E7C410 /* resnet_50-res4b_branch2a.biases.bin in Resources */,
 				E97B97131F7D974500E7C410 /* resnet_50-res2a_branch2a.biases.bin in Resources */,
@@ -3330,6 +3501,7 @@
 				E97B96A71F7D974500E7C410 /* inception_resnet_v2-conv2d_159.biases.bin in Resources */,
 				E97B95F01F7D974500E7C410 /* inception_resnet_v2-conv2d_147.biases.bin in Resources */,
 				E97B97631F7D974500E7C410 /* inception_resnet_v2-conv2d_100.biases.bin in Resources */,
+				E972E8211F87A6D40091C573 /* mobilenet-conv_dw_10.biases.bin in Resources */,
 				E97B95EF1F7D974500E7C410 /* inception_resnet_v2-conv2d_139.weights.bin in Resources */,
 				E97B98291F7D974600E7C410 /* yolo-conv2d_9.biases.bin in Resources */,
 				E97B97F71F7D974500E7C410 /* inception_resnet_v2-conv2d_81.biases.bin in Resources */,
@@ -3350,7 +3522,9 @@
 				E97B97171F7D974500E7C410 /* inception_resnet_v2-conv2d_192.weights.bin in Resources */,
 				E97B959E1F7D974500E7C410 /* inception_resnet_v2-conv2d_94.biases.bin in Resources */,
 				E97B98591F7D974600E7C410 /* inception_v3-conv2d_86.weights.bin in Resources */,
+				E972E82C1F87A6D40091C573 /* mobilenet-conv_dw_11.biases.bin in Resources */,
 				E97B98B31F7D974600E7C410 /* inception_resnet_v2-block17_6_conv.weights.bin in Resources */,
+				E972E81F1F87A6D40091C573 /* mobilenet-conv_dw_11.weights.bin in Resources */,
 				E97B98181F7D974500E7C410 /* inception_v3-conv2d_50.weights.bin in Resources */,
 				E97B97AF1F7D974500E7C410 /* inception_resnet_v2-conv2d_90.weights.bin in Resources */,
 				E95811A91F795DA500D9AEEF /* final1-299.jpg in Resources */,
@@ -3386,6 +3560,7 @@
 				E97B95C51F7D974500E7C410 /* yolo-conv2d_17.weights.bin in Resources */,
 				E97B958F1F7D974500E7C410 /* inception_resnet_v2-conv2d_166.weights.bin in Resources */,
 				E97B96B71F7D974500E7C410 /* inception_resnet_v2-conv2d_13.weights.bin in Resources */,
+				E972E82A1F87A6D40091C573 /* mobilenet-conv_pw_9.weights.bin in Resources */,
 				E97B98951F7D974600E7C410 /* inception_resnet_v2-conv2d_179.biases.bin in Resources */,
 				E97B96071F7D974500E7C410 /* inception_resnet_v2-conv2d_185.weights.bin in Resources */,
 				E97B95601F7D974500E7C410 /* resnet_50-res4b_branch2c.biases.bin in Resources */,
@@ -3421,6 +3596,7 @@
 				E97B95B61F7D974500E7C410 /* yolo-conv2d_15.biases.bin in Resources */,
 				E97B97421F7D974500E7C410 /* inception_resnet_v2-block35_4_conv.biases.bin in Resources */,
 				E97B95E71F7D974500E7C410 /* inception_resnet_v2-conv2d_191.biases.bin in Resources */,
+				E972E8501F87A6D40091C573 /* mobilenet-conv_dw_6.weights.bin in Resources */,
 				E97B958C1F7D974500E7C410 /* inception_resnet_v2-block17_18_conv.weights.bin in Resources */,
 				E97B965E1F7D974500E7C410 /* inception_resnet_v2-conv2d_174.biases.bin in Resources */,
 				E97B983C1F7D974600E7C410 /* vgg_16-block5_conv3.biases.bin in Resources */,
@@ -3432,6 +3608,7 @@
 				E97B96891F7D974500E7C410 /* inception_resnet_v2-conv2d_170.weights.bin in Resources */,
 				E97B983E1F7D974600E7C410 /* inception_resnet_v2-conv2d_75.biases.bin in Resources */,
 				E97B98151F7D974500E7C410 /* inception_resnet_v2-conv2d_22.biases.bin in Resources */,
+				E972E83B1F87A6D40091C573 /* mobilenet-conv1.weights.bin in Resources */,
 				E97B977A1F7D974500E7C410 /* inception_resnet_v2-conv2d_45.biases.bin in Resources */,
 				E97B97961F7D974500E7C410 /* inception_resnet_v2-conv2d_21.biases.bin in Resources */,
 				E97B96111F7D974500E7C410 /* inception_v3-conv2d_19.biases.bin in Resources */,
@@ -3441,12 +3618,14 @@
 				E97B98831F7D974600E7C410 /* inception_resnet_v2-block17_5_conv.biases.bin in Resources */,
 				E97B95921F7D974500E7C410 /* inception_v3-conv2d_22.biases.bin in Resources */,
 				E97B95AF1F7D974500E7C410 /* inception_resnet_v2-conv2d_71.biases.bin in Resources */,
+				E972E8251F87A6D40091C573 /* mobilenet-conv_dw_1.biases.bin in Resources */,
 				E97B96361F7D974500E7C410 /* inception_resnet_v2-conv2d_30.biases.bin in Resources */,
 				E97B982B1F7D974600E7C410 /* inception_resnet_v2-block17_4_conv.biases.bin in Resources */,
 				E97B957A1F7D974500E7C410 /* inception_v3-conv2d_76.biases.bin in Resources */,
 				E97B980C1F7D974500E7C410 /* vgg_16-block3_conv2.biases.bin in Resources */,
 				E97B96B01F7D974500E7C410 /* inception_resnet_v2-conv2d_175.weights.bin in Resources */,
 				E97B98931F7D974600E7C410 /* inception_resnet_v2-block8_5_conv.weights.bin in Resources */,
+				E972E8421F87A6D40091C573 /* mobilenet-conv_dw_8.biases.bin in Resources */,
 				E97B981D1F7D974600E7C410 /* inception_resnet_v2-block8_9_conv.biases.bin in Resources */,
 				E97B986F1F7D974600E7C410 /* inception_resnet_v2-conv2d_104.biases.bin in Resources */,
 				E97B97DA1F7D974500E7C410 /* inception_resnet_v2-conv2d_67.biases.bin in Resources */,
@@ -3458,6 +3637,7 @@
 				E97B97891F7D974500E7C410 /* inception_v3-conv2d_83.biases.bin in Resources */,
 				E97B987D1F7D974600E7C410 /* inception_resnet_v2-block35_1_conv.biases.bin in Resources */,
 				E97B962A1F7D974500E7C410 /* inception_v3-conv2d_13.weights.bin in Resources */,
+				E972E82D1F87A6D40091C573 /* mobilenet-conv_pw_2.weights.bin in Resources */,
 				E97B963D1F7D974500E7C410 /* tiny_yolo-conv2d_9.weights.bin in Resources */,
 				E97B96171F7D974500E7C410 /* inception_v3-conv2d_28.biases.bin in Resources */,
 				E97B95DF1F7D974500E7C410 /* yolo-conv2d_15.weights.bin in Resources */,
@@ -3480,14 +3660,18 @@
 				E97B97AB1F7D974500E7C410 /* inception_resnet_v2-conv2d_164.biases.bin in Resources */,
 				E97B980F1F7D974500E7C410 /* inception_v3-conv2d_13.biases.bin in Resources */,
 				E97B97CD1F7D974500E7C410 /* inception_resnet_v2-conv2d_145.biases.bin in Resources */,
+				E972E8291F87A6D40091C573 /* mobilenet-conv_dw_9.weights.bin in Resources */,
 				E97B97B91F7D974500E7C410 /* inception_resnet_v2-conv2d_54.weights.bin in Resources */,
 				E97B987B1F7D974600E7C410 /* yolo-conv2d_19.weights.bin in Resources */,
 				E97B961C1F7D974500E7C410 /* yolo-conv2d_20.biases.bin in Resources */,
 				E97B98771F7D974600E7C410 /* yolo-conv2d_11.biases.bin in Resources */,
+				E972E8341F87A6D40091C573 /* mobilenet-conv_pw_4.biases.bin in Resources */,
+				E972E8301F87A6D40091C573 /* mobilenet-conv_pw_13.weights.bin in Resources */,
 				E97B966C1F7D974500E7C410 /* inception_v3-conv2d_26.biases.bin in Resources */,
 				E97B964A1F7D974500E7C410 /* inception_resnet_v2-conv2d_17.biases.bin in Resources */,
 				E97B96431F7D974500E7C410 /* inception_v3-conv2d_15.weights.bin in Resources */,
 				E97B96D71F7D974500E7C410 /* inception_v3-conv2d_35.weights.bin in Resources */,
+				E972E83D1F87A6D40091C573 /* mobilenet-conv_dw_6.biases.bin in Resources */,
 				E97B97021F7D974500E7C410 /* inception_resnet_v2-block8_9_conv.weights.bin in Resources */,
 				E97B95641F7D974500E7C410 /* inception_resnet_v2-block35_10_conv.biases.bin in Resources */,
 				E97B98561F7D974600E7C410 /* inception_resnet_v2-block35_2_conv.weights.bin in Resources */,
@@ -3505,6 +3689,7 @@
 				E97B97D31F7D974500E7C410 /* resnet_50-res2a_branch2a.weights.bin in Resources */,
 				E97B97DC1F7D974500E7C410 /* inception_v3-predictions.biases.bin in Resources */,
 				E97B95F61F7D974500E7C410 /* inception_v3-conv2d_42.weights.bin in Resources */,
+				E972E81C1F87A6D40091C573 /* mobilenet-conv_pw_7.biases.bin in Resources */,
 				E97B97361F7D974500E7C410 /* inception_resnet_v2-block8_4_conv.weights.bin in Resources */,
 				E97B971A1F7D974500E7C410 /* inception_resnet_v2-conv2d_39.weights.bin in Resources */,
 				E97B96BB1F7D974500E7C410 /* resnet_50-res4e_branch2b.biases.bin in Resources */,
@@ -3518,6 +3703,7 @@
 				E97B95961F7D974500E7C410 /* inception_v3-conv2d_6.weights.bin in Resources */,
 				E97B96EC1F7D974500E7C410 /* inception_v3-conv2d_2.weights.bin in Resources */,
 				E97B964E1F7D974500E7C410 /* resnet_50-res3b_branch2a.biases.bin in Resources */,
+				E972E83A1F87A6D40091C573 /* mobilenet-conv_pw_8.weights.bin in Resources */,
 				E97B96F21F7D974500E7C410 /* yolo-conv2d_23.biases.bin in Resources */,
 				E97B98421F7D974600E7C410 /* resnet_50-res4d_branch2c.biases.bin in Resources */,
 				E97B97CC1F7D974500E7C410 /* inception_v3-conv2d_88.biases.bin in Resources */,
@@ -3527,6 +3713,7 @@
 				E97B97A01F7D974500E7C410 /* inception_v3-conv2d_61.biases.bin in Resources */,
 				E97B96191F7D974500E7C410 /* resnet_50-res4e_branch2a.weights.bin in Resources */,
 				E97B95D31F7D974500E7C410 /* inception_v3-conv2d_89.biases.bin in Resources */,
+				E972E8521F87A6D40091C573 /* mobilenet-conv_dw_3.biases.bin in Resources */,
 				E97B96F61F7D974500E7C410 /* inception_resnet_v2-conv2d_131.weights.bin in Resources */,
 				E97B95701F7D974500E7C410 /* inception_resnet_v2-conv2d_101.weights.bin in Resources */,
 				E97B96631F7D974500E7C410 /* inception_resnet_v2-conv2d_20.weights.bin in Resources */,
@@ -3538,6 +3725,7 @@
 				E97B96151F7D974500E7C410 /* inception_resnet_v2-conv2d_11.weights.bin in Resources */,
 				E97B96841F7D974500E7C410 /* inception_v3-conv2d_69.weights.bin in Resources */,
 				E97B983B1F7D974600E7C410 /* inception_v3-conv2d_64.biases.bin in Resources */,
+				E972E8241F87A6D40091C573 /* mobilenet-conv_dw_8.weights.bin in Resources */,
 				E97B97091F7D974500E7C410 /* resnet_50-res2c_branch2c.biases.bin in Resources */,
 				E97B988C1F7D974600E7C410 /* inception_resnet_v2-conv2d_115.weights.bin in Resources */,
 				E97B97D71F7D974500E7C410 /* resnet_50-res2a_branch2c.weights.bin in Resources */,
@@ -3606,6 +3794,7 @@
 				E97B95CD1F7D974500E7C410 /* inception_resnet_v2-conv2d_26.biases.bin in Resources */,
 				E97B95501F7D974500E7C410 /* resnet_50-res3b_branch2a.weights.bin in Resources */,
 				E97B97521F7D974500E7C410 /* inception_resnet_v2-conv2d_200.weights.bin in Resources */,
+				E972E8281F87A6D40091C573 /* mobilenet-conv_dw_10.weights.bin in Resources */,
 				E97B96871F7D974500E7C410 /* resnet_50-res5b_branch2a.weights.bin in Resources */,
 				E97B956E1F7D974500E7C410 /* inception_resnet_v2-conv2d_172.weights.bin in Resources */,
 				E97B98751F7D974600E7C410 /* inception_resnet_v2-conv2d_14.weights.bin in Resources */,
@@ -3613,6 +3802,7 @@
 				E97B95481F7D974500E7C410 /* inception_resnet_v2-conv2d_127.biases.bin in Resources */,
 				E97B97FD1F7D974500E7C410 /* inception_v3-conv2d_45.biases.bin in Resources */,
 				E97B989E1F7D974600E7C410 /* inception_resnet_v2-block8_7_conv.weights.bin in Resources */,
+				E972E84B1F87A6D40091C573 /* mobilenet-conv_pw_1.biases.bin in Resources */,
 				E97B95771F7D974500E7C410 /* inception_resnet_v2-conv2d_8.biases.bin in Resources */,
 				E97B965C1F7D974500E7C410 /* inception_resnet_v2-conv2d_163.biases.bin in Resources */,
 				E97B98881F7D974600E7C410 /* resnet_50-res4b_branch2c.weights.bin in Resources */,
@@ -3623,6 +3813,7 @@
 				E97B972C1F7D974500E7C410 /* inception_resnet_v2-conv2d_53.biases.bin in Resources */,
 				E97B96EF1F7D974500E7C410 /* inception_resnet_v2-conv2d_162.biases.bin in Resources */,
 				E97B97011F7D974500E7C410 /* inception_v3-conv2d_24.weights.bin in Resources */,
+				E972E84C1F87A6D40091C573 /* mobilenet-conv_pw_10.weights.bin in Resources */,
 				E97B97A31F7D974500E7C410 /* inception_v3-conv2d_9.weights.bin in Resources */,
 				E97B96651F7D974500E7C410 /* inception_resnet_v2-block35_1_conv.weights.bin in Resources */,
 				E97B97981F7D974500E7C410 /* inception_resnet_v2-conv2d_65.weights.bin in Resources */,
@@ -3645,8 +3836,10 @@
 				E97B96241F7D974500E7C410 /* inception_resnet_v2-conv2d_142.weights.bin in Resources */,
 				E97B97B71F7D974500E7C410 /* inception_resnet_v2-conv2d_192.biases.bin in Resources */,
 				E97B97F31F7D974500E7C410 /* inception_v3-conv2d_85.biases.bin in Resources */,
+				E972E8201F87A6D40091C573 /* mobilenet-conv_dw_4.weights.bin in Resources */,
 				E97B969E1F7D974500E7C410 /* inception_v3-conv2d_35.biases.bin in Resources */,
 				E97B98A21F7D974600E7C410 /* vgg_16-block2_conv2.biases.bin in Resources */,
+				E972E84D1F87A6D40091C573 /* mobilenet-conv_pw_10.biases.bin in Resources */,
 				E97B97881F7D974500E7C410 /* inception_resnet_v2-conv2d_133.weights.bin in Resources */,
 				E97B95751F7D974500E7C410 /* resnet_50-res4e_branch2c.weights.bin in Resources */,
 				E97B976C1F7D974500E7C410 /* inception_resnet_v2-conv2d_108.weights.bin in Resources */,
@@ -3656,6 +3849,7 @@
 				E97B972E1F7D974500E7C410 /* inception_resnet_v2-block35_8_conv.weights.bin in Resources */,
 				E97B974C1F7D974500E7C410 /* vgg_16-block5_conv2.weights.bin in Resources */,
 				E97B96541F7D974500E7C410 /* resnet_50-res2b_branch2c.weights.bin in Resources */,
+				E972E8461F87A6D40091C573 /* mobilenet-conv_dw_5.weights.bin in Resources */,
 				E97B97C51F7D974500E7C410 /* vgg_16-block4_conv3.weights.bin in Resources */,
 				E97B95541F7D974500E7C410 /* inception_resnet_v2-conv2d_80.biases.bin in Resources */,
 				E97B98821F7D974600E7C410 /* inception_resnet_v2-conv2d_180.biases.bin in Resources */,
@@ -3681,6 +3875,7 @@
 				E97B97EF1F7D974500E7C410 /* inception_resnet_v2-conv2d_151.weights.bin in Resources */,
 				E97B96341F7D974500E7C410 /* inception_resnet_v2-conv2d_181.weights.bin in Resources */,
 				E97B97031F7D974500E7C410 /* inception_v3-conv2d_77.biases.bin in Resources */,
+				E972E8351F87A6D40091C573 /* mobilenet-conv_dw_2.biases.bin in Resources */,
 				E97B96DC1F7D974500E7C410 /* inception_v3-conv2d_5.biases.bin in Resources */,
 				E97B955C1F7D974500E7C410 /* resnet_50-res3b_branch2c.biases.bin in Resources */,
 				E97B985F1F7D974600E7C410 /* inception_resnet_v2-conv2d_79.biases.bin in Resources */,
@@ -3692,6 +3887,7 @@
 				E97B96281F7D974500E7C410 /* inception_resnet_v2-conv2d_130.biases.bin in Resources */,
 				E97B968E1F7D974500E7C410 /* inception_resnet_v2-conv2d_128.weights.bin in Resources */,
 				E97B977F1F7D974500E7C410 /* yolo-conv2d_11.weights.bin in Resources */,
+				E972E8261F87A6D40091C573 /* mobilenet-conv1.biases.bin in Resources */,
 				E97B98AE1F7D974600E7C410 /* resnet_50-res2c_branch2c.weights.bin in Resources */,
 				E97B95FA1F7D974500E7C410 /* inception_resnet_v2-block17_11_conv.weights.bin in Resources */,
 				E97B980D1F7D974500E7C410 /* inception_resnet_v2-block17_5_conv.weights.bin in Resources */,
@@ -3704,7 +3900,9 @@
 				E97B98411F7D974600E7C410 /* resnet_50-res3c_branch2a.weights.bin in Resources */,
 				E97B97E01F7D974500E7C410 /* inception_resnet_v2-conv2d_49.weights.bin in Resources */,
 				E97B989F1F7D974600E7C410 /* inception_resnet_v2-conv2d_19.weights.bin in Resources */,
+				E972E8321F87A6D40091C573 /* mobilenet-conv_dw_7.weights.bin in Resources */,
 				E97B97C41F7D974500E7C410 /* resnet_50-res5c_branch2b.biases.bin in Resources */,
+				E972E81E1F87A6D40091C573 /* mobilenet-conv_pw_5.biases.bin in Resources */,
 				E97B97141F7D974500E7C410 /* inception_resnet_v2-block17_8_conv.weights.bin in Resources */,
 				E97B97CF1F7D974500E7C410 /* inception_resnet_v2-conv2d_155.weights.bin in Resources */,
 				E97B975F1F7D974500E7C410 /* inception_resnet_v2-conv2d_62.biases.bin in Resources */,
@@ -3717,6 +3915,7 @@
 				E97B970B1F7D974500E7C410 /* inception_v3-conv2d_75.biases.bin in Resources */,
 				E97B95AB1F7D974500E7C410 /* inception_v3-conv2d_31.biases.bin in Resources */,
 				E97B965A1F7D974500E7C410 /* inception_resnet_v2-block35_10_conv.weights.bin in Resources */,
+				E972E8451F87A6D40091C573 /* mobilenet-conv_pw_2.biases.bin in Resources */,
 				E97B967A1F7D974500E7C410 /* inception_resnet_v2-conv2d_129.biases.bin in Resources */,
 				E97B97A51F7D974500E7C410 /* inception_resnet_v2-conv2d_57.weights.bin in Resources */,
 				E97B97651F7D974500E7C410 /* inception_resnet_v2-conv2d_47.biases.bin in Resources */,
@@ -3724,6 +3923,7 @@
 				E97B96B11F7D974500E7C410 /* inception_resnet_v2-conv2d_3.weights.bin in Resources */,
 				E97B98491F7D974600E7C410 /* inception_v3-conv2d_11.biases.bin in Resources */,
 				E97B96AB1F7D974500E7C410 /* inception_v3-conv2d_33.weights.bin in Resources */,
+				E972E8391F87A6D40091C573 /* mobilenet-conv_dw_3.weights.bin in Resources */,
 				E97B96D01F7D974500E7C410 /* inception_v3-conv2d_94.weights.bin in Resources */,
 				E97B979A1F7D974500E7C410 /* inception_resnet_v2-conv2d_23.biases.bin in Resources */,
 				E97B97DE1F7D974500E7C410 /* resnet_50-res2a_branch2c.biases.bin in Resources */,
@@ -3745,6 +3945,7 @@
 				E97B964B1F7D974500E7C410 /* resnet_50-res5a_branch2b.weights.bin in Resources */,
 				E97B98761F7D974600E7C410 /* inception_resnet_v2-conv2d_110.biases.bin in Resources */,
 				E97B98721F7D974600E7C410 /* inception_v3-conv2d_70.biases.bin in Resources */,
+				E972E8401F87A6D40091C573 /* mobilenet-conv_dw_13.biases.bin in Resources */,
 				E97B959C1F7D974500E7C410 /* inception_resnet_v2-conv2d_26.weights.bin in Resources */,
 				E97B95511F7D974500E7C410 /* inception_v3-conv2d_66.weights.bin in Resources */,
 				E97B982C1F7D974600E7C410 /* inception_resnet_v2-conv2d_153.biases.bin in Resources */,
@@ -3762,6 +3963,7 @@
 				E97B969F1F7D974500E7C410 /* inception_v3-conv2d_72.biases.bin in Resources */,
 				E97B97471F7D974500E7C410 /* inception_resnet_v2-block8_6_conv.weights.bin in Resources */,
 				E97B96981F7D974500E7C410 /* inception_resnet_v2-conv2d_63.biases.bin in Resources */,
+				E972E84E1F87A6D40091C573 /* mobilenet-conv_pw_8.biases.bin in Resources */,
 				E9C897971F697F8100096BFD /* final6.jpg in Resources */,
 				E97B95CB1F7D974500E7C410 /* inception_resnet_v2-conv2d_49.biases.bin in Resources */,
 				E97B95C41F7D974500E7C410 /* vgg_16-block4_conv3.biases.bin in Resources */,
@@ -3773,6 +3975,7 @@
 				E97B96A11F7D974500E7C410 /* inception_resnet_v2-conv2d_77.weights.bin in Resources */,
 				E97B98191F7D974500E7C410 /* inception_resnet_v2-block17_11_conv.biases.bin in Resources */,
 				E97B95A01F7D974500E7C410 /* inception_resnet_v2-block17_17_conv.weights.bin in Resources */,
+				E972E8431F87A6D40091C573 /* mobilenet-conv_preds.weights.bin in Resources */,
 				E97B95D81F7D974500E7C410 /* inception_v3-conv2d_18.biases.bin in Resources */,
 				E97B98611F7D974600E7C410 /* resnet_50-res3a_branch2a.weights.bin in Resources */,
 				E97B98691F7D974600E7C410 /* resnet_50-res5b_branch2a.biases.bin in Resources */,
@@ -3801,21 +4004,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B3DA55D1EC5E0FA00BD3F06 /* Asserts.swift in Sources */,
-				E97B91CC1F7D93FF00E7C410 /* InceptionResnetV2.swift in Sources */,
-				E97B91C21F7D7BD100E7C410 /* Vgg16.swift in Sources */,
-				E97B91C91F7D93FF00E7C410 /* Yolo.swift in Sources */,
-				E97B91CB1F7D93FF00E7C410 /* Resnet50.swift in Sources */,
 				E97B98B61F7D97C200E7C410 /* ModelTests.swift in Sources */,
 				7B3DA5591EC4E81600BD3F06 /* ArrayTests.swift in Sources */,
 				7B3DA5491EC4E67200BD3F06 /* ViewController.swift in Sources */,
 				7B3DA55B1EC4E88B00BD3F06 /* DepthwiseConvolutionTests.swift in Sources */,
 				E95A9F421F5AC88100D0D6CE /* LayerTests.swift in Sources */,
 				7B3DA5471EC4E67200BD3F06 /* AppDelegate.swift in Sources */,
-				E97B91C81F7D93FF00E7C410 /* InceptionV3.swift in Sources */,
-				E97B98BA1F7D9B5100E7C410 /* ImageNetLabels.swift in Sources */,
 				7B711C741EC7533F001CB7C2 /* BasicConvolutionTests.swift in Sources */,
 				E97B98B81F7D980100E7C410 /* TestUtils.swift in Sources */,
-				E97B91CA1F7D93FF00E7C410 /* TinyYolo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

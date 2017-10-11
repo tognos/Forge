@@ -76,11 +76,15 @@ class ViewController: UIViewController {
     layerTests.testInception_V3(debug: true)
     layerTests.testInceptionResnet(debug: true)
  */
-    let modeTests = ModelTests()
-    modeTests.testVGG16(debug: false)
-    modeTests.testResnet50(debug: false)
-    modeTests.testInceptionV3(debug: false)
-    modeTests.testInceptionResnetV2(debug: false)
+    let modelTests = ModelTests()
+    /*
+    modelTests.testVGG16(debug: false)
+    modelTests.testResnet50(debug: false)
+    modelTests.testInceptionV3(debug: false)
+    */
+    modelTests.testInceptionResnetV2(debug: false)
+    modelTests.testMobileNet(debug: true)
+    
 
 /*
     let basicConvTests = BasicConvolutionTests()

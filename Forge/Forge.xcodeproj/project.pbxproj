@@ -38,6 +38,15 @@
 		7BA396841EAA0B1F00F4C4D6 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA396831EAA0B1F00F4C4D6 /* Random.swift */; };
 		7BD4249A1EB216B700451777 /* TransposeChannels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD424991EB216B700451777 /* TransposeChannels.swift */; };
 		E95496FF1F5617F0006BD4FF /* MergeOp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95496FE1F5617F0006BD4FF /* MergeOp.swift */; };
+		E972E7D11F86792A0091C573 /* Vgg16Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E972E7D01F86792A0091C573 /* Vgg16Builder.swift */; };
+		E972E7D31F867A440091C573 /* Resnet50Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E972E7D21F867A440091C573 /* Resnet50Builder.swift */; };
+		E972E7D61F867C840091C573 /* InceptionV3Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E972E7D41F867C840091C573 /* InceptionV3Builder.swift */; };
+		E972E7D71F867C840091C573 /* InceptionResnetV2Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E972E7D51F867C840091C573 /* InceptionResnetV2Builder.swift */; };
+		E972E7DA1F867CCE0091C573 /* YoloBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E972E7D81F867CCE0091C573 /* YoloBuilder.swift */; };
+		E972E7DB1F867CCE0091C573 /* TinyYoloBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E972E7D91F867CCE0091C573 /* TinyYoloBuilder.swift */; };
+		E972E7E21F87A0960091C573 /* MobilenetBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E972E7E11F87A0960091C573 /* MobilenetBuilder.swift */; };
+		E99754A01F864E430003BDC2 /* ImageNetLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99754991F864E430003BDC2 /* ImageNetLabels.swift */; };
+		E99754A61F864F5A0003BDC2 /* NetworkBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99754A51F864F5A0003BDC2 /* NetworkBuilder.swift */; };
 		E9C8979A1F699C0A00096BFD /* PadKernel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C897991F699C0900096BFD /* PadKernel.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +84,15 @@
 		7BA396831EAA0B1F00F4C4D6 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
 		7BD424991EB216B700451777 /* TransposeChannels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransposeChannels.swift; sourceTree = "<group>"; };
 		E95496FE1F5617F0006BD4FF /* MergeOp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeOp.swift; sourceTree = "<group>"; };
+		E972E7D01F86792A0091C573 /* Vgg16Builder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Vgg16Builder.swift; path = Networks/Vgg16Builder.swift; sourceTree = "<group>"; };
+		E972E7D21F867A440091C573 /* Resnet50Builder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Resnet50Builder.swift; path = Networks/Resnet50Builder.swift; sourceTree = "<group>"; };
+		E972E7D41F867C840091C573 /* InceptionV3Builder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InceptionV3Builder.swift; path = Networks/InceptionV3Builder.swift; sourceTree = "<group>"; };
+		E972E7D51F867C840091C573 /* InceptionResnetV2Builder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InceptionResnetV2Builder.swift; path = Networks/InceptionResnetV2Builder.swift; sourceTree = "<group>"; };
+		E972E7D81F867CCE0091C573 /* YoloBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YoloBuilder.swift; path = Networks/YoloBuilder.swift; sourceTree = "<group>"; };
+		E972E7D91F867CCE0091C573 /* TinyYoloBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinyYoloBuilder.swift; path = Networks/TinyYoloBuilder.swift; sourceTree = "<group>"; };
+		E972E7E11F87A0960091C573 /* MobilenetBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; name = MobilenetBuilder.swift; path = Networks/MobilenetBuilder.swift; sourceTree = "<group>"; tabWidth = 2; };
+		E99754991F864E430003BDC2 /* ImageNetLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageNetLabels.swift; path = Networks/ImageNetLabels.swift; sourceTree = "<group>"; };
+		E99754A51F864F5A0003BDC2 /* NetworkBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkBuilder.swift; path = Networks/NetworkBuilder.swift; sourceTree = "<group>"; };
 		E9C897991F699C0900096BFD /* PadKernel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadKernel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +138,7 @@
 		7BA395C01EA8C24100F4C4D6 /* Forge */ = {
 			isa = PBXGroup;
 			children = (
+				E99754961F864E1F0003BDC2 /* Networks */,
 				7BA3966A1EA938F100F4C4D6 /* Compute Kernels */,
 				7BA396691EA938D700F4C4D6 /* Conversions */,
 				7B8236C61EAA7CA600127F0C /* DSL */,
@@ -191,6 +210,22 @@
 				7BA396831EAA0B1F00F4C4D6 /* Random.swift */,
 			);
 			name = Math;
+			sourceTree = "<group>";
+		};
+		E99754961F864E1F0003BDC2 /* Networks */ = {
+			isa = PBXGroup;
+			children = (
+				E972E7E11F87A0960091C573 /* MobilenetBuilder.swift */,
+				E972E7D91F867CCE0091C573 /* TinyYoloBuilder.swift */,
+				E972E7D81F867CCE0091C573 /* YoloBuilder.swift */,
+				E972E7D51F867C840091C573 /* InceptionResnetV2Builder.swift */,
+				E972E7D41F867C840091C573 /* InceptionV3Builder.swift */,
+				E972E7D21F867A440091C573 /* Resnet50Builder.swift */,
+				E972E7D01F86792A0091C573 /* Vgg16Builder.swift */,
+				E99754991F864E430003BDC2 /* ImageNetLabels.swift */,
+				E99754A51F864F5A0003BDC2 /* NetworkBuilder.swift */,
+			);
+			name = Networks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,11 +311,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B8236B91EAA4F4700127F0C /* Shaders.metal in Sources */,
+				E972E7D31F867A440091C573 /* Resnet50Builder.swift in Sources */,
 				7BD4249A1EB216B700451777 /* TransposeChannels.swift in Sources */,
+				E99754A01F864E430003BDC2 /* ImageNetLabels.swift in Sources */,
 				7BA396581EA8C58A00F4C4D6 /* MTLTexture+Array.swift in Sources */,
 				7BA3966D1EA94D8900F4C4D6 /* MTLBuffer+Array.swift in Sources */,
 				7BA396551EA8C58A00F4C4D6 /* Float16.swift in Sources */,
 				E95496FF1F5617F0006BD4FF /* MergeOp.swift in Sources */,
+				E972E7D61F867C840091C573 /* InceptionV3Builder.swift in Sources */,
 				7B8237001EABD42000127F0C /* DepthwiseConvolution.swift in Sources */,
 				7BA3965C1EA8C58A00F4C4D6 /* UIImage+MTLTexture.swift in Sources */,
 				7BA3965A1EA8C58A00F4C4D6 /* Runner.swift in Sources */,
@@ -290,22 +328,28 @@
 				7BA396841EAA0B1F00F4C4D6 /* Random.swift in Sources */,
 				7B711C701EC73F97001CB7C2 /* ForgeKernel.swift in Sources */,
 				7B711C721EC751C1001CB7C2 /* BasicConvolutionKernel.swift in Sources */,
+				E972E7D71F867C840091C573 /* InceptionResnetV2Builder.swift in Sources */,
 				7B3DA4EC1EBBB48F00BD3F06 /* Layers.swift in Sources */,
+				E972E7DB1F867CCE0091C573 /* TinyYoloBuilder.swift in Sources */,
 				7B8236C81EAA7CBF00127F0C /* Parameters.swift in Sources */,
 				7B8236C31EAA5AF300127F0C /* SubtractMeanColor.swift in Sources */,
 				7BA3966F1EAA06BC00F4C4D6 /* Debugging.swift in Sources */,
 				7B8236CA1EAA7DE900127F0C /* DataShape.swift in Sources */,
 				7B8236C51EAA5BFC00127F0C /* RGB2BGR.swift in Sources */,
+				E99754A61F864F5A0003BDC2 /* NetworkBuilder.swift in Sources */,
 				7BA396561EA8C58A00F4C4D6 /* LayerHelpers.swift in Sources */,
 				E9C8979A1F699C0A00096BFD /* PadKernel.swift in Sources */,
+				E972E7D11F86792A0091C573 /* Vgg16Builder.swift in Sources */,
 				7B3DA4EA1EBBB45D00BD3F06 /* Tensor.swift in Sources */,
 				7B8236BB1EAA4F9F00127F0C /* SimpleKernel.swift in Sources */,
 				7BA396541EA8C58A00F4C4D6 /* ComputeHelpers.swift in Sources */,
+				E972E7DA1F867CCE0091C573 /* YoloBuilder.swift in Sources */,
 				7B3DA4E81EBB36D100BD3F06 /* Model.swift in Sources */,
 				7BA396571EA8C58A00F4C4D6 /* MPSImage+Floats.swift in Sources */,
 				7BA3965B1EA8C58A00F4C4D6 /* TextureLoader.swift in Sources */,
 				7B8236B81EAA4F4700127F0C /* RGB2Gray.swift in Sources */,
 				7BA396821EAA07A200F4C4D6 /* Math.swift in Sources */,
+				E972E7E21F87A0960091C573 /* MobilenetBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,46 +10,39 @@ import Foundation
 import Forge
 import MetalPerformanceShaders
 
-protocol Net {
-  var model  : Model { get }
-  var device: MTLDevice {get}
-  var name: String {get}
-  init(device: MTLDevice)
-  func compile(inflightBuffers: Int) -> Bool
-}
-
-extension Vgg16 : Net {}
-extension Resnet50 : Net {}
-extension InceptionV3 : Net {}
-extension InceptionResnetV2 : Net {}
-
 class ModelTests {
   func testVGG16(debug: Bool) {
     print("\(self).\(#function)")
-    testModel(net: Vgg16(device: device), testImageName: "final1-224.jpg",
+    testModel(net: Vgg16Builder(device: device), testImageName: "final1-224.jpg",
               correctTop: [717, 661],
               debug: debug)
   }
   func testResnet50(debug: Bool) {
     print("\(self).\(#function)")
-    testModel(net: Resnet50(device: device), testImageName: "final1-224.jpg",
+    testModel(net: Resnet50Builder(device: device), testImageName: "final1-224.jpg",
               correctTop: [717,661],
               debug: debug)
   }
   func testInceptionV3(debug: Bool) {
     print("\(self).\(#function)")
-    testModel(net: InceptionV3(device: device), testImageName: "final1-299.jpg",
+    testModel(net: InceptionV3Builder(device: device), testImageName: "final1-299.jpg",
               correctTop: [717, 661],
               debug: debug)
   }
   func testInceptionResnetV2(debug: Bool) {
     print("\(self).\(#function)")
-    testModel(net: InceptionResnetV2(device: device), testImageName: "final1-299.jpg",
+    testModel(net: InceptionResnetV2Builder(device: device), testImageName: "final1-299.jpg",
               correctTop: [717, 864],
               debug: debug)
   }
+  func testMobileNet(debug: Bool) {
+    print("\(self).\(#function)")
+    testModel(net: MobilenetBuilder(device: device), testImageName: "final1-224.jpg",
+              correctTop: [717, 661],
+              debug: debug)
+  }
   
-  func testModel(net : Net, testImageName: String, correctTop: [Int], debug: Bool) {
+  func testModel(net : NetworkBuilder, testImageName: String, correctTop: [Int], debug: Bool) {
     print("\(self).\(#function) \(net.name)")
     
     let success = net.compile(inflightBuffers: 1)

@@ -575,6 +575,11 @@ public class Convolution: MPSCNNLayer {
                              biasTerms: biases?.pointer,
                              flags: .none)
     conv.edgeMode = .zero
+    /*
+    print("Neuron=\(conv.neuronType.rawValue)")
+    print("NeuronA=\(conv.neuronParameterA)")
+    print("NeuronB=\(conv.neuronParameterB)")
+    */
     mpscnn = conv
   }
 
@@ -1010,6 +1015,7 @@ public class Custom: Layer {
 
 public class DepthwiseConvolution: Layer {
   let kernel: (Int, Int)
+  let channelMultiplier: Int
   let stride: (Int, Int)
   let activation: MPSCNNNeuron?
 //  var compute: DepthwiseConvolutionKernel!
@@ -1028,6 +1034,7 @@ public class DepthwiseConvolution: Layer {
       - name: The name is used to load the layer's parameters.
   */
   public init(kernel: (Int, Int),
+              channelMultiplier: Int = 1,
               stride: (Int, Int) = (1, 1),
               activation: MPSCNNNeuron? = nil,
               useBias: Bool = true,
@@ -1035,6 +1042,7 @@ public class DepthwiseConvolution: Layer {
     self.kernel = kernel
     self.stride = stride
     self.activation = activation
+    self.channelMultiplier = channelMultiplier
     super.init(name: name, useBias: useBias)
   }
 
@@ -1045,11 +1053,11 @@ public class DepthwiseConvolution: Layer {
   override public func outputShape(for inputShape: DataShape) -> DataShape {
       return DataShape(width: (inputShape.width - 1)  / stride.0 + 1,
                       height: (inputShape.height - 1) / stride.1 + 1,
-                    channels: inputShape.channels)
+                    channels: inputShape.channels * channelMultiplier)
   }
 
   override public func weightCount(inputShape: DataShape, outputShape: DataShape) -> Int {
-    return inputShape.channels * kernel.1 * kernel.0
+    return inputShape.channels * kernel.1 * kernel.0 * channelMultiplier
   }
 
   public override func biasCount(inputShape: DataShape, outputShape: DataShape) -> Int {
@@ -1092,6 +1100,7 @@ public class DepthwiseConvolution: Layer {
     // that it uses the same weights order as MPS, so that on iOS 10 it
     // will use Forge's kernel but on 11 it uses the MPS kernel (which is
     // faster).
+    /*
     let convCount = inputShape.channels * kernel.0 * kernel.1
     var convWeights = [Float](repeating: 0, count: convCount)
     let mpsChanStride = kernel.0 * kernel.1
@@ -1107,18 +1116,20 @@ public class DepthwiseConvolution: Layer {
         }
       }
     }
+    */
     if #available(iOS 11,*) {
     let desc = MPSCNNDepthWiseConvolutionDescriptor(kernelWidth: kernel.0,
                                                     kernelHeight: kernel.1,
                                                     inputFeatureChannels: inputShape.channels,
-                                                    outputFeatureChannels: inputShape.channels,
+                                                    outputFeatureChannels: inputShape.channels * self.channelMultiplier,
                                                     neuronFilter: activation)
     desc.strideInPixelsX = stride.0
     desc.strideInPixelsY = stride.1
 
     compute = MPSCNNConvolution(device: device,
                                 convolutionDescriptor: desc,
-                                kernelWeights: convWeights,
+                                //kernelWeights: convWeights,
+                                kernelWeights: weights.pointer,
                                 biasTerms: biasTerms,
                                 flags: .none)
     }
@@ -1143,6 +1154,8 @@ public class DepthwiseConvolution: Layer {
     compute.encode(commandBuffer: commandBuffer,
                    sourceImage: sourceTensor.image!,
                    destinationImage: destinationTensor.image!)
+    
+    destinationTensor.written(byLayer: self)
   }
 }
 

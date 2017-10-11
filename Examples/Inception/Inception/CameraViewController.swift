@@ -27,7 +27,10 @@ class CameraViewController: UIViewController {
   var device: MTLDevice!
   var commandQueue: MTLCommandQueue!
   var runner: Runner!
-  var network: Inception3!
+  //var network: Inception3!
+  var network: InceptionV3Network!
+  //var network: InceptionResnetV2
+  //var network: Resnet50!
 
   var startupGroup = DispatchGroup()
   let fpsCounter = FPSCounter()
@@ -114,7 +117,8 @@ class CameraViewController: UIViewController {
     DispatchQueue.global().async {
 
       timeIt("Setting up neural network") {
-        self.network = Inception3(device: self.device, inflightBuffers: MaxBuffersInFlight)
+        //self.network = Inception3(device: self.device, inflightBuffers: MaxBuffersInFlight)
+        self.network = InceptionV3Network(device: self.device, inflightBuffers: MaxBuffersInFlight)
       }
 
       DispatchQueue.main.async(execute: completion)
