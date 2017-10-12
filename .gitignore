@@ -1,7 +1,10 @@
 # Xcode
 build/
 DerivedData/
+ForgeTests/ForgeTests/TestWeights/*
+Examples/Inception/Parameters/*
 
+.python-version
 *.pbxuser
 !default.pbxuser
 *.mode1v3
