@@ -202,7 +202,7 @@ public func fetchResult_new(inflightIndex: Int) -> NeuralNetworkResult<Predictio
 
   let featuresImage = model.outputImage(inflightIndex: inflightIndex)
 //  print("featuresImage width", featuresImage.width, "height", featuresImage.height, "channels", featuresImage.featureChannels, "images", featuresImage.numberOfImages)
-  let features = featuresImage.toFloatArrayChannelsFirst()
+    let features = featuresImage.toFloatArrayChannelsTogether()
   
   #if TINY_YOLO
     assert(features.count == 13*13*128)

@@ -10,9 +10,12 @@ class InceptionV3Network : NeuralNetwork {
   let model: Model
   
   public init(device: MTLDevice, inflightBuffers: Int) {
+    //let builder = XceptionBuilder(device: device)
+    //let builder = MobilenetBuilder(device: device)
     //let builder = InceptionResnetV2Builder(device: device)
-    //let builder = InceptionV3(device: device)
-    let builder = Resnet50Builder(device: device)
+    let builder = InceptionV3Builder(device: device)
+    //let builder = Resnet50Builder(device: device)
+    //let builder = Vgg16Builder(device: device)
     let success = builder.compile(inflightBuffers: inflightBuffers)
     self.model = builder.model
     

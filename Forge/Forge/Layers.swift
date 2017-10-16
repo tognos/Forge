@@ -844,6 +844,8 @@ public class Dense: MPSCNNLayer {
       }
       biasTerms = biases.pointer
     }
+    //print("weights.pointer=\(weights.pointer)")
+    //print("biasTerms=\(biasTerms)")
 
     mpscnn = MPSCNNFullyConnected(device: device,
                                   convolutionDescriptor: desc,

@@ -1,3 +1,71 @@
+# Preface to this (Tognos) fork of Forge
+
+This is an extended fork that works together with [this fork of YADK](https://github.com/tognos/YAD2K) to run all Keras standard networks and the full Yolo2 model with the following performance on an iPhone 7:
+
+| Net                      | fps  | top1  | top5  | layers | tensors | parameters  |
+|--------------------------|-----:|------:|------:|-------:|--------:|------------:|
+| TinyYolo  (VOC, 416x416) |   15 |     - |     - |     16 |      17 |  15.858.717 |
+| Yolo 2 (COCO, 608x608)   |  2.2 |     - |     - |     30 |      32 |  50.952.553 |
+| VGG16                    |  7.2 | 0.715 | 0.901 |     26 |      27 | 138.357.544 |
+| Resnet-50                | 21.3 | 0.759 | 0.929 |     93 |     110 |  25.530.472 |
+| Inception-V3             | 17.4 | 0.788 | 0.944 |    112 |     124 |  23.817.352 |
+| InceptionResnet-V2       |  5.8 | 0.804 | 0.953 |    373 |     457 |  55.813.192 |
+| Mobilenet                | 30.5 | 0.665 | 0.871 |     59 |      60 |   4.221.032 |
+| Xception                 |  5.1 | 0.790 | 0.945 |    106 |     119 |  22.828.688 |
+
+*Note: On the iPhone7, some of the networks slow down to about 30-70% of the frame rate after a minute or so which is very probably due to thermal management; pausing the app and letting the phone cool down will make it run at full frame rate again.*
+
+This fork also features enhanced debugging capabilities:
+
+* writes out all features maps of intermediate layers to compare them to the the original Keras feature maps
+
+* a special mode that shows the execution, memory management and reference counts for each inference step, making it easier to pinpoint problems with complex network topologies and major changes to the toolkit
+
+* generates a .dot file to visualize the model as graph
+
+* More tests and a number of numpy-like functions to reshape, transpose and slice 2 to 4-dimensional swift arrays; these are mainly intended for testing and debugging and ease of use, not performance. The nicest feature is that you can write down tensor literals for test cases in swift syntax and preserve and see all the dimensions.
+
+* some extensions to read MPSImage data in a more comprehensive way, eg. channels first oder channels last
+
+See LayerTests and ModelTests how to use them. Setting debugTrace true in the Model-object will generate tons of debug output, showing for each step the layers being processed in each steps, along with reference counts and addresses of MPSImages annd other metadata.
+
+In addition, this fork it has these additional layers/Tensors:
+
+* A Collect() function that collects all argument tensors as multiple images in one MPSImage using image offsets, and a merge layer that allows calculate the sum, product, maximum and average over these collected multiple inputs, modeling the Keras Add, Multiply, Maximum and Average layers (Add is required for residual connections)
+
+* A Space2Depth2X layer required for Yolo2
+
+* A ZeroPadding2D layer that was required for Keras Resnet50 before the July 26th 2017 simplification but is currently no longer needed for this purpose
+
+
+## Bugfixes:
+
+* With some more complex networks the MPSTemporaryImage readcount management needed to be extended because with Concat and Collect Tensors together with branches you get not immediately obvious reads on these tensors from other branches, and together with MPSTemporaryImages shared by multiple tensors, the original readcount management just didn't work properly
+
+* There were bugs calculating the MPSOffset for conv layers, e.g. convolutions with stride 2 and kernel size 1 did not work
+
+* Extension for creating MPSImages from float arrays did not properly work with less than 3 channels 
+
+## Getting started on this fork:
+
+*  Get [this fork of YADK](https://github.com/tognos/YAD2K)
+*  Follow the installation instructions for this fork
+*  You can check out the YADK and Forge whereever yout want, but the commands in YADK assume they are next to each other in a common directory
+*  Run the converter (see [Quickstart](https://github.com/tognos/YAD2K#quick-start))
+*  Open the Forge workspace
+*  Connect a suitable device running iOS 11
+*  Select `ForgeTests` and build and run the tests
+*  Select `Inception` and run it
+*  In Inception, you can edit the init() function of class InceptionV3Network to load run another network in this app
+*  In Yolo, you can edit the call `self.setNetwork(tiny: false)` in the function `createNeuralNetwork()` in CameraViewController.swift to switch between tiny yolo full 	and yolo2.
+*  To convert your own Keras networks, see [here](https://github.com/tognos/YAD2K#workflow-to-add-conversion-for-a-new-network).
+* Add the generated source file, the weights and eventually a test image to the testForge project first and add a test in testModels
+* extend/debug the keras2metal.py and Forge if neccessary as described in the YADK readme linked abobe 
+* When all works, add the weights and the builder source to your project
+
+# Original Forge Readme, may not all apply to this fork:
+
+
 # Forge: a neural network toolkit for Metal
 
 **Forge** is a collection of helper code that makes it a little easier to construct deep neural networks using Apple's MPSCNN framework.

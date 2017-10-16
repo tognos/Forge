@@ -279,15 +279,18 @@ public class Model {
       totalParams += biasCount
       biasParameters = parameterCallback(layer.name, biasCount, .biases)
     }
-
-    try layer.createCompute(device: device,
-                            inputShape: input.shape,
-                            outputShape: output.shape,
-                            weights: weightParameters,
-                            biases: biasParameters)
+    // workaround for a bug where in a release build the runtime deinits the bias
+    // parameters before the are used
+    try withExtendedLifetime(biasParameters,
+                         {try layer.createCompute(device: device,
+                              inputShape: input.shape,
+                              outputShape: output.shape,
+                              weights: weightParameters,
+                              biases: biasParameters)}
+    )
 
     layer.paramCount = weightCount + biasCount
-
+    //print("createCompute: done", input, "-->", output, "biasParameters = \(biasParameters?.pointer)")
     // Does the first layer take a MTLTexture or an MPSImage?
     if firstComputeLayer {
       if layer.wantsTextures { firstLayerEatsTexture = true }

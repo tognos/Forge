@@ -73,9 +73,12 @@ public class ParameterLoaderBundle: ParameterData {
       print("Error: mmap failed, errno = \(errno)")
       return nil
     }
+    //print("ParameterLoaderBundle init \(self), pointer = \(pointer)")
+
   }
 
   deinit {
+    //print("ParameterLoaderBundle deinit \(self), pointer = \(pointer)")
     if let hdr = hdr {
       let result = munmap(hdr, Int(fileSize))
       assert(result == 0, "Error: munmap failed, errno = \(errno)")

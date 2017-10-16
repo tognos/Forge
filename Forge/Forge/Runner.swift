@@ -128,11 +128,11 @@ public class Runner {
     // Block until the next GPU buffer is available.
     inflightSemaphore.wait()
 
-    let startTime = CACurrentMediaTime()
 
     //commandQueue.insertDebugCaptureBoundary()
 
     autoreleasepool {
+      let startTime = CACurrentMediaTime()
       guard let commandBuffer = commandQueue.makeCommandBuffer() else { return }
 
       network.encode(commandBuffer: commandBuffer, texture: inputTexture, inflightIndex: inflightIndex)
